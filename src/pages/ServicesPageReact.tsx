@@ -17,11 +17,24 @@
  */
 
 import * as React from 'react';
+import { useRef } from 'react';
+
+import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
+import Footer from '../components/footer/Footer';
+
 
 const ServicesPageReact: React.FC = (): JSX.Element => {
+
+    const detailsRef = useRef(null);
+
     return (
         <>
+            <NavigationBottomBar
+                listeners = {[ { ariaLabel: 'services details', goto: detailsRef } ]}
+            />
             Services page
+            <div ref = {detailsRef}>details</div>
+            <Footer/>
         </>
     );
 };
