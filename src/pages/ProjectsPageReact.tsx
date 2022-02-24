@@ -17,11 +17,22 @@
  */
 
 import * as React from 'react';
+import Footer from '../components/footer/Footer';
+import { useRef } from 'react';
+import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
 
 const ProjectsPageReact: React.FC = (): JSX.Element => {
+
+    const projectsRef = useRef(null);
+
     return (
         <>
+            <NavigationBottomBar
+                listeners = {[ { ariaLabel: 'all projects', goto: projectsRef } ]}
+            />
             all projects
+            <div ref = {projectsRef}>projects</div>
+            <Footer/>
         </>
     );
 };
