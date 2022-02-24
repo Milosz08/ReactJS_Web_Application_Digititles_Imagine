@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2022 by MILOSZ GILGA <https://miloszgilga.pl>
  *
- * File name: NonProtectedRoute.tsx
+ * File name: AppRoutes.tsx
  * Last modified: 21/02/2022, 20:46
  * Project name: digititles-imagine
  *
@@ -17,26 +17,20 @@
  */
 
 import * as React from 'react';
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 
-import { BasicAppRouting } from '../static/routingData';
-import TitleInjectionHOC from '../high-order-components/TitleInjectionHOC';
+import { appRouting } from '../static/appRouting';
 
-const NonProtectedRoute: React.FC = (): JSX.Element => {
 
-    const generateRouterStructure = BasicAppRouting.map(({ path, ariaLabel, component }) => (
-        <Route
-            path = {path}
-            element = {<TitleInjectionHOC title = {ariaLabel || ''} Component = {component}/>}
-        />
-    ));
+const AppRoutes: React.FC = (): JSX.Element => {
+
+    const routing = useRoutes(appRouting(true));
 
     return (
-        <Routes>
-            {generateRouterStructure}
-            <Route path = "*" element = {<Navigate to = "/"/>}/>
-        </Routes>
+        <>
+            {routing}
+        </>
     );
 };
 
-export default NonProtectedRoute;
+export default AppRoutes;
