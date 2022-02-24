@@ -33,7 +33,7 @@ const SingleProjectPageReact: React.FC = (): JSX.Element => {
     const detailsRef = useRef(null);
 
     const { projectId } = useParams();
-    useChangePageTitle(projectId!);
+    useChangePageTitle(projectId!, false);
 
     return (
         <ProjectContext.Provider
