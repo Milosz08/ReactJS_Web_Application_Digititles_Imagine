@@ -2,7 +2,7 @@
  * Copyright (c) 2022 by MILOSZ GILGA <https://miloszgilga.pl>
  *
  * File name: useChangePageTitle.ts
- * Last modified: 21/02/2022, 22:51
+ * Last modified: 22/02/2022, 19:31
  * Project name: digititles-imagine
  *
  * Licensed under the MIT license; you may not use this file except in compliance with the License.
@@ -17,22 +17,29 @@
  */
 
 import { useEffect } from 'react';
-import setWebpageTitle, { BasicAppRouting } from '../static/routingData';
 
-const useChangePageTitle = (title: string, redir?: string) => {
+import { WebpageTitle } from '../../helper-primitives/WebpageTitle';
+
+/**
+ * Custom hook responsible for setting page title immediately after virtual DOM will build.
+ *
+ * @param title { string } - title to set.
+ * @param ifAdminPanel { boolean } - flag decided, if it is admin panel.
+ * @param redir { string? } - title setting on unmount component (optional).
+ */
+const useChangePageTitle = (title: string, ifAdminPanel: boolean, redir?: string): null => {
 
     useEffect(() => {
-        document.title = setWebpageTitle(title);
+        document.title = WebpageTitle.setTitle(title, ifAdminPanel);
         return () => {
             if (Boolean(redir)) {
-                document.title = setWebpageTitle(redir!);
+                document.title = WebpageTitle.setTitle(redir!, ifAdminPanel);
             }
-            document.title = setWebpageTitle(BasicAppRouting[0].ariaLabel);
+            document.title = WebpageTitle.setTitle('Main, End credits & Subtitles', ifAdminPanel);
         };
-    }, [ redir, title ]);
+    }, [ ifAdminPanel, redir, title ]);
 
     return null;
-
 };
 
 export default useChangePageTitle;
