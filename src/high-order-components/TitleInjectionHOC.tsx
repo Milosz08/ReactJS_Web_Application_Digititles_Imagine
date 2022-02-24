@@ -17,17 +17,19 @@
  */
 
 import * as React from 'react';
-import useChangePageTitle from '../hooks/useChangePageTitle';
+import useChangePageTitle from '../hooks/reusable/useChangePageTitle';
+
 
 interface PropsProvider {
     title: string;
     Component: React.FC;
     redir?: string;
+    ifAdminPanel?: boolean;
 }
 
-const TitleInjectionHOC: React.FC<PropsProvider> = ({ title, Component, redir, ...rest }): JSX.Element => {
+const TitleInjectionHOC: React.FC<PropsProvider> = ({ title, Component, redir, ifAdminPanel, ...rest }): JSX.Element => {
 
-    useChangePageTitle(title, redir);
+    useChangePageTitle(title, ifAdminPanel!, redir);
 
     return (
         <Component {...rest} />
