@@ -17,9 +17,49 @@
  */
 
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+import DelayRouteLinkHOC from '../high-order-components/DelayRouteLinkHOC';
+import ScrollToTopFooterLinkHOC from '../high-order-components/ScrollToTopFooterLinkHOC';
+
+export const link_rs = styled(Link)`
+    text-decoration: none;
+    color: inherit;
+`;
 
 export const a_rs = styled.a`
-    :hover {
-        text-decoration: none;
-    }
+    text-decoration: none;
+    color: inherit;
+`;
+
+export const delay_link_rs = styled(DelayRouteLinkHOC)`
+    text-decoration: none;
+    color: inherit;
+`;
+
+export const footer_scroll_link_rs = styled(ScrollToTopFooterLinkHOC)`
+    text-decoration: none;
+    color: inherit;
+`;
+
+export const button_rs = styled.button`
+    color: inherit;
+    background-color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    text-transform: inherit;
+    border: none;
+    cursor: pointer;
+`;
+
+export const input_rs = styled.input`
+    background-color: transparent;
+    border: none;
+    outline: none;
+`;
+
+export const textarea_rs = styled.textarea`
+    border: none;
+    outline: none;
+    resize: none;
 `;
