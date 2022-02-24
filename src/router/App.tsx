@@ -2,7 +2,7 @@
  * Copyright (c) 2022 by MILOSZ GILGA <https://miloszgilga.pl>
  *
  * File name: App.tsx
- * Last modified: 21/02/2022, 18:41
+ * Last modified: 24/02/2022, 15:01
  * Project name: digititles-imagine
  *
  * Licensed under the MIT license; you may not use this file except in compliance with the License.
@@ -17,21 +17,37 @@
  */
 
 import * as React from 'react';
+import { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+
+import { Provider } from 'react-redux';
+import store from '../redux/store';
 
 import GlobalStylesInjection from '../styles/global.styles';
 import FontfacesStylesInjection from '../styles/fontfaces.styles';
 
-import NonProtectedRoute from './NonProtectedRoute';
+const InvokeOnMount = React.lazy(() => import('./InvokeOnMount'));
+const ForceScrollToTopHOC = React.lazy(() => import('../high-order-components/ForceScrollToTopHOC'));
+const MainMenu = React.lazy(() => import('../components/main-menu/MainMenu'));
+const Header = React.lazy(() => import('../components/header/Header'));
+const AppRoutes = React.lazy(() => import('./AppRoutes'));
+
 
 const App: React.FC = (): JSX.Element => (
-    <>
-        <FontfacesStylesInjection/>
-        <GlobalStylesInjection/>
-        <BrowserRouter>
-            <NonProtectedRoute/>
-        </BrowserRouter>
-    </>
+    <Provider store = {store}>
+        <Suspense fallback = {<></>}>
+            <FontfacesStylesInjection/>
+            <GlobalStylesInjection/>
+            <InvokeOnMount/>
+            <BrowserRouter>
+                <ForceScrollToTopHOC>
+                    <MainMenu/>
+                    <Header/>
+                    <AppRoutes/>
+                </ForceScrollToTopHOC>
+            </BrowserRouter>
+        </Suspense>
+    </Provider>
 );
 
 export default App;
