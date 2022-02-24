@@ -18,12 +18,39 @@
 
 import * as React from 'react';
 
+import useMultipleRefs from '../hooks/reusable/useMultipleRefs';
+import DelayRouteLinkHOC from '../high-order-components/DelayRouteLinkHOC';
+
+const NavigationBottomBar = React.lazy(() => import('../components/navigation-bottom-bar/NavigationBottomBar'));
+const NavigationScrollTop = React.lazy(() => import('../components/navigation-scroll-top/NavigationScrollTop'));
+const Footer = React.lazy(() => import('../components/footer/Footer'));
+const MainPageAnimateTitle = React.lazy(() => import('../components/main-page-animate-title/MainPageAnimateTitle'));
+
+
 const MainPageReact: React.FC = (): JSX.Element => {
+
+    const { elRefs } = useMultipleRefs(2);
+    const [ projects, services ] = elRefs;
+
     return (
         <>
-            start page
+            <NavigationBottomBar
+                listeners = {[ { ariaLabel: 'projects', goto: projects }, { ariaLabel: 'services', goto: services } ]}
+            />
+            <NavigationScrollTop/>
+            <MainPageAnimateTitle/>
+            main page
+            <div style = {{ display: 'flex', alignItems: 'flex-end', height: '300vh' }}>
+                <DelayRouteLinkHOC to = '/projects/1234' delay = {1000}>
+                    projects
+                </DelayRouteLinkHOC>
+            </div>
+            <div ref = {projects}>projects</div>
+            <div ref = {services}>services</div>
+            <Footer/>
         </>
     );
+
 };
 
 export default MainPageReact;
