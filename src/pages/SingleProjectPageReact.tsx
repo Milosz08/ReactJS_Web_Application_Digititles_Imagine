@@ -17,14 +17,20 @@
  */
 
 import * as React from 'react';
-import { createContext } from 'react';
+import { createContext, useRef } from 'react';
 import { useParams } from 'react-router';
 
-import useChangePageTitle from '../hooks/useChangePageTitle';
+import useChangePageTitle from '../hooks/reusable/useChangePageTitle';
+
+import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
+import Footer from '../components/footer/Footer';
 
 export const ProjectContext = createContext<Partial<{ projectId: string }>>({});
 
+
 const SingleProjectPageReact: React.FC = (): JSX.Element => {
+
+    const detailsRef = useRef(null);
 
     const { projectId } = useParams();
     useChangePageTitle(projectId!);
@@ -33,7 +39,12 @@ const SingleProjectPageReact: React.FC = (): JSX.Element => {
         <ProjectContext.Provider
             value = {{ projectId }}
         >
+            <NavigationBottomBar
+                listeners = {[ { ariaLabel: 'project details', goto: detailsRef } ]}
+            />
             single project: {projectId}
+            <div ref = {detailsRef}>details</div>
+            <Footer/>
         </ProjectContext.Provider>
     );
 };
