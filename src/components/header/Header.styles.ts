@@ -67,7 +67,7 @@ export const HeaderLogoImage = styled.img<{ $ifActive: boolean }>`
 `;
 
 export const HeaderLogoTitle = styled.div`
-    font-family: 'Overpass', sans-serif;
+    font-family: 'O', sans-serif;
     margin-left: 30px;
     font-size: 3rem;
     letter-spacing: -2px;
