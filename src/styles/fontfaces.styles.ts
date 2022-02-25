@@ -25,29 +25,19 @@ const FontfacesStylesInjection = createGlobalStyle`
         font-weight: 700;
     }
     @font-face {
-        font-family: 'Signika';
-        src: local('Signika'), url(${`${process.env.PUBLIC_URL}/asset-fonts/Signika-Light.ttf`});
-        font-weight: 300;
-    }
-    @font-face {
-        font-family: 'Signika';
-        src: local('Signika'), url(${`${process.env.PUBLIC_URL}/asset-fonts/Signika-Regular.ttf`});
+        font-family: 'C';
+        src: local('C'), url(${`${process.env.PUBLIC_URL}/asset-fonts/C-Book.woff`});
         font-weight: 400;
     }
     @font-face {
-        font-family: 'Signika';
-        src: local('Signika'), url(${`${process.env.PUBLIC_URL}/asset-fonts/Signika-Medium.ttf`});
+        font-family: 'C';
+        src: local('C'), url(${`${process.env.PUBLIC_URL}/asset-fonts/C-Medium.woff`});
         font-weight: 500;
     }
     @font-face {
-        font-family: 'Signika';
-        src: local('Signika'), url(${`${process.env.PUBLIC_URL}/asset-fonts/Signika-SemiBold.ttf`});
+        font-family: 'C';
+        src: local('C'), url(${`${process.env.PUBLIC_URL}/asset-fonts/C-Bold.woff`});
         font-weight: 600;
-    }
-    @font-face {
-        font-family: 'Signika';
-        src: local('Signika'), url(${`${process.env.PUBLIC_URL}/asset-fonts/Signika-Bold.ttf`});
-        font-weight: 700;
     }
 `;
 
