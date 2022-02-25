@@ -29,7 +29,7 @@ const useFixedFlickedComponentOnLoad = () => {
     const [ hide, setHide ] = useState(true);
 
     useEffect(() => {
-        setHide(false);
+        setTimeout(() => setHide(false), 400);
     }, []);
 
     return hide;
