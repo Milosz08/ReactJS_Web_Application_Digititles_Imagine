@@ -20,6 +20,7 @@ import * as React from 'react';
 
 import useMultipleRefs from '../hooks/reusable/useMultipleRefs';
 import DelayRouteLinkHOC from '../high-order-components/DelayRouteLinkHOC';
+import BackgroundFluidImage from '../components/background-fluid-image/BackgroundFluidImage';
 
 const NavigationBottomBar = React.lazy(() => import('../components/navigation-bottom-bar/NavigationBottomBar'));
 const NavigationScrollTop = React.lazy(() => import('../components/navigation-scroll-top/NavigationScrollTop'));
@@ -37,6 +38,7 @@ const MainPageReact: React.FC = (): JSX.Element => {
             <NavigationBottomBar
                 listeners = {[ { ariaLabel: 'projects', goto: projects }, { ariaLabel: 'services', goto: services } ]}
             />
+            <BackgroundFluidImage/>
             <NavigationScrollTop/>
             <MainPageAnimateTitle/>
             main page

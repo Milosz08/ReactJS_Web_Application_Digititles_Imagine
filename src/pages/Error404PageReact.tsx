@@ -18,10 +18,14 @@
 
 import * as React from 'react';
 
+import BackgroundFluidImage from '../components/background-fluid-image/BackgroundFluidImage';
+
+
 const Error404PageReact: React.FC = (): JSX.Element => {
     return (
         <>
             error 404 page
+            <BackgroundFluidImage/>
         </>
     );
 };
