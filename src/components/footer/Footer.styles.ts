@@ -41,7 +41,7 @@ export const FooterContainer = styled.footer`
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 700px;
+    height: 600px;
     background-color: var(--blackDark);
     color: var(--grayDarker);
     font-size: 1.1rem;

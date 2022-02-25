@@ -37,7 +37,7 @@ const GlobalStylesInjection = createGlobalStyle`
         }
     }
     #root {
-        margin-bottom: 700px;
+        margin-bottom: 600px;
         min-height: 100vh;
         background-color: var(--whiteClean);
         @media only screen and (max-width: 760px) {

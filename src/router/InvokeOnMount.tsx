@@ -26,7 +26,7 @@ import useChangeBrowserSizeListener from '../hooks/reusable/useChangeBrowserSize
 const InvokeOnMount: React.FC = (): null => {
 
     useSetScrollPosition();
-    useChangeStickyOnScroll(700);
+    useChangeStickyOnScroll(600);
     useChangeBrowserSizeListener();
 
     return null;
