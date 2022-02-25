@@ -28,6 +28,7 @@ export const MainPageAnimationTitleContainer = styled.main<{ $ifHide: boolean }>
     font-weight: 700;
     padding-left: 200px;
     opacity: ${({ $ifHide }) => $ifHide ? 0 : 1};
+    will-change: opacity;
 `;
 
 export const MainPageAnimationTitleHeader = styled.h1`
