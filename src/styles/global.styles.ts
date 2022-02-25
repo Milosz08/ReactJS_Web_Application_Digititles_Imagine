@@ -23,24 +23,41 @@ const GlobalStylesInjection = createGlobalStyle`
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        letter-spacing: -.02rem;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
     }
     body, input, textarea, button {
-        font-family: 'Overpass', sans-serif;
+        font-family: 'C', sans-serif;
     }
-    * [role = 'link'] {
-        cursor: pointer;
+    body {
+        position: relative;
+        &.disable--scroll {
+            overflow-y: hidden;
+        }
+    }
+    #root {
+        margin-bottom: 700px;
+        min-height: 100vh;
+        background-color: var(--whiteClean);
+        @media only screen and (max-width: 760px) {
+            margin-bottom: 0;
+        }
     }
     :root {
-        --whiteClean: #ffffff;
+        --whiteClean: #fefefe;
         --whiteDark: #f7f7f7;
         --blackLight: #444444;
         --blackDark: #1f1f1f;
-        --grayDark: #8f8f8f;
-        --grayLight: #b4b4b4;
+        --blackDarken: #242424;
+        --grayDarker: #8f8f8f;
+        --grayDark: #bcbfc5;
+        --grayLight: #dcdddf;
         --grayLighter: #dcdddf;
         --cyanDarker: #1b363d;
         --cyanDark: #2c5662;
         --cyanLight: #648e99;
+        --redLight: #de4545;
     }
 `;
 
