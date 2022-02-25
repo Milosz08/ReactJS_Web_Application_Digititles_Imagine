@@ -35,7 +35,7 @@ const AppRoutes = React.lazy(() => import('./AppRoutes'));
 
 const App: React.FC = (): JSX.Element => (
     <Provider store = {store}>
-        <Suspense fallback = {<></>}>
+        <Suspense fallback = {<>loading...</>}>
             <FontfacesStylesInjection/>
             <GlobalStylesInjection/>
             <InvokeOnMount/>
