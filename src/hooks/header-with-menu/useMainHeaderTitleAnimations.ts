@@ -60,7 +60,7 @@ const useMainHeaderTitleAnimations = (): [ React.MutableRefObject<any>, boolean 
     // change visibility on scroll event
     useLayoutEffect((): void => {
         if (!isMount && pathname !== '/getting-started') {
-            if (currScrollPos > 30) {
+            if (currScrollPos > 100) {
                 Gsap.gsapBasicAnimations(headerTitleRef, { dir: LEFT, interpos: 15, visible: HIDE });
             } else {
                 Gsap.gsapBasicAnimations(headerTitleRef, { dir: LEFT, visible: SHOW });
@@ -73,7 +73,7 @@ const useMainHeaderTitleAnimations = (): [ React.MutableRefObject<any>, boolean 
         if (!isMount) {
             if (ifMenuOpen) {
                 Gsap.gsapBasicAnimations(headerTitleRef, { dir: LEFT, interpos: 10, visible: HIDE });
-            } else if (currScrollPos <= 30) {
+            } else if (currScrollPos <= 100) {
                 Gsap.gsapBasicAnimations(headerTitleRef, { dir: LEFT, visible: SHOW, delay: .4 });
             }
         }
