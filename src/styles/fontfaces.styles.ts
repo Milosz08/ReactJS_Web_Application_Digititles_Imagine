@@ -20,8 +20,8 @@ import { createGlobalStyle } from 'styled-components';
 
 const FontfacesStylesInjection = createGlobalStyle`
     @font-face {
-        font-family: 'Overpass';
-        src: local('Overpass'), url(${`${process.env.PUBLIC_URL}/asset-fonts/Overpass-Bold.ttf`});
+        font-family: 'O';
+        src: local('O'), url(${`${process.env.PUBLIC_URL}/asset-fonts/O-Bold.woff`});
         font-weight: 700;
     }
     @font-face {
