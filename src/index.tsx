@@ -21,4 +21,15 @@ import * as ReactDOM from 'react-dom';
 
 import App from './router/App';
 
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+import InvokeProjectLoad from './helper-primitives/InvokeProjectLoad';
+
+gsap.registerPlugin(ScrollTrigger);
+gsap.config({ nullTargetWarn: false });
+
+InvokeProjectLoad.gotoTopOnReload();
+InvokeProjectLoad.disableAnimationsOnResize();
+
 ReactDOM.render(<App/>, document.getElementById('root'));
