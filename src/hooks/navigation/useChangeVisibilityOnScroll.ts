@@ -34,6 +34,7 @@ interface ShowHideProps {
     animActivate: number;
     elements?: number;
     visibleType?: AnimationVisibility;
+    ifNonHardHide?: boolean;
 }
 
 /**
@@ -42,9 +43,12 @@ interface ShowHideProps {
  * @param animActivate { number } - element height.
  * @param elements { number? } - count of referential objects to create (default: 1).
  * @param visibleType { AnimationVisibility } - visibility DOM element by CSS type (flex/block).
+ * @param ifNonHardHide { boolean } - if also hook has set display on none (default false).
  * @return { React.MutableRefObject<any>[] } - referential objects to inject in JSX elements.
  */
-const useChangeVisibilityOnScroll = ({ animActivate, elements, visibleType }: ShowHideProps): React.MutableRefObject<any>[] => {
+const useChangeVisibilityOnScroll = ({
+    animActivate, elements, visibleType, ifNonHardHide
+}: ShowHideProps): React.MutableRefObject<any>[] => {
 
     const { currScrollPos }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     const { elRefs, getCurrents } = useMultipleRefs(elements || 1);
@@ -55,11 +59,13 @@ const useChangeVisibilityOnScroll = ({ animActivate, elements, visibleType }: Sh
     useLayoutEffect((): void => {
         const opacityValue: number = 1 - document.documentElement.scrollTop / animActivate;
         const autoAlpha: number = opacityValue <= 0 || opacityValue === -0 ? 0 : opacityValue;
-        gsap.to(getCurrents(), {
-            autoAlpha,
-            display: autoAlpha === 0 ? 'none' : visibleType === BLOCK ? 'block' : 'flex',
-            duration: .3,
-        });
+        if(ifNonHardHide) {
+            gsap.to(getCurrents(), { autoAlpha, duration: .3 });
+        } else {
+            gsap.to(getCurrents(), {
+                autoAlpha, display: autoAlpha === 0 ? 'none' : visibleType === BLOCK ? 'block' : 'flex', duration: .3,
+            });
+        }
     }, [ currScrollPos ]);
 
     return elRefs;
