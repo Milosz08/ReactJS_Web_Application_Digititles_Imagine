@@ -67,9 +67,9 @@ const createPropertiesObject = (type: PropType, ifFirst = false): object => {
     const stagger: number = .01;
     const duration: number = .6;
     if (type === PropType.FROM) {
-        return { y, duration, ease, stagger, delay: !ifFirst ? -0.5 : 0, opacity: 1 };
+        return { y, duration, ease, stagger, delay: !ifFirst ? -0.5 : 0 };
     }
-    return { y: `-${y}`, duration, ease, stagger, delay: 3, opacity: 1 };
+    return { y: `-${y}`, duration, ease, stagger, delay: 3 };
 };
 
 export default useSingleRowGroupAnimation;

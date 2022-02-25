@@ -30,7 +30,7 @@ import { gsap } from 'gsap';
  */
 const useGenerateGsapTimelines = (): { grabber: React.MutableRefObject<any>, titleRefs: gsap.core.Timeline[] } => {
 
-    const master = gsap.timeline({ repeat: -1, delay: 1, defaults: { opacity: 0 } });
+    const master = gsap.timeline({ repeat: -1, delay: 1 });
     const grabber = useRef<HTMLDivElement>(null);
 
     const firstTitle = gsap.timeline();
