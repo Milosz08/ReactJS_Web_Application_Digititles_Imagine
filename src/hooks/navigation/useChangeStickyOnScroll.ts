@@ -32,11 +32,11 @@ import { ReduxDOMActions } from '../../redux/redux-dom-manipulate/actions';
  */
 const useChangeStickyOnScroll = (footerHeight: number): null => {
 
-    const { currScrollFromBottom }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { currScrollPos, currScrollFromBottom }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     const dispatcher = useDispatch();
 
     useEffect((): void => {
-        if (currScrollFromBottom <= footerHeight) {
+        if (currScrollFromBottom <= footerHeight && currScrollPos !== 0) {
             dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.IF_FIXED, false));
         } else {
             dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.IF_FIXED, true));
