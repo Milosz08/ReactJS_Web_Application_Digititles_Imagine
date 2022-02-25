@@ -20,14 +20,14 @@ import * as React from 'react';
 import { useLayoutEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { Expo, gsap, Power0 } from 'gsap';
+import { gsap } from 'gsap';
 
 import useMultipleRefs from '../reusable/useMultipleRefs';
-import { Gsap } from '../../helper-primitives/GsapAnimations';
 
 import { RootState } from '../../redux/store';
 import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
-import { AnimationStages, AnimationVisibility } from '../../redux/redux-dom-manipulate/types';
+import { AnimationStages, AnimationVisibility, ReduxDOMstateKeys } from '../../redux/redux-dom-manipulate/types';
+import { ReduxDOMActions } from '../../redux/redux-dom-manipulate/actions';
 
 
 interface ShowHideProps {
@@ -59,12 +59,14 @@ const useChangeVisibilityOnScroll = ({
     useLayoutEffect((): void => {
         const opacityValue: number = 1 - document.documentElement.scrollTop / animActivate;
         const autoAlpha: number = opacityValue <= 0 || opacityValue === -0 ? 0 : opacityValue;
-        if(ifNonHardHide) {
-            gsap.to(getCurrents(), { autoAlpha, duration: .3 });
-        } else {
-            gsap.to(getCurrents(), {
-                autoAlpha, display: autoAlpha === 0 ? 'none' : visibleType === BLOCK ? 'block' : 'flex', duration: .3,
-            });
+        if (elRefs.length !== 0) {
+            if (ifNonHardHide) {
+                gsap.to(getCurrents(), { autoAlpha, duration: .3 });
+            } else {
+                gsap.to(getCurrents(), {
+                    autoAlpha, display: autoAlpha === 0 ? 'none' : visibleType === BLOCK ? 'block' : 'flex', duration: .3,
+                });
+            }
         }
     }, [ currScrollPos ]);
 
