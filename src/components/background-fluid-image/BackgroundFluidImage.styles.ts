@@ -47,7 +47,7 @@ export const BackgroundFluidImageTriangle = styled.div<{ $ifVisible: boolean }>`
     width: 100px;
     height: 50px;
     border-left: 20vw solid transparent;
-    border-bottom: 25vh solid var(--cyanDarker);
+    border-bottom: 10vw solid var(--cyanDarker);
     opacity: .8;
     bottom: 0;
     right: 0;
