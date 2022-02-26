@@ -43,7 +43,7 @@ export const BackgroundFluidImageStyles = styled.img`
 export const BackgroundFluidImageTriangle = styled.div<{ $ifVisible: boolean }>`
     position: absolute;
     display: ${({ $ifVisible }) => $ifVisible ? 'block' : 'none'};
-    z-index: 10;
+    z-index: 3;
     width: 100px;
     height: 50px;
     border-left: 20vw solid transparent;
