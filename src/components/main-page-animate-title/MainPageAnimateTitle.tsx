@@ -18,12 +18,13 @@
 
 import * as React from 'react';
 
+import useChangeVisibilityOnScroll from '../../hooks/navigation/useChangeVisibilityOnScroll';
 import useFixedFlickedComponentOnLoad from '../../hooks/reusable/useFixedFlickedComponentOnLoad';
 
-import { MainPageAnimationTitleContainer, MainPageAnimationTitleHeader } from './MainPageAnimateTitle.styles';
+import { MainPageAnimationTitleContainer } from './MainPageAnimateTitle.styles';
 
 import MainPageAnimTitles from './subcomponents/MainPageAnimTitles';
-import useChangeVisibilityOnScroll from '../../hooks/navigation/useChangeVisibilityOnScroll';
+import MainPageAnimHeader from './subcomponents/MainPageAnimHeader';
 
 
 const MainPageAnimateTitle: React.MemoExoticComponent<() => JSX.Element> = React.memo((): JSX.Element => {
@@ -36,9 +37,7 @@ const MainPageAnimateTitle: React.MemoExoticComponent<() => JSX.Element> = React
             ref = {animationRef}
             $ifHide = {hide}
         >
-            <MainPageAnimationTitleHeader>
-                We creating Credits.
-            </MainPageAnimationTitleHeader>
+            <MainPageAnimHeader/>
             <MainPageAnimTitles/>
         </MainPageAnimationTitleContainer>
     );
