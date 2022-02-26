@@ -54,7 +54,8 @@ const useShowHideBackgroundImage = ({ invokePx, ifShowOnLoad }: HookProps): Reac
                 gsap.to(getCurrents(), { x: 0, duration: .6, ease: Expo.easeInOut, stagger: .2 });
                 setToggleAnim(false);
             } else if (currScrollPos < invokePx && !toggleAnim) {
-                gsap.to(getCurrents(), { x: '100%', duration: .6, ease: Expo.easeInOut, stagger: .2 });
+                const reverseCurrents = getCurrents().reverse();
+                gsap.to(reverseCurrents, { x: '100%', duration: .6, ease: Expo.easeInOut, stagger: .2 });
                 setToggleAnim(true);
             }
         }
