@@ -21,6 +21,8 @@ import styled from 'styled-components';
 import { button_rs, link_rs } from '../../styles/reset.styles';
 import { HideElementOnLoad, NavigationSingleTextElement } from '../../styles/mixins.styles';
 
+const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
 export const HeaderContainer = styled.header<{ $ifMenuOpen: boolean, $ifGradient: boolean }>`
     position: fixed;
     display: flex;
@@ -28,18 +30,21 @@ export const HeaderContainer = styled.header<{ $ifMenuOpen: boolean, $ifGradient
     align-items: center;
     width: 100%;
     height: 180px;
-    padding-right: ${({ $ifMenuOpen }) => $ifMenuOpen ? 67 : 50}px;
+    padding-right: ${({ $ifMenuOpen }) => $ifMenuOpen ? 50 + scrollbarWidth : 50}px;
     padding-left: 50px;
-    z-index: 3;
+    z-index: 5;
     @media only screen and (max-width: 1030px) {
         height: 90px;
-        padding-right: ${({ $ifMenuOpen }) => $ifMenuOpen ? 47 : 30}px;
+        padding-right: ${({ $ifMenuOpen }) => $ifMenuOpen ? 30 + scrollbarWidth : 30}px;
         padding-left: 30px;
         background-color: ${({ $ifMenuOpen, $ifGradient }) => $ifMenuOpen 
-                ? 'transparent' : $ifGradient ? 'var(--cleanWhite)' : 'transparent'};
+                ? 'transparent' : $ifGradient ? 'var(--whiteClean)' : 'transparent'};
         box-shadow: ${({ $ifGradient, $ifMenuOpen }) => $ifMenuOpen 
                 ? 'none' : $ifGradient ? 'rgba(0, 0, 0, 0.24) 0px 3px 8px' : 'none'};;
         transition: background-color .3s, box-shadow .3s;
+    }
+    @media only screen and (max-width: 760px) {
+        padding-right: ${({ $ifMenuOpen }) => $ifMenuOpen ? 47 : 30}px;
     }
 `;
 

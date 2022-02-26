@@ -42,14 +42,14 @@ interface HookProps {
  */
 const useShowHideBackgroundImage = ({ invokePx, ifShowOnLoad }: HookProps): React.MutableRefObject<any>[] => {
 
-    const { currScrollPos }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { currScrollPos, browserX }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
 
     const [ toggleAnim, setToggleAnim ] = useState<boolean>(true);
     const { elRefs, getCurrents } = useMultipleRefs(2);
 
     // show/hide on scroll trigger
     useLayoutEffect((): void => {
-        if (!ifShowOnLoad) {
+        if (!ifShowOnLoad && browserX > 1030) {
             if (currScrollPos > invokePx && toggleAnim) {
                 gsap.to(getCurrents(), { x: 0, duration: .6, ease: Expo.easeInOut, stagger: .2 });
                 setToggleAnim(false);
@@ -58,14 +58,14 @@ const useShowHideBackgroundImage = ({ invokePx, ifShowOnLoad }: HookProps): Reac
                 setToggleAnim(true);
             }
         }
-    }, [ currScrollPos, getCurrents, ifShowOnLoad, invokePx, toggleAnim ]);
+    }, [ browserX, currScrollPos, getCurrents, ifShowOnLoad, invokePx, toggleAnim ]);
 
     // show/hide when page would be load
     useLayoutEffect((): void => {
-        if (ifShowOnLoad) {
+        if (ifShowOnLoad && browserX > 1030) {
             gsap.to(getCurrents(), { x: 0, duration: .6, ease: Expo.easeInOut, delay: .5 });
         }
-    }, [ getCurrents, ifShowOnLoad ]);
+    }, [ browserX, getCurrents, ifShowOnLoad ]);
 
     return elRefs;
 };

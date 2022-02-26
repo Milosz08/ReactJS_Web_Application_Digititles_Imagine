@@ -29,6 +29,21 @@ export const MainPageAnimationTitleContainer = styled.main<{ $ifHide: boolean }>
     padding-left: 200px;
     opacity: ${({ $ifHide }) => $ifHide ? 0 : 1};
     will-change: opacity;
+    z-index: 0;
+    @media only screen and (max-width: 1320px) {
+        font-size: 2.2rem;
+    }
+    @media only screen and (max-width: 1030px) {
+        width: fit-content;
+        margin: 0 auto;
+        padding-left: 0;
+        font-size: 1.6rem;
+    }
+    @media only screen and (max-width: 570px) {
+        width: calc(100% - 60px);
+        margin: 0 30px;
+        font-size: 1.3rem;
+    }
 `;
 
 export const MainPageAnimationTitleHeader = styled.h1`
@@ -40,22 +55,55 @@ export const MainPageAnimationTitlesContainer = styled.div`
     font-size: 6rem;
     line-height: 1.6;
     color: var(--blackLight);
+    @media only screen and (max-width: 1320px) {
+        font-size: 4rem;
+    }
+    @media only screen and (max-width: 1030px) {
+        font-size: 2.5rem;
+    }
+    @media only screen and (max-width: 570px) {
+        font-size: 1.6rem;
+    }
 `;
 
 export const MainPageAnimationTitlesSingleRowGroup = styled.div`
     height: 100px;
     overflow: hidden;
     position: relative;
+    @media only screen and (max-width: 1320px) {
+        height: 70px;
+    }
+    @media only screen and (max-width: 1030px) {
+        height: 45px;
+    }
+    @media only screen and (max-width: 570px) {
+        height: 30px;
+    }
 `;
 
 export const TitlesSingleTitleInRow = styled.div`
     display: flex;
     position: absolute;
     transform: translateY(-35px);
+    @media only screen and (max-width: 1320px) {
+        transform: translateY(-15px);
+    }
+    @media only screen and (max-width: 570px) {
+        transform: translateY(-5px);
+    }
 `;
 
 export const TitlesSingleTitleCharContainer = styled.span`
     min-width: 25px;
+    @media only screen and (max-width: 1320px) {
+        min-width: 15px;
+    }
+    @media only screen and (max-width: 1030px) {
+        min-width: 10px;
+    }
+    @media only screen and (max-width: 570px) {
+        min-width: 4px;
+    }
 `;
 
 export const DotContainer = styled(TitlesSingleTitleCharContainer)`

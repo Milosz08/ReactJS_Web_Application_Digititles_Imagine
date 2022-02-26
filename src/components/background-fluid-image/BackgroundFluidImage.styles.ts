@@ -30,6 +30,9 @@ export const BackgroundFluidImageContainer = styled.div<{ $ifFixed: boolean }>`
     bottom: 0;
     width: 50%;
     height: 100vh;
+    @media only screen and (max-width: 1030px) {
+        display: none;
+    }
 `;
 
 export const BackgroundFluidImageStyles = styled.img`
