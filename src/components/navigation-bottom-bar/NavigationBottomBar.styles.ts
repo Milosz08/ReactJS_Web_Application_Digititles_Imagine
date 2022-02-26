@@ -26,6 +26,7 @@ export const NavigationBottomBarContainer = styled.nav`
     left: 250px;
     width: 50%;
     height: 100px;
+    z-index: 2;
     @media only screen and (max-width: 1330px) {
         left: 150px;
     }
