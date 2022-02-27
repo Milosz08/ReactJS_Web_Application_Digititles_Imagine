@@ -79,4 +79,11 @@ export class ReduxDOMActions {
         }
     });
 
+    /**
+     *
+     */
+    public static hideAllImages = (): ReturnedToReducer => ({
+        type: ReduxDOMreducerTypes.HIDE_ALL_IMAGES,
+    });
+
 }

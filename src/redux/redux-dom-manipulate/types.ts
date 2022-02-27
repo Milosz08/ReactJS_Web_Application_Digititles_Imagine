@@ -21,12 +21,15 @@ export enum ReduxDOMreducerTypes {
     OPEN_CLOSE_MAIN_MENU = 'OPEN_CLOSE_MAIN_MENU__D',
     CHANGE_SCROLL_POSITIONS = 'CHANGE_SCROLL_POSITIONS__D',
     SET_BROWSER_WIDTH_AND_HEIGHT = 'SET_BROWSER_WIDTH_AND_HEIGHT__D',
+    HIDE_ALL_IMAGES = 'HIDE_ALL_IMAGES__D',
 }
 
 export enum ReduxDOMstateKeys {
     WHILE_CHANGING_ROUTE = 'whileChangingRoutes',
     HAM_ACTIVE = 'hamActive',
     IF_FIXED = 'ifFixed',
+    CURRENT_ACTIVE_SERVICE_SECTION = 'currentActiveServiceSection',
+    ON_HOVER_ACTIVE_IMAGE_ID = 'onHoverActiveImageId',
 }
 
 export enum AnimationStages {

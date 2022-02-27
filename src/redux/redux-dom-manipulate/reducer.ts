@@ -55,6 +55,10 @@ const reduxReducerDOM = (state = InitStateDOM, action: any): InitStateDOMtypes =
             return { ...state, browserX, browserY };
         }
 
+        case ReduxDOMreducerTypes.HIDE_ALL_IMAGES: {
+            return { ...state, onHoverActiveImageId: null, currentActiveServiceSection: null };
+        }
+
         default: {
             return state;
         }

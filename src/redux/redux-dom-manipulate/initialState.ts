@@ -26,6 +26,8 @@ export interface InitStateDOMtypes {
     scrollPercentage: number;
     browserX: number;
     browserY: number;
+    currentActiveServiceSection: string | null;
+    onHoverActiveImageId: string | null;
 }
 
 export const InitStateDOM: InitStateDOMtypes = {
@@ -36,6 +38,8 @@ export const InitStateDOM: InitStateDOMtypes = {
     hamActive: false,
     ifFixed: true,
     scrollPercentage: 0,
-    browserX: document.documentElement.clientWidth,
-    browserY: document.documentElement.clientHeight,
+    browserX: 0,
+    browserY: 0,
+    currentActiveServiceSection: null,
+    onHoverActiveImageId: null,
 } as const;
