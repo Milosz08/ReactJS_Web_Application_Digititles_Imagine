@@ -30,6 +30,7 @@ import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState
 interface HookProps {
     invokePx: number;
     ifShowOnLoad?: boolean;
+    elements?: number;
 }
 
 /**
@@ -38,14 +39,15 @@ interface HookProps {
  *
  * @param invokePx { number } - trigerred animation (only for scroll).
  * @param ifShowOnLoad { boolean? } - if true, show elements on load (optional, default: false).
+ * @param elements { number? } - count of referential objects (optional, default: 2).
  * @return { React.MutableRefObject<any>[] } - referential objects array.
  */
-const useShowHideBackgroundImage = ({ invokePx, ifShowOnLoad }: HookProps): React.MutableRefObject<any>[] => {
+const useShowHideBackgroundImage = ({ invokePx, ifShowOnLoad, elements }: HookProps): React.MutableRefObject<any>[] => {
 
     const { currScrollPos, browserX }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
 
     const [ toggleAnim, setToggleAnim ] = useState<boolean>(true);
-    const { elRefs, getCurrents } = useMultipleRefs(2);
+    const { elRefs, getCurrents } = useMultipleRefs(elements || 2);
 
     // show/hide on scroll trigger
     useLayoutEffect((): void => {
