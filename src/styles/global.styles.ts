@@ -58,6 +58,9 @@ const GlobalStylesInjection = createGlobalStyle`
         --cyanDark: #2c5662;
         --cyanLight: #648e99;
         --redLight: #de4545;
+        
+        --headerFontSize: 4rem;
+        --paragraphFontSize: 1.4rem;
     }
 `;
 
