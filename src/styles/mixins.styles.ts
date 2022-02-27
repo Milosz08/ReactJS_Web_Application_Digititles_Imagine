@@ -45,9 +45,9 @@ export const NavigationSingleTextElement = ({ $color }: { $color?: string }) => 
     }
 `;
 
-export const BasicButtonWithBottomLine = ({ $isLeft }: { $isLeft: boolean }) => css`
+export const BasicButtonWithBottomLine = ({ $isLeft, $color }: { $isLeft: boolean, $color?: string }) => css`
     position: relative;
-    color: var(--cyanLight);
+    color: var(--${$color || 'cyanLight'});
     font-weight: 400;
     font-size: 1.1rem;
     padding-bottom: 20px;
@@ -62,7 +62,7 @@ export const BasicButtonWithBottomLine = ({ $isLeft }: { $isLeft: boolean }) => 
         left: ${$isLeft ? 0 : 'auto'};
         right: ${$isLeft ? 'auto' : 0};
         bottom: 5px;
-        background-color: var(--cyanLight);
+        background-color: var(--${$color || 'cyanLight'});
         transition: .3s width ease-in-out;
     }
     :hover::after {
