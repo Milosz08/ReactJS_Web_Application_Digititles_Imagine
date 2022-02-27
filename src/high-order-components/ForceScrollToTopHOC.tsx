@@ -21,7 +21,7 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router';
 
 
-interface PropsProvider {
+export interface ReactNodeProp {
     children: React.ReactNode;
 }
 
@@ -30,7 +30,7 @@ interface PropsProvider {
  *
  * @param children { React.ReactNode } - all wraped JSX elements.
  */
-const ForceScrollToTopHOC: React.FC<PropsProvider> = ({ children }): JSX.Element => {
+const ForceScrollToTopHOC: React.FC<ReactNodeProp> = ({ children }): JSX.Element => {
 
     const location = useLocation();
 
