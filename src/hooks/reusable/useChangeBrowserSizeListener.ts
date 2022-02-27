@@ -28,6 +28,7 @@ const useChangeBrowserSizeListener = () => {
 
     const dispatcher = useDispatch();
 
+    // on resize browser event
     useEffect(() => {
         const handleResizeListener = () => {
             const width = document.documentElement.clientWidth;
@@ -36,6 +37,14 @@ const useChangeBrowserSizeListener = () => {
         };
         window.addEventListener('resize', handleResizeListener, true);
     }, [ dispatcher ]);
+
+    // on load set initial width and height
+    useEffect(() => {
+        dispatcher(ReduxDOMActions.setBrowserSizes(
+            document.documentElement.clientWidth,
+            document.documentElement.clientHeight
+        ));
+    }, []);
 
 };
 
