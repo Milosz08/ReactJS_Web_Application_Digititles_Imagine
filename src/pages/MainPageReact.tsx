@@ -19,13 +19,13 @@
 import * as React from 'react';
 
 import useMultipleRefs from '../hooks/reusable/useMultipleRefs';
-import DelayRouteLinkHOC from '../high-order-components/DelayRouteLinkHOC';
-import BackgroundFluidImage from '../components/background-fluid-image/BackgroundFluidImage';
 
-const NavigationBottomBar = React.lazy(() => import('../components/navigation-bottom-bar/NavigationBottomBar'));
-const NavigationScrollTop = React.lazy(() => import('../components/navigation-scroll-top/NavigationScrollTop'));
-const Footer = React.lazy(() => import('../components/footer/Footer'));
-const MainPageAnimateTitle = React.lazy(() => import('../components/main-page-animate-title/MainPageAnimateTitle'));
+import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
+import BackgroundFluidImage from '../components/background-fluid-image/BackgroundFluidImage';
+import NavigationScrollTop from '../components/navigation-scroll-top/NavigationScrollTop';
+import MainPageAnimateTitle from '../components/main-page-animate-title/MainPageAnimateTitle';
+import MainPageServices from '../components/main-page-services/MainPageServices';
+import Footer from '../components/footer/Footer';
 
 
 const MainPageReact: React.FC = (): JSX.Element => {
@@ -41,14 +41,7 @@ const MainPageReact: React.FC = (): JSX.Element => {
             <BackgroundFluidImage/>
             <NavigationScrollTop/>
             <MainPageAnimateTitle/>
-            main page
-            <div style = {{ display: 'flex', alignItems: 'flex-end', height: '300vh' }}>
-                <DelayRouteLinkHOC to = '/projects/1234' delay = {1000}>
-                    projects
-                </DelayRouteLinkHOC>
-            </div>
-            <div ref = {projects}>projects</div>
-            <div ref = {services}>services</div>
+            <MainPageServices/>
             <Footer/>
         </>
     );
