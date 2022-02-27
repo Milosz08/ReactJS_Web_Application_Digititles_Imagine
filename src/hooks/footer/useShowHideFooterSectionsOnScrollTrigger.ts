@@ -50,7 +50,7 @@ const useShowHideFooterSectionsOnScrollTrigger = (): ReturnedTypes => {
     useLayoutEffect((): void => {
         if (elRefs.every(ref => Boolean(ref)) && Boolean(footerRef) && browserX > 760) {
             const footerHalfHeight = footerRef.current!.offsetHeight;
-            if (currScrollFromBottom < footerHalfHeight / 3 && hidden) {
+            if (currScrollFromBottom < footerHalfHeight / 2 && hidden) {
                 setHidden(false);
                 gsap.to(getCurrents(), {
                     y: 0, autoAlpha: 1, ease: Expo.easeOut, duration: 1.2, stagger: .2,
