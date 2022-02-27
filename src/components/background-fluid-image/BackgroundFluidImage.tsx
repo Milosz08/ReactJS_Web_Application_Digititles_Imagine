@@ -30,6 +30,8 @@ import {
     BackgroundFluidImageContainer, BackgroundFluidImageStyles, BackgroundFluidImageTriangle
 } from './BackgroundFluidImage.styles';
 
+import MainPageServicesImages from './subcomponents/MainPageServicesImages';
+
 
 const BackgroundFluidImage: React.FC = (): JSX.Element => {
 
@@ -47,6 +49,7 @@ const BackgroundFluidImage: React.FC = (): JSX.Element => {
                 $ifVisible = {absolutePath}
                 ref = {triangleRef}
             />
+            <MainPageServicesImages/>
             <BackgroundFluidImageStyles
                 src = {`${process.env.PUBLIC_URL}/asset-images/backgroundfluidimage.svg`}
                 ref = {imageRef}

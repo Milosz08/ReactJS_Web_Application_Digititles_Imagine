@@ -30,14 +30,37 @@ export const BackgroundFluidImageContainer = styled.div<{ $ifFixed: boolean }>`
     bottom: 0;
     width: 50%;
     height: 100vh;
+    overflow: hidden;
     @media only screen and (max-width: 1030px) {
         display: none;
     }
 `;
 
+export const BackgroundFluidBasicImageContainer = styled.div`
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+`;
+
 export const BackgroundFluidImageStyles = styled.img`
     width: 100%;
     ${HideContentOnLoad()};
+`;
+
+export const BackgroundFluidBasicImageStyles = styled.img`
+    position: absolute;
+    display: block;
+    width: 80%;
+    height: 80%;
+    bottom: 0;
+    right: 0;
+    transform: translateX(-70px);
+    opacity: 0;
+    visibility: hidden;
 `;
 
 export const BackgroundFluidImageTriangle = styled.div<{ $ifVisible: boolean }>`
