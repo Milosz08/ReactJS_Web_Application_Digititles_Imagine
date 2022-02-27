@@ -31,7 +31,7 @@ export const MainMenuContainer = styled.main<{ $ifActive: boolean }>`
     transition: .6s all cubic-bezier(.56, 0, .46, 1);
     padding: 0 50px;
     z-index: 4;
-    overflow-y: scroll;
+    overflow-y: auto;
     @media only screen and (max-width: 760px) {
         display: block;
         padding: 80px 30px 30px;
@@ -41,7 +41,6 @@ export const MainMenuContainer = styled.main<{ $ifActive: boolean }>`
 export const MainMenuSingleSectionContainer = styled.section`
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
     height: 400px;
     @media only screen and (max-width: 760px) {
         width: 100%;
