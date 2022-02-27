@@ -36,7 +36,7 @@ const NavigationScrollTop: React.FC = (): JSX.Element => {
     const { scrollPercentage, ifFixed }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
 
     const [ navigationRef ] = useChangeVisibilityBasedMark({
-        reversed: true, animActivate: 500, visibleType: AnimationVisibility.FLEX, disableMediaQueryValue: 760
+        reversed: true, animActivate: 500, visibleType: AnimationVisibility.FLEX, disableMediaQueryValue: 1030
     });
 
     return (
