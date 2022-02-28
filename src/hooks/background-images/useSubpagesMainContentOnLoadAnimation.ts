@@ -21,6 +21,9 @@ import { useLayoutEffect } from 'react';
 
 import { gsap } from 'gsap';
 import useMultipleRefs from '../reusable/useMultipleRefs';
+import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
 /**
  * Custom hook responsible for initialised title and description animations is SubpagesMainContent component.
@@ -29,15 +32,17 @@ import useMultipleRefs from '../reusable/useMultipleRefs';
  */
 const useSubpagesMainContentOnLoadAnimation = (): React.MutableRefObject<any>[] => {
 
+    const { browserX }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     const { elRefs, getCurrents } = useMultipleRefs(2);
     
     const master = gsap.timeline({ delay: .7 });
-
+    const desktop = browserX > 1030;
+    
     useLayoutEffect(() => {
         const [ title, description ] = getCurrents();
         master.to(title, { y: 0, autoAlpha: 1 });
-        master.to(description, { x: 0, autoAlpha: 1 }, '>');
-    }, [ elRefs, getCurrents, master ]);
+        master.to(description, { [desktop ? 'x' : 'y']: 0, autoAlpha: 1 }, desktop ? '>' : .1);
+    }, [ desktop, elRefs, getCurrents, master ]);
 
     return elRefs;
 };
