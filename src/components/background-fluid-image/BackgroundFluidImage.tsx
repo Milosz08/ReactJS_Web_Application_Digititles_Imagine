@@ -23,6 +23,7 @@ import { useLocation } from 'react-router-dom';
 
 import { RoutingPaths } from '../../static/appRouting';
 import useShowHideBackgroundImage from '../../hooks/background-images/useShowHideBackgroundImage';
+import useLoadSubpageInitialImage from '../../hooks/background-images/useLoadSubpageInitialImage';
 
 import { RootState } from '../../redux/store';
 import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
@@ -49,6 +50,8 @@ const BackgroundFluidImage: React.FC<PropsProvider> = ({ images, showBackgroundO
 
     const absolutePath: boolean = pathname === RoutingPaths.START;
     const [ imageRef, triangleRef ] = useShowHideBackgroundImage({ invokePx: 200, ifShowOnLoad: !absolutePath });
+
+    useLoadSubpageInitialImage(images[0], showBackgroundOnLoad!);
 
     return (
         <BackgroundFluidImageContainer
