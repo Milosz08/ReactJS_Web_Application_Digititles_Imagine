@@ -60,6 +60,7 @@ const GlobalStylesInjection = createGlobalStyle`
         --redLight: #de4545;
         
         --headerFontSize: 4rem;
+        --biggerHeaderFontSize: 5rem;
         --paragraphFontSize: 1.4rem;
     }
 `;
