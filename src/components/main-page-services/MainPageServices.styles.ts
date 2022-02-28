@@ -123,7 +123,7 @@ export const SingleShowHideBoxServicesLink = styled(footer_scroll_link_rs)`
     ${BasicButtonWithBottomLine({ $isLeft: true, $color: 'cyanDark' })};
     display: block;
     margin: 30px 0 10px;
-    font-size: 1.4rem;
+    font-size: var(--paragraphFontSize);
     font-weight: 500;
     ::after {
         bottom: 10px;
