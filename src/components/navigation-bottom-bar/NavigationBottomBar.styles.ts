@@ -78,7 +78,7 @@ export const NavigationBottomBarLine = styled.div`
 `;
 
 export const NavigateTextContentContainer = styled.div`
-    font-size: 1.3rem;
+    font-size: var(--paragraphFontSize);
     font-weight: 500;
     margin-left: 20px;
     color: var(--grayDark);
