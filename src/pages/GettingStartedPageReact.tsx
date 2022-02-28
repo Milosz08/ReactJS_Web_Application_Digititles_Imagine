@@ -18,14 +18,11 @@
 
 import * as React from 'react';
 
-import BackgroundFluidImage from '../components/background-fluid-image/BackgroundFluidImage';
-
 
 const GettingStartedPageReact: React.FC = (): JSX.Element => {
     return (
         <>
             getting started page
-            <BackgroundFluidImage/>
         </>
     );
 };
