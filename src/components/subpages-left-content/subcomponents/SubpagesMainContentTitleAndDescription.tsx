@@ -32,7 +32,7 @@ interface PropsProvider {
 
 const SubpagesMainContentTitleAndDescription: React.FC<PropsProvider> = ({ content }): JSX.Element => {
 
-    const [ title, description ] = useSubpagesMainContentOnLoadAnimation(content?.images[0]);
+    const [ title, description ] = useSubpagesMainContentOnLoadAnimation();
 
     return (
         <SubpagesMainContentUniversalContainer>
