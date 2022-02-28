@@ -22,8 +22,14 @@ import { ReactNodeProp } from '../../high-order-components/ForceScrollToTopHOC';
 import { ParagraphElementStyled } from './UniversalComponents.styles';
 
 
-const ParagraphElement: React.FC<ReactNodeProp> = ({ children }): JSX.Element => (
-    <ParagraphElementStyled>
+interface PropsProvider extends ReactNodeProp {
+    refData?: React.MutableRefObject<any>;
+}
+
+const ParagraphElement: React.FC<PropsProvider> = ({ children, refData }): JSX.Element => (
+    <ParagraphElementStyled
+        ref = {refData}
+    >
         {children}
     </ParagraphElementStyled>
 );
