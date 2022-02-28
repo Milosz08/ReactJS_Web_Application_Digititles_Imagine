@@ -22,7 +22,10 @@ import { SubpagesMainContentTypes } from '../../../static/subpagesMainContent';
 import useSubpagesMainContentOnLoadAnimation from '../../../hooks/background-images/useSubpagesMainContentOnLoadAnimation';
 
 import {
-    SubpagesMainContentDescription, SubpagesMainContentTitle, SubpagesMainContentUniversalContainer
+    SubpagesMainContentDescription, SubpagesMainContentImage,
+    SubpagesMainContentImageAndTitleContainer,
+    SubpagesMainContentTitle,
+    SubpagesMainContentUniversalContainer
 } from '../SubpagesLeftContent.styles';
 
 
@@ -36,11 +39,16 @@ const SubpagesMainContentTitleAndDescription: React.FC<PropsProvider> = ({ conte
 
     return (
         <SubpagesMainContentUniversalContainer>
-            <SubpagesMainContentTitle
+            <SubpagesMainContentImageAndTitleContainer
                 ref = {title}
             >
-                {content?.title}
-            </SubpagesMainContentTitle>
+                <SubpagesMainContentImage
+                    src = {process.env.PUBLIC_URL + '/asset-images/undraw-images/undraw_' + content?.images[0] + '.svg'}
+                />
+                <SubpagesMainContentTitle>
+                    {content?.title}
+                </SubpagesMainContentTitle>
+            </SubpagesMainContentImageAndTitleContainer>
             <SubpagesMainContentDescription
                 ref = {description}
             >
