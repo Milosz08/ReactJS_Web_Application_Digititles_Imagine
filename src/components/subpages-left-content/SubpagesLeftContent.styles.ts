@@ -27,17 +27,50 @@ export const SubpagesMainContentUniversalContainer = styled.div`
     justify-content: center;
     padding-left: 200px;
     max-width: 40vw;
+    @media only screen and (max-width: 1330px) {
+        padding-left: 150px;
+        max-width: 50%;
+    }
+    @media only screen and (max-width: 1030px) {
+        align-items: center;
+        padding-left: 0;
+        margin: 0 30px;
+        max-width: calc(100% - 60px);
+        width: calc(100% - 60px);
+    }
 `;
 
 export const SubpagesMainContentFormContainer = styled(SubpagesMainContentUniversalContainer)`
     max-width: 50%;
 `;
 
-export const SubpagesMainContentTitle = styled(HeaderElementStyled)`
+export const SubpagesMainContentImageAndTitleContainer = styled.div`
     opacity: 0;
     visibility: hidden;
     transform: translateY(30px);
-    font-size: 5rem;
+    @media only screen and (max-width: 1030px) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+`;
+
+export const SubpagesMainContentTitle = styled(HeaderElementStyled)`
+    font-size: var(--biggerHeaderFontSize);
+    @media only screen and (max-width: 1030px) {
+        font-size: var(--headerFontSize);
+        text-align: center;
+    }
+`;
+
+export const SubpagesMainContentImage = styled.img`
+    display: none;
+    width: 35vh;
+    max-width: 100%;
+    margin-bottom: 30px;
+    @media only screen and (max-width: 1030px) {
+        display: block;
+    }
 `;
 
 export const SubpagesMainContentDescription = styled(ParagraphElementStyled)`
@@ -45,4 +78,9 @@ export const SubpagesMainContentDescription = styled(ParagraphElementStyled)`
     visibility: hidden;
     transform: translateX(-50px);
     margin-top: 50px;
+    @media only screen and (max-width: 1030px) {
+        text-align: center;
+        margin-top: 0;
+        transform: translateY(30px);
+    }
 `;
