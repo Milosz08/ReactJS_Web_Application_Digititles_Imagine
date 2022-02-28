@@ -20,7 +20,7 @@ import * as React from 'react';
 import { useContext } from 'react';
 
 import { ImagesAnimationContext, ImagesAnimationTypes } from '../BackgroundFluidImage';
-import useOnHoverSelectImage from '../../../hooks/background-images/useOnHoverSelectImage';
+import useOnHoverSelectImages from '../../../hooks/background-images/useOnHoverSelectImages';
 import useShowHideBackgroundImage from '../../../hooks/background-images/useShowHideBackgroundImage';
 
 import { BackgroundFluidBasicImageContainer, BackgroundFluidBasicImageStyles } from '../BackgroundFluidImage.styles';
@@ -31,7 +31,7 @@ const GenerateUndrawImages: React.FC = (): JSX.Element => {
     const { images, showBackgroundOnLoad } = useContext<Partial<ImagesAnimationTypes>>(ImagesAnimationContext);
 
     const [ imageRef ] = useShowHideBackgroundImage({ invokePx: 200, ifShowOnLoad: showBackgroundOnLoad, elements: 1 });
-    const imageRefs = useOnHoverSelectImage({
+    const imageRefs = useOnHoverSelectImages({
         countOfImages: images!.length, ifAutoAlpha: true, invoke: { hidePx: -70, showPx: -100 }
     });
 
