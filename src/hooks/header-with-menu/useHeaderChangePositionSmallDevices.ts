@@ -50,10 +50,10 @@ const useHeaderChangePositionSmallDevices = ({ invokePx }: HookProps): [ React.M
         let currentScrollPosition: number = currScrollPos;
         if (browserX <= invokePx) {
             if (prevScrollPosition.current >= currentScrollPosition) {
-                gsap.to(headerRef.current, { y: 0, duration: .1, ease: Power0.easeNone });
+                gsap.to(headerRef.current, { y: 0, duration: .2, ease: Power0.easeNone });
             } else {
                 gsap.to(headerRef.current, {
-                    y: -(headerRef.current!.offsetHeight + 50), duration: .2, ease: Power0.easeNone
+                    y: -(headerRef.current!.offsetHeight + 50), duration: .5, ease: Power0.easeNone
                 });
             }
             setGradient(currentScrollPosition > document.documentElement.clientHeight);
