@@ -1,8 +1,8 @@
 /*
  * Copyright (c) 2022 by MILOSZ GILGA <https://miloszgilga.pl>
  *
- * File name: useOnHoverSelectImage.ts
- * Last modified: 27/02/2022, 17:11
+ * File name: useOnHoverSelectImages.ts
+ * Last modified: 28/02/2022, 22:08
  * Project name: digititles-imagine
  *
  * Licensed under the MIT license; you may not use this file except in compliance with the License.
@@ -39,7 +39,7 @@ interface HookProps {
 }
 
 /**
- * Custom hook reponsible for show/hide background images based active image element in redux state. Also include
+ * Custom hook responsible for show/hide background images based active image element in redux state. Also include
  * listener, which in every change route path, clearing images state (set null values).
  *
  * @param countOfImages { number } - all images count.
@@ -47,10 +47,10 @@ interface HookProps {
  * @param invoke { { hidePx: number, showPx: number } } - invoke hide and show value in pixels.
  * @return { React.MutableRefObject<any>[] } - array with all referential objects.
  */
-const useOnHoverSelectImage = ({ countOfImages, ifAutoAlpha, invoke }: HookProps): React.MutableRefObject<any>[] => {
+const useOnHoverSelectImages = ({ countOfImages, ifAutoAlpha, invoke }: HookProps): React.MutableRefObject<any>[] => {
 
     const { onHoverActiveImageId }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
-    
+
     const { elRefs, getCurrents } = useMultipleRefs(countOfImages);
     const { pathname } = useLocation();
     const dispatcher = useDispatch();
@@ -76,4 +76,4 @@ const useOnHoverSelectImage = ({ countOfImages, ifAutoAlpha, invoke }: HookProps
     return elRefs;
 };
 
-export default useOnHoverSelectImage;
+export default useOnHoverSelectImages;
