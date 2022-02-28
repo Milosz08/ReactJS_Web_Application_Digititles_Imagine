@@ -62,6 +62,11 @@ const GlobalStylesInjection = createGlobalStyle`
         --headerFontSize: 4rem;
         --biggerHeaderFontSize: 5rem;
         --paragraphFontSize: 1.4rem;
+
+        @media only screen and (max-width: 1030px) {
+            --headerFontSize: 3.5rem;
+            --paragraphFontSize: 1.2rem;
+        }
     }
 `;
 
