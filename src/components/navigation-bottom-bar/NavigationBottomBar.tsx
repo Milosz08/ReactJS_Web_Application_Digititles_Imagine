@@ -32,7 +32,7 @@ import {
 interface PropsProvider {
     listeners: {
         ariaLabel: string;
-        goto: React.MutableRefObject<any>;
+        goto: React.MutableRefObject<any> | null;
     }[];
 }
 
@@ -45,7 +45,7 @@ const NavigationBottomBar: React.FC<PropsProvider> = ({ listeners }): JSX.Elemen
         return (
             <Fragment key = {listener.ariaLabel}>
                 <NavigateListenerButton
-                    onClick = {() => Gsap.scrollIntoContext(listener.goto.current)}
+                    onClick = {() => Gsap.scrollIntoContext(listener.goto!.current)}
                     title = {`Click to go to ${listener.ariaLabel}`}
                 >
                     {listener.ariaLabel}
