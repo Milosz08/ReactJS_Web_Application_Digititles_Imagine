@@ -18,30 +18,33 @@
 
 import * as React from 'react';
 
-import useMultipleRefs from '../hooks/reusable/useMultipleRefs';
+import { SubpagesContent, SubpagesContentKeys } from '../static/subpagesMainContent';
+import useInsertRefOnLoad from '../hooks/reusable/useInsertRefOnLoad';
 
 import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
 import BackgroundFluidImage from '../components/background-fluid-image/BackgroundFluidImage';
 import NavigationScrollTop from '../components/navigation-scroll-top/NavigationScrollTop';
 import MainPageAnimateTitle from '../components/main-page-animate-title/MainPageAnimateTitle';
+import AllProjectsList from '../components/all-projects-list/AllProjectsList';
 import MainPageServices from '../components/main-page-services/MainPageServices';
 import Footer from '../components/footer/Footer';
 
 
 const MainPageReact: React.FC = (): JSX.Element => {
 
-    const { elRefs } = useMultipleRefs(2);
-    const [ projects, services ] = elRefs;
+    const { allRefs, listeners } = useInsertRefOnLoad(SubpagesContentKeys.MAIN);
+    const [ projectsRef, servicesRef ] = allRefs;
 
     return (
         <>
-            <NavigationBottomBar
-                listeners = {[ { ariaLabel: 'projects', goto: projects }, { ariaLabel: 'services', goto: services } ]}
+            <NavigationBottomBar listeners = {listeners!}/>
+            <BackgroundFluidImage
+                images = {SubpagesContent[SubpagesContentKeys.MAIN].images}
             />
-            <BackgroundFluidImage/>
             <NavigationScrollTop/>
             <MainPageAnimateTitle/>
-            <MainPageServices/>
+            <AllProjectsList redirRef = {projectsRef}/>
+            <MainPageServices redirRef = {servicesRef}/>
             <Footer/>
         </>
     );

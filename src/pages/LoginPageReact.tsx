@@ -17,13 +17,19 @@
  */
 
 import * as React from 'react';
+import UniversalPageMainContentHOC from '../high-order-components/UniversalPageMainContentHOC';
+import Footer from '../components/footer/Footer';
+import SubpagesLoginFormContent from '../components/subpages-left-content/subcomponents/SubpagesLoginFormContent';
 
-const LoginPageReact: React.FC = (): JSX.Element => {
-    return (
-        <>
-            login page
-        </>
-    );
-};
+const LoginPageReact: React.FC = (): JSX.Element => (
+    <>
+        <UniversalPageMainContentHOC
+            showBackgroundOnLoad = {true}
+            images = {[ 'login' ]}
+            LeftComponent = {SubpagesLoginFormContent}
+        />
+        <Footer/>
+    </>
+);
 
 export default LoginPageReact;

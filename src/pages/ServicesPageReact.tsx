@@ -17,23 +17,30 @@
  */
 
 import * as React from 'react';
-import { useRef } from 'react';
+
+import { SubpagesContent, SubpagesContentKeys } from '../static/subpagesMainContent';
+import useInsertRefOnLoad from '../hooks/reusable/useInsertRefOnLoad';
 
 import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
+import UniversalPageMainContentHOC from '../high-order-components/UniversalPageMainContentHOC';
+import SubpagesMainContentTitleAndDescription from '../components/subpages-left-content/subcomponents/SubpagesMainContentTitleAndDescription';
 import Footer from '../components/footer/Footer';
 
 
 const ServicesPageReact: React.FC = (): JSX.Element => {
 
-    const detailsRef = useRef(null);
+    const { allRefs, listeners } = useInsertRefOnLoad(SubpagesContentKeys.SERVICES);
 
     return (
         <>
-            <NavigationBottomBar
-                listeners = {[ { ariaLabel: 'services details', goto: detailsRef } ]}
+            <NavigationBottomBar listeners = {listeners!} />
+            <UniversalPageMainContentHOC
+                showBackgroundOnLoad = {true}
+                LeftComponent = {SubpagesMainContentTitleAndDescription}
+                content = {SubpagesContent[SubpagesContentKeys.SERVICES]}
             />
             Services page
-            <div ref = {detailsRef}>details</div>
+            <div ref = {allRefs[0]}>details</div>
             <Footer/>
         </>
     );

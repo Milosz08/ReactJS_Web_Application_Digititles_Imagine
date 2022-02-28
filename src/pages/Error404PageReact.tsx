@@ -18,16 +18,23 @@
 
 import * as React from 'react';
 
-import BackgroundFluidImage from '../components/background-fluid-image/BackgroundFluidImage';
+import { SubpagesContent, SubpagesContentKeys } from '../static/subpagesMainContent';
+
+import UniversalPageMainContentHOC from '../high-order-components/UniversalPageMainContentHOC';
+import SubpagesMainContentTitleAndDescription from
+        '../components/subpages-left-content/subcomponents/SubpagesMainContentTitleAndDescription';
+import Footer from '../components/footer/Footer';
 
 
-const Error404PageReact: React.FC = (): JSX.Element => {
-    return (
-        <>
-            error 404 page
-            <BackgroundFluidImage/>
-        </>
-    );
-};
+const Error404PageReact: React.FC = (): JSX.Element => (
+    <>
+        <UniversalPageMainContentHOC
+            showBackgroundOnLoad = {true}
+            LeftComponent = {SubpagesMainContentTitleAndDescription}
+            content = {SubpagesContent[SubpagesContentKeys.NOT_FOUND]}
+        />
+        <Footer/>
+    </>
+);
 
 export default Error404PageReact;

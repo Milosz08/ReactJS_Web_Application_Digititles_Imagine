@@ -17,21 +17,30 @@
  */
 
 import * as React from 'react';
-import Footer from '../components/footer/Footer';
-import { useRef } from 'react';
+
+import { SubpagesContent, SubpagesContentKeys } from '../static/subpagesMainContent';
+import useInsertRefOnLoad from '../hooks/reusable/useInsertRefOnLoad';
+
 import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
+import UniversalPageMainContentHOC from '../high-order-components/UniversalPageMainContentHOC';
+import SubpagesMainContentTitleAndDescription from '../components/subpages-left-content/subcomponents/SubpagesMainContentTitleAndDescription';
+import AllProjectsList from '../components/all-projects-list/AllProjectsList';
+import Footer from '../components/footer/Footer';
+
 
 const ProjectsPageReact: React.FC = (): JSX.Element => {
 
-    const projectsRef = useRef(null);
+    const { allRefs, listeners } = useInsertRefOnLoad(SubpagesContentKeys.PROJECTS);
 
     return (
         <>
-            <NavigationBottomBar
-                listeners = {[ { ariaLabel: 'all projects', goto: projectsRef } ]}
+            <NavigationBottomBar listeners = {listeners!} />
+            <UniversalPageMainContentHOC
+                showBackgroundOnLoad = {true}
+                LeftComponent = {SubpagesMainContentTitleAndDescription}
+                content = {SubpagesContent[SubpagesContentKeys.PROJECTS]}
             />
-            all projects
-            <div ref = {projectsRef}>projects</div>
+            <AllProjectsList redirRef = {allRefs[0]}/>
             <Footer/>
         </>
     );
