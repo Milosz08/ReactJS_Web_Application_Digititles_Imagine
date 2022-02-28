@@ -24,7 +24,7 @@ import { appRouting } from '../static/appRouting';
 
 const AppRoutes: React.FC = (): JSX.Element => {
 
-    const routing = useRoutes(appRouting(true));
+    const routing = useRoutes(appRouting(false));
 
     return (
         <>
