@@ -17,9 +17,10 @@
  */
 
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { ReduxDOMActions } from '../../redux/redux-dom-manipulate/actions';
 import { ReduxDOMstateKeys } from '../../redux/redux-dom-manipulate/types';
-import { useDispatch } from 'react-redux';
 
 /**
  * Custom hook responsible for initial load image on subpages.

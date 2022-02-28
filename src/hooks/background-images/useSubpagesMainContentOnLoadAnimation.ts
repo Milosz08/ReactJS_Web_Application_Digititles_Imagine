@@ -18,12 +18,13 @@
 
 import * as React from 'react';
 import { useLayoutEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 import { gsap } from 'gsap';
 import useMultipleRefs from '../reusable/useMultipleRefs';
-import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
-import { useSelector } from 'react-redux';
+
 import { RootState } from '../../redux/store';
+import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
 
 /**
  * Custom hook responsible for initialised title and description animations is SubpagesMainContent component.
