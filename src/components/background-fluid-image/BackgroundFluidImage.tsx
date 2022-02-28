@@ -45,15 +45,18 @@ const BackgroundFluidImage: React.FC = (): JSX.Element => {
         <BackgroundFluidImageContainer
             $ifFixed = {ifFixed}
         >
-            <BackgroundFluidImageTriangle
-                $ifVisible = {absolutePath}
-                ref = {triangleRef}
-            />
-            <MainPageServicesImages/>
-            <BackgroundFluidImageStyles
-                src = {`${process.env.PUBLIC_URL}/asset-images/backgroundfluidimage.svg`}
-                ref = {imageRef}
-            />
+            <ImagesAnimationContext.Provider
+                value = {{ images, showBackgroundOnLoad }}
+            >
+                <BackgroundFluidImageTriangle
+                    ref = {triangleRef}
+                />
+                <GenerateUndrawImages/>
+                <BackgroundFluidImageStyles
+                    src = {`${process.env.PUBLIC_URL}/asset-images/backgroundfluidimage.svg`}
+                    ref = {imageRef}
+                />
+            </ImagesAnimationContext.Provider>
         </BackgroundFluidImageContainer>
     );
 };
