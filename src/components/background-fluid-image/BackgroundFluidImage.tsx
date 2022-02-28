@@ -17,6 +17,7 @@
  */
 
 import * as React from 'react';
+import { createContext } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
@@ -30,10 +31,18 @@ import {
     BackgroundFluidImageContainer, BackgroundFluidImageStyles, BackgroundFluidImageTriangle
 } from './BackgroundFluidImage.styles';
 
-import MainPageServicesImages from './subcomponents/MainPageServicesImages';
+import GenerateUndrawImages from './subcomponents/GenerateUndrawImages';
+
+export type ImagesAnimationTypes = { images: string[], showBackgroundOnLoad: boolean };
+export const ImagesAnimationContext = createContext<Partial<ImagesAnimationTypes>>({});
 
 
-const BackgroundFluidImage: React.FC = (): JSX.Element => {
+interface PropsProvider {
+    images: string[];
+    showBackgroundOnLoad?: boolean;
+}
+
+const BackgroundFluidImage: React.FC<PropsProvider> = ({ images, showBackgroundOnLoad }): JSX.Element => {
 
     const { ifFixed }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     const { pathname } = useLocation();
