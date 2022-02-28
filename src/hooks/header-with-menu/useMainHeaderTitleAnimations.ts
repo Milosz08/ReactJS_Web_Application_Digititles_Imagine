@@ -46,7 +46,7 @@ const useMainHeaderTitleAnimations = (): [ React.MutableRefObject<any>, boolean 
     const { pathname } = useLocation();
 
     // litening change route and disable visibility on patch '/getting-started'
-    useLayoutEffect((): void => {
+    useLayoutEffect(() => {
         if (!isMount) {
             window.scrollTo(0, 0);
             if (pathname === '/getting-started') {
@@ -58,7 +58,7 @@ const useMainHeaderTitleAnimations = (): [ React.MutableRefObject<any>, boolean 
     }, [ pathname, headerTitleRef ]);
 
     // change visibility on scroll event
-    useLayoutEffect((): void => {
+    useLayoutEffect(() => {
         if (!isMount && pathname !== '/getting-started') {
             if (currScrollPos > 100) {
                 Gsap.gsapBasicAnimations(headerTitleRef, { dir: LEFT, interpos: 15, visible: HIDE });
@@ -69,7 +69,7 @@ const useMainHeaderTitleAnimations = (): [ React.MutableRefObject<any>, boolean 
     }, [ currScrollPos ]);
 
     // on menu open/closed animations
-    useLayoutEffect((): void => {
+    useLayoutEffect(() => {
         if (!isMount) {
             if (ifMenuOpen) {
                 Gsap.gsapBasicAnimations(headerTitleRef, { dir: LEFT, interpos: 10, visible: HIDE });
@@ -80,7 +80,7 @@ const useMainHeaderTitleAnimations = (): [ React.MutableRefObject<any>, boolean 
     }, [ ifMenuOpen ]);
 
     // load animation on first component mount
-    useEffect((): void => {
+    useEffect(() => {
         if (isMount && pathname !== '/getting-started') {
             Gsap.gsapBasicAnimations(headerTitleRef, { dir: LEFT, visible: SHOW, delay: .6 });
         }

@@ -46,7 +46,7 @@ const useHeaderChangePositionSmallDevices = ({ invokePx }: HookProps): [ React.M
     const prevScrollPosition = useRef<number>(document.documentElement.clientHeight + 50);
     const [ gradient, setGradient ] = useState<boolean>(false);
 
-    useLayoutEffect((): void => {
+    useLayoutEffect(() => {
         let currentScrollPosition: number = currScrollPos;
         if (browserX <= invokePx) {
             if (prevScrollPosition.current >= currentScrollPosition) {

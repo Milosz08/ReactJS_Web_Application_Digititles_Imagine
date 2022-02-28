@@ -57,7 +57,7 @@ const useChangeVisibilityBasedMark = ({
 
     const { HIDE, SHOW } = AnimationStages;
 
-    useLayoutEffect((): void => {
+    useLayoutEffect(() => {
         if (browserX > disableMediaQueryValue!) {
             if (currScrollPos > animActivate) {
                 elRefs.forEach(ref => {

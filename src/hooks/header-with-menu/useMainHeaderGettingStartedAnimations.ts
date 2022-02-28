@@ -47,7 +47,7 @@ const useMainHeaderGettingStartedAnimations = (): React.MutableRefObject<any> =>
     const { pathname } = useLocation();
 
     // litening change route and disable visibility on patch '/'
-    useLayoutEffect((): void => {
+    useLayoutEffect(() => {
         if (!isMount) {
             window.scrollTo(0, 0);
             if (pathname === '/') {
@@ -63,7 +63,7 @@ const useMainHeaderGettingStartedAnimations = (): React.MutableRefObject<any> =>
     }, [ pathname, headerGettingRef ]);
 
     // on menu open/closed animations
-    useLayoutEffect((): void => {
+    useLayoutEffect(() => {
         if (!isMount) {
             if (ifMenuOpen) {
                 Gsap.gsapBasicAnimations(headerGettingRef, { dir: BOTTOM, interpos: 10, visible: HIDE, duration: .6 });
@@ -76,7 +76,7 @@ const useMainHeaderGettingStartedAnimations = (): React.MutableRefObject<any> =>
     }, [ ifMenuOpen ]);
 
     // load animation on first component mount
-    useEffect((): void => {
+    useEffect(() => {
         if (isMount && pathname === '/') {
             Gsap.gsapBasicAnimations(headerGettingRef, { dir: BOTTOM, visible: SHOW, visibleType: FLEX, delay: .4 });
         }

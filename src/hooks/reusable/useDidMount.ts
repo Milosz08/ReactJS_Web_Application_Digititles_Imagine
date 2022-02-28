@@ -27,7 +27,7 @@ const useDidMount = (): boolean => {
 
     const isMountRef = useRef(true);
 
-    useEffect((): void => {
+    useEffect(() => {
         isMountRef.current = false;
     }, []);
 

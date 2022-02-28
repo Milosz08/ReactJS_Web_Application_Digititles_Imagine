@@ -50,7 +50,7 @@ const useShowHideBackgroundImage = ({ invokePx, ifShowOnLoad, elements }: HookPr
     const { elRefs, getCurrents } = useMultipleRefs(elements || 2);
 
     // show/hide on scroll trigger
-    useLayoutEffect((): void => {
+    useLayoutEffect(() => {
         if (!ifShowOnLoad && browserX > 1030) {
             if (currScrollPos > invokePx && toggleAnim) {
                 gsap.to(getCurrents(), { x: 0, duration: .6, ease: Expo.easeInOut, stagger: .2 });
@@ -64,7 +64,7 @@ const useShowHideBackgroundImage = ({ invokePx, ifShowOnLoad, elements }: HookPr
     }, [ browserX, currScrollPos, getCurrents, ifShowOnLoad, invokePx, toggleAnim ]);
 
     // show/hide when page would be load
-    useLayoutEffect((): void => {
+    useLayoutEffect(() => {
         if (ifShowOnLoad && browserX > 1030) {
             gsap.to(getCurrents(), { x: 0, duration: .6, ease: Expo.easeInOut, delay: .5 });
         }

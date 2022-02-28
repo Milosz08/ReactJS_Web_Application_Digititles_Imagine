@@ -49,7 +49,7 @@ const useClickHamburgerButton = (): [ boolean, (e: React.ChangeEvent<any>) => vo
         }
     };
 
-    useEffect((): void => {
+    useEffect(() => {
         if (pathname !== RoutingPaths.START) {
             dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.HAM_ACTIVE, true));
         } else {

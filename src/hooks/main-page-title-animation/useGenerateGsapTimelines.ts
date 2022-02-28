@@ -37,7 +37,7 @@ const useGenerateGsapTimelines = (): { grabber: React.MutableRefObject<any>, tit
     const secondTitle = gsap.timeline();
     const thirdTitle = gsap.timeline();
 
-    useLayoutEffect((): void => {
+    useLayoutEffect(() => {
         master.add(firstTitle).add(secondTitle, .2).add(thirdTitle, .4);
     }, [ firstTitle, master, secondTitle, thirdTitle ]);
 

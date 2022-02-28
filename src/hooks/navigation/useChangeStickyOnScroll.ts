@@ -35,7 +35,7 @@ const useChangeStickyOnScroll = (footerHeight: number): null => {
     const { currScrollPos, currScrollFromBottom }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     const dispatcher = useDispatch();
 
-    useEffect((): void => {
+    useEffect(() => {
         if (currScrollFromBottom <= footerHeight && currScrollPos !== 0) {
             dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.IF_FIXED, false));
         } else {

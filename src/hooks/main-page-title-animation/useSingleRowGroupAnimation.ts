@@ -45,7 +45,7 @@ const useSingleRowGroupAnimation = ({ groupPos, gsapTimeline }: HookProps): [ Re
     const currentElement = MainPageAnimTitlesObject.find(title => title.ariaLabel === groupPos);
     const { elRefs, getCurrents } = useMultipleRefs(currentElement!.content.length);
     
-    useLayoutEffect((): void => {
+    useLayoutEffect(() => {
         if (elRefs.length === currentElement!.content.length) {
             const [ stage1, stage2, stage3 ] = getCurrents();
             gsapTimeline

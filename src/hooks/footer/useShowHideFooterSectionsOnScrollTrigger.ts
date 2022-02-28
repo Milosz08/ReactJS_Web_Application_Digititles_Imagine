@@ -47,7 +47,7 @@ const useShowHideFooterSectionsOnScrollTrigger = (): ReturnedTypes => {
     const { elRefs, getCurrents } = useMultipleRefs(4);
     const [ hidden, setHidden ] = useState<boolean>(true);
 
-    useLayoutEffect((): void => {
+    useLayoutEffect(() => {
         if (elRefs.every(ref => Boolean(ref)) && Boolean(footerRef) && browserX > 760) {
             const footerHalfHeight = footerRef.current!.offsetHeight;
             if (currScrollFromBottom < footerHalfHeight / 2 && hidden) {

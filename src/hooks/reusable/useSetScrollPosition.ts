@@ -28,7 +28,7 @@ const useSetScrollPosition = (): null => {
 
     const dispatcher = useDispatch();
 
-    useEffect((): void => {
+    useEffect(() => {
         const scrollListener = (): void => {
             const scrollFromTop = document.documentElement.scrollTop;
             const scrollFromBottom = document.documentElement.offsetHeight - window.innerHeight - scrollFromTop;

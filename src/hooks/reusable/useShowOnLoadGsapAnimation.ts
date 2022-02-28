@@ -47,7 +47,7 @@ const useShowOnLoadGsapAnimation = ({ posPx, moveFrom, initDelay, stagger }: Ani
     
     const { elRefs, getCurrents } = useMultipleRefs(countOfElms || 1);
 
-    useLayoutEffect((): void => {
+    useLayoutEffect(() => {
         const { TOP, BOTTOM, LEFT } = AnimationDirections;
         const axios = moveFrom === TOP || moveFrom === BOTTOM ? 'y' : 'x';
         gsap.from(getCurrents(), {

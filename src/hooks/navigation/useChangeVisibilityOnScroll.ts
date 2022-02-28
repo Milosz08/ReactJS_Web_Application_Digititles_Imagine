@@ -56,7 +56,7 @@ const useChangeVisibilityOnScroll = ({
     const { HIDE, SHOW } = AnimationStages;
     const { BLOCK } = AnimationVisibility;
 
-    useLayoutEffect((): void => {
+    useLayoutEffect(() => {
         const opacityValue: number = 1 - document.documentElement.scrollTop / animActivate;
         const autoAlpha: number = opacityValue <= 0 || opacityValue === -0 ? 0 : opacityValue;
         if (elRefs.length !== 0) {
