@@ -25,8 +25,14 @@ import ParagraphElement from '../universal-components/ParagraphElement';
 import MultipleServicesShowHideBoxes from './subcomponents/MultipleServicesShowHideBoxes';
 
 
-const MainPageServices: React.FC = (): JSX.Element => (
-    <MainPageServicesContainer>
+interface PropsProvider {
+    redirRef: React.MutableRefObject<any>;
+}
+
+const MainPageServices: React.FC<PropsProvider> = ({ redirRef }): JSX.Element => (
+    <MainPageServicesContainer
+        ref = {redirRef}
+    >
         <HeaderElement>
             Services
         </HeaderElement>
