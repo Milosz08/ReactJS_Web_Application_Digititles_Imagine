@@ -18,14 +18,14 @@
 
 import styled from 'styled-components';
 
-export const HeaderElementStyled = styled.h3<{ $ifNotIncludeDot: boolean }>`
+export const HeaderElementStyled = styled.h3<{ $ifNotIncludeDot?: boolean, $dotColor?: string }>`
     font-size: var(--headerFontSize);
     color: var(--blackLight);
     width: fit-content;
     margin-bottom: 40px;
     ::after {
         content: '${({ $ifNotIncludeDot }) => $ifNotIncludeDot ? '' : '.'}';
-        color: var(--cyanDark);
+        color: var(--${({ $dotColor }) => $dotColor || 'cyanDark'});
     }
 `;
 
