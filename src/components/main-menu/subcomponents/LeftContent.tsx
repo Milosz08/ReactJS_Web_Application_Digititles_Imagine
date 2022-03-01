@@ -18,25 +18,38 @@
 
 import * as React from 'react';
 
-import DelayRouteLinkHOC from '../../../high-order-components/DelayRouteLinkHOC';
-import { MainMenuSingleSectionContainer } from '../MainMenu.styles';
+import {
+    MainMenuHeaderElement, MainMenuMainLinks, MainMenuParagraphElement, MainMenuSingleSectionContainer
+} from '../MainMenu.styles';
+
+import { RoutingPaths } from '../../../static/appRouting';
 
 
 const LeftContent: React.FC = (): JSX.Element => {
 
+    const { PROJECTS, SERVICES, GETTING_STARTED } = RoutingPaths;
 
+    const generateAllLinks: JSX.Element[] = [ PROJECTS, SERVICES, GETTING_STARTED ].map(link => (
+        <MainMenuMainLinks key = {link} to = {link}>
+            {link.replace('/', '').replace('-', ' ')}
+        </MainMenuMainLinks>
+    ));
 
     return (
         <MainMenuSingleSectionContainer>
-            <DelayRouteLinkHOC to = '/getting-started' delay = {1000} forceScroll = {true}>
-                getting started
-            </DelayRouteLinkHOC>
-            <DelayRouteLinkHOC to = '/projects' delay = {1000} forceScroll = {true}>
-                projects
-            </DelayRouteLinkHOC>
-            <DelayRouteLinkHOC to = '/services' delay = {1000} forceScroll = {true}>
-                services
-            </DelayRouteLinkHOC>
+            <MainMenuHeaderElement>
+                digititles imagine
+            </MainMenuHeaderElement>
+            {generateAllLinks}
+            <MainMenuHeaderElement
+                $ifMarginTop = {true}
+            >
+                about us
+            </MainMenuHeaderElement>
+            <MainMenuParagraphElement>
+                We are a ambitious young people that supplied professional post-production typography services
+                (opening credits, end credits, end cards and subtitles) for small and medium as well as large filmmakers.
+            </MainMenuParagraphElement>
         </MainMenuSingleSectionContainer>
     );
 };

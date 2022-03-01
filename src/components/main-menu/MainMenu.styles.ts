@@ -17,6 +17,7 @@
  */
 
 import styled from 'styled-components';
+import { delay_link_rs } from '../../styles/reset.styles';
 
 export const MainMenuContainer = styled.main<{ $ifActive: boolean }>`
     position: fixed;
@@ -42,6 +43,7 @@ export const MainMenuSingleSectionContainer = styled.section`
     display: flex;
     flex-direction: column;
     height: 400px;
+    max-width: 420px;
     @media only screen and (max-width: 760px) {
         width: 100%;
         margin: 20px 0;
@@ -55,4 +57,40 @@ export const MainMenuCenterSingleSectionContainer = styled(MainMenuSingleSection
     @media only screen and (max-width: 760px) {
         display: flex;
     }
+`;
+
+export const MainMenuHeaderElement = styled.h3<{ $ifMarginTop?: boolean }>`
+    position: relative;
+    font-size: var(--paragraphFontSize);
+    color: var(--cyanLight);
+    font-weight: 400;
+    text-transform: capitalize;
+    margin: ${({ $ifMarginTop }) => $ifMarginTop ? 40 : 0}px 0 30px;
+    width: fit-content;
+    ::after {
+        position: absolute;
+        content: '';
+        bottom : -10px;
+        left: 0;
+        width: 40%;
+        height: 2px;
+        background-color: var(--cyanLight);
+    }
+`;
+
+export const MainMenuMainLinks = styled(delay_link_rs)`
+    font-size: 3rem;
+    font-weight: 500;
+    color: var(--whiteClean);
+    text-transform: capitalize;
+    transition: .2s;
+    margin-bottom: 10px;
+    :hover {
+        color: var(--blackDark);
+    }
+`;
+
+export const MainMenuParagraphElement = styled.p`
+    font-size: 1.2rem;
+    color: var(--whiteClean);
 `;
