@@ -17,7 +17,6 @@
  */
 
 import * as React from 'react';
-import { Suspense } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
@@ -26,27 +25,27 @@ import store from '../redux/store';
 import GlobalStylesInjection from '../styles/global.styles';
 import FontfacesStylesInjection from '../styles/fontfaces.styles';
 
-const InvokeOnMount = React.lazy(() => import('./InvokeOnMount'));
-const ForceScrollToTopHOC = React.lazy(() => import('../high-order-components/ForceScrollToTopHOC'));
-const MainMenu = React.lazy(() => import('../components/main-menu/MainMenu'));
-const Header = React.lazy(() => import('../components/header/Header'));
-const AppRoutes = React.lazy(() => import('./AppRoutes'));
+import InvokeOnMount from './InvokeOnMount';
+import LoadAllAPIData from './LoadAllAPIData';
+import ForceScrollToTopHOC from '../high-order-components/ForceScrollToTopHOC';
+import MainMenu from '../components/main-menu/MainMenu';
+import Header from '../components/header/Header';
+import AppRoutes from './AppRoutes';
 
 
 const App: React.FC = (): JSX.Element => (
     <Provider store = {store}>
-        <Suspense fallback = {<>loading...</>}>
-            <FontfacesStylesInjection/>
-            <GlobalStylesInjection/>
-            <InvokeOnMount/>
-            <BrowserRouter>
-                <ForceScrollToTopHOC>
-                    <MainMenu/>
-                    <Header/>
-                    <AppRoutes/>
-                </ForceScrollToTopHOC>
-            </BrowserRouter>
-        </Suspense>
+        <FontfacesStylesInjection/>
+        <GlobalStylesInjection/>
+        <InvokeOnMount/>
+        <LoadAllAPIData/>
+        <BrowserRouter>
+            <ForceScrollToTopHOC>
+                <MainMenu/>
+                <Header/>
+                <AppRoutes/>
+            </ForceScrollToTopHOC>
+        </BrowserRouter>
     </Provider>
 );
 
