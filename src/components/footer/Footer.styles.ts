@@ -20,6 +20,7 @@ import styled, { css } from 'styled-components';
 
 import { a_rs, footer_scroll_link_rs } from '../../styles/reset.styles';
 import { BasicButtonWithBottomLine } from '../../styles/mixins.styles';
+import { behaviorPlugin } from '@testing-library/user-event/dist/keyboard/types';
 
 const FooterBlocksInitialState = () => css`
     opacity: 0;
@@ -137,16 +138,21 @@ export const FooterArticle = styled.article`
 export const FooterMailToContainer = styled.div`
     display: flex;
     align-items: center;
+    color: ${({ theme }) => theme.$ifIsMenu ? 'var(--whiteClean)' : 'inherit'};
+    font-size: ${({ theme }) => theme.$ifIsMenu ? '1.5rem' : 'inherit'};
+    width: fit-content;
+    transition: .2s color ease-in-out;
+    :hover {
+        text-decoration: ${({ theme }) => theme.$ifIsMenu ? 'none' : 'underline'};
+        color: ${({ theme }) => theme.$ifIsMenu ? 'var(--blackDark)' : 'inherit'};
+    }
 `;
 
 export const FooterMailToLinks = styled(a_rs)`
     margin-left: 10px;
-    font-size: 1.1rem;
+    font-size: ${({ theme }) => theme.$ifIsMenu ? 'var(--paragraphFontSize)' : '1.1rem'};;
     line-height: 1.5;
     color: inherit;
-    :hover {
-        text-decoration: underline;
-    }
 `;
 
 export const FooterGotoGettingStarted = styled(footer_scroll_link_rs)`
@@ -186,8 +192,13 @@ export const FooterSectionCopySingleSectionLink = styled(footer_scroll_link_rs)`
     }
 `;
 
-export const FooterSectionCopySocialMediaLink = styled(a_rs)`
-    font-size: 1.6rem;
+export const FooterSectionCopySocialMediaLink = styled(a_rs)<{ $ifWhiteColor: boolean }>`
+    font-size: ${({ $ifWhiteColor }) => $ifWhiteColor ? 2 : 1.6}rem;
     padding: 5px;
     margin: 0 20px;
+    color: ${({ $ifWhiteColor }) => $ifWhiteColor ? 'var(--whiteClean)' : 'inherit'};
+    transition: .2s color ease-in-out;
+    :hover {
+        color: ${({ $ifWhiteColor }) => $ifWhiteColor ? 'var(--blackDark)' : 'inherit'};
+    }
 `;

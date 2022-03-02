@@ -17,9 +17,11 @@
  */
 
 import * as React from 'react';
+
 import UniversalPageMainContentHOC from '../high-order-components/UniversalPageMainContentHOC';
-import Footer from '../components/footer/Footer';
 import SubpagesLoginFormContent from '../components/subpages-left-content/subcomponents/SubpagesLoginFormContent';
+import Footer from '../components/footer/Footer';
+
 
 const LoginPageReact: React.FC = (): JSX.Element => (
     <>

@@ -18,8 +18,8 @@
 
 import * as React from 'react';
 
-import { SubpagesContent, SubpagesContentKeys } from '../static/subpagesMainContent';
 import useInsertRefOnLoad from '../hooks/reusable/useInsertRefOnLoad';
+import { SubpagesContent, SubpagesContentKeys } from '../static/subpagesMainContent';
 
 import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
 import BackgroundFluidImage from '../components/background-fluid-image/BackgroundFluidImage';

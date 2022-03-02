@@ -22,10 +22,8 @@ import { SubpagesMainContentTypes } from '../../../static/subpagesMainContent';
 import useSubpagesMainContentOnLoadAnimation from '../../../hooks/background-images/useSubpagesMainContentOnLoadAnimation';
 
 import {
-    SubpagesMainContentDescription, SubpagesMainContentImage,
-    SubpagesMainContentImageAndTitleContainer,
-    SubpagesMainContentTitle,
-    SubpagesMainContentUniversalContainer
+    SubpagesMainContentDescription, SubpagesMainContentImage, SubpagesMainContentImageAndTitleContainer,
+    SubpagesMainContentTitle, SubpagesMainContentUniversalContainer
 } from '../SubpagesLeftContent.styles';
 
 
