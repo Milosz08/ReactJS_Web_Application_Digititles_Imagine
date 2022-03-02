@@ -23,7 +23,7 @@ import { ReferencesFooterContext, ReferencesFooterTypes } from '../Footer';
 
 import { FooterHeadlight, FooterSingleSectionContainer } from '../Footer.styles';
 
-const FooterForm = React.lazy(() => import('../../footer-form/FooterForm'));
+import FooterForm from '../../footer-form/FooterForm';
 
 
 const RightContent: React.FC = (): JSX.Element => {

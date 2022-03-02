@@ -28,7 +28,7 @@ import {
     FooterSectionCopySingleSectionLink
 } from '../Footer.styles';
 
-const CopyrightSocials = React.lazy(() => import('./CopyrightSocials'));
+import CopyrightSocials from './CopyrightSocials';
 
 
 const CopyrightContent: React.FC = (): JSX.Element => {

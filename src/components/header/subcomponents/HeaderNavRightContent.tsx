@@ -25,7 +25,7 @@ import {
     HeaderNavRightContentContainer, HeaderNavRightLinkContainer, HeaderNavRightLinkElement
 } from '../Header.styles';
 
-const HeaderHamburgerButton = React.lazy(() => import('./HeaderHamburgerButton'));
+import HeaderHamburgerButton from './HeaderHamburgerButton';
 
 
 const HeaderNavRightContent: React.FC = (): JSX.Element => {

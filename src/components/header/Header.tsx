@@ -26,8 +26,8 @@ import useHeaderChangePositionSmallDevices from '../../hooks/header-with-menu/us
 
 import { HeaderContainer } from './Header.styles';
 
-const HeaderLogoLeftContent = React.lazy(() => import('./subcomponents/HeaderLogoLeftContent'));
-const HeaderNavRightContent = React.lazy(() => import('./subcomponents/HeaderNavRightContent'));
+import HeaderLogoLeftContent from './subcomponents/HeaderLogoLeftContent';
+import HeaderNavRightContent from './subcomponents/HeaderNavRightContent';
 
 
 const Header: React.FC = (): JSX.Element => {

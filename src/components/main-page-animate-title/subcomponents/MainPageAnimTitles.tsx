@@ -23,7 +23,7 @@ import useGenerateGsapTimelines from '../../../hooks/main-page-title-animation/u
 
 import { MainPageAnimationTitlesContainer } from '../MainPageAnimateTitle.styles';
 
-const MainPageAnimSingleRowGroup = React.lazy(() => import('./MainPageAnimSingleRowGroup'));
+import MainPageAnimSingleRowGroup from './MainPageAnimSingleRowGroup';
 
 
 const MainPageAnimTitles: React.MemoExoticComponent<() => JSX.Element> = React.memo((): JSX.Element => {

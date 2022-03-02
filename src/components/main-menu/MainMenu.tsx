@@ -22,9 +22,9 @@ import useHideMenuOnChangeRoute from '../../hooks/header-with-menu/useHideMenuOn
 
 import { MainMenuContainer } from './MainMenu.styles';
 
-const LeftContent = React.lazy(() => import('./subcomponents/LeftContent'));
-const CenterContent = React.lazy(() => import('./subcomponents/CenterContent'));
-const RightContent = React.lazy(() => import('./subcomponents/RightContent'));
+import LeftContent from './subcomponents/LeftContent';
+import CenterContent from './subcomponents/CenterContent';
+import RightContent from './subcomponents/RightContent';
 
 
 const MainMenu: React.FC = (): JSX.Element => {

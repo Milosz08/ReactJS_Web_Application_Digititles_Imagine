@@ -23,10 +23,10 @@ import useShowHideFooterSectionsOnScrollTrigger from '../../hooks/footer/useShow
 
 import { FooterContainer, FooterThreeContentBlocksContainer } from './Footer.styles';
 
-const LeftContent = React.lazy(() => import('./subcomponents/LeftContent'));
-const CenterContent = React.lazy(() => import('./subcomponents/CenterContent'));
-const RightContent = React.lazy(() => import('./subcomponents/RightContent'));
-const CopyrightContent = React.lazy(() => import('./subcomponents/CopyrightContent'));
+import LeftContent from './subcomponents/LeftContent';
+import CenterContent from './subcomponents/CenterContent';
+import RightContent from './subcomponents/RightContent';
+import CopyrightContent from './subcomponents/CopyrightContent';
 
 export type ReferencesFooterTypes = { [key: string]: React.MutableRefObject<any> };
 export const ReferencesFooterContext = createContext<Partial<ReferencesFooterTypes>>({ });

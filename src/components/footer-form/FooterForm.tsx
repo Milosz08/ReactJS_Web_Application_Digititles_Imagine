@@ -20,8 +20,8 @@ import * as React from 'react';
 
 import { FooterFormContainer, FooterFormSubmitButton, FooterFormSubmitButtonContainer } from './FooterForm.styles';
 
-const FooterFormInputs = React.lazy(() => import('./subcomponents/FooterFormInputs'));
-const FooterFormTextarea = React.lazy(() => import('./subcomponents/FooterFormTextarea'));
+import FooterFormInputs from './subcomponents/FooterFormInputs';
+import FooterFormTextarea from './subcomponents/FooterFormTextarea';
 
 
 const FooterForm: React.FC = (): JSX.Element => {
