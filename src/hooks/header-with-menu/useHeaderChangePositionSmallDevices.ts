@@ -21,10 +21,10 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { gsap, Power0 } from 'gsap';
+import useDidMount from '../reusable/useDidMount';
 
 import { RootState } from '../../redux/store';
 import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
-
 
 interface HookProps {
     invokePx: number;
@@ -44,24 +44,27 @@ const useHeaderChangePositionSmallDevices = ({ invokePx }: HookProps): [ React.M
 
     const headerRef = useRef<HTMLDivElement>(null);
     const prevScrollPosition = useRef<number>(document.documentElement.clientHeight + 50);
+    const isMount = useDidMount();
     const [ gradient, setGradient ] = useState<boolean>(false);
 
     useLayoutEffect(() => {
-        let currentScrollPosition: number = currScrollPos;
-        if (browserX <= invokePx) {
-            if (prevScrollPosition.current >= currentScrollPosition) {
-                gsap.to(headerRef.current, { y: 0, duration: .2, ease: Power0.easeNone });
+        if (!isMount) {
+            let currentScrollPosition: number = currScrollPos;
+            if (browserX <= invokePx) {
+                if (prevScrollPosition.current >= currentScrollPosition) {
+                    gsap.to(headerRef.current, { y: 0, duration: 0, ease: Power0.easeNone });
+                } else {
+                    gsap.to(headerRef.current, {
+                        y: -(headerRef.current!.offsetHeight + 50), duration: 0, ease: Power0.easeNone,
+                    });
+                }
+                setGradient(currentScrollPosition > document.documentElement.clientHeight);
+                prevScrollPosition.current = currentScrollPosition;
             } else {
-                gsap.to(headerRef.current, {
-                    y: -(headerRef.current!.offsetHeight + 50), duration: .5, ease: Power0.easeNone
-                });
+                gsap.to(headerRef.current, { y: 0, duration: 0, ease: Power0.easeNone });
             }
-            setGradient(currentScrollPosition > document.documentElement.clientHeight);
-            prevScrollPosition.current = currentScrollPosition;
-        } else {
-            gsap.to(headerRef.current, { y: 0, duration: .1, ease: Power0.easeNone });
         }
-    }, [ browserX, currScrollPos, invokePx ]);
+    }, [ browserX, currScrollPos, invokePx, isMount ]);
 
     return [ headerRef, gradient ];
 };
