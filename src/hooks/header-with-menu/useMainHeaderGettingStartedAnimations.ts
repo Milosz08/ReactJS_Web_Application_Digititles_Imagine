@@ -36,7 +36,7 @@ import { AnimationDirections, AnimationStages, AnimationVisibility } from '../..
  */
 const useMainHeaderGettingStartedAnimations = (): React.MutableRefObject<any> => {
 
-    const { ifMenuOpen }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { ifMenuOpen, whileChangingRoutes }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
 
     const { SHOW, HIDE } = AnimationStages;
     const { BOTTOM } = AnimationDirections;
@@ -64,7 +64,7 @@ const useMainHeaderGettingStartedAnimations = (): React.MutableRefObject<any> =>
 
     // on menu open/closed animations
     useLayoutEffect(() => {
-        if (!isMount) {
+        if (!isMount && !whileChangingRoutes) {
             if (ifMenuOpen) {
                 Gsap.gsapBasicAnimations(headerGettingRef, { dir: BOTTOM, interpos: 10, visible: HIDE, duration: .6 });
             } else {
