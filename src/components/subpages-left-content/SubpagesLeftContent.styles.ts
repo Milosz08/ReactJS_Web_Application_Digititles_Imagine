@@ -41,13 +41,24 @@ export const SubpagesMainContentUniversalContainer = styled.div`
 `;
 
 export const SubpagesMainContentFormContainer = styled(SubpagesMainContentUniversalContainer)`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: initial;
     max-width: 50%;
+    padding-left: 0;
+    visibility: hidden;
+    @media only screen and (max-width: 1030px) {
+        padding-left: 0;
+        margin: 0 30px;
+        max-width: calc(100% - 60px);
+    }
 `;
 
 export const SubpagesMainContentImageAndTitleContainer = styled.div`
     opacity: 0;
     visibility: hidden;
-    transform: translateY(30px);
+    transform: translateY(0);
     @media only screen and (max-width: 1030px) {
         display: flex;
         flex-direction: column;
@@ -56,8 +67,11 @@ export const SubpagesMainContentImageAndTitleContainer = styled.div`
 `;
 
 export const SubpagesMainContentTitle = styled(HeaderElementStyled)`
+    position: relative;
     font-size: var(--biggerHeaderFontSize);
+    margin-bottom: 0;
     @media only screen and (max-width: 1030px) {
+        position: initial;
         font-size: var(--headerFontSize);
         text-align: center;
     }
@@ -74,13 +88,17 @@ export const SubpagesMainContentImage = styled.img`
 `;
 
 export const SubpagesMainContentDescription = styled(ParagraphElementStyled)`
+    position: absolute;
     opacity: 0;
     visibility: hidden;
     transform: translateX(-50px);
-    margin-top: 50px;
+    margin-top: 100px;
+    max-width: 30%;
     @media only screen and (max-width: 1030px) {
+        position: initial;
         text-align: center;
         margin-top: 0;
         transform: translateY(30px);
+        max-width: 100%;
     }
 `;
