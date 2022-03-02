@@ -28,7 +28,8 @@ import { ReduxAPIThunk } from '../redux/redux-api-thunk/thunk';
 import { InitStateAPItypes } from '../redux/redux-api-thunk/initialState';
 
 /**
- * Custom hook responsible for all GET request operations (getting from database on initial load application).
+ * Custom React component responsible for all GET request operations (getting from database
+ * on initial load application).
  */
 const LoadAllAPIData: React.FC = (): null => {
 
