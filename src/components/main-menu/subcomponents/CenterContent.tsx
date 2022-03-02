@@ -17,18 +17,44 @@
  */
 
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 
-import { MainMenuCenterSingleSectionContainer } from '../MainMenu.styles';
+import { RootState } from '../../../redux/store';
+import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
 
-const CenterContent: React.FC = (): JSX.Element => {
+import {
+    MainMenuCenterSingleSectionContainer, MainMenuHeaderElement, MainMenuProjectSingleElement, MainMenuProjectsList,
+    MainMenuSingleProjectInListContainer
+} from '../MainMenu.styles';
 
 
+const CenterContent: React.MemoExoticComponent<() => JSX.Element> = React.memo((): JSX.Element => {
+
+    const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+
+    const generateFirstProjects: JSX.Element[] = projects.reverse().slice(0, 12).map(project => (
+        <MainMenuSingleProjectInListContainer
+            key = {project.id}
+        >
+            <MainMenuProjectSingleElement
+                delay = {1000}
+                to = {`projects/project/${project.projectPath}`}
+            >
+                {project.title}
+            </MainMenuProjectSingleElement>
+        </MainMenuSingleProjectInListContainer>
+    ));
 
     return (
         <MainMenuCenterSingleSectionContainer>
-            center content
+            <MainMenuHeaderElement>
+                last projects
+            </MainMenuHeaderElement>
+            <MainMenuProjectsList>
+                {generateFirstProjects}
+            </MainMenuProjectsList>
         </MainMenuCenterSingleSectionContainer>
     );
-};
+});
 
 export default CenterContent;
