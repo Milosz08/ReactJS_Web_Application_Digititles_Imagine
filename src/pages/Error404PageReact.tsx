@@ -21,8 +21,7 @@ import * as React from 'react';
 import { SubpagesContent, SubpagesContentKeys } from '../static/subpagesMainContent';
 
 import UniversalPageMainContentHOC from '../high-order-components/UniversalPageMainContentHOC';
-import SubpagesMainContentTitleAndDescription from
-        '../components/subpages-left-content/subcomponents/SubpagesMainContentTitleAndDescription';
+import SubpagesMainContentTitleAndDescription from '../components/subpages-left-content/subcomponents/SubpagesMainContentTitleAndDescription';
 import Footer from '../components/footer/Footer';
 
 

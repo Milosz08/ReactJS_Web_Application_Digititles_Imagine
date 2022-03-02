@@ -41,7 +41,7 @@ const useSubpagesMainContentOnLoadAnimation = (): React.MutableRefObject<any>[] 
     
     useLayoutEffect(() => {
         const [ title, description ] = getCurrents();
-        master.to(title, { y: 0, autoAlpha: 1 });
+        master.to(title, { y: -80, autoAlpha: 1 });
         master.to(description, { [desktop ? 'x' : 'y']: 0, autoAlpha: 1 }, desktop ? '>' : .1);
     }, [ desktop, elRefs, getCurrents, master ]);
 

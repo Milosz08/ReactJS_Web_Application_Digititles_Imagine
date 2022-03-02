@@ -18,10 +18,19 @@
 
 export class WebpageTitle {
 
+    /**
+     *
+     */
     private static readonly DEF_PREFIX: string = 'Digititles Imagine | ';
     private static readonly ADMIN_PREFIX: string = 'CMS Panel | ';
 
-    public static setTitle(type: string, ifAdminPanel: boolean) {
+    /**
+     *
+     *
+     * @param type
+     * @param ifAdminPanel
+     */
+    public static setTitle(type: string, ifAdminPanel: boolean): string {
         return ifAdminPanel ? WebpageTitle.ADMIN_PREFIX + type : WebpageTitle.DEF_PREFIX + type;
     };
 

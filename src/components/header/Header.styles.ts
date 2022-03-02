@@ -41,7 +41,7 @@ export const HeaderContainer = styled.header<{ $ifMenuOpen: boolean, $ifGradient
                 ? 'transparent' : $ifGradient ? 'var(--whiteClean)' : 'transparent'};
         box-shadow: ${({ $ifGradient, $ifMenuOpen }) => $ifMenuOpen 
                 ? 'none' : $ifGradient ? 'rgba(0, 0, 0, 0.24) 0px 3px 8px' : 'none'};;
-        transition: background-color .3s, box-shadow .3s;
+        transition: background-color .3s .2s, box-shadow .3s, transform .3s;
     }
     @media only screen and (max-width: 760px) {
         padding-right: ${({ $ifMenuOpen }) => $ifMenuOpen ? 47 : 30}px;
