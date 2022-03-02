@@ -18,31 +18,17 @@
 
 import * as React from 'react';
 import { useContext } from 'react';
-import { AiOutlineMail } from 'react-icons/ai';
 
 import { ReferencesFooterContext, ReferencesFooterTypes } from '../Footer';
 
-import {
-    FooterSingleSectionContainer, FooterHeadlight, FooterArticle, FooterMailToContainer, FooterMailToLinks
-} from '../Footer.styles';
+import { FooterSingleSectionContainer, FooterHeadlight, FooterArticle } from '../Footer.styles';
+
+import EmailLinks from './EmailLinks';
 
 
 const LeftContent: React.FC = (): JSX.Element => {
 
     const { left } = useContext<Partial<ReferencesFooterTypes>>(ReferencesFooterContext);
-
-    const generateEmailLinks: JSX.Element[] = [ 'business', 'office' ].map(link => (
-        <FooterMailToContainer
-            key = {link}
-        >
-            <AiOutlineMail/>
-            <FooterMailToLinks
-                href = {`mailto:${link}@${window.location.hostname}`}
-            >
-                {link}@{window.location.hostname}
-            </FooterMailToLinks>
-        </FooterMailToContainer>
-    ));
 
     return (
         <FooterSingleSectionContainer
@@ -58,7 +44,7 @@ const LeftContent: React.FC = (): JSX.Element => {
             <FooterHeadlight>
                 Contact with us
             </FooterHeadlight>
-            {generateEmailLinks}
+            <EmailLinks/>
         </FooterSingleSectionContainer>
     );
 };
