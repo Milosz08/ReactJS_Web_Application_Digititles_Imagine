@@ -23,13 +23,18 @@ import { SocialLinks } from '../../../static/socialLinks';
 import { FooterSectionCopySocialMediaLink, FooterSectionSocialsContainer } from '../Footer.styles';
 
 
-const CopyrightSocials: React.FC = (): JSX.Element => {
+interface PropsProvider {
+    ifWhiteColor?: boolean;
+}
+
+const CopyrightSocials: React.FC<PropsProvider> = ({ ifWhiteColor }): JSX.Element => {
 
     const generateSocialLinks: JSX.Element[] = SocialLinks.map(({ path, ariaLabel, IconComponent }) => (
         <FooterSectionCopySocialMediaLink
             key = {path}
             href = {path}
             title = {ariaLabel}
+            $ifWhiteColor = {Boolean(ifWhiteColor)}
         >
             <IconComponent/>
         </FooterSectionCopySocialMediaLink>
