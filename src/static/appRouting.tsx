@@ -42,7 +42,7 @@ export enum RoutingPaths {
     ADMIN_PANEL = '/admin-panel',
     CHANGE_CREDENTIALS = 'change-credentials',
     MODIFY_PROJECTS = 'modify-projects',
-    PROJECT_WITH_ID = 'project/:projectId',
+    PROJECT_WITH_ID = 'project/:projectTitle',
     GETTING_STARTED = '/getting-started',
     SERVICES = '/services',
     PRIVACY_POLICY = '/privacy-policy',
