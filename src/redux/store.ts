@@ -21,9 +21,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
 import reduxReducerDOM from './redux-dom-manipulate/reducer';
+import reduxReducerAPI from './redux-api-thunk/reducer';
 
 const rootReducers = combineReducers({
-    reduxReducerDOM
+    reduxReducerDOM,
+    reduxReducerAPI
 });
 
 const store = createStore(
