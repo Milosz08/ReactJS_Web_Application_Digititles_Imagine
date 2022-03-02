@@ -36,7 +36,9 @@ import { AnimationDirections, AnimationStages } from '../../redux/redux-dom-mani
  */
 const useMainHeaderTitleAnimations = (): [ React.MutableRefObject<any>, boolean ] => {
 
-    const { ifMenuOpen, currScrollPos }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const {
+        ifMenuOpen, currScrollPos, whileChangingRoutes
+    }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
 
     const { SHOW, HIDE } = AnimationStages;
     const { LEFT, RIGHT } = AnimationDirections;
@@ -70,7 +72,7 @@ const useMainHeaderTitleAnimations = (): [ React.MutableRefObject<any>, boolean 
 
     // on menu open/closed animations
     useLayoutEffect(() => {
-        if (!isMount) {
+        if (!isMount && !whileChangingRoutes) {
             if (ifMenuOpen) {
                 Gsap.gsapBasicAnimations(headerTitleRef, { dir: LEFT, interpos: 10, visible: HIDE });
             } else if (currScrollPos <= 100) {
