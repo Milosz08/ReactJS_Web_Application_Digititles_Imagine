@@ -18,11 +18,11 @@
 
 import * as React from 'react';
 
-import {
-    MainMenuHeaderElement, MainMenuMainLinks, MainMenuParagraphElement, MainMenuSingleSectionContainer
-} from '../MainMenu.styles';
-
 import { RoutingPaths } from '../../../static/appRouting';
+
+import {
+    MainMenuHeaderElement, MainMenuLeftSingleSectionContainer, MainMenuMainLinks, MainMenuParagraphElement
+} from '../MainMenu.styles';
 
 
 const LeftContent: React.FC = (): JSX.Element => {
@@ -30,13 +30,17 @@ const LeftContent: React.FC = (): JSX.Element => {
     const { PROJECTS, SERVICES, GETTING_STARTED } = RoutingPaths;
 
     const generateAllLinks: JSX.Element[] = [ PROJECTS, SERVICES, GETTING_STARTED ].map(link => (
-        <MainMenuMainLinks key = {link} to = {link}>
+        <MainMenuMainLinks
+            key = {link}
+            to = {link}
+            delay = {1000}
+        >
             {link.replace('/', '').replace('-', ' ')}
         </MainMenuMainLinks>
     ));
 
     return (
-        <MainMenuSingleSectionContainer>
+        <MainMenuLeftSingleSectionContainer>
             <MainMenuHeaderElement>
                 digititles imagine
             </MainMenuHeaderElement>
@@ -50,7 +54,7 @@ const LeftContent: React.FC = (): JSX.Element => {
                 We are a ambitious young people that supplied professional post-production typography services
                 (opening credits, end credits, end cards and subtitles) for small and medium as well as large filmmakers.
             </MainMenuParagraphElement>
-        </MainMenuSingleSectionContainer>
+        </MainMenuLeftSingleSectionContainer>
     );
 };
 
