@@ -17,33 +17,50 @@
  */
 
 import * as React from 'react';
-import { createContext, useRef } from 'react';
+import { createContext, useEffect, useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 
 import useChangePageTitle from '../hooks/reusable/useChangePageTitle';
 
+import { RootState } from '../redux/store';
+import { ProjectTypes } from '../redux/redux-api-thunk/elementTypes';
+import { InitStateAPItypes } from '../redux/redux-api-thunk/initialState';
+
 import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
 import Footer from '../components/footer/Footer';
 
-export const ProjectContext = createContext<Partial<{ projectId: string }>>({});
+export const ProjectContext = createContext<Partial<{ findProject: ProjectTypes }>>({});
 
 
 const SingleProjectPageReact: React.FC = (): JSX.Element => {
 
-    const detailsRef = useRef(null);
+    const { projects, status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
 
-    const { projectId } = useParams();
-    useChangePageTitle(projectId!, false);
+    const detailsRef = useRef(null);
+    const { projectTitle } = useParams();
+    const [ findingProject, setFindingProject ] = useState<ProjectTypes>();
+
+    useChangePageTitle(findingProject ? findingProject.title : 'Project Title', false);
+
+    useEffect(() => {
+        const findingProject = projects.find(project => project.projectPath === projectTitle);
+        if (!status.loading && findingProject) {
+            setFindingProject(findingProject);
+        }
+    }, [ projectTitle, projects, status.loading ]);
 
     return (
         <ProjectContext.Provider
-            value = {{ projectId }}
+            value = {{ findProject: findingProject }}
         >
             <NavigationBottomBar
                 listeners = {[ { ariaLabel: 'project details', goto: detailsRef } ]}
             />
-            single project: {projectId}
-            <div ref = {detailsRef}>details</div>
+            {Boolean(findingProject) && <>
+                single project: {findingProject!.id}, {findingProject!.title}
+                <div ref = {detailsRef}>details</div>
+            </>}
             <Footer/>
         </ProjectContext.Provider>
     );
