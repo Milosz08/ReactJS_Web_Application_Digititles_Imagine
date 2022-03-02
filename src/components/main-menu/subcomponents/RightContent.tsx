@@ -18,16 +18,33 @@
 
 import * as React from 'react';
 
-import { MainMenuSingleSectionContainer } from '../MainMenu.styles';
+import {
+    MainMenuHeaderElement, MainMenuRightEmailSectionContainer, MainMenuRightSingleSectionContainer
+} from '../MainMenu.styles';
+
+import EmailLinks from '../../footer/subcomponents/EmailLinks';
+import CopyrightSocials from '../../footer/subcomponents/CopyrightSocials';
+
 
 const RightContent: React.FC = (): JSX.Element => {
 
-
-
     return (
-        <MainMenuSingleSectionContainer>
-            right content
-        </MainMenuSingleSectionContainer>
+        <MainMenuRightSingleSectionContainer>
+            <MainMenuHeaderElement>
+                contact with us
+            </MainMenuHeaderElement>
+            <MainMenuRightEmailSectionContainer>
+                <EmailLinks
+                    ifIsMenu = {true}
+                />
+            </MainMenuRightEmailSectionContainer>
+            <MainMenuHeaderElement>
+                connect with us
+            </MainMenuHeaderElement>
+            <CopyrightSocials
+                ifWhiteColor = {true}
+            />
+        </MainMenuRightSingleSectionContainer>
     );
 };
 
