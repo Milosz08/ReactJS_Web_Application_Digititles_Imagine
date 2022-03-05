@@ -17,20 +17,57 @@
  */
 
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 
-import { AllProjectsListContainer } from './AllProjectsList.styles';
+import { RootState } from '../../redux/store';
+import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
+
+import useProjectListAnimations from '../../hooks/single-project/useProjectListAnimations';
+
+import {
+    AllProjectsListContainer, SingleProjectContainer, SingleProjectLinkElement, SingleProjectLinkTextContainer
+} from './AllProjectsList.styles';
 
 
 interface PropsProvider {
     redirRef: React.MutableRefObject<any>;
 }
 
-const AllProjectsList: React.FC<PropsProvider> = ({ redirRef }): JSX.Element => (
-    <AllProjectsListContainer
-        ref = {redirRef}
-    >
-        all projects
-    </AllProjectsListContainer>
-);
+const AllProjectsList: React.FC<PropsProvider> = ({ redirRef }): JSX.Element => {
+
+    const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const [ refs, click, handleMouse, handleClick ] = useProjectListAnimations();
+
+    const generateAllProjects: JSX.Element[] = projects.map((project, idx) => (
+        <SingleProjectContainer
+            key = {project.id}
+            ref = {refs[idx]}
+            onClick = {() => handleClick(project.id)}
+            onMouseEnter = {e => handleMouse(e, project.id)}
+            onMouseLeave = {e => handleMouse(e, project.id)}
+        >
+            <SingleProjectLinkElement
+                to = {`/projects/project/${project.projectPath}`}
+                delay = {2000}
+                data-id = {project.id}
+                $dotColor = {project.projectColours.strongForeground}
+                $disableHover = {click.active && project.id === click.id}
+                $disableRestHover = {click.active && project.id !== click.id}
+            >
+                <SingleProjectLinkTextContainer>
+                    {project.title}
+                </SingleProjectLinkTextContainer>
+            </SingleProjectLinkElement>
+        </SingleProjectContainer>
+    ));
+
+    return (
+        <AllProjectsListContainer
+            ref = {redirRef}
+        >
+            {generateAllProjects}
+        </AllProjectsListContainer>
+    );
+};
 
 export default AllProjectsList;

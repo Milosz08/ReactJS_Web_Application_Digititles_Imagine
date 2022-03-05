@@ -17,8 +17,66 @@
  */
 
 import styled from 'styled-components';
+import { delay_link_rs } from '../../styles/reset.styles';
 
-export const AllProjectsListContainer = styled.section`
+export const AllProjectsListContainer = styled.ul`
+    list-style-type: none;
     width: 100%;
     padding: 50px 0;
+    position: relative;
+    z-index: 3;
+`;
+
+export const SingleProjectContainer = styled.li`
+    width: 100%;
+    transform: translateX(-100px);
+    transition: .3s all ease-in-out;
+    opacity: 0;
+    visibility: hidden;
+`;
+
+export const SingleProjectLinkElement = styled(delay_link_rs)<{
+    $dotColor?: string, $disableHover: boolean, $disableRestHover: boolean
+}>`
+    width: 100%;
+    display: block;
+    padding: 50px 0 50px 200px;
+    color: var(--${({ $disableHover }) => $disableHover ? 'blackLight' : 'grayDark'});
+    h3::after {
+        color: ${({ $disableHover, $dotColor }) => $disableHover ? $dotColor || 'var(--cyanLight)' : 'inherit'};
+    }
+    :hover {
+        color: var(--${({ $disableRestHover }) => $disableRestHover ? 'grayDark' : 'blackLight'});
+        h3::after {
+            color: ${({ $disableRestHover, $dotColor }) => 
+                    $disableRestHover ? 'var(--grayDark)' : $dotColor || 'var(--cyanLight)'};
+        }
+    }
+    @media only screen and (max-width: 1400px) {
+        padding: 50px 0 50px 150px;
+    }
+    @media only screen and (max-width: 1030px) {
+        
+    }
+`;
+
+export const SingleProjectLinkTextContainer = styled.h3`
+    font-size: 4vw;
+    font-weight: 600;
+    width: calc(50% - 200px);
+    word-break: break-word;
+    line-height: 1;
+    transition: .2s color ease-in-out;
+    ::after {
+        content: '.';
+        font-size: 1.1em;
+        transition: .2s color ease-in-out;
+    }
+    @media only screen and (max-width: 1400px) {
+        width: calc(50% - 150px);
+        word-break: initial;
+    }
+    @media only screen and (max-width: 1030px) {
+
+    }
 `;
