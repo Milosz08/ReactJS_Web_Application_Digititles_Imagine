@@ -20,6 +20,7 @@ import * as React from 'react';
 import { createContext } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 
 import { RoutingPaths } from '../../static/appRouting';
 import useShowHideBackgroundImage from '../../hooks/background-images/useShowHideBackgroundImage';
@@ -33,6 +34,7 @@ import {
 } from './BackgroundFluidImage.styles';
 
 import GenerateUndrawImages from './subcomponents/GenerateUndrawImages';
+import GenerateProjectsImages from './subcomponents/GenerateProjectsImages';
 
 export type ImagesAnimationTypes = { images: string[], showBackgroundOnLoad: boolean };
 export const ImagesAnimationContext = createContext<Partial<ImagesAnimationTypes>>({});
@@ -40,16 +42,22 @@ export const ImagesAnimationContext = createContext<Partial<ImagesAnimationTypes
 
 interface PropsProvider {
     images: string[];
+    imageSource?: string;
     showBackgroundOnLoad?: boolean;
+    ifSingleProject?: boolean;
 }
 
-const BackgroundFluidImage: React.FC<PropsProvider> = ({ images, showBackgroundOnLoad }): JSX.Element => {
+const BackgroundFluidImage: React.FC<PropsProvider> = ({
+    images, imageSource, showBackgroundOnLoad, ifSingleProject
+}): JSX.Element => {
 
-    const { ifFixed }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { ifFixed, stillImage }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     const { pathname } = useLocation();
+    const { START, PROJECTS } = RoutingPaths;
 
-    const absolutePath: boolean = pathname === RoutingPaths.START;
-    const [ imageRef, triangleRef ] = useShowHideBackgroundImage({ invokePx: 200, ifShowOnLoad: !absolutePath });
+    const [ imageRef, triangleRef ] = useShowHideBackgroundImage({
+        invokePx: 200, ifShowOnLoad: pathname !== START, ifSingleProject
+    });
 
     useLoadSubpageInitialImage(images[0], showBackgroundOnLoad!);
 
@@ -57,18 +65,24 @@ const BackgroundFluidImage: React.FC<PropsProvider> = ({ images, showBackgroundO
         <BackgroundFluidImageContainer
             $ifFixed = {ifFixed}
         >
-            <ImagesAnimationContext.Provider
-                value = {{ images, showBackgroundOnLoad }}
+            <ThemeProvider
+                theme = {{ $notHide: ifSingleProject && stillImage }}
             >
-                <BackgroundFluidImageTriangle
-                    ref = {triangleRef}
-                />
-                <GenerateUndrawImages/>
-                <BackgroundFluidImageStyles
-                    src = {`${process.env.PUBLIC_URL}/asset-images/backgroundfluidimage.svg`}
-                    ref = {imageRef}
-                />
-            </ImagesAnimationContext.Provider>
+                <ImagesAnimationContext.Provider
+                    value = {{ images, showBackgroundOnLoad }}
+                >
+                    <BackgroundFluidImageTriangle
+                        ref = {triangleRef}
+                    />
+                    {(pathname === START || pathname === PROJECTS) ? <GenerateProjectsImages/> : null}
+                    <GenerateUndrawImages/>
+                    <BackgroundFluidImageStyles
+                        src = {imageSource || `${process.env.PUBLIC_URL}/asset-images/backgroundfluidimage.svg`}
+                        ref = {imageRef}
+                    />
+                </ImagesAnimationContext.Provider>
+            </ThemeProvider>
+
         </BackgroundFluidImageContainer>
     );
 };
