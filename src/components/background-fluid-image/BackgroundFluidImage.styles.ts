@@ -48,7 +48,7 @@ export const BackgroundFluidBasicImageContainer = styled.div`
 
 export const BackgroundFluidImageStyles = styled.img`
     width: 100%;
-    ${HideContentOnLoad()};
+    ${({ theme }) => !theme.$notHide && HideContentOnLoad()};
 `;
 
 export const BackgroundFluidBasicImageStyles = styled.img`
@@ -74,5 +74,5 @@ export const BackgroundFluidImageTriangle = styled.div`
     bottom: 0;
     right: 0;
     will-change: transform;
-    ${HideContentOnLoad()};
+    ${({ theme }) => !theme.$notHide && HideContentOnLoad()};
 `;
