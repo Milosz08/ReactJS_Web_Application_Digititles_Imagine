@@ -61,6 +61,13 @@ export const BackgroundFluidBasicImageStyles = styled.img`
     transform: translateX(-70px);
     opacity: 0;
     visibility: hidden;
+    transition: .4s;
+`;
+
+export const ProjectsFluidImageStyles = styled(BackgroundFluidBasicImageStyles)`
+    width: 100%;
+    height: auto;
+    transform: translateX(-100px);
 `;
 
 export const BackgroundFluidImageTriangle = styled.div`
