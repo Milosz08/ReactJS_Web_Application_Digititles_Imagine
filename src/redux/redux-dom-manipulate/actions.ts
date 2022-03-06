@@ -86,4 +86,16 @@ export class ReduxDOMActions {
         type: ReduxDOMreducerTypes.HIDE_ALL_IMAGES,
     });
 
+    /**
+     *
+     *
+     * @param projectId
+     */
+    public static setImageOnSetProject = (projectId: string): ReturnedToReducer => ({
+        type: ReduxDOMreducerTypes.SET_IMAGE_ON_SET_PROJECT,
+        payload: {
+            projectId,
+        }
+    });
+
 }
