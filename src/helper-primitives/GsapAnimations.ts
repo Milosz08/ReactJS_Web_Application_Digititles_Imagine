@@ -58,4 +58,15 @@ export class Gsap {
         });
     };
 
+    public static getHeightFromTopToCurrentElement(childrens: any, clickId: string): number {
+        let pxFromTop = 0;
+        for (const element of childrens) {
+            pxFromTop += element.offsetHeight;
+            if (element.dataset.id === clickId) {
+                return pxFromTop;
+            }
+        }
+        return pxFromTop;
+    };
+
 }
