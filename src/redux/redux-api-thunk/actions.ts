@@ -91,6 +91,8 @@ export class ReduxAPIActions {
 
     /**
      *
+     *
+     * @param message
      */
     public static setRequestError = (message: string): ReturnedToReducer => ({
         type: ReduxAPIreducerTypes.SET_REQUEST_ERROR,
@@ -101,6 +103,8 @@ export class ReduxAPIActions {
 
     /**
      *
+     *
+     * @param loadingElement
      */
     public static setRequestLoading = (loadingElement: ReduxAPIstateKeys): ReturnedToReducer => ({
         type: ReduxAPIreducerTypes.SET_REQUEST_LOADING,
