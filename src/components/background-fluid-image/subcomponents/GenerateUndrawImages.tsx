@@ -35,7 +35,7 @@ const GenerateUndrawImages: React.FC = (): JSX.Element => {
         countOfImages: images!.length, ifAutoAlpha: true, invoke: { hidePx: -70, showPx: -100 }
     });
 
-    const generateServicesImages: JSX.Element[] = images!.map((image, idx) => (
+    const generateUndrawImages: JSX.Element[] = images!.map((image, idx) => (
         <BackgroundFluidBasicImageStyles
             key = {image}
             ref = {imageRefs[idx]}
@@ -48,7 +48,7 @@ const GenerateUndrawImages: React.FC = (): JSX.Element => {
         <BackgroundFluidBasicImageContainer
             ref = {imageRef}
         >
-            {generateServicesImages}
+            {generateUndrawImages}
         </BackgroundFluidBasicImageContainer>
     );
 };
