@@ -35,6 +35,11 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
             };
         }
 
+        case ReduxAPIreducerTypes.ADD_ALL_ELEMENTS_FROM_DB: {
+            const { arrayOfObjects, elementType, loadingElement } = action.payload;
+            return { ...state, status: { ...state.status, [loadingElement]: false }, [elementType]: arrayOfObjects };
+        }
+
         case ReduxAPIreducerTypes.EDIT_ELEMENT_FROM_DB: {
             const { elementToSend, elementType, elementId } = action.payload;
             const updateState = state[elementType];
