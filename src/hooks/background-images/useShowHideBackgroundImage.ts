@@ -25,11 +25,15 @@ import { gsap, Expo } from 'gsap';
 import { RootState } from '../../redux/store';
 import useMultipleRefs from '../reusable/useMultipleRefs';
 import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
+import useDidMount from '../reusable/useDidMount';
+import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
+import { useLocation } from 'react-router-dom';
 
 
 interface HookProps {
     invokePx: number;
     ifShowOnLoad?: boolean;
+    ifSingleProject?: boolean;
     elements?: number;
 }
 
@@ -39,16 +43,19 @@ interface HookProps {
  *
  * @param invokePx { number } - trigerred animation (only for scroll).
  * @param ifShowOnLoad { boolean? } - if true, show elements on load (optional, default: false).
+ * @param ifSingleProject { boolean? } - flag decided, if path is relative to single project page.
  * @param elements { number? } - count of referential objects (optional, default: 2).
  * @return { React.MutableRefObject<any>[] } - referential objects array.
  */
-const useShowHideBackgroundImage = ({ invokePx, ifShowOnLoad, elements }: HookProps): React.MutableRefObject<any>[] => {
+const useShowHideBackgroundImage = ({ invokePx, ifShowOnLoad, ifSingleProject, elements }: HookProps): React.MutableRefObject<any>[] => {
 
     const { currScrollPos, browserX }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
 
     const [ toggleAnim, setToggleAnim ] = useState<boolean>(true);
     const { elRefs, getCurrents } = useMultipleRefs(elements || 2);
-
+    const { pathname } = useLocation();
+    
     // show/hide on scroll trigger
     useLayoutEffect(() => {
         if (!ifShowOnLoad && browserX > 1030) {
@@ -65,10 +72,14 @@ const useShowHideBackgroundImage = ({ invokePx, ifShowOnLoad, elements }: HookPr
 
     // show/hide when page would be load
     useLayoutEffect(() => {
-        if (ifShowOnLoad && browserX > 1030) {
-            gsap.to(getCurrents(), { x: 0, duration: .6, ease: Expo.easeInOut, delay: .5 });
+        if (!status.loadingProjects || !ifSingleProject) {
+            if (ifShowOnLoad && browserX > 1030) {
+                gsap.to(getCurrents(), {
+                    x: 0, duration: .6, ease: Expo.easeInOut, delay: ifSingleProject ? 0 : .5
+                });
+            }
         }
-    }, [ browserX, getCurrents, ifShowOnLoad ]);
+    }, [ browserX, getCurrents, ifShowOnLoad, ifSingleProject, pathname, status.loadingProjects ]);
 
     return elRefs;
 };
