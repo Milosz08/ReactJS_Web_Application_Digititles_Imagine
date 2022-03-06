@@ -42,20 +42,6 @@ class InvokeProjectLoad {
         window.addEventListener('resize', listenerOnResize);
     };
 
-    /**
-     * Method responsible for add class to document body element which disabling page scrolling.
-     *
-     * @param listenerValue { boolean } - flag decided, if body is scrollable or not.
-     */
-    public static disableEnableScrolling(listenerValue: boolean): void {
-        const CLASS_DISABLE: string = 'disable--scroll';
-        if (listenerValue) {
-            document.body.classList.add(CLASS_DISABLE);
-        } else {
-            document.body.classList.remove(CLASS_DISABLE);
-        }
-    };
-
 }
 
 export default InvokeProjectLoad;
