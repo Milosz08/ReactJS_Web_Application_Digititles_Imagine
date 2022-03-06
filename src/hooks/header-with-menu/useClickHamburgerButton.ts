@@ -66,11 +66,9 @@ const useClickHamburgerButton = (ifMenuOpen: boolean): [ boolean, (e: React.Chan
 
     // change menu button look on different paths
     useEffect(() => {
-        if (pathname !== RoutingPaths.START) {
-            dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.HAM_ACTIVE, true));
-        } else {
-            dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.HAM_ACTIVE, false));
-        }
+        dispatcher(ReduxDOMActions.changeFirstLevelElement(
+            ReduxDOMstateKeys.HAM_ACTIVE, pathname !== RoutingPaths.START
+        ));
     }, [ dispatcher, pathname ]);
 
     return [ Boolean(pathname === RoutingPaths.START), handleOpenCloseMenu ];

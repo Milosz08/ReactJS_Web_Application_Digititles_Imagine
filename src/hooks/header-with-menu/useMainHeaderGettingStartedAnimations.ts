@@ -50,28 +50,27 @@ const useMainHeaderGettingStartedAnimations = (): React.MutableRefObject<any> =>
     useLayoutEffect(() => {
         if (!isMount) {
             window.scrollTo(0, 0);
-            if (pathname === '/') {
-                Gsap.gsapBasicAnimations(headerGettingRef, {
-                    dir: BOTTOM, visibleType: FLEX, visible: SHOW, duration: .6, delay: .1,
-                });
-            } else {
-                Gsap.gsapBasicAnimations(headerGettingRef, {
-                    dir: BOTTOM, interpos: 10, visible: HIDE, duration: .6, delay: .1
-                });
-            }
+            Gsap.gsapBasicAnimations(headerGettingRef, {
+                dir: BOTTOM,
+                visibleType: FLEX,
+                visible: pathname === '/' ? SHOW : HIDE,
+                interpos: 10,
+                duration: .6,
+                delay: .1,
+            });
         }
     }, [ pathname, headerGettingRef ]);
 
     // on menu open/closed animations
     useLayoutEffect(() => {
         if (!isMount && !whileChangingRoutes) {
-            if (ifMenuOpen) {
-                Gsap.gsapBasicAnimations(headerGettingRef, { dir: BOTTOM, interpos: 10, visible: HIDE, duration: .6 });
-            } else {
-                Gsap.gsapBasicAnimations(headerGettingRef, {
-                    dir: BOTTOM, visible: SHOW, visibleType: FLEX, delay: .5, duration: .6
-                });
-            }
+            Gsap.gsapBasicAnimations(headerGettingRef, {
+                dir: BOTTOM,
+                interpos: 10,
+                visible: ifMenuOpen ? HIDE : SHOW,
+                duration: .6,
+                delay: ifMenuOpen ? 0 : .5,
+            });
         }
     }, [ ifMenuOpen ]);
 

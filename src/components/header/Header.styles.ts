@@ -83,7 +83,7 @@ export const HeaderLogoTitle = styled.div`
     letter-spacing: -2px;
     color: var(--cyanDark);
     ${HideElementOnLoad()};
-    transform: translateX(-10px);
+    transform: translateX(-30px);
     span {
         color: var(--grayDark);
         letter-spacing: inherit;

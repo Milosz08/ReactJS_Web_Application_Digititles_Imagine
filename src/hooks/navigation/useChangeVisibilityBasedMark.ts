@@ -59,15 +59,13 @@ const useChangeVisibilityBasedMark = ({
 
     useLayoutEffect(() => {
         if (browserX > disableMediaQueryValue!) {
-            if (currScrollPos > animActivate) {
-                elRefs.forEach(ref => {
-                    Gsap.gsapBasicAnimations(ref, { visibleType, visible: reversed ? SHOW : HIDE, duration: .8 });
+            elRefs.forEach(ref => {
+                Gsap.gsapBasicAnimations(ref, {
+                    visibleType,
+                    visible: currScrollPos > animActivate ? reversed ? SHOW : HIDE : reversed ? HIDE : SHOW,
+                    duration: .8
                 });
-            } else {
-                elRefs.forEach(ref => {
-                    Gsap.gsapBasicAnimations(ref, { visibleType, visible: reversed ? HIDE : SHOW, duration: .8 });
-                });
-            }
+            });
         }
     }, [ currScrollPos, browserX ]);
 

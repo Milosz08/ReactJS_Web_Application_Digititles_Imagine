@@ -38,11 +38,9 @@ const useClickAndSelectActiveImage = (activeImage: string): [ boolean, () => voi
     const dispatcher = useDispatch();
 
     const handleClickBoxElement = (): void => {
-        if (ifActive) {
-            dispatcher(ReduxDOMActions.changeFirstLevelElement(CURRENT_ACTIVE_SERVICE_SECTION, null));
-        } else {
-            dispatcher(ReduxDOMActions.changeFirstLevelElement(CURRENT_ACTIVE_SERVICE_SECTION, activeImage));
-        }
+        dispatcher(ReduxDOMActions.changeFirstLevelElement(
+            CURRENT_ACTIVE_SERVICE_SECTION, ifActive ? null : activeImage
+        ));
     };
 
     return [ ifActive, handleClickBoxElement ];

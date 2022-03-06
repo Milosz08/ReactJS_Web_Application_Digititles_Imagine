@@ -51,22 +51,24 @@ const useMainHeaderTitleAnimations = (): [ React.MutableRefObject<any>, boolean 
     useLayoutEffect(() => {
         if (!isMount) {
             window.scrollTo(0, 0);
-            if (pathname === '/getting-started') {
-                Gsap.gsapBasicAnimations(headerTitleRef, { dir: RIGHT, interpos: 20, visible: HIDE, duration: .6 });
-            } else {
-                Gsap.gsapBasicAnimations(headerTitleRef, { dir: RIGHT, visible: SHOW, duration: .6 });
-            }
+            Gsap.gsapBasicAnimations(headerTitleRef, {
+                dir: RIGHT,
+                interpos: 30,
+                visible: pathname === '/getting-started' ? HIDE : SHOW,
+                duration: 1,
+            });
         }
     }, [ pathname, headerTitleRef ]);
 
     // change visibility on scroll event
     useLayoutEffect(() => {
         if (!isMount && pathname !== '/getting-started') {
-            if (currScrollPos > 100) {
-                Gsap.gsapBasicAnimations(headerTitleRef, { dir: LEFT, interpos: 15, visible: HIDE });
-            } else {
-                Gsap.gsapBasicAnimations(headerTitleRef, { dir: LEFT, visible: SHOW });
-            }
+            Gsap.gsapBasicAnimations(headerTitleRef, {
+                dir: LEFT,
+                interpos: 15,
+                visible: currScrollPos > 100 ? HIDE : SHOW,
+                duration: .5,
+            });
         }
     }, [ currScrollPos ]);
 
@@ -84,7 +86,7 @@ const useMainHeaderTitleAnimations = (): [ React.MutableRefObject<any>, boolean 
     // load animation on first component mount
     useEffect(() => {
         if (isMount && pathname !== '/getting-started') {
-            Gsap.gsapBasicAnimations(headerTitleRef, { dir: LEFT, visible: SHOW, delay: .6 });
+            Gsap.gsapBasicAnimations(headerTitleRef, { dir: LEFT, visible: SHOW, delay: .6, duration: 1 });
         }
     }, [ isMount ]);
 
