@@ -28,9 +28,9 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
     switch (Utils.normalised(action.type)) {
 
         case ReduxAPIreducerTypes.ADD_ELEMENT_FROM_DB: {
-            const { elementToSend, elementType } = action.payload;
+            const { elementToSend, elementType, loadingElement } = action.payload;
             return {
-                ...state, status: { ...state.status, loading: false },
+                ...state, status: { ...state.status, [loadingElement]: false },
                 [elementType]: [ ...state[elementType], elementToSend ]
             };
         }
@@ -53,7 +53,8 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
         }
 
         case ReduxAPIreducerTypes.SET_REQUEST_LOADING: {
-            return { ...state, status: { ...state.status, loading: true } };
+            const { loadingElement } = action.payload;
+            return { ...state, status: { ...state.status, [loadingElement]: true } };
         }
 
         case ReduxAPIreducerTypes.SET_REQUEST_ERROR: {
