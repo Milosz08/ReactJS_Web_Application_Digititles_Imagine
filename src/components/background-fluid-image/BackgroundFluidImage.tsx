@@ -72,7 +72,7 @@ const BackgroundFluidImage: React.FC<PropsProvider> = ({
         <BackgroundFluidImageContainer
             $ifFixed = {ifFixed}
             $ifScrollDisabled = {scrollDisabledPx}
-            $ifActive = {beforeLast || last}
+            $ifActive = {(beforeLast || last) && pathname !== RoutingPaths.START}
         >
             <ThemeProvider
                 theme = {{ $notHide: ifSingleProject && stillImage }}
