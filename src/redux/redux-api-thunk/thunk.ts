@@ -24,19 +24,25 @@ import { ReduxAPIActions } from './actions';
 
 export class ReduxAPIThunk {
 
-    /**
-     *
-     */
     public static getAllElements(endpoint: JavaApiEndpoints, key: ReduxAPIstateKeys, loading: ReduxAPIstateKeys) {
         return async (dispatch: (prop: any) => void) => {
             dispatch(ReduxAPIActions.setRequestLoading(loading));
-            await axiosInstance.get(endpoint)
-                .then(response => response)
-                .then(data => {
-                    dispatch(ReduxAPIActions.addAllArrayObjectsStoreElements(data.data, key, loading));
-                },
-                error => dispatch(ReduxAPIActions.setRequestError(error.message || 'Unexpected error!')),
-            );
+            if (typeof(Storage) === 'undefined') {
+                throw new Error(`Your browser not supported local storage technology.`);
+            }
+            if (Boolean(window.localStorage.getItem(key))) {
+                const allItems = JSON.parse(window.localStorage.getItem(key)!);
+                dispatch(ReduxAPIActions.addAllArrayObjectsStoreElements(allItems.reverse(), key, loading));
+            } else {
+                await axiosInstance.get(endpoint)
+                    .then(response => response)
+                    .then(data => {
+                            dispatch(ReduxAPIActions.addAllArrayObjectsStoreElements(data.data, key, loading));
+                            window.localStorage.setItem(key, JSON.stringify(data.data));
+                        },
+                        error => dispatch(ReduxAPIActions.setRequestError(error.message || 'Unexpected error!')),
+                    );
+            }
         };
     };
 
