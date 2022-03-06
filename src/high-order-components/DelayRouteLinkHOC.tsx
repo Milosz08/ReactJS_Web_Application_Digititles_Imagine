@@ -70,7 +70,7 @@ const DelayRouteLinkHOC: React.FC<PropsProvider> = ({ delay, forceScroll, to, ..
         timeout = setTimeout((): void => {
             navigate({ pathname: to });
             dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.WHILE_CHANGING_ROUTE, false));
-            allowScroll();
+            setTimeout(() => allowScroll(), 2000);
         }, delay || 10);
     };
 
