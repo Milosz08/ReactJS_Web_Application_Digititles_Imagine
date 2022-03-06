@@ -23,6 +23,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { RoutingPaths } from '../../static/appRouting';
 
+import useDidMount from '../reusable/useDidMount';
+import useDisableScroll from '../reusable/useDisableScroll';
+
 import { ReduxDOMActions } from '../../redux/redux-dom-manipulate/actions';
 import { ReduxDOMstateKeys } from '../../redux/redux-dom-manipulate/types';
 
@@ -33,22 +36,35 @@ import { ReduxDOMstateKeys } from '../../redux/redux-dom-manipulate/types';
  * @return { [ boolean, (e: React.ChangeEvent<any>) => void ] } - first parameter: if patch is absolute,
  *         second parameter: function callback.
  */
-const useClickHamburgerButton = (): [ boolean, (e: React.ChangeEvent<any>) => void ] => {
-    
+const useClickHamburgerButton = (ifMenuOpen: boolean): [ boolean, (e: React.ChangeEvent<any>) => void ] => {
+
+    const [ blockScroll, allowScroll ] = useDisableScroll();
+    const isMount = useDidMount();
     const dispatcher = useDispatch();
+
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
     const handleOpenCloseMenu = (e: React.ChangeEvent<any>): void => {
         e.preventDefault();
         if (pathname === RoutingPaths.START) {
+            ifMenuOpen ? blockScroll() : allowScroll();
             dispatcher(ReduxDOMActions.openCloseMainMenu());
         } else {
             navigate({ pathname: RoutingPaths.START });
+            dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.STILL_IMAGE, false));
             dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.HAM_ACTIVE, false));
         }
     };
 
+    // disable/enable page scroll on change menu active/inactive
+    useEffect(() => {
+        if (!isMount) {
+            ifMenuOpen ? blockScroll() : allowScroll();
+        }
+    }, [ ifMenuOpen ]);
+
+    // change menu button look on different paths
     useEffect(() => {
         if (pathname !== RoutingPaths.START) {
             dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.HAM_ACTIVE, true));

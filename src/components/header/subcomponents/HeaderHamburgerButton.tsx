@@ -31,7 +31,7 @@ import { HeaderNavRightHamburgerElement, HeaderNavRightMenuElement, HeaderNavRig
 const HeaderHamburgerButton: React.FC = (): JSX.Element => {
 
     const { ifMenuOpen, hamActive }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
-    const [ ifAbsolute, handleHamburger ] = useClickHamburgerButton();
+    const [ ifAbsolute, handleHamburger ] = useClickHamburgerButton(ifMenuOpen);
 
     return (
         <ThemeProvider theme = {{ $ifHamActive: hamActive, $ifMenuOpen: ifMenuOpen }}>

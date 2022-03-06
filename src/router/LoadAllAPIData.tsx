@@ -21,7 +21,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useDidMount from '../hooks/reusable/useDidMount';
-import InvokeProjectLoad from '../helper-primitives/InvokeProjectLoad';
+import useDisableScroll from '../hooks/reusable/useDisableScroll';
 
 import { RootState } from '../redux/store';
 import { ReduxAPIThunk } from '../redux/redux-api-thunk/thunk';
@@ -34,8 +34,18 @@ import { InitStateAPItypes } from '../redux/redux-api-thunk/initialState';
 const LoadAllAPIData: React.FC = (): null => {
 
     const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    
+    const [ blockScroll, allowScroll ] = useDisableScroll();
     const dispatcher = useDispatch();
     const isMount = useDidMount();
+
+    useLayoutEffect(() => {
+        if (!Object.keys(status).every(loading => !status[loading])) {
+            blockScroll();
+        } else {
+            allowScroll();
+        }
+    }, [ allowScroll, blockScroll, status ]);
 
     useEffect(() => {
         InvokeProjectLoad.disableEnableScrolling(status.loading);

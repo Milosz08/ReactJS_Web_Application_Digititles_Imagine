@@ -20,7 +20,6 @@ import { InitStateDOM, InitStateDOMtypes } from './initialState';
 import { ReduxDOMreducerTypes } from './types';
 
 import Utils from '../utils';
-import InvokeProjectLoad from '../../helper-primitives/InvokeProjectLoad';
 
 /**
  * Redux reducer for manipulating DOM elements and animations.
@@ -36,7 +35,6 @@ const reduxReducerDOM = (state = InitStateDOM, action: any): InitStateDOMtypes =
         case ReduxDOMreducerTypes.OPEN_CLOSE_MAIN_MENU: {
             const { openClosed } = action.payload;
             const { ifMenuOpen, hamActive } = state;
-            InvokeProjectLoad.disableEnableScrolling(!ifMenuOpen);
             if (openClosed !== null) {
                 return { ...state, ifMenuOpen: Boolean(openClosed), hamActive: Boolean(openClosed) };
             }
@@ -57,6 +55,11 @@ const reduxReducerDOM = (state = InitStateDOM, action: any): InitStateDOMtypes =
 
         case ReduxDOMreducerTypes.HIDE_ALL_IMAGES: {
             return { ...state, onHoverActiveImageId: null, currentActiveServiceSection: null };
+        }
+
+        case ReduxDOMreducerTypes.SET_IMAGE_ON_SET_PROJECT: {
+            const { projectId } = action.payload;
+            return { ...state, onHoverActiveImageId: projectId, stillImage: true };
         }
 
         default: {
