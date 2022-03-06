@@ -25,25 +25,30 @@ import useMultipleRefs from '../reusable/useMultipleRefs';
 
 import { RootState } from '../../redux/store';
 import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
+import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
 
 /**
  * Custom hook responsible for initialised title and description animations is SubpagesMainContent component.
  *
  * @return { React.MutableRefObject<any>[] } - all referential objects in array.
  */
-const useSubpagesMainContentOnLoadAnimation = (): React.MutableRefObject<any>[] => {
+const useSubpagesMainContentOnLoadAnimation = (ignoreAsyncData?: boolean): React.MutableRefObject<any>[] => {
 
     const { browserX }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+
     const { elRefs, getCurrents } = useMultipleRefs(2);
     
     const master = gsap.timeline({ delay: .7 });
     const desktop = browserX > 1030;
     
     useLayoutEffect(() => {
-        const [ title, description ] = getCurrents();
-        master.to(title, { y: -80, autoAlpha: 1 });
-        master.to(description, { [desktop ? 'x' : 'y']: 0, autoAlpha: 1 }, desktop ? '>' : .1);
-    }, [ desktop, elRefs, getCurrents, master ]);
+        if (!status.loadingProjects || ignoreAsyncData) {
+            const [ title, description ] = getCurrents();
+            master.to(title, { y: -80, autoAlpha: 1 });
+            master.to(description, { [desktop ? 'x' : 'y']: 0, autoAlpha: 1 }, desktop ? '>' : .1);
+        }
+    }, [ desktop, elRefs, getCurrents, ignoreAsyncData, master, status.loadingProjects ]);
 
     return elRefs;
 };
