@@ -19,6 +19,10 @@
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router';
+import { useDispatch } from 'react-redux';
+
+import { ReduxDOMActions } from '../redux/redux-dom-manipulate/actions';
+import { ReduxDOMstateKeys } from '../redux/redux-dom-manipulate/types';
 
 
 export interface ReactNodeProp {
@@ -27,16 +31,21 @@ export interface ReactNodeProp {
 
 /**
  * Helper React component responsible for forced scroll to top on every change route.
+ * Also removed stillImage flag.
  *
  * @param children { React.ReactNode } - all wraped JSX elements.
  */
 const ForceScrollToTopHOC: React.FC<ReactNodeProp> = ({ children }): JSX.Element => {
 
     const location = useLocation();
+    const dispatcher = useDispatch();
 
     useEffect(() => {
+        if (!location.pathname.includes('/projects/project')) {
+            dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.STILL_IMAGE, false));
+        }
         window.scrollTo(0, 0);
-    }, [ location ]);
+    }, [ dispatcher, location ]);
 
     return (
         <>
