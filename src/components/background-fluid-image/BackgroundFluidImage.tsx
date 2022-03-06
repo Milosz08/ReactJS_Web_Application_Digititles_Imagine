@@ -35,6 +35,7 @@ import {
 
 import GenerateUndrawImages from './subcomponents/GenerateUndrawImages';
 import GenerateProjectsImages from './subcomponents/GenerateProjectsImages';
+import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
 
 export type ImagesAnimationTypes = { images: string[], showBackgroundOnLoad: boolean };
 export const ImagesAnimationContext = createContext<Partial<ImagesAnimationTypes>>({});
@@ -51,7 +52,13 @@ const BackgroundFluidImage: React.FC<PropsProvider> = ({
     images, imageSource, showBackgroundOnLoad, ifSingleProject
 }): JSX.Element => {
 
-    const { ifFixed, stillImage, scrollDisabledPx }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const domState: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+
+    const { ifFixed, stillImage, scrollDisabledPx, onHoverActiveImageId } = domState;
+    const beforeLast = projects[projects.length - 2]?.id === onHoverActiveImageId;
+    const last = projects[projects.length - 1]?.id === onHoverActiveImageId;
+
     const { pathname } = useLocation();
     const { START, PROJECTS } = RoutingPaths;
 
@@ -65,6 +72,7 @@ const BackgroundFluidImage: React.FC<PropsProvider> = ({
         <BackgroundFluidImageContainer
             $ifFixed = {ifFixed}
             $ifScrollDisabled = {scrollDisabledPx}
+            $ifActive = {beforeLast || last}
         >
             <ThemeProvider
                 theme = {{ $notHide: ifSingleProject && stillImage }}
