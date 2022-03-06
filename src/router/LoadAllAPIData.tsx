@@ -17,7 +17,7 @@
  */
 
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useDidMount from '../hooks/reusable/useDidMount';
@@ -26,6 +26,9 @@ import useDisableScroll from '../hooks/reusable/useDisableScroll';
 import { RootState } from '../redux/store';
 import { ReduxAPIThunk } from '../redux/redux-api-thunk/thunk';
 import { InitStateAPItypes } from '../redux/redux-api-thunk/initialState';
+import { JavaApiEndpoints } from '../redux/redux-api-thunk/request';
+import { ReduxAPIstateKeys } from '../redux/redux-api-thunk/types';
+
 
 /**
  * Custom React component responsible for all GET request operations (getting from database
@@ -48,12 +51,10 @@ const LoadAllAPIData: React.FC = (): null => {
     }, [ allowScroll, blockScroll, status ]);
 
     useEffect(() => {
-        InvokeProjectLoad.disableEnableScrolling(status.loading);
-    }, [ status.loading ]);
-
-    useEffect(() => {
+        const { PROJECTS, IMAGES, LOADING_PROJECTS, LOADING_IMAGES } = ReduxAPIstateKeys;
         if (isMount) {
-            dispatcher(ReduxAPIThunk.getAllProjects());
+            dispatcher(ReduxAPIThunk.getAllElements(JavaApiEndpoints.PROJECTS, PROJECTS, LOADING_PROJECTS));
+            dispatcher(ReduxAPIThunk.getAllElements(JavaApiEndpoints.PHOTOS, IMAGES, LOADING_IMAGES));
         }
     }, [ isMount, dispatcher ]);
 
