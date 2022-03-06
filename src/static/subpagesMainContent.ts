@@ -23,6 +23,7 @@ export interface SubpagesMainContentTypes {
     description?: string;
     images: string[];
     activeImage?: string;
+    dotColor?: string;
     listeners?: {
         ariaLabel: string;
         goto: React.MutableRefObject<any> | null;
@@ -34,6 +35,7 @@ export enum SubpagesContentKeys {
     SERVICES = 'services',
     PROJECTS = 'projects',
     NOT_FOUND = 'error404',
+    PROJECT = 'project',
 }
 
 export const SubpagesContent: { [key: string]: SubpagesMainContentTypes } = {
@@ -68,6 +70,19 @@ export const SubpagesContent: { [key: string]: SubpagesMainContentTypes } = {
         listeners: [
             {
                 ariaLabel: 'all projects',
+                goto: null,
+            },
+        ],
+    },
+    project: {
+        title: '',
+        description: 'If you want to know what type of fonts, colours and software to create and rendered ' +
+            'this credits we used, go below the pages.',
+        images: [],
+        dotColor: '',
+        listeners: [
+            {
+                ariaLabel: 'project details',
                 goto: null,
             },
         ],
