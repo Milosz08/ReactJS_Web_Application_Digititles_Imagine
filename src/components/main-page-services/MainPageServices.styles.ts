@@ -33,6 +33,7 @@ export const MainPageServicesContainer = styled.section`
     @media only screen and (max-width: 1030px) {
         width: calc(100% - 60px);
         margin: 0 30px;
+        padding: 0 0 50px;
     }
 `;
 

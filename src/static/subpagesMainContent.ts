@@ -75,7 +75,7 @@ export const SubpagesContent: { [key: string]: SubpagesMainContentTypes } = {
     error404: {
         title: '404 Page not found',
         description: 'We are very sorry, but such a page was not found. If you think this is a mistake, ' +
-            'please contact us using the form below.',
+            'please contact us using the form below. Click "return" button to go home page.',
         images: [ '404' ],
     },
 };
