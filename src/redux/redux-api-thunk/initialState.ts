@@ -16,20 +16,24 @@
  * COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
  */
 
-import { ProjectTypes } from './elementTypes';
+import { ProjectImagesTypes, ProjectTypes } from './elementTypes';
 
 export interface InitStateAPItypes {
     projects: ProjectTypes[];
+    projectsPhotos: ProjectImagesTypes[];
     status: {
-        loading: boolean;
+        loadingProjects: boolean;
+        loadingImages: boolean;
         error: string;
     }
 }
 
 export const InitStateAPI: InitStateAPItypes = {
     projects: [],
+    projectsPhotos: [],
     status: {
-        loading: true,
+        loadingProjects: true,
+        loadingImages: true,
         error: '',
     },
 };

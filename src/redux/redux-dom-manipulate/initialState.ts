@@ -28,6 +28,8 @@ export interface InitStateDOMtypes {
     browserY: number;
     currentActiveServiceSection: string | null;
     onHoverActiveImageId: string | null;
+    stillImage: boolean;
+    scrollDisabledPx: number;
 }
 
 export const InitStateDOM: InitStateDOMtypes = {
@@ -42,4 +44,6 @@ export const InitStateDOM: InitStateDOMtypes = {
     browserY: 0,
     currentActiveServiceSection: null,
     onHoverActiveImageId: null,
+    stillImage: false,
+    scrollDisabledPx: window.innerWidth - document.documentElement.clientWidth,
 } as const;
