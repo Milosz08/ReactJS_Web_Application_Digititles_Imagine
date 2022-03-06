@@ -33,6 +33,13 @@ export const SingleProjectContainer = styled.li`
     transition: .3s all ease-in-out;
     opacity: 0;
     visibility: hidden;
+    @media only screen and (max-width: 1030px) {
+        visibility: visible;
+        transform: initial;
+        opacity: 1;
+        width: 100%;
+        padding: 0 30px;
+    }
 `;
 
 export const SingleProjectLinkElement = styled(delay_link_rs)<{
@@ -56,7 +63,10 @@ export const SingleProjectLinkElement = styled(delay_link_rs)<{
         padding: 50px 0 50px 150px;
     }
     @media only screen and (max-width: 1030px) {
-        
+        padding: 50px 0;
+        h3::after {
+            color: ${({ $dotColor }) => $dotColor || 'var(--cyanLight)'};
+        }
     }
 `;
 
@@ -77,6 +87,10 @@ export const SingleProjectLinkTextContainer = styled.h3`
         word-break: initial;
     }
     @media only screen and (max-width: 1030px) {
-
+        font-size: 3rem;
+        width: 100%;
+        text-align: center;
+        color: var(--blackLight);
+        word-break: break-word;
     }
 `;
