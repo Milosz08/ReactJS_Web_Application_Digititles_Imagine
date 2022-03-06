@@ -31,7 +31,7 @@ export const MainMenuContainer = styled.main<{ $ifActive: boolean }>`
     opacity: ${({ $ifActive }) => $ifActive ? 1 : 0};
     transition: .6s all cubic-bezier(.56, 0, .46, 1);
     padding: 50px 0;
-    z-index: 4;
+    z-index: 5;
     overflow-y: auto;
     @media only screen and (max-width: 760px) {
         display: block;
@@ -144,6 +144,8 @@ export const MainMenuProjectSingleElement = styled(delay_link_rs)`
     }
     @media only screen and (max-width: 500px) {
         font-size: 1.6rem;
-        line-height: 1.7;
+        line-height: 1.1;
+        display: block;
+        padding: 7px 0;
     }
 `;

@@ -35,6 +35,7 @@ export const NavigationScrollTopContainer = styled(button_rs)<{ $ifFixed: boolea
     left: 40px;
     transform-origin: left;
     transform: rotate(90deg);
+    z-index: 4;
     ${HideElementOnLoad()};
     :hover {
         color: var(--cyanDark);
