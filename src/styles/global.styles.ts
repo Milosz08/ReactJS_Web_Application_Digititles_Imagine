@@ -32,9 +32,6 @@ const GlobalStylesInjection = createGlobalStyle`
     }
     body {
         position: relative;
-        &.disable--scroll {
-            overflow-y: hidden;
-        }
     }
     #root {
         margin-bottom: 600px;
@@ -62,10 +59,34 @@ const GlobalStylesInjection = createGlobalStyle`
         --headerFontSize: 4rem;
         --biggerHeaderFontSize: 5rem;
         --paragraphFontSize: 1.4rem;
+        --scrollBarColor: #f0f0f0;
 
         @media only screen and (max-width: 1030px) {
             --headerFontSize: 3.5rem;
             --paragraphFontSize: 1.2rem;
+        }
+
+        @keyframes scrollLine {
+            0% {
+                transform: scale(1, 0);
+                transform-origin: left top;
+            }
+            40% {
+                transform: scale(1, 0);
+                transform-origin: left top;
+            }
+            80% {
+                transform: scale(1, 1);
+                transform-origin: left top;
+            }
+            80.1% {
+                transform: scale(1, 1);
+                transform-origin: left bottom;
+            }
+            100% {
+                transform: scale(1, 0);
+                transform-origin: left bottom;
+            }
         }
     }
 `;

@@ -53,28 +53,6 @@ export const NavigationBottomBarLine = styled.div`
         background-color: var(--cyanDark);
         animation: scrollLine 2s infinite;
     }
-    @keyframes scrollLine {
-        0% {
-            transform: scale(1, 0);
-            transform-origin: left top;
-        }
-        40% {
-            transform: scale(1, 0);
-            transform-origin: left top;
-        }
-        80% {
-            transform: scale(1, 1);
-            transform-origin: left top;
-        }
-        80.1% {
-            transform: scale(1, 1);
-            transform-origin: left bottom;
-        }
-        100% {
-            transform: scale(1, 0);
-            transform-origin: left bottom;
-        }
-    }
 `;
 
 export const NavigateTextContentContainer = styled.div`
