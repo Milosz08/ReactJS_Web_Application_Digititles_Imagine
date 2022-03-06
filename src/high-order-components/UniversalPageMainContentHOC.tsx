@@ -24,28 +24,32 @@ import { SubpagesMainContentTypes } from '../static/subpagesMainContent';
 
 
 interface PropsProvider {
-    LeftComponent: React.FC<{ content?: SubpagesMainContentTypes }>;
+    LeftComponent: React.FC<{ content?: SubpagesMainContentTypes, visibleOnLoad?: boolean }>;
     content?: SubpagesMainContentTypes;
     images?: string[];
+    imageSource?: string;
+    ifSingleProject?: boolean;
     showBackgroundOnLoad?: boolean;
+    visibleOnLoad?: boolean;
 }
 
 const UniversalPageMainContentHOC: React.FC<PropsProvider> = ({
-    LeftComponent, showBackgroundOnLoad, content, images, ...rest
-}): JSX.Element => {
-    return (
-        <SubpagesMainContentContainer>
-            <BackgroundFluidImage
-                images = {content ? content.images : images!}
-                showBackgroundOnLoad = {showBackgroundOnLoad}
-            />
-            <LeftComponent
-                content = {content}
-                {...rest}
-            />
-        </SubpagesMainContentContainer>
-    );
-};
+    LeftComponent, showBackgroundOnLoad, content, images, imageSource, ifSingleProject, visibleOnLoad, ...rest
+}): JSX.Element => (
+    <SubpagesMainContentContainer>
+        <BackgroundFluidImage
+            images = {content ? content.images : images!}
+            showBackgroundOnLoad = {showBackgroundOnLoad}
+            imageSource = {imageSource}
+            ifSingleProject = {ifSingleProject}
+        />
+        <LeftComponent
+            content = {content}
+            visibleOnLoad = {visibleOnLoad}
+            {...rest}
+        />
+    </SubpagesMainContentContainer>
+);
 
 const SubpagesMainContentContainer = styled.main`
     width: 100%;
