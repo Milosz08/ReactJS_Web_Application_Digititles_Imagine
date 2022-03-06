@@ -83,9 +83,11 @@ export class ReduxAPIActions {
     /**
      *
      */
-    public static setRequestLoading = (): ReturnedToReducer => ({
+    public static setRequestLoading = (loadingElement: ReduxAPIstateKeys): ReturnedToReducer => ({
         type: ReduxAPIreducerTypes.SET_REQUEST_LOADING,
+        payload: {
+            loadingElement,
+        }
     });
 
 }
-
