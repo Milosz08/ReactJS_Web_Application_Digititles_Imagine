@@ -21,7 +21,7 @@ import { useEffect, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
-import { Expo, gsap } from 'gsap';
+import { gsap } from 'gsap';
 
 import useMultipleRefs from '../reusable/useMultipleRefs';
 
@@ -33,8 +33,8 @@ interface HookProps {
     countOfImages: number;
     ifAutoAlpha?: boolean;
     invoke: {
-        hidePx: number;
-        showPx: number;
+        hidePx: number | string;
+        showPx: number | string;
     }
 }
 
@@ -59,10 +59,10 @@ const useOnHoverSelectImages = ({ countOfImages, ifAutoAlpha, invoke }: HookProp
     useLayoutEffect(() => {
         getCurrents().forEach(current => {
             if (current.src.includes(onHoverActiveImageId)) {
-                gsap.to(current, { x: invoke.showPx, duration: .5, ease: Expo.easeInOut, autoAlpha: 1 });
+                gsap.to(current, { x: invoke.showPx, duration: 0, autoAlpha: 1 });
             } else {
                 gsap.to(current, {
-                    x: invoke.hidePx, duration: .5, ease: Expo.easeInOut, autoAlpha: ifAutoAlpha ? 0 : 1
+                    x: invoke.hidePx, duration: 0, autoAlpha: ifAutoAlpha ? 0 : 1
                 });
             }
         });
