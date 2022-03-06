@@ -17,7 +17,7 @@
  */
 
 import styled from 'styled-components';
-import { HeaderElementStyled, ParagraphElementStyled } from '../universal-components/UniversalComponents.styles';
+import { ParagraphElementStyled } from '../universal-components/UniversalComponents.styles';
 
 export const SubpagesMainContentUniversalContainer = styled.div`
     width: 50%;
@@ -26,7 +26,7 @@ export const SubpagesMainContentUniversalContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     padding-left: 200px;
-    max-width: 40vw;
+    max-width: 45vw;
     @media only screen and (max-width: 1330px) {
         padding-left: 150px;
         max-width: 50%;
@@ -56,9 +56,8 @@ export const SubpagesMainContentFormContainer = styled(SubpagesMainContentUniver
 `;
 
 export const SubpagesMainContentImageAndTitleContainer = styled.div`
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(0);
+    opacity: ${({ theme }) => theme.$hideOnLoad ? 0 : 1};
+    visibility: ${({ theme }) => theme.$hideOnLoad ? 'hidden' : 'visible'};
     @media only screen and (max-width: 1030px) {
         display: flex;
         flex-direction: column;
@@ -66,14 +65,25 @@ export const SubpagesMainContentImageAndTitleContainer = styled.div`
     }
 `;
 
-export const SubpagesMainContentTitle = styled(HeaderElementStyled)`
+export const SubpagesMainContentTitle = styled.h3<{ $color: string }>`
     position: relative;
-    font-size: var(--biggerHeaderFontSize);
     margin-bottom: 0;
+    line-height: 1;
+    word-break: break-word;
+    font-size: 4vw;
+    color: var(--blackLight);
+    ::after {
+        content: '.';
+        font-size: 1.1em;
+        transition: .2s color ease-in-out;
+        color: ${({ $color }) => $color || 'var(--cyanDark)'};
+    }
     @media only screen and (max-width: 1030px) {
         position: initial;
-        font-size: var(--headerFontSize);
         text-align: center;
+        font-size: 3rem;
+        width: 100%;
+        transform: translateY(35px);
     }
 `;
 
@@ -92,13 +102,14 @@ export const SubpagesMainContentDescription = styled(ParagraphElementStyled)`
     opacity: 0;
     visibility: hidden;
     transform: translateX(-50px);
-    margin-top: 100px;
+    margin-top: 250px;
     max-width: 30%;
     @media only screen and (max-width: 1030px) {
         position: initial;
         text-align: center;
         margin-top: 0;
         transform: translateY(30px);
-        max-width: 100%;
+        width: 100%;
+        max-width: 600px;
     }
 `;
