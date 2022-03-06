@@ -23,10 +23,12 @@ import App from './router/App';
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
 import InvokeProjectLoad from './helper-primitives/InvokeProjectLoad';
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollToPlugin);
 gsap.config({ nullTargetWarn: false });
 
 InvokeProjectLoad.gotoTopOnReload();
