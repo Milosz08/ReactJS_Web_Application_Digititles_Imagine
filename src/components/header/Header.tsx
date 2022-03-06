@@ -32,13 +32,14 @@ import HeaderNavRightContent from './subcomponents/HeaderNavRightContent';
 
 const Header: React.FC = (): JSX.Element => {
 
-    const { ifMenuOpen }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { ifMenuOpen, scrollDisabledPx }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     const [ headerRef, gradient ] = useHeaderChangePositionSmallDevices({ invokePx: 1030 });
 
     return (
         <HeaderContainer
             $ifMenuOpen = {ifMenuOpen}
             $ifGradient = {gradient}
+            $scrollDisabledPx = {scrollDisabledPx}
             ref = {headerRef}
         >
             <HeaderLogoLeftContent/>

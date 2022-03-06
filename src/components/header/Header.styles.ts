@@ -21,21 +21,25 @@ import styled from 'styled-components';
 import { button_rs, link_rs } from '../../styles/reset.styles';
 import { HideElementOnLoad, NavigationSingleTextElement } from '../../styles/mixins.styles';
 
-const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+const addPaddingOnDisableScroll = (menuOpen: boolean, disabledPx: number, initPx: number) => (
+    menuOpen || disabledPx ? disabledPx + initPx : initPx
+);
 
-export const HeaderContainer = styled.header<{ $ifMenuOpen: boolean, $ifGradient: boolean }>`
+export const HeaderContainer = styled.header<{ $ifMenuOpen: boolean, $ifGradient: boolean, $scrollDisabledPx: number }>`
     position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
     height: 180px;
-    padding-right: ${({ $ifMenuOpen }) => $ifMenuOpen ? 50 + scrollbarWidth : 50}px;
+    padding-right: ${({ $ifMenuOpen, $scrollDisabledPx }) => 
+            addPaddingOnDisableScroll($ifMenuOpen, $scrollDisabledPx, 50)}px;
     padding-left: 50px;
-    z-index: 5;
+    z-index: 6;
     @media only screen and (max-width: 1030px) {
         height: 90px;
-        padding-right: ${({ $ifMenuOpen }) => $ifMenuOpen ? 30 + scrollbarWidth : 30}px;
+        padding-right: ${({ $ifMenuOpen, $scrollDisabledPx }) => 
+                addPaddingOnDisableScroll($ifMenuOpen, $scrollDisabledPx, 30)}px;
         padding-left: 30px;
         background-color: ${({ $ifMenuOpen, $ifGradient }) => $ifMenuOpen 
                 ? 'transparent' : $ifGradient ? 'var(--whiteClean)' : 'transparent'};
@@ -44,7 +48,8 @@ export const HeaderContainer = styled.header<{ $ifMenuOpen: boolean, $ifGradient
         transition: background-color .3s .2s, box-shadow .3s, transform .3s;
     }
     @media only screen and (max-width: 760px) {
-        padding-right: ${({ $ifMenuOpen }) => $ifMenuOpen ? 47 : 30}px;
+        padding-right: ${({ $ifMenuOpen, $scrollDisabledPx }) =>
+                addPaddingOnDisableScroll($ifMenuOpen, $scrollDisabledPx, 30)}px;
     }
 `;
 
