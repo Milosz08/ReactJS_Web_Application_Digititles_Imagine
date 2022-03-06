@@ -33,11 +33,30 @@ export class ReduxAPIActions {
      *
      * @param elementToSend
      * @param elementType
+     * @param loadingElement
      */
-    public static addReduxStoreElement = (elementToSend: AxiosResponse, elementType: ReduxAPIstateKeys): ReturnedToReducer => ({
+    public static addReduxStoreElement = (
+        elementToSend: AxiosResponse, elementType: ReduxAPIstateKeys, loadingElement: ReduxAPIstateKeys
+    ): ReturnedToReducer => ({
         type: ReduxAPIreducerTypes.ADD_ELEMENT_FROM_DB,
         payload: {
-            elementToSend, elementType
+            elementToSend, elementType, loadingElement
+        }
+    });
+
+    /**
+     *
+     *
+     * @param arrayOfObjects
+     * @param elementType
+     * @param loadingElement
+     */
+    public static addAllArrayObjectsStoreElements = (
+        arrayOfObjects: AxiosResponse[], elementType: ReduxAPIstateKeys, loadingElement: ReduxAPIstateKeys
+    ): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.ADD_ALL_ELEMENTS_FROM_DB,
+        payload: {
+            arrayOfObjects, elementType, loadingElement
         }
     });
 

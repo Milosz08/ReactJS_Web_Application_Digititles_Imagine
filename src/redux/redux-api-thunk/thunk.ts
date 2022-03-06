@@ -27,16 +27,13 @@ export class ReduxAPIThunk {
     /**
      *
      */
-    public static getAllProjects() {
+    public static getAllElements(endpoint: JavaApiEndpoints, key: ReduxAPIstateKeys, loading: ReduxAPIstateKeys) {
         return async (dispatch: (prop: any) => void) => {
-            dispatch(ReduxAPIActions.setRequestLoading());
-            await axiosInstance.get(JavaApiEndpoints.PROJECTS)
+            dispatch(ReduxAPIActions.setRequestLoading(loading));
+            await axiosInstance.get(endpoint)
                 .then(response => response)
                 .then(data => {
-                    data.data.sort((timeA: any, timeB: any) => timeB.createdTimestamp - timeA.createdTimestamp);
-                    data.data.forEach((element: typeof data.data) => {
-                        dispatch(ReduxAPIActions.addReduxStoreElement(element, ReduxAPIstateKeys.PROJECTS));
-                    });
+                    dispatch(ReduxAPIActions.addAllArrayObjectsStoreElements(data.data, key, loading));
                 },
                 error => dispatch(ReduxAPIActions.setRequestError(error.message || 'Unexpected error!')),
             );
