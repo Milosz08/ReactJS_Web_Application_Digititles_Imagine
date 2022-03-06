@@ -51,7 +51,7 @@ const BackgroundFluidImage: React.FC<PropsProvider> = ({
     images, imageSource, showBackgroundOnLoad, ifSingleProject
 }): JSX.Element => {
 
-    const { ifFixed, stillImage }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { ifFixed, stillImage, scrollDisabledPx }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     const { pathname } = useLocation();
     const { START, PROJECTS } = RoutingPaths;
 
@@ -64,6 +64,7 @@ const BackgroundFluidImage: React.FC<PropsProvider> = ({
     return (
         <BackgroundFluidImageContainer
             $ifFixed = {ifFixed}
+            $ifScrollDisabled = {scrollDisabledPx}
         >
             <ThemeProvider
                 theme = {{ $notHide: ifSingleProject && stillImage }}

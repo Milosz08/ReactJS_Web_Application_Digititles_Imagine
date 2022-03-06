@@ -22,13 +22,13 @@ const HideContentOnLoad = () => css`
     transform: translateX(100%);
 `;
 
-export const BackgroundFluidImageContainer = styled.div<{ $ifFixed: boolean }>`
+export const BackgroundFluidImageContainer = styled.div<{ $ifFixed: boolean, $ifScrollDisabled: number | null }>`
     position: ${({ $ifFixed }) => $ifFixed ? 'fixed' : 'absolute'};
     display: flex;
     align-items: flex-end;
-    right: 0;
+    width: ${({ $ifScrollDisabled }) => $ifScrollDisabled ? `calc(50% - ${($ifScrollDisabled + 1) / 2}px)` : '50%'};
+    right: ${({ $ifScrollDisabled }) => $ifScrollDisabled ? `${$ifScrollDisabled}px` : 0};
     bottom: 0;
-    width: 50%;
     height: 100vh;
     overflow: hidden;
     @media only screen and (max-width: 1030px) {
@@ -48,6 +48,7 @@ export const BackgroundFluidBasicImageContainer = styled.div`
 
 export const BackgroundFluidImageStyles = styled.img`
     width: 100%;
+    height: auto;
     ${({ theme }) => !theme.$notHide && HideContentOnLoad()};
 `;
 
@@ -66,7 +67,7 @@ export const BackgroundFluidBasicImageStyles = styled.img`
 
 export const ProjectsFluidImageStyles = styled(BackgroundFluidBasicImageStyles)`
     width: 100%;
-    height: auto;
+    height: initial;
     transform: translateX(-100px);
 `;
 
