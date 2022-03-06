@@ -28,7 +28,7 @@ export const BackgroundFluidImageContainer = styled.div<{ $ifFixed: boolean, $if
     align-items: flex-end;
     width: ${({ $ifScrollDisabled }) => $ifScrollDisabled ? `calc(50% - ${($ifScrollDisabled + 1) / 2}px)` : '50%'};
     right: ${({ $ifScrollDisabled }) => $ifScrollDisabled ? `${$ifScrollDisabled}px` : 0};
-    bottom: 0;
+    bottom: ${({ $ifScrollDisabled }) => $ifScrollDisabled ? '600px' : 0};
     height: 100vh;
     overflow: hidden;
     @media only screen and (max-width: 1030px) {
