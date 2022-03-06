@@ -18,6 +18,7 @@
 
 export enum ReduxAPIreducerTypes {
     ADD_ELEMENT_FROM_DB = 'ADD_ELEMENT_FROM_DB__T',
+    ADD_ALL_ELEMENTS_FROM_DB = 'ADD_ALL_ELEMENTS_FROM_DB',
     EDIT_ELEMENT_FROM_DB = 'EDIT_ELEMENT_FROM_DB__T',
     DELETE_ELEMENT_FROM_DB = 'DELETE_ELEMENT_FROM_DB__T',
     SET_REQUEST_ERROR = 'SET_REQUEST_ERROR__T',
@@ -26,4 +27,7 @@ export enum ReduxAPIreducerTypes {
 
 export enum ReduxAPIstateKeys {
     PROJECTS = 'projects',
+    IMAGES = 'projectsPhotos',
+    LOADING_PROJECTS = 'loadingProjects',
+    LOADING_IMAGES = 'loadingImages',
 }

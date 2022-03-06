@@ -22,6 +22,7 @@ export enum ReduxDOMreducerTypes {
     CHANGE_SCROLL_POSITIONS = 'CHANGE_SCROLL_POSITIONS__D',
     SET_BROWSER_WIDTH_AND_HEIGHT = 'SET_BROWSER_WIDTH_AND_HEIGHT__D',
     HIDE_ALL_IMAGES = 'HIDE_ALL_IMAGES__D',
+    SET_IMAGE_ON_SET_PROJECT = 'SET_IMAGE_ON_SET_PROJECT',
 }
 
 export enum ReduxDOMstateKeys {
@@ -30,6 +31,8 @@ export enum ReduxDOMstateKeys {
     IF_FIXED = 'ifFixed',
     CURRENT_ACTIVE_SERVICE_SECTION = 'currentActiveServiceSection',
     ON_HOVER_ACTIVE_IMAGE_ID = 'onHoverActiveImageId',
+    STILL_IMAGE = 'stillImage',
+    SCROLL_DISABLED_PX = 'scrollDisabledPx',
 }
 
 export enum AnimationStages {
