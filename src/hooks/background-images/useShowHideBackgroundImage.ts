@@ -75,7 +75,7 @@ const useShowHideBackgroundImage = ({ invokePx, ifShowOnLoad, ifSingleProject, e
         if (!status.loadingProjects || !ifSingleProject) {
             if (ifShowOnLoad && browserX > 1030) {
                 gsap.to(getCurrents(), {
-                    x: 0, duration: .6, ease: Expo.easeInOut, delay: ifSingleProject ? 0 : .5
+                    x: 0, duration: .6, ease: Expo.easeInOut, delay: ifSingleProject ? 1 : .5
                 });
             }
         }
