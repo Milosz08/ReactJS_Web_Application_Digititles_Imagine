@@ -27,9 +27,8 @@ export const SubpagesMainContentUniversalContainer = styled.div`
     justify-content: center;
     padding-left: 200px;
     max-width: 45vw;
-    @media only screen and (max-width: 1330px) {
-        padding-left: 150px;
-        max-width: 50%;
+    @media only screen and (max-width: 1400px) {
+        padding-left: 100px;
     }
     @media only screen and (max-width: 1030px) {
         align-items: center;

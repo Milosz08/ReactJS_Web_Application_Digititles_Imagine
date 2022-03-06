@@ -40,7 +40,7 @@ export const NavigationScrollTopContainer = styled(button_rs)<{ $ifFixed: boolea
     :hover {
         color: var(--cyanDark);
     }
-    @media only screen and (max-width: 760px) {
+    @media only screen and (max-width: 1030px) {
         display: none !important;
     }
 `;

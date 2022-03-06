@@ -60,7 +60,7 @@ export const SingleProjectLinkElement = styled(delay_link_rs)<{
         }
     }
     @media only screen and (max-width: 1400px) {
-        padding: 50px 0 50px 150px;
+        padding: 50px 0 50px 100px;
     }
     @media only screen and (max-width: 1030px) {
         padding: 50px 0;
@@ -83,7 +83,7 @@ export const SingleProjectLinkTextContainer = styled.h3`
         transition: .2s color ease-in-out;
     }
     @media only screen and (max-width: 1400px) {
-        width: calc(50% - 150px);
+        width: calc(50% - 100px);
         word-break: initial;
     }
     @media only screen and (max-width: 1030px) {
