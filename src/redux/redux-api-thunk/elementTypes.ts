@@ -65,3 +65,11 @@ export interface ProjectTypes {
         };
     }[];
 }
+
+export interface ProjectImagesTypes {
+    projectId: string;
+    projectImages: {
+        name: string;
+        url: string;
+    }[];
+}
