@@ -17,50 +17,48 @@
  */
 
 import * as React from 'react';
-import { createContext, useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { createContext } from 'react';
+
 import { useParams } from 'react-router';
 
-import useChangePageTitle from '../hooks/reusable/useChangePageTitle';
-
-import { RootState } from '../redux/store';
 import { ProjectTypes } from '../redux/redux-api-thunk/elementTypes';
-import { InitStateAPItypes } from '../redux/redux-api-thunk/initialState';
+import { SubpagesContentKeys } from '../static/subpagesMainContent';
+
+import useInsertRefOnLoad from '../hooks/reusable/useInsertRefOnLoad';
+import useProjectOnLoad from '../hooks/single-project/useProjectOnLoad';
 
 import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
+import UniversalPageMainContentHOC from '../high-order-components/UniversalPageMainContentHOC';
+import SubpagesMainContentTitleAndDescription from '../components/subpages-left-content/subcomponents/SubpagesMainContentTitleAndDescription';
 import Footer from '../components/footer/Footer';
 
-export const ProjectContext = createContext<Partial<{ findProject: ProjectTypes }>>({});
+export type ProjectContextTypes = { findProject: ProjectTypes };
+export const ProjectContext = createContext<Partial<ProjectContextTypes>>({});
 
 
 const SingleProjectPageReact: React.FC = (): JSX.Element => {
 
-    const { projects, status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
-
-    const detailsRef = useRef(null);
     const { projectTitle } = useParams();
-    const [ findingProject, setFindingProject ] = useState<ProjectTypes>();
 
-    useChangePageTitle(findingProject ? findingProject.title : 'Project Title', false);
-
-    useEffect(() => {
-        const findingProject = projects.find(project => project.projectPath === projectTitle);
-        if (!status.loading && findingProject) {
-            setFindingProject(findingProject);
-        }
-    }, [ projectTitle, projects, status.loading ]);
+    const [ findingProject, content, photo ] = useProjectOnLoad(projectTitle!);
+    const { allRefs, listeners } = useInsertRefOnLoad(SubpagesContentKeys.PROJECT);
 
     return (
         <ProjectContext.Provider
             value = {{ findProject: findingProject }}
         >
             <NavigationBottomBar
-                listeners = {[ { ariaLabel: 'project details', goto: detailsRef } ]}
+                listeners = {listeners!}
             />
-            {Boolean(findingProject) && <>
-                single project: {findingProject!.id}, {findingProject!.title}
-                <div ref = {detailsRef}>details</div>
-            </>}
+            <UniversalPageMainContentHOC
+                showBackgroundOnLoad = {true}
+                LeftComponent = {SubpagesMainContentTitleAndDescription}
+                content = {content}
+                imageSource = {photo || ''}
+                ifSingleProject = {true}
+                visibleOnLoad = {true}
+            />
+            <div ref = {allRefs[0]}>details</div>
             <Footer/>
         </ProjectContext.Provider>
     );
