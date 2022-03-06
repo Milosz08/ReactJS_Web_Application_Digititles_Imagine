@@ -26,21 +26,21 @@ import { ReduxDOMstateKeys } from '../../redux/redux-dom-manipulate/types';
  * Custom hook responsible for change image on mouse events (mouseenter or mouseleave). If user invoke this
  * function on different type of event, hook throw exception.
  *
- * @param activeImage { string } - current image to set in redux state.
- * @return { e: React.MouseEvent) => void } - mouse event handler function.
+ * @param activeImage { string? } - current image to set in redux state.
+ * @return { (e: React.MouseEvent, imageParam?: string, defaultImage? : string) => void } - mouse event handler function.
  */
-const useMouseMove = (activeImage: string): (e: React.MouseEvent) => void => {
+const useMouseMove = (activeImage?: string): (e: React.MouseEvent, imageParam?: string, defaultImage? : string) => void => {
 
     const { ON_HOVER_ACTIVE_IMAGE_ID } = ReduxDOMstateKeys;
     const dispatcher = useDispatch();
 
-    return (e: React.MouseEvent) => {
+    return (e: React.MouseEvent, imageParam?: string, defaultImage? : string) => {
         switch (e.type) {
             case 'mouseenter':
-                dispatcher(ReduxDOMActions.changeFirstLevelElement(ON_HOVER_ACTIVE_IMAGE_ID, activeImage));
+                dispatcher(ReduxDOMActions.changeFirstLevelElement(ON_HOVER_ACTIVE_IMAGE_ID, activeImage || imageParam));
                 break;
             case 'mouseleave':
-                dispatcher(ReduxDOMActions.changeFirstLevelElement(ON_HOVER_ACTIVE_IMAGE_ID, null));
+                dispatcher(ReduxDOMActions.changeFirstLevelElement(ON_HOVER_ACTIVE_IMAGE_ID, defaultImage || null));
                 break;
             default:
                 throw new Error(`Unexpected mouse event! Event: ${e.type} is not acceptable.`);
