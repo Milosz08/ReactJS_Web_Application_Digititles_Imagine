@@ -17,9 +17,15 @@
  */
 
 import * as React from 'react';
+import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
 
 import { SubpagesMainContentTypes } from '../../../static/subpagesMainContent';
 import useSubpagesMainContentOnLoadAnimation from '../../../hooks/background-images/useSubpagesMainContentOnLoadAnimation';
+
+import { RootState } from '../../../redux/store';
+import { InitStateDOMtypes } from '../../../redux/redux-dom-manipulate/initialState';
 
 import {
     SubpagesMainContentDescription, SubpagesMainContentImage, SubpagesMainContentImageAndTitleContainer,
@@ -28,30 +34,42 @@ import {
 
 
 interface PropsProvider {
-    content?: SubpagesMainContentTypes;
+    content?: SubpagesMainContentTypes | any;
+    visibleOnLoad?: boolean;
 }
 
-const SubpagesMainContentTitleAndDescription: React.FC<PropsProvider> = ({ content }): JSX.Element => {
+const SubpagesMainContentTitleAndDescription: React.FC<PropsProvider> = ({ content, visibleOnLoad }): JSX.Element => {
 
-    const [ title, description ] = useSubpagesMainContentOnLoadAnimation();
+    const { stillImage }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+
+    const { pathname } = useLocation();
+    const [ title, description ] = useSubpagesMainContentOnLoadAnimation(
+        !Boolean(visibleOnLoad) && !stillImage && pathname.includes('/projects/project')
+    );
 
     return (
         <SubpagesMainContentUniversalContainer>
-            <SubpagesMainContentImageAndTitleContainer
-                ref = {title}
+            <ThemeProvider
+                theme = {{ $hideOnLoad: !stillImage }}
             >
-                <SubpagesMainContentImage
-                    src = {process.env.PUBLIC_URL + '/asset-images/undraw-images/undraw_' + content?.images[0] + '.svg'}
-                />
-                <SubpagesMainContentTitle>
-                    {content?.title}
-                </SubpagesMainContentTitle>
-            </SubpagesMainContentImageAndTitleContainer>
-            <SubpagesMainContentDescription
-                ref = {description}
-            >
-                {content?.description}
-            </SubpagesMainContentDescription>
+                <SubpagesMainContentImageAndTitleContainer
+                    ref = {title}
+                >
+                    {!content.dotColor && <SubpagesMainContentImage
+                        src = {process.env.PUBLIC_URL + '/asset-images/undraw-images/undraw_' + content?.images[0] + '.svg'}
+                    />}
+                    <SubpagesMainContentTitle
+                        $color = {content.dotColor}
+                    >
+                        {content?.title}
+                    </SubpagesMainContentTitle>
+                </SubpagesMainContentImageAndTitleContainer>
+                <SubpagesMainContentDescription
+                    ref = {description}
+                >
+                    {content?.description}
+                </SubpagesMainContentDescription>
+            </ThemeProvider>
         </SubpagesMainContentUniversalContainer>
     );
 };
