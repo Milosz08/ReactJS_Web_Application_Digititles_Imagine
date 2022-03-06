@@ -23,6 +23,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { ReduxDOMActions } from '../redux/redux-dom-manipulate/actions';
 import { ReduxDOMstateKeys } from '../redux/redux-dom-manipulate/types';
+import useDisableScroll from '../hooks/reusable/useDisableScroll';
 
 
 interface PropsProvider {
@@ -42,6 +43,8 @@ const DelayRouteLinkHOC: React.FC<PropsProvider> = ({ delay, forceScroll, to, ..
 
     let timeout: NodeJS.Timeout | null = null;
 
+    const [ blockScroll, allowScroll ] = useDisableScroll();
+
     const navigate = useNavigate();
     const location = useLocation();
     const dispatcher = useDispatch();
@@ -60,12 +63,14 @@ const DelayRouteLinkHOC: React.FC<PropsProvider> = ({ delay, forceScroll, to, ..
             return;
         }
         dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.WHILE_CHANGING_ROUTE, true));
+        blockScroll();
         if (forceScroll) {
             window.scrollTo(0, 0);
         }
         timeout = setTimeout((): void => {
             navigate({ pathname: to });
             dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.WHILE_CHANGING_ROUTE, false));
+            allowScroll();
         }, delay || 10);
     };
 
