@@ -27,6 +27,7 @@ import FontfacesStylesInjection from '../styles/fontfaces.styles';
 
 import InvokeOnMount from './InvokeOnMount';
 import LoadAllAPIData from './LoadAllAPIData';
+import ScrollAndSuspenseBars from '../components/scroll-and-suspense-bars/ScrollAndSuspenseBars';
 import ForceScrollToTopHOC from '../high-order-components/ForceScrollToTopHOC';
 import MainMenu from '../components/main-menu/MainMenu';
 import Header from '../components/header/Header';
@@ -39,6 +40,7 @@ const App: React.FC = (): JSX.Element => (
         <GlobalStylesInjection/>
         <InvokeOnMount/>
         <LoadAllAPIData/>
+        <ScrollAndSuspenseBars/>
         <BrowserRouter>
             <ForceScrollToTopHOC>
                 <MainMenu/>
