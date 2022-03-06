@@ -27,7 +27,7 @@ import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState
 /**
  * Custom hook responsible for hide menu immediately after change route from absolute to different.
  *
- * @return boolean - indicator of menu state (open/closed)
+ * @return { boolean } - indicator of menu state (open/closed)
  */
 const useHideMenuOnChangeRoute = (): boolean => {
 
