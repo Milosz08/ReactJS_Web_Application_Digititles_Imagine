@@ -32,11 +32,13 @@ interface PropsProvider {
 const TechnicalBlocks: React.FC<PropsProvider> = ({ type }): JSX.Element => {
 
     const { findProject } = useContext<Partial<ProjectContextTypes>>(ProjectContext);
+    const { renderProps } = findProject!;
 
     const generateAllTechnicalBlocks: JSX.Element[] = TechnicalBlocksStructure[type].map(block => (
         <TechnicalBlockSingleElement
             key = {block}
-            $ifActive = {findProject?.renderProps.shortResolution.toLocaleLowerCase() === block}
+            $ifImax = {renderProps.ifImax && block === TechnicalBlocksStructure.resolutions[5]}
+            $ifActive = {renderProps.shortResolution.toLocaleLowerCase() === block}
         >
             {block}
         </TechnicalBlockSingleElement>

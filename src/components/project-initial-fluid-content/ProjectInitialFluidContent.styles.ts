@@ -62,7 +62,7 @@ export const TechnicalBlocksContainer = styled.div`
     }
 `;
 
-export const TechnicalBlockSingleElement = styled.div<{ $ifActive: boolean }>`
+export const TechnicalBlockSingleElement = styled.div<{ $ifActive: boolean, $ifImax: boolean }>`
     padding: 7px 9px 6px;
     margin: 10px 9px;
     min-width: 50px;
@@ -70,5 +70,5 @@ export const TechnicalBlockSingleElement = styled.div<{ $ifActive: boolean }>`
     background-color: var(--blackLight);
     color: var(--whiteClean);
     border-radius: 6px;
-    opacity: ${({ $ifActive }) => $ifActive ? 1 : .2 };
+    opacity: ${({ $ifActive, $ifImax }) => $ifActive || $ifImax ? 1 : .2 };
 `;
