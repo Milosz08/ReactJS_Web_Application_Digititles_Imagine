@@ -29,11 +29,11 @@ export enum ReduxDOMreducerTypes {
 export enum ReduxDOMstateKeys {
     WHILE_CHANGING_ROUTE = 'whileChangingRoutes',
     HAM_ACTIVE = 'hamActive',
-    IF_FIXED = 'ifFixed',
     CURRENT_ACTIVE_SERVICE_SECTION = 'currentActiveServiceSection',
     ON_HOVER_ACTIVE_IMAGE_ID = 'onHoverActiveImageId',
     STILL_IMAGE = 'stillImage',
     SCROLL_DISABLED_PX = 'scrollDisabledPx',
+    TOTAL_HEIGHT = 'totalHeight',
 }
 
 export enum AnimationStages {

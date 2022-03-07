@@ -33,6 +33,7 @@ export interface InitStateDOMtypes {
     onHoverActiveImageId: string | null;
     stillImage: boolean;
     scrollDisabledPx: number;
+    totalHeight: number;
 }
 
 export const InitStateDOM: InitStateDOMtypes = {
@@ -52,4 +53,5 @@ export const InitStateDOM: InitStateDOMtypes = {
     onHoverActiveImageId: null,
     stillImage: false,
     scrollDisabledPx: window.innerWidth - document.documentElement.clientWidth,
+    totalHeight: 600,
 } as const;
