@@ -16,7 +16,7 @@
  * COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
  */
 
-import { css } from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const HideElementOnLoad = () => css`
     opacity: 0;
@@ -86,4 +86,8 @@ export const BasicTextInputElement = ({ $ifDark, $ifError }: { $ifDark: boolean,
     :focus {
         border-bottom-color: var(--${$ifError ? 'redLight' : $ifDark ? 'cyanLight' : 'cyanDark'});
     }
+`;
+
+export const RelativeContentContainer = styled.div`
+    position: relative;
 `;
