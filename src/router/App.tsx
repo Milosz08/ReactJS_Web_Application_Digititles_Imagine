@@ -38,10 +38,10 @@ const App: React.FC = (): JSX.Element => (
     <Provider store = {store}>
         <FontfacesStylesInjection/>
         <GlobalStylesInjection/>
-        <InvokeOnMount/>
         <LoadAllAPIData/>
         <ScrollAndSuspenseBars/>
         <BrowserRouter>
+            <InvokeOnMount/>
             <ForceScrollToTopHOC>
                 <MainMenu/>
                 <Header/>
