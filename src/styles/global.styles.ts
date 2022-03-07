@@ -34,12 +34,17 @@ const GlobalStylesInjection = createGlobalStyle`
         position: relative;
     }
     #root {
+        position: relative;
         margin-bottom: 600px;
         min-height: 100vh;
         background-color: var(--whiteClean);
         @media only screen and (max-width: 760px) {
             margin-bottom: 0;
         }
+    }
+    strong {
+        color: inherit;
+        font-weight: 500;
     }
     :root {
         --whiteClean: #fefefe;
@@ -61,6 +66,12 @@ const GlobalStylesInjection = createGlobalStyle`
         --paragraphFontSize: 1.4rem;
         --scrollBarColor: #f0f0f0;
 
+        @media only screen and (min-width: 1921px) {
+            --headerFontSize: 4rem;
+        }
+        @media only screen and (max-width: 1400px) {
+            --headerFontSize: 4vw;
+        }
         @media only screen and (max-width: 1030px) {
             --headerFontSize: 3.5rem;
             --paragraphFontSize: 1.2rem;
