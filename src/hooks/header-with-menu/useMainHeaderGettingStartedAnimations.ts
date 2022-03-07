@@ -67,6 +67,7 @@ const useMainHeaderGettingStartedAnimations = (): React.MutableRefObject<any> =>
             Gsap.gsapBasicAnimations(headerGettingRef, {
                 dir: BOTTOM,
                 interpos: 10,
+                visibleType: FLEX,
                 visible: ifMenuOpen ? HIDE : SHOW,
                 duration: .6,
                 delay: ifMenuOpen ? 0 : .5,
