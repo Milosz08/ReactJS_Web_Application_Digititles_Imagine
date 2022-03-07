@@ -18,29 +18,29 @@
 
 import * as React from 'react';
 
-import { SubpagesContent, SubpagesContentKeys } from '../static/subpagesMainContent';
+import { SubpagesContentKeys } from '../static/subpagesMainContent';
 import useInsertRefOnLoad from '../hooks/reusable/useInsertRefOnLoad';
 
 import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
-import UniversalPageMainContentHOC from '../high-order-components/UniversalPageMainContentHOC';
-import SubpagesMainContentTitleAndDescription from '../components/subpages-left-content/subcomponents/SubpagesMainContentTitleAndDescription';
+import ServicesInitialFluidContent from '../components/services-initial-fluid-content/ServicesInitialFluidContent';
+import NextElementSection from '../components/next-element-section/NextElementSection';
 import Footer from '../components/footer/Footer';
+import useInsertHeightElement from '../hooks/reusable/useInsertHeightElement';
 
 
 const ServicesPageReact: React.FC = (): JSX.Element => {
 
     const { allRefs, listeners } = useInsertRefOnLoad(SubpagesContentKeys.SERVICES);
 
+    useInsertHeightElement(allRefs[0], true);
+
     return (
         <>
             <NavigationBottomBar listeners = {listeners!} />
-            <UniversalPageMainContentHOC
-                showBackgroundOnLoad = {true}
-                LeftComponent = {SubpagesMainContentTitleAndDescription}
-                content = {SubpagesContent[SubpagesContentKeys.SERVICES]}
+            <ServicesInitialFluidContent
+                referential = {allRefs[0]}
             />
-            Services page
-            <div ref = {allRefs[0]}>details</div>
+            <NextElementSection/>
             <Footer/>
         </>
     );

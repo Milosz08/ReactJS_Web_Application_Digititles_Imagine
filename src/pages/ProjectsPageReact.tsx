@@ -21,12 +21,15 @@ import * as React from 'react';
 import { SubpagesContent, SubpagesContentKeys } from '../static/subpagesMainContent';
 import useInsertRefOnLoad from '../hooks/reusable/useInsertRefOnLoad';
 
+import { RelativeContentContainer } from '../styles/mixins.styles';
+
 import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
 import NavigationScrollTop from '../components/navigation-scroll-top/NavigationScrollTop';
 import UniversalPageMainContentHOC from '../high-order-components/UniversalPageMainContentHOC';
 import SubpagesMainContentTitleAndDescription from '../components/subpages-left-content/subcomponents/SubpagesMainContentTitleAndDescription';
 import AllProjectsList from '../components/all-projects-list/AllProjectsList';
 import Footer from '../components/footer/Footer';
+import NextElementSection from '../components/next-element-section/NextElementSection';
 
 
 const ProjectsPageReact: React.FC = (): JSX.Element => {
@@ -35,14 +38,21 @@ const ProjectsPageReact: React.FC = (): JSX.Element => {
 
     return (
         <>
-            <NavigationBottomBar listeners = {listeners!} />
-            <NavigationScrollTop/>
-            <UniversalPageMainContentHOC
-                showBackgroundOnLoad = {true}
-                LeftComponent = {SubpagesMainContentTitleAndDescription}
-                content = {SubpagesContent[SubpagesContentKeys.PROJECTS]}
+            <NavigationBottomBar
+                listeners = {listeners!}
             />
-            <AllProjectsList redirRef = {allRefs[0]}/>
+            <RelativeContentContainer>
+                <NavigationScrollTop/>
+                <UniversalPageMainContentHOC
+                    showBackgroundOnLoad = {true}
+                    LeftComponent = {SubpagesMainContentTitleAndDescription}
+                    content = {SubpagesContent[SubpagesContentKeys.PROJECTS]}
+                />
+                <AllProjectsList
+                    redirRef = {allRefs[0]}
+                />
+            </RelativeContentContainer>
+            <NextElementSection/>
             <Footer/>
         </>
     );

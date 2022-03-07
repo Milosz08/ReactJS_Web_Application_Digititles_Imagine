@@ -26,10 +26,11 @@ import { SubpagesContentKeys } from '../static/subpagesMainContent';
 
 import useInsertRefOnLoad from '../hooks/reusable/useInsertRefOnLoad';
 import useProjectOnLoad from '../hooks/single-project/useProjectOnLoad';
+import useInsertHeightElement from '../hooks/reusable/useInsertHeightElement';
 
 import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
-import UniversalPageMainContentHOC from '../high-order-components/UniversalPageMainContentHOC';
-import SubpagesMainContentTitleAndDescription from '../components/subpages-left-content/subcomponents/SubpagesMainContentTitleAndDescription';
+import ProjectInitialFluidContent from '../components/project-initial-fluid-content/ProjectInitialFluidContent';
+import NextElementSection from '../components/next-element-section/NextElementSection';
 import Footer from '../components/footer/Footer';
 
 export type ProjectContextTypes = { findProject: ProjectTypes };
@@ -43,6 +44,8 @@ const SingleProjectPageReact: React.FC = (): JSX.Element => {
     const [ findingProject, content, photo ] = useProjectOnLoad(projectTitle!);
     const { allRefs, listeners } = useInsertRefOnLoad(SubpagesContentKeys.PROJECT);
 
+    useInsertHeightElement(allRefs[0], Boolean(findingProject));
+
     return (
         <ProjectContext.Provider
             value = {{ findProject: findingProject }}
@@ -50,15 +53,14 @@ const SingleProjectPageReact: React.FC = (): JSX.Element => {
             <NavigationBottomBar
                 listeners = {listeners!}
             />
-            <UniversalPageMainContentHOC
-                showBackgroundOnLoad = {true}
-                LeftComponent = {SubpagesMainContentTitleAndDescription}
-                content = {content}
-                imageSource = {photo || ''}
-                ifSingleProject = {true}
-                visibleOnLoad = {true}
-            />
-            <div ref = {allRefs[0]}>details</div>
+            {findingProject && <>
+                <ProjectInitialFluidContent
+                    content = {content}
+                    photo = {photo}
+                    referential = {allRefs[0]}
+                />
+                <NextElementSection/>
+            </>}
             <Footer/>
         </ProjectContext.Provider>
     );
