@@ -17,6 +17,7 @@
  */
 
 import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
 
 export const HeaderWithParagraphSectionContainer = styled.section`
     width: 50%;
@@ -35,7 +36,7 @@ export const HeaderWithParagraphSectionContainer = styled.section`
     }
 `;
 
-export const ParagraphElement = styled.p`
+export const ParagraphElement = styled(ReactMarkdown)`
     font-size: var(--paragraphFontSize);
     color: var(--grayDarker);
     max-width: 600px;

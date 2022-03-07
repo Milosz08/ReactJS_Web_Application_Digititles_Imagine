@@ -18,7 +18,6 @@
 
 import * as React from 'react';
 import { useContext } from 'react';
-import ReactMarkdown from 'react-markdown';
 
 import { TechnicalType } from '../../../static/resolutionsAndPrograms';
 import { ProjectContext, ProjectContextTypes } from '../../../pages/SingleProjectPageReact';
@@ -42,9 +41,7 @@ const HeaderWithParagraphSection: React.FC<PropsProvider> = ({ referentialObject
         <ParagraphElement
             key = {paragraph}
         >
-            <ReactMarkdown>
-                {paragraph}
-            </ReactMarkdown>
+            {paragraph}
         </ParagraphElement>
     ));
 
