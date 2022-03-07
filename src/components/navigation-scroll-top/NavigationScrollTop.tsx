@@ -43,7 +43,7 @@ const NavigationScrollTop: React.FC = (): JSX.Element => {
         <NavigationScrollTopContainer
             onClick = {(): void => Gsap.scrollIntoContext(document.documentElement)}
             ref = {navigationRef}
-            $ifFixed = {ifFixed}
+            $ifFixed = {ifFixed.navigation}
         >
             Scroll to Top
             <NavigationScrollTopProgressBar>

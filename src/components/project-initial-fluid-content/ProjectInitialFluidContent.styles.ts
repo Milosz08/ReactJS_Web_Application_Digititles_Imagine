@@ -40,6 +40,7 @@ export const ParagraphElement = styled.p`
     color: var(--grayDarker);
     max-width: 600px;
     margin: 30px 0;
+    line-height: 1.3;
     strong {
         color: var(--cyanDark);
     }
