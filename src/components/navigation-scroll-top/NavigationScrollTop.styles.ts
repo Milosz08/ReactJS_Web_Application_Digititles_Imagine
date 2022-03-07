@@ -18,10 +18,9 @@
 
 import styled from 'styled-components';
 
-import { button_rs } from '../../styles/reset.styles';
 import { HideElementOnLoad } from '../../styles/mixins.styles';
 
-export const NavigationScrollTopContainer = styled(button_rs)<{ $ifFixed: boolean }>`
+export const NavigationScrollTopContainer = styled.nav<{ $ifFixed: boolean }>`
     position: ${({ $ifFixed }) => $ifFixed ? 'fixed' : 'absolute'};
     display: flex;
     align-items: center;
@@ -37,6 +36,7 @@ export const NavigationScrollTopContainer = styled(button_rs)<{ $ifFixed: boolea
     transform: rotate(90deg);
     z-index: 4;
     ${HideElementOnLoad()};
+    cursor: pointer;
     :hover {
         color: var(--cyanDark);
     }
