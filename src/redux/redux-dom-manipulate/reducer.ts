@@ -62,6 +62,11 @@ const reduxReducerDOM = (state = InitStateDOM, action: any): InitStateDOMtypes =
             return { ...state, onHoverActiveImageId: projectId, stillImage: true };
         }
 
+        case ReduxDOMreducerTypes.SET_STICKY_CONTENT: {
+            const { background, navigation } = action.payload;
+            return { ...state, ifFixed: { background, navigation } };
+        }
+
         default: {
             return state;
         }

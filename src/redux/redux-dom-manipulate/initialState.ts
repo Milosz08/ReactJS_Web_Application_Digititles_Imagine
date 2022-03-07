@@ -22,7 +22,10 @@ export interface InitStateDOMtypes {
     whileChangingRoutes: boolean;
     ifMenuOpen: boolean;
     hamActive: boolean;
-    ifFixed: boolean;
+    ifFixed: {
+        background: boolean;
+        navigation: boolean;
+    };
     scrollPercentage: number;
     browserX: number;
     browserY: number;
@@ -38,7 +41,10 @@ export const InitStateDOM: InitStateDOMtypes = {
     whileChangingRoutes: false,
     ifMenuOpen: false,
     hamActive: false,
-    ifFixed: true,
+    ifFixed: {
+        background: true,
+        navigation: true,
+    },
     scrollPercentage: 0,
     browserX: 0,
     browserY: 0,

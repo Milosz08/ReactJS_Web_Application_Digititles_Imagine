@@ -98,4 +98,17 @@ export class ReduxDOMActions {
         }
     });
 
+    /**
+     *
+     *
+     * @param background
+     * @param navigation
+     */
+    public static setStaticContent = (background: boolean, navigation: boolean): ReturnedToReducer => ({
+        type: ReduxDOMreducerTypes.SET_STICKY_CONTENT,
+        payload: {
+            background, navigation
+        }
+    });
+
 }
