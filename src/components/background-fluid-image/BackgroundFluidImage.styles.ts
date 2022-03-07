@@ -22,13 +22,15 @@ const HideContentOnLoad = () => css`
     transform: translateX(100%);
 `;
 
-export const BackgroundFluidImageContainer = styled.div<{ $ifFixed: boolean, $ifScrollDisabled: number, $ifActive: boolean }>`
+export const BackgroundFluidImageContainer = styled.div<{ $ifFixed: boolean, $ifScrollDisabled: number }>`
     position: ${({ $ifFixed }) => $ifFixed ? 'fixed' : 'absolute'};
     display: flex;
     align-items: flex-end;
-    width: ${({ $ifScrollDisabled }) => $ifScrollDisabled ? `calc(50% - ${($ifScrollDisabled + 1) / 2}px)` : '50%'};
-    right: ${({ $ifScrollDisabled }) => $ifScrollDisabled ? `${$ifScrollDisabled}px` : 0};
-    bottom: ${({ $ifActive, $ifScrollDisabled }) => $ifScrollDisabled && $ifActive ? '600px' : 0};
+    width: ${({ $ifScrollDisabled, $ifFixed }) =>
+            $ifFixed && $ifScrollDisabled ? `calc(50% - ${($ifScrollDisabled + 1) / 2}px)` : '50%'};
+    right: ${({ $ifScrollDisabled, $ifFixed }) =>
+            $ifFixed && $ifScrollDisabled ? `${$ifScrollDisabled}px` : 0};
+    bottom: 0;
     height: 100vh;
     overflow: hidden;
     @media only screen and (max-width: 1030px) {
