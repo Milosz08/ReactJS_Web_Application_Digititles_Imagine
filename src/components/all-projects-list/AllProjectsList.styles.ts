@@ -71,9 +71,10 @@ export const SingleProjectLinkElement = styled(delay_link_rs)<{
 `;
 
 export const SingleProjectLinkTextContainer = styled.h3`
-    font-size: 4vw;
-    font-weight: 600;
+    font-size: 4.5rem;
     width: calc(50% - 200px);
+    max-width: 600px;
+    font-weight: 600;
     word-break: break-word;
     line-height: 1;
     transition: .2s color ease-in-out;

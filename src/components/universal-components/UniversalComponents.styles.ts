@@ -25,7 +25,7 @@ export const HeaderElementStyled = styled.h3<{ $ifNotIncludeDot?: boolean, $dotC
     margin-bottom: 40px;
     ::after {
         content: '${({ $ifNotIncludeDot }) => $ifNotIncludeDot ? '' : '.'}';
-        color: var(--${({ $dotColor }) => $dotColor || 'cyanDark'});
+        color: var(--${({ $dotColor }) => $dotColor || 'cyanLight'});
     }
 `;
 

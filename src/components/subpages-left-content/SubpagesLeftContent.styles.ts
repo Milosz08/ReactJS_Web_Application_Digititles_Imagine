@@ -69,7 +69,8 @@ export const SubpagesMainContentTitle = styled.h3<{ $color: string }>`
     margin-bottom: 0;
     line-height: 1;
     word-break: break-word;
-    font-size: 4vw;
+    font-size: 4.5rem;
+    max-width: 600px;
     color: var(--blackLight);
     ::after {
         content: '.';
