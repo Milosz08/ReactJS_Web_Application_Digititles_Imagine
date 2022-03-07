@@ -18,7 +18,7 @@
 
 import * as React from 'react';
 
-const Footer = React.lazy(() => import('../components/footer/Footer'));
+import Footer from '../components/footer/Footer';
 
 const PrivacyPolicyPageReact: React.FC = (): JSX.Element => {
     return (
