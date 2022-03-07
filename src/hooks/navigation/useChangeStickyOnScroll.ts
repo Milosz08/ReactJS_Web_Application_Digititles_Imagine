@@ -18,11 +18,14 @@
 
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+
+import { RoutingPaths } from '../../static/appRouting';
 
 import { RootState } from '../../redux/store';
-import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
-import { ReduxDOMstateKeys } from '../../redux/redux-dom-manipulate/types';
 import { ReduxDOMActions } from '../../redux/redux-dom-manipulate/actions';
+import { ReduxDOMstateKeys } from '../../redux/redux-dom-manipulate/types';
+import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
 
 /**
  * Custom hook reponsible for changing CSS position state on scrolling. When scroll position is outer of
@@ -32,12 +35,22 @@ import { ReduxDOMActions } from '../../redux/redux-dom-manipulate/actions';
  */
 const useChangeStickyOnScroll = (footerHeight: number): null => {
 
-    const { currScrollPos, currScrollFromBottom }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const state: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { currScrollPos, currScrollFromBottom, totalHeight } = state;
+
     const dispatcher = useDispatch();
+    const { pathname } = useLocation();
+
+    const extraBlocks = pathname.includes('/projects/project') || pathname === RoutingPaths.SERVICES;
 
     useEffect(() => {
-        dispatcher(ReduxDOMActions.changeFirstLevelElement(
-            ReduxDOMstateKeys.IF_FIXED, !(currScrollFromBottom <= footerHeight && currScrollPos !== 0)
+        dispatcher(ReduxDOMActions.setStaticContent(
+            extraBlocks
+                ? !(currScrollPos >= totalHeight)
+                : !(currScrollFromBottom <= footerHeight && currScrollPos !== 0),
+            pathname !== RoutingPaths.START
+                ? !(currScrollFromBottom <= footerHeight + 220 && currScrollPos !== 0)
+                : !(currScrollFromBottom <= footerHeight && currScrollPos !== 0)
         ));
     }, [ currScrollFromBottom, dispatcher, footerHeight ]);
 
