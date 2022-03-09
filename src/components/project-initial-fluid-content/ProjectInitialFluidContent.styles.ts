@@ -18,10 +18,12 @@
 
 import styled from 'styled-components';
 import ReactMarkdown from 'react-markdown';
+import { Webpage } from '../../helper-primitives/Webpage';
 
 export const HeaderWithParagraphSectionContainer = styled.section`
     width: 50%;
     padding: 50px 0 50px 200px;
+    min-height: 730px;
     @media only screen and (max-width: 1600px) {
         width: calc(50% - 100px);
         margin-right: 100px;
@@ -33,17 +35,18 @@ export const HeaderWithParagraphSectionContainer = styled.section`
         padding: 50px 0;
         width: calc(100% - 60px);
         margin: 0 30px;
+        min-height: fit-content;
     }
 `;
 
 export const ParagraphElement = styled(ReactMarkdown)`
     font-size: var(--paragraphFontSize);
-    color: var(--grayDarker);
+    color: ${({ theme }) => theme.$colours ? Webpage.changeColorLumination(theme.$colours.mainBackground) : 'var(--grayDarker)'};
     max-width: 600px;
     margin: 30px 0;
-    line-height: 1.3;
+    line-height: 124%;
     strong {
-        color: var(--cyanDark);
+        color: ${({ theme }) => theme.$colours ? theme.$colours.paragrForeground : 'var(--cyanDark)'};
     }
     @media only screen and (max-width: 1030px) {
         max-width: 100%;
@@ -54,6 +57,7 @@ export const ParagraphElement = styled(ReactMarkdown)`
 export const TechnicalBlocksContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
+    font-family: 'O', sans-serif;
     font-size: 1.3rem;
     text-transform: uppercase;
     margin: 50px 0 20px;
@@ -63,12 +67,12 @@ export const TechnicalBlocksContainer = styled.div`
 `;
 
 export const TechnicalBlockSingleElement = styled.div<{ $ifActive: boolean, $ifImax: boolean }>`
-    padding: 7px 9px 6px;
+    padding: 7px 9px 4px;
     margin: 10px 9px;
     min-width: 50px;
     text-align: center;
-    background-color: var(--blackLight);
+    background-color: ${({ theme }) => theme.$colours ? theme.$colours.techBackground : 'var(--blackLight)'};
     color: var(--whiteClean);
     border-radius: 6px;
-    opacity: ${({ $ifActive, $ifImax }) => $ifActive || $ifImax ? 1 : .2 };
+    opacity: ${({ $ifActive, $ifImax }) => $ifActive || $ifImax ? 1 : .2};
 `;
