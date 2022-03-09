@@ -41,7 +41,7 @@ const NavigationScrollTop: React.FC = (): JSX.Element => {
 
     return (
         <NavigationScrollTopContainer
-            onClick = {(): void => Gsap.scrollIntoContext(document.documentElement)}
+            onClick = {(): void => Gsap.scrollIntoContext(0)}
             ref = {navigationRef}
             $ifFixed = {ifFixed.navigation}
         >

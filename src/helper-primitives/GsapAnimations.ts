@@ -52,10 +52,8 @@ export class Gsap {
         });
     };
 
-    public static scrollIntoContext(selector: HTMLElement): void {
-        selector.scrollIntoView({
-            behavior: 'smooth', block: 'start', inline: 'nearest',
-        });
+    public static scrollIntoContext(selectorOrAxis: HTMLElement | number): void {
+        gsap.to(window, { duration: 1.5, ease: Expo.easeInOut, scrollTo: selectorOrAxis });
     };
 
     public static getHeightFromTopToCurrentElement(childrens: any, clickId: string): number {

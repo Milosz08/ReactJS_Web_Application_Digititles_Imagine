@@ -54,7 +54,7 @@ const ScrollToTopFooterLinkHOC: React.FC<PropsProvider> = ({ to, ...rest }): JSX
 
     useEffect((): void => {
         if (click) {
-            Gsap.scrollIntoContext(document.documentElement);
+            Gsap.scrollIntoContext(0);
         }
     }, [ click ]);
 
