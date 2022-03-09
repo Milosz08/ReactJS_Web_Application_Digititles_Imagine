@@ -17,8 +17,11 @@
  */
 
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
-import { WebpageTitle } from '../../helper-primitives/WebpageTitle';
+import { RootState } from '../../redux/store';
+import { Webpage } from '../../helper-primitives/Webpage';
+import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
 
 /**
  * Custom hook responsible for setting page title immediately after virtual DOM will build.
@@ -29,15 +32,21 @@ import { WebpageTitle } from '../../helper-primitives/WebpageTitle';
  */
 const useChangePageTitle = (title: string, ifAdminPanel: boolean, redir?: string): null => {
 
+    const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+
     useEffect(() => {
-        document.title = WebpageTitle.setTitle(title, ifAdminPanel);
+        let titleLoading: string = title;
+        if (!Object.keys(status).every(loading => !status[loading])) {
+            titleLoading += 'Loading...';
+        }
+        document.title = Webpage.setTitle(titleLoading, ifAdminPanel);
         return () => {
             if (Boolean(redir)) {
-                document.title = WebpageTitle.setTitle(redir!, ifAdminPanel);
+                document.title = Webpage.setTitle(redir!, ifAdminPanel);
             }
-            document.title = WebpageTitle.setTitle('Main, End credits & Subtitles', ifAdminPanel);
+            document.title = Webpage.setTitle('Main, End credits & Subtitles', ifAdminPanel);
         };
-    }, [ ifAdminPanel, redir, title ]);
+    }, [ status, ifAdminPanel, redir, title ]);
 
     return null;
 };
