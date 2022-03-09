@@ -20,7 +20,6 @@ import styled, { css } from 'styled-components';
 
 import { a_rs, footer_scroll_link_rs } from '../../styles/reset.styles';
 import { BasicButtonWithBottomLine } from '../../styles/mixins.styles';
-import { behaviorPlugin } from '@testing-library/user-event/dist/keyboard/types';
 
 const FooterBlocksInitialState = () => css`
     opacity: 0;

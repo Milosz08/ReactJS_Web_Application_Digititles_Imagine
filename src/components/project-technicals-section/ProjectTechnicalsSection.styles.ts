@@ -21,5 +21,5 @@ import styled from 'styled-components';
 export const ProjectTechnicalsSectionContainer = styled.section`
     width: 100%;
     background-color: green;
-    min-height: 300px;
+    min-height: 800px;
 `;

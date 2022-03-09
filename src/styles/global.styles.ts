@@ -49,6 +49,7 @@ const GlobalStylesInjection = createGlobalStyle`
     :root {
         --whiteClean: #fefefe;
         --whiteDark: #f7f7f7;
+        --pureBlack: #000000;
         --blackLight: #444444;
         --blackDark: #1f1f1f;
         --blackDarken: #242424;
