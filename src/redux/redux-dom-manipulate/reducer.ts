@@ -67,9 +67,15 @@ const reduxReducerDOM = (state = InitStateDOM, action: any): InitStateDOMtypes =
             return { ...state, ifFixed: { background, navigation } };
         }
 
+        case ReduxDOMreducerTypes.CHANGE_ACTIVE_SECTION: {
+            const { sectionKey, currentSection } = action.payload;
+            return { ...state, activeSection: { ...state.activeSection, [sectionKey]: currentSection } };
+        }
+
         default: {
             return state;
         }
+
     }
 };
 

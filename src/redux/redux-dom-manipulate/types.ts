@@ -24,6 +24,7 @@ export enum ReduxDOMreducerTypes {
     HIDE_ALL_IMAGES = 'HIDE_ALL_IMAGES__D',
     SET_IMAGE_ON_SET_PROJECT = 'SET_IMAGE_ON_SET_PROJECT__D',
     SET_STICKY_CONTENT = 'SET_STICKY_CONTENT__D',
+    CHANGE_ACTIVE_SECTION = 'CHANGE_ACTIVE_SECTION__D',
 }
 
 export enum ReduxDOMstateKeys {
@@ -37,7 +38,7 @@ export enum ReduxDOMstateKeys {
 }
 
 export enum AnimationStages {
-    HIDE,SHOW
+    HIDE,SHOW,
 }
 
 export enum AnimationDirections {
@@ -46,5 +47,29 @@ export enum AnimationDirections {
 
 export enum AnimationVisibility {
     FLEX = 'flex',
-    BLOCK = 'block'
+    BLOCK = 'block',
+}
+
+export enum AllSections {
+    PROJECT = 'project',
+    SERVICES = 'services',
+}
+
+export enum ProjectSections {
+    TITLE = 'title',
+    DESCRIPTION = 'description',
+    PRODUCTION = 'production',
+    TECHNICALS = 'technical Spec',
+}
+
+export enum ServicesSections {
+    MAIN_CREDITS = 'main credits',
+    END_CREDITS = 'end credits',
+    SUBTITLES = 'subtitles',
+    TECHNICALS = 'technicals',
+}
+
+export enum ProjectBlocksSections {
+    ABOUT = 'aboutSection',
+    PRODUCTION = 'prodSection',
 }

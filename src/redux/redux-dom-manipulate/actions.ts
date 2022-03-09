@@ -16,8 +16,13 @@
  * COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
  */
 
-import { AnimationStages, ReduxDOMreducerTypes, ReduxDOMstateKeys } from './types';
 import Utils from '../utils';
+
+import {
+    AllSections, AnimationStages, ProjectSections, ReduxDOMreducerTypes, ReduxDOMstateKeys, ServicesSections
+} from './types';
+
+export type SectionKey = ProjectSections | ServicesSections;
 
 interface ReturnedToReducer {
     type: ReduxDOMreducerTypes | string;
@@ -108,6 +113,19 @@ export class ReduxDOMActions {
         type: ReduxDOMreducerTypes.SET_STICKY_CONTENT,
         payload: {
             background, navigation
+        }
+    });
+
+    /**
+     *
+     *
+     * @param sectionKey
+     * @param currentSection
+     */
+    public static changeActiveSection = (sectionKey: AllSections, currentSection: SectionKey): ReturnedToReducer => ({
+        type: ReduxDOMreducerTypes.CHANGE_ACTIVE_SECTION,
+        payload: {
+            sectionKey, currentSection,
         }
     });
 
