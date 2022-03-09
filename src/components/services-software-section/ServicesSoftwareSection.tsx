@@ -21,9 +21,15 @@ import * as React from 'react';
 import { ServicesSoftwareSectionContainer } from './ServicesSoftwareSection.styles';
 
 
-const ServicesSoftwareSection: React.FC = (): JSX.Element => {
+interface PropsProvider {
+    referential: React.MutableRefObject<any>;
+}
+
+const ServicesSoftwareSection: React.FC<PropsProvider> = ({ referential }): JSX.Element => {
     return (
-        <ServicesSoftwareSectionContainer>
+        <ServicesSoftwareSectionContainer
+            ref = {referential}
+        >
             services software section
         </ServicesSoftwareSectionContainer>
     );

@@ -21,9 +21,15 @@ import * as React from 'react';
 import { ServicesQualitySectionContainer } from './ServicesQualitySection.styles';
 
 
-const ServicesQualitySection: React.FC = (): JSX.Element => {
+interface PropsProvider {
+    referential: React.MutableRefObject<any>;
+}
+
+const ServicesQualitySection: React.FC<PropsProvider> = ({ referential }): JSX.Element => {
     return (
-        <ServicesQualitySectionContainer>
+        <ServicesQualitySectionContainer
+            ref = {referential}
+        >
             services quality section
         </ServicesQualitySectionContainer>
     );
