@@ -19,7 +19,18 @@
 import styled from 'styled-components';
 
 export const ProjectImageParallaxContainer = styled.aside`
+    position: relative;
     width: 100%;
-    height: 300px;
-    background-color: yellow;
+    height: 600px;
+    overflow: hidden;
+    background-image: linear-gradient(rgba(15, 15, 15, 0.6),transparent,transparent,rgba(15, 15, 15, 0.6));
+    @media only screen and (max-width: 1030px) {
+        display: none;
+    }
+`;
+
+export const ProjectImageParallaxElement = styled.div<{ $imageUrl: string }>`
+    background-image: url('${({ $imageUrl }) => $imageUrl}');
+    background-position: top;
+    height: 150vh;
 `;

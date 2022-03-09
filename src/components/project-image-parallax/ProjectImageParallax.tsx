@@ -17,14 +17,34 @@
  */
 
 import * as React from 'react';
+import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 
-import { ProjectImageParallaxContainer } from './ProjectImageParallax.styles';
+import { RootState } from '../../redux/store';
+import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
+
+import { ProjectContext, ProjectContextTypes } from '../../pages/SingleProjectPageReact';
+import useBackgroundImageParallax from '../../hooks/single-project/useBackgroundImageParallax';
+
+import { ProjectImageParallaxContainer, ProjectImageParallaxElement } from './ProjectImageParallax.styles';
 
 
 const ProjectImageParallax: React.FC = (): JSX.Element => {
+
+    const { projectsPhotos }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { findProject } = useContext<Partial<ProjectContextTypes>>(ProjectContext);
+
+    const parallaxImage = projectsPhotos.find(project => project.projectId === findProject!.id)!
+        .projectImages.find(image => image.name.toLocaleLowerCase().includes('paralax'));
+
+    const parallaxRef = useBackgroundImageParallax();
+
     return (
         <ProjectImageParallaxContainer>
-            project image parallax
+            <ProjectImageParallaxElement
+                ref = {parallaxRef}
+                $imageUrl = {parallaxImage!.url}
+            />
         </ProjectImageParallaxContainer>
     );
 };
