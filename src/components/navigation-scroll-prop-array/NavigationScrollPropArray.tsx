@@ -17,23 +17,33 @@
  */
 
 import * as React from 'react';
-import { NavigationScrollPropArrayContainer } from './NavigationScrollPropArray.styles';
-import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../redux/store';
-import useChangeVisibilityBasedMark from '../../hooks/navigation/useChangeVisibilityBasedMark';
-import { AnimationVisibility } from '../../redux/redux-dom-manipulate/types';
-import {
-    NavigationScrollTopProgressBar,
-    NavigationScrollTopProgressBarActive
-} from '../navigation-scroll-top/NavigationScrollTop.styles';
 
-const NavigationScrollPropArray: React.FC = (): JSX.Element => {
+import { RootState } from '../../redux/store';
+import { AllSections, AnimationVisibility } from '../../redux/redux-dom-manipulate/types';
+import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
+import useChangeVisibilityBasedMark from '../../hooks/navigation/useChangeVisibilityBasedMark';
+
+import {
+    NavigationScrollTopProgressBar, NavigationScrollTopProgressBarActive
+} from '../navigation-scroll-top/NavigationScrollTop.styles';
+import { NavigationScrollPropArrayContainer } from './NavigationScrollPropArray.styles';
+
+import NavigationScrollPropArrayElements from './subcomponents/NavigationScrollPropArrayElements';
+
+
+interface PropsProvider {
+    sectionType: AllSections;
+    propArray: string[];
+    scrollToRefsArray: React.MutableRefObject<any>[];
+}
+
+const NavigationScrollPropArray: React.FC<PropsProvider> = ({ sectionType, propArray, scrollToRefsArray }): JSX.Element => {
 
     const { scrollPercentage, ifFixed }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
 
     const [ navigationRef ] = useChangeVisibilityBasedMark({
-        reversed: true, animActivate: 500, visibleType: AnimationVisibility.FLEX, disableMediaQueryValue: 1030
+        reversed: true, animActivate: 200, visibleType: AnimationVisibility.FLEX, disableMediaQueryValue: 1030
     });
 
     return (
@@ -41,7 +51,11 @@ const NavigationScrollPropArray: React.FC = (): JSX.Element => {
             ref = {navigationRef}
             $ifFixed = {ifFixed.navigation}
         >
-            section
+            <NavigationScrollPropArrayElements
+                propArray = {propArray}
+                sectionType = {sectionType}
+                allRefs = {scrollToRefsArray}
+            />
             <NavigationScrollTopProgressBar>
                 <NavigationScrollTopProgressBarActive
                     $percentageFill = {scrollPercentage}

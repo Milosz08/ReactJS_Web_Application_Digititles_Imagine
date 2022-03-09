@@ -18,7 +18,27 @@
 
 import styled from 'styled-components';
 import { NavigationScrollTopContainer } from '../navigation-scroll-top/NavigationScrollTop.styles';
+import { button_rs } from '../../styles/reset.styles';
 
 export const NavigationScrollPropArrayContainer = styled(NavigationScrollTopContainer)<{ $ifFixed: boolean }>`
-    
+    bottom: 540px;
+    :hover {
+        cursor: default;
+        color: var(--grayDark);
+    }
+`;
+
+export const NavigationScrollAllNavigationElements = styled.div`
+    display: flex;
+    height: 100%;
+`;
+
+export const NavigationScrollAllNavigationSingleElement = styled(button_rs)<{ $ifActive: boolean }>`
+    color: var(--${({ $ifActive }) => $ifActive ? 'cyanDark' : 'grayDark'});
+    margin: 0 15px;
+    text-transform: capitalize;
+    transition: .2s color ease-in-out;
+    :hover {
+        color: var(--cyanDark);
+    }
 `;
