@@ -32,13 +32,17 @@ interface PropsProvider {
 const TechnicalBlocks: React.FC<PropsProvider> = ({ type }): JSX.Element => {
 
     const { findProject } = useContext<Partial<ProjectContextTypes>>(ProjectContext);
-    const { renderProps } = findProject!;
+    const { renderProps, usedSoftware } = findProject!;
+
+    const findProgram = (block: string): boolean => (
+        Boolean(usedSoftware.find(soft => soft.software.softwareShortName === block))
+    );
 
     const generateAllTechnicalBlocks: JSX.Element[] = TechnicalBlocksStructure[type].map(block => (
         <TechnicalBlockSingleElement
             key = {block}
             $ifImax = {renderProps.ifImax && block === TechnicalBlocksStructure.resolutions[5]}
-            $ifActive = {renderProps.shortResolution.toLocaleLowerCase() === block}
+            $ifActive = {renderProps.shortResolution.toLocaleLowerCase() === block || findProgram(block)}
         >
             {block}
         </TechnicalBlockSingleElement>
