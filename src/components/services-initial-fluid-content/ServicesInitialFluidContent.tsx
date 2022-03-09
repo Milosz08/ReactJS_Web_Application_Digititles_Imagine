@@ -20,6 +20,8 @@ import * as React from 'react';
 
 import { RelativeContentContainer } from '../../styles/mixins.styles';
 
+import useMultipleRefs from '../../hooks/reusable/useMultipleRefs';
+import { AllSections, ServicesSections } from '../../redux/redux-dom-manipulate/types';
 import { SubpagesContent, SubpagesContentKeys } from '../../static/subpagesMainContent';
 
 import UniversalPageMainContentHOC from '../../high-order-components/UniversalPageMainContentHOC';
@@ -34,24 +36,38 @@ interface PropsProvider {
     referential: React.MutableRefObject<any>;
 }
 
-const ServicesInitialFluidContent: React.FC<PropsProvider> = ({ referential }): JSX.Element => (
-    <>
-        <RelativeContentContainer>
-            <UniversalPageMainContentHOC
-                showBackgroundOnLoad = {true}
-                LeftComponent = {SubpagesMainContentTitleAndDescription}
-                content = {SubpagesContent[SubpagesContentKeys.SERVICES]}
-            />
-            <ServicesLeftContentElements
-                referentialObject = {referential}
-            />
-        </RelativeContentContainer>
-        <RelativeContentContainer>
-            <NavigationScrollPropArray/>
-            <ServicesSoftwareSection/>
-            <ServicesQualitySection/>
-        </RelativeContentContainer>
-    </>
-);
+const ServicesInitialFluidContent: React.FC<PropsProvider> = ({ referential }): JSX.Element => {
+
+    const { elRefs } = useMultipleRefs(2);
+    const [ softwareRef, qualityRef ] = elRefs;
+
+    return (
+        <>
+            <RelativeContentContainer>
+                <UniversalPageMainContentHOC
+                    showBackgroundOnLoad = {true}
+                    LeftComponent = {SubpagesMainContentTitleAndDescription}
+                    content = {SubpagesContent[SubpagesContentKeys.SERVICES]}
+                />
+                <ServicesLeftContentElements
+                    referentialObject = {referential}
+                />
+            </RelativeContentContainer>
+            <RelativeContentContainer>
+                <NavigationScrollPropArray
+                    propArray = {Object.keys(ServicesSections).map(key => ServicesSections[key].toString())}
+                    sectionType = {AllSections.SERVICES}
+                    scrollToRefsArray = {[referential].concat(elRefs)}
+                />
+                <ServicesSoftwareSection
+                    referential = {softwareRef}
+                />
+                <ServicesQualitySection
+                    referential = {qualityRef}
+                />
+            </RelativeContentContainer>
+        </>
+    );
+};
 
 export default ServicesInitialFluidContent;
