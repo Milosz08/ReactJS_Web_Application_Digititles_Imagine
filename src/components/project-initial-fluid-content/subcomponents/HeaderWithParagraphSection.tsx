@@ -19,7 +19,10 @@
 import * as React from 'react';
 import { useContext } from 'react';
 
-import { TechnicalType } from '../../../static/resolutionsAndPrograms';
+import { Webpage } from '../../../helper-primitives/Webpage';
+import useAnimateTextBlock from '../../../hooks/single-project/useAnimateTextBlock';
+import { SingleProjectStructureTypes } from '../../../static/singleProjectStructure';
+import { AllSections, ProjectSections } from '../../../redux/redux-dom-manipulate/types';
 import { ProjectContext, ProjectContextTypes } from '../../../pages/SingleProjectPageReact';
 
 import { HeaderWithParagraphSectionContainer, ParagraphElement } from '../ProjectInitialFluidContent.styles';
@@ -30,14 +33,23 @@ import HeaderElement from '../../universal-components/HeaderElement';
 
 interface PropsProvider {
     referentialObject: React.MutableRefObject<any>;
-    technicalType: TechnicalType;
+    schema: SingleProjectStructureTypes;
+    sectionKey: AllSections;
 }
 
-const HeaderWithParagraphSection: React.FC<PropsProvider> = ({ referentialObject, technicalType }): JSX.Element => {
+const HeaderWithParagraphSection: React.FC<PropsProvider> = ({
+    referentialObject, schema, sectionKey
+}): JSX.Element => {
 
     const { findProject } = useContext<Partial<ProjectContextTypes>>(ProjectContext);
 
-    const generateAllParagraphs: JSX.Element[] = findProject!.aboutSection.map(({ paragraph }) => (
+    useAnimateTextBlock(referentialObject, { key: sectionKey, value: schema.activeSection });
+
+    const ifIsProduction = schema.activeSection === ProjectSections.PRODUCTION;
+    const dotColor = ifIsProduction ? findProject?.projectColours.mainHeader : '';
+    const bgcColor = ifIsProduction ? Webpage.changeColorLumination(findProject?.projectColours.mainBackground!) : ''
+
+    const generateAllParagraphs: JSX.Element[] = findProject![schema.apiSection].map(({ paragraph }: any) => (
         <ParagraphElement
             key = {paragraph}
         >
@@ -49,12 +61,15 @@ const HeaderWithParagraphSection: React.FC<PropsProvider> = ({ referentialObject
         <HeaderWithParagraphSectionContainer
             ref = {referentialObject}
         >
-            <HeaderElement>
-                About
+            <HeaderElement
+                dotColor = {dotColor}
+                bgcColor = {bgcColor}
+            >
+                {schema.header}
             </HeaderElement>
             {generateAllParagraphs}
             <TechnicalBlocks
-                type = {technicalType}
+                type = {schema.techType}
             />
         </HeaderWithParagraphSectionContainer>
     );
