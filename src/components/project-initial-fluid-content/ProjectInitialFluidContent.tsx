@@ -18,8 +18,10 @@
 
 import * as React from 'react';
 
-import { TechnicalType } from '../../static/resolutionsAndPrograms';
+import useMultipleRefs from '../../hooks/reusable/useMultipleRefs';
 import { SubpagesMainContentTypes } from '../../static/subpagesMainContent';
+import { SingleProjectStructure } from '../../static/singleProjectStructure';
+import { AllSections, ProjectSections } from '../../redux/redux-dom-manipulate/types';
 
 import { RelativeContentContainer } from '../../styles/mixins.styles';
 
@@ -38,29 +40,45 @@ interface PropsProvider {
     referential: React.MutableRefObject<any>;
 }
 
-const ProjectInitialFluidContent: React.FC<PropsProvider> = ({ content, photo, referential }): JSX.Element => (
-    <>
-        <RelativeContentContainer>
-            <UniversalPageMainContentHOC
-                showBackgroundOnLoad = {true}
-                LeftComponent = {SubpagesMainContentTitleAndDescription}
-                content = {content}
-                imageSource = {photo || ''}
-                ifSingleProject = {true}
-                visibleOnLoad = {true}
-            />
-            <HeaderWithParagraphSection
-                referentialObject = {referential}
-                technicalType = {TechnicalType.RESOLUTIONS}
-            />
-        </RelativeContentContainer>
-        <RelativeContentContainer>
-            <NavigationScrollPropArray/>
-            <ProjectProductionSection/>
-            <ProjectImageParallax/>
-            <ProjectTechnicalsSection/>
-        </RelativeContentContainer>
-    </>
-);
+const ProjectInitialFluidContent: React.FC<PropsProvider> = ({ content, photo, referential }): JSX.Element => {
+
+    const { elRefs } = useMultipleRefs(2);
+
+    const [ productionRef, technicalsRef ] = elRefs;
+
+    return (
+        <>
+            <RelativeContentContainer>
+                <UniversalPageMainContentHOC
+                    showBackgroundOnLoad = {true}
+                    LeftComponent = {SubpagesMainContentTitleAndDescription}
+                    content = {content}
+                    imageSource = {photo || ''}
+                    ifSingleProject = {true}
+                    visibleOnLoad = {true}
+                />
+                <HeaderWithParagraphSection
+                    referentialObject = {referential}
+                    schema = {SingleProjectStructure.about}
+                    sectionKey = {AllSections.PROJECT}
+                />
+            </RelativeContentContainer>
+            <RelativeContentContainer>
+                <NavigationScrollPropArray
+                    propArray = {Object.keys(ProjectSections).map(key => ProjectSections[key].toString())}
+                    sectionType = {AllSections.PROJECT}
+                    scrollToRefsArray = {[referential].concat(elRefs)}
+                />
+                <ProjectProductionSection
+                    referential = {productionRef}
+                />
+                <ProjectImageParallax/>
+                <ProjectTechnicalsSection
+                    referential = {technicalsRef}
+                />
+            </RelativeContentContainer>
+        </>
+    );
+};
 
 export default ProjectInitialFluidContent;
