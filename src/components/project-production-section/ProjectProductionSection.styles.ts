@@ -19,7 +19,60 @@
 import styled from 'styled-components';
 
 export const ProjectProductionSectionContainer = styled.section`
+    position: relative;
     width: 100%;
-    background-color: red;
+    background-color: ${({ theme }) => theme.$colours.mainBackground};
     min-height: 300px;
+    overflow: hidden;
+`;
+
+export const ProjectProductionSectionLeftContentContainer = styled.div`
+    padding: 50px 0;
+    @media only screen and (max-width: 1030px) {
+        padding: 50px 0 0;
+    }
+`;
+
+export const ProjectProductionMonitorRightContentContainer = styled.div`
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    overflow: hidden;
+    width: 60%;
+    height: 80%;
+    border-radius: 30px;
+    right: -10%;
+    background-color: var(--pureBlack);
+    @media only screen and (max-width: 1030px) {
+        display: none;
+    }
+`;
+
+export const ProjectProductionMonitorRightContentImage = styled.img`
+    position: absolute;
+    border: 30px solid var(--pureBlack);
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    :nth-of-type(2) {
+        animation: projectImagesSlider 6s infinite linear;
+    }
+    @keyframes projectImagesSlider {
+        0% {
+            opacity: 0;
+        }
+        30% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        80% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
 `;

@@ -17,15 +17,36 @@
  */
 
 import * as React from 'react';
+import { useContext } from 'react';
+import { ThemeProvider } from 'styled-components';
+
+import { ProjectContext, ProjectContextTypes } from '../../pages/SingleProjectPageReact';
 
 import { ProjectProductionSectionContainer } from './ProjectProductionSection.styles';
 
+import ProjectProductionSectionLeftContent from './subcomponents/ProjectProductionSectionLeftContent';
+import ProjectProductionSectionRightContent from './subcomponents/ProjectProductionSectionRightContent';
 
-const ProjectProductionSection: React.FC = (): JSX.Element => {
+
+interface PropsProvider {
+    referential: React.MutableRefObject<any>;
+}
+
+const ProjectProductionSection: React.FC<PropsProvider> = ({ referential }): JSX.Element => {
+
+    const { findProject } = useContext<Partial<ProjectContextTypes>>(ProjectContext);
+
     return (
-        <ProjectProductionSectionContainer>
-            project production section
-        </ProjectProductionSectionContainer>
+        <ThemeProvider
+            theme = {{ $colours: findProject?.projectColours }}
+        >
+            <ProjectProductionSectionContainer
+                ref = {referential}
+            >
+                <ProjectProductionSectionLeftContent/>
+                <ProjectProductionSectionRightContent/>
+            </ProjectProductionSectionContainer>
+        </ThemeProvider>
     );
 };
 
