@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2022 by MILOSZ GILGA <https://miloszgilga.pl>
  *
- * File name: WebpageTitle.ts
+ * File name: Webpage.ts
  * Last modified: 24/02/2022, 16:39
  * Project name: digititles-imagine
  *
@@ -16,7 +16,7 @@
  * COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
  */
 
-export class WebpageTitle {
+export class Webpage {
 
     /**
      *
@@ -31,7 +31,20 @@ export class WebpageTitle {
      * @param ifAdminPanel
      */
     public static setTitle(type: string, ifAdminPanel: boolean): string {
-        return ifAdminPanel ? WebpageTitle.ADMIN_PREFIX + type : WebpageTitle.DEF_PREFIX + type;
+        return ifAdminPanel ? Webpage.ADMIN_PREFIX + type : Webpage.DEF_PREFIX + type;
+    };
+
+    /**
+     *
+     *
+     * @param hexColor
+     */
+    public static changeColorLumination(hexColor: string): string {
+        let r = parseInt(hexColor.substring(1, 3), 16);
+        let g = parseInt(hexColor.substring(3, 5), 16);
+        let b = parseInt(hexColor.substring(5, 7), 16);
+        const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+        return `var(--${yiq > 140 ? 'blackDark' : 'whiteDark'})`;
     };
 
 }
