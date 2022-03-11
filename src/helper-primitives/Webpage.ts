@@ -47,4 +47,14 @@ export class Webpage {
         return `var(--${yiq > 140 ? 'blackDark' : 'whiteDark'})`;
     };
 
+    /**
+     *
+     *
+     * @param stringToDecode
+     */
+    public static htmlDecodingParser(stringToDecode: string): string {
+        const parser = new DOMParser();
+        return parser.parseFromString(`<!doctype html><body>${stringToDecode}`, 'text/html').body.textContent!;
+    };
+
 }
