@@ -104,7 +104,7 @@ const useProjectListAnimations = (): HookReturned => {
             }
             scrollInit += element.offsetHeight;
         });
-    }, [ currScrollPos, getCurrents ]);
+    }, [ click.active, currScrollPos, getCurrents ]);
     
     return [ elRefs, click, mouseEventAnimation, handleClick ];
 };
