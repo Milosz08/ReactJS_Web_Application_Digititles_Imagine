@@ -19,6 +19,8 @@
 import * as React from 'react';
 
 import useMultipleRefs from '../../hooks/reusable/useMultipleRefs';
+import useChangeHeaderColorOnScroll from '../../hooks/header-with-menu/useChangeHeaderColorOnScroll';
+
 import { SubpagesMainContentTypes } from '../../static/subpagesMainContent';
 import { SingleProjectStructure } from '../../static/singleProjectStructure';
 import { AllSections, ProjectSections } from '../../redux/redux-dom-manipulate/types';
@@ -43,8 +45,9 @@ interface PropsProvider {
 const ProjectInitialFluidContent: React.FC<PropsProvider> = ({ content, photo, referential }): JSX.Element => {
 
     const { elRefs } = useMultipleRefs(2);
-
     const [ productionRef, technicalsRef ] = elRefs;
+
+    useChangeHeaderColorOnScroll({ enableRef: referential });
 
     return (
         <>
