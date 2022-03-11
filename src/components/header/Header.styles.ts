@@ -144,6 +144,7 @@ export const HeaderNavRightMenuLabel = styled.span`
     ${({ theme }) => NavigationSingleTextElement({
         $color: theme.$ifMenuOpen ? 'var(--whiteClean)' : 'var(--cyanDark)',
     })};
+    transition: .2s color ease-in-out;
 `;
 
 export const HeaderNavRightHamburgerElement = styled.div`
