@@ -17,8 +17,15 @@
  */
 
 import * as React from 'react';
+import { useRef } from 'react';
+
+import useAnimateTextBlock from '../../hooks/single-project/useAnimateTextBlock';
+import { AllSections, ProjectSections } from '../../redux/redux-dom-manipulate/types';
 
 import { ProjectTechnicalsSectionContainer } from './ProjectTechnicalsSection.styles';
+
+import ProjectTechnicalsLeftSection from './subcomponents/ProjectTechnicalsLeftSection';
+import ProjectTechnicalsRightSection from './subcomponents/ProjectTechnicalsRightSection';
 
 
 interface PropsProvider {
@@ -26,11 +33,18 @@ interface PropsProvider {
 }
 
 const ProjectTechnicalsSection: React.FC<PropsProvider> = ({ referential }): JSX.Element => {
+
+    const rightContentRef = useRef<HTMLDivElement>(null);
+    useAnimateTextBlock(rightContentRef, { key: AllSections.PROJECT, value: ProjectSections.TECHNICALS });
+
     return (
         <ProjectTechnicalsSectionContainer
             ref = {referential}
         >
-            project technicals section
+            <ProjectTechnicalsLeftSection/>
+            <ProjectTechnicalsRightSection
+                referential = {rightContentRef}
+            />
         </ProjectTechnicalsSectionContainer>
     );
 };
