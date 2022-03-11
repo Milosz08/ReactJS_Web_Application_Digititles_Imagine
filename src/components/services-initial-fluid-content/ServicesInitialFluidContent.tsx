@@ -21,6 +21,8 @@ import * as React from 'react';
 import { RelativeContentContainer } from '../../styles/mixins.styles';
 
 import useMultipleRefs from '../../hooks/reusable/useMultipleRefs';
+import useChangeHeaderColorOnScroll from '../../hooks/header-with-menu/useChangeHeaderColorOnScroll';
+
 import { AllSections, ServicesSections } from '../../redux/redux-dom-manipulate/types';
 import { SubpagesContent, SubpagesContentKeys } from '../../static/subpagesMainContent';
 
@@ -40,6 +42,8 @@ const ServicesInitialFluidContent: React.FC<PropsProvider> = ({ referential }): 
 
     const { elRefs } = useMultipleRefs(2);
     const [ softwareRef, qualityRef ] = elRefs;
+
+    useChangeHeaderColorOnScroll({ enableRef: referential, disableRef: qualityRef });
 
     return (
         <>
