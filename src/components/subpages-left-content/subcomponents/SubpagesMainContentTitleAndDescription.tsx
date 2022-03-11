@@ -17,11 +17,13 @@
  */
 
 import * as React from 'react';
+import { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
 import { SubpagesMainContentTypes } from '../../../static/subpagesMainContent';
+import { ProjectContext, ProjectContextTypes } from '../../../pages/SingleProjectPageReact';
 import useSubpagesMainContentOnLoadAnimation from '../../../hooks/background-images/useSubpagesMainContentOnLoadAnimation';
 
 import { RootState } from '../../../redux/store';
@@ -41,6 +43,7 @@ interface PropsProvider {
 const SubpagesMainContentTitleAndDescription: React.FC<PropsProvider> = ({ content, visibleOnLoad }): JSX.Element => {
 
     const { stillImage }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { findProject } = useContext<Partial<ProjectContextTypes>>(ProjectContext);
 
     const { pathname } = useLocation();
     const [ title, description ] = useSubpagesMainContentOnLoadAnimation(
@@ -59,7 +62,7 @@ const SubpagesMainContentTitleAndDescription: React.FC<PropsProvider> = ({ conte
                         src = {process.env.PUBLIC_URL + '/asset-images/undraw-images/undraw_' + content?.images[0] + '.svg'}
                     />}
                     <SubpagesMainContentTitle
-                        $color = {content.dotColor}
+                        $color = {findProject?.projectColours.strongForeground!}
                     >
                         {content?.title}
                     </SubpagesMainContentTitle>
