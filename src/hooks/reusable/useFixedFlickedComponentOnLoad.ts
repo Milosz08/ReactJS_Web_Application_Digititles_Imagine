@@ -33,7 +33,6 @@ const useFixedFlickedComponentOnLoad = () => {
     }, []);
 
     return hide;
-
 };
 
 export default useFixedFlickedComponentOnLoad;
