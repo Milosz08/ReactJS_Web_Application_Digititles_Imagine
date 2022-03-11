@@ -36,6 +36,7 @@ export interface InitStateDOMtypes {
     stillImage: boolean;
     scrollDisabledPx: number;
     totalHeight: number;
+    headerLight: boolean;
     activeSection: {
         project: ProjectSections;
         services: ServicesSections;
@@ -60,6 +61,7 @@ export const InitStateDOM: InitStateDOMtypes = {
     stillImage: false,
     scrollDisabledPx: window.innerWidth - document.documentElement.clientWidth,
     totalHeight: 600,
+    headerLight: false,
     activeSection: {
         project: ProjectSections.TITLE,
         services: ServicesSections.MAIN_CREDITS,

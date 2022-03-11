@@ -18,6 +18,7 @@
 
 import * as React from 'react';
 import { useSelector } from 'react-redux';
+
 import { ThemeProvider } from 'styled-components';
 
 import useClickHamburgerButton from '../../../hooks/header-with-menu/useClickHamburgerButton';
@@ -30,11 +31,11 @@ import { HeaderNavRightHamburgerElement, HeaderNavRightMenuElement, HeaderNavRig
 
 const HeaderHamburgerButton: React.FC = (): JSX.Element => {
 
-    const { ifMenuOpen, hamActive }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { ifMenuOpen, hamActive, headerLight }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     const [ ifAbsolute, handleHamburger ] = useClickHamburgerButton(ifMenuOpen);
 
     return (
-        <ThemeProvider theme = {{ $ifHamActive: hamActive, $ifMenuOpen: ifMenuOpen }}>
+        <ThemeProvider theme = {{ $ifHamActive: hamActive, $ifMenuOpen: ifMenuOpen || headerLight }}>
             <HeaderNavRightMenuElement
                 onClick = {handleHamburger}
                 title = {ifAbsolute ? `Click to ${ifMenuOpen ? 'close' : 'open'} menu` : 'Go to main page'}

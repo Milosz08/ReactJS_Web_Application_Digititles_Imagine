@@ -35,6 +35,7 @@ export enum ReduxDOMstateKeys {
     STILL_IMAGE = 'stillImage',
     SCROLL_DISABLED_PX = 'scrollDisabledPx',
     TOTAL_HEIGHT = 'totalHeight',
+    HEADER_LIGHT = 'headerLight',
 }
 
 export enum AnimationStages {
