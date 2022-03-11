@@ -17,7 +17,7 @@
  */
 
 import { useLayoutEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { RoutingPaths } from '../../static/appRouting';
@@ -44,6 +44,7 @@ const useProjectOnLoad = (projectTitle: string): [ ProjectTypes, SubpagesMainCon
     SubpagesContent[SubpagesContentKeys.PROJECT].dotColor = foundProject?.projectColours.strongForeground;
 
     const navigate = useNavigate();
+    const { pathname } = useLocation();
 
     const [ findingProject, setFindingProject ] = useState<ProjectTypes>();
     const [ photo, setPhoto ] = useState<string>();
@@ -66,7 +67,7 @@ const useProjectOnLoad = (projectTitle: string): [ ProjectTypes, SubpagesMainCon
                 navigate({ pathname: RoutingPaths.ERROR });
             }
         }
-    }, [ navigate, projectTitle, projects, projectsPhotos, status ]);
+    }, [ navigate, pathname, projectTitle, projects, projectsPhotos, status ]);
 
     return [ findingProject!, content, photo! ];
 };
