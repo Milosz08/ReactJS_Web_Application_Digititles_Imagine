@@ -17,15 +17,52 @@
  */
 
 import * as React from 'react';
+import { ThemeProvider } from 'styled-components';
 
-import { NextElementSectionContainer } from './NextElementSection.styles';
+import { NextElementPropTypes } from '../../static/nextElementProps';
+
+import {
+    NextElementLeftContent, NextElementLeftContentAside, NextElementLeftContentHeader, NextElementRightArrowContainer,
+    NextElementRightArrowElement, NextElementSectionContainer
+} from './NextElementSection.styles';
 
 
-const NextElementSection: React.FC = (): JSX.Element => {
+interface PropsProvider {
+    content: NextElementPropTypes;
+    ifWhite?: boolean;
+}
+
+const NextElementSection: React.FC<PropsProvider> = ({ content, ifWhite }): JSX.Element => {
+
+    const defDotColor = `var(--${ifWhite ? 'cyanLight' : 'cyanDark'})`;
+
+    const generateArrows: JSX.Element[] = Array.from({ length: 3 }, (v, i) => i).map(idx => (
+        <NextElementRightArrowElement
+            key = {idx}
+            $extraDelay = {idx}
+        />
+    ));
+
     return (
-        <NextElementSectionContainer>
-            next element section
-        </NextElementSectionContainer>
+        <ThemeProvider
+            theme = {{ $ifWhite: Boolean(ifWhite), $projectDotColor: content.dotColor || defDotColor}}
+        >
+            <NextElementSectionContainer
+                to = {content.pathTo!}
+            >
+                <NextElementLeftContent>
+                    <NextElementLeftContentHeader>
+                        {content.header}
+                    </NextElementLeftContentHeader>
+                    <NextElementLeftContentAside>
+                        {content.aside}
+                    </NextElementLeftContentAside>
+                </NextElementLeftContent>
+                <NextElementRightArrowContainer>
+                    {generateArrows}
+                </NextElementRightArrowContainer>
+            </NextElementSectionContainer>
+        </ThemeProvider>
     );
 };
 
