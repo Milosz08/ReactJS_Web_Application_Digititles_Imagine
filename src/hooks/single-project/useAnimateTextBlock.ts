@@ -17,13 +17,13 @@
  */
 
 import * as React from 'react';
-import { useCallback, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useCallback, useContext, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { gsap } from 'gsap';
 
-import { RootState } from '../../redux/store';
-import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
+import { ProjectContext, ProjectContextTypes } from '../../pages/SingleProjectPageReact';
+
 import { ReduxDOMActions, SectionKey } from '../../redux/redux-dom-manipulate/actions';
 import { AllSections, ProjectSections, ServicesSections } from '../../redux/redux-dom-manipulate/types';
 
@@ -41,7 +41,7 @@ interface HookProps {
  */
 const useAnimateTextBlock = (parentElement: React.MutableRefObject<any>, { key, value }: HookProps): null => {
 
-    const { browserX }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { findProject } = useContext<Partial<ProjectContextTypes>>(ProjectContext);
     const dispatcher = useDispatch();
 
     const invokeHandlerOnEnter = useCallback(() => {
@@ -57,17 +57,20 @@ const useAnimateTextBlock = (parentElement: React.MutableRefObject<any>, { key, 
     }, [ dispatcher, key, value ]);
 
     useEffect(() => {
-        gsap.from(parentElement.current.children, {
-            x: -50, autoAlpha: 0, stagger: .2, scrollTrigger: {
-                trigger: parentElement.current,
-                start: 'center bottom',
-                end: 'bottom bottom',
-                onEnter: invokeHandlerOnEnter,
-                onEnterBack: invokeHandlerOnEnter,
-                onLeaveBack: invokeHandlerOnLeave,
-            },
-        });
-    }, [ browserX, invokeHandlerOnEnter, invokeHandlerOnLeave, parentElement ]);
+        if (Boolean(parentElement) && findProject) {
+            console.log(parentElement.current.children);
+            gsap.from(parentElement.current.children, {
+                x: -50, autoAlpha: 0, stagger: .2, scrollTrigger: {
+                    trigger: parentElement.current,
+                    start: 'center bottom',
+                    end: 'bottom bottom',
+                    onEnter: invokeHandlerOnEnter,
+                    onEnterBack: invokeHandlerOnEnter,
+                    onLeaveBack: invokeHandlerOnLeave,
+                },
+            });
+        }
+    }, [ findProject, invokeHandlerOnEnter, invokeHandlerOnLeave, parentElement ]);
 
     return null;
 };
