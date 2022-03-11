@@ -19,11 +19,13 @@
 import * as React from 'react';
 import { useContext } from 'react';
 
-import { Webpage } from '../../../helper-primitives/Webpage';
 import useAnimateTextBlock from '../../../hooks/single-project/useAnimateTextBlock';
+
+import { Webpage } from '../../../helper-primitives/Webpage';
 import { SingleProjectStructureTypes } from '../../../static/singleProjectStructure';
-import { AllSections, ProjectSections } from '../../../redux/redux-dom-manipulate/types';
 import { ProjectContext, ProjectContextTypes } from '../../../pages/SingleProjectPageReact';
+
+import { AllSections, ProjectSections } from '../../../redux/redux-dom-manipulate/types';
 
 import { HeaderWithParagraphSectionContainer, ParagraphElement } from '../ProjectInitialFluidContent.styles';
 
@@ -47,7 +49,7 @@ const HeaderWithParagraphSection: React.FC<PropsProvider> = ({
 
     const ifIsProduction = schema.activeSection === ProjectSections.PRODUCTION;
     const dotColor = ifIsProduction ? findProject?.projectColours.mainHeader : '';
-    const bgcColor = ifIsProduction ? Webpage.changeColorLumination(findProject?.projectColours.mainBackground!) : ''
+    const bgcColor = ifIsProduction ? Webpage.changeColorLumination(findProject?.projectColours.mainBackground!) : '';
 
     const generateAllParagraphs: JSX.Element[] = findProject![schema.apiSection].map(({ paragraph }: any) => (
         <ParagraphElement

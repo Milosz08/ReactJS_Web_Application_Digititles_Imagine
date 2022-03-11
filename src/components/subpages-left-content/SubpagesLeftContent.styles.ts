@@ -27,6 +27,7 @@ export const SubpagesMainContentUniversalContainer = styled.div`
     justify-content: center;
     padding-left: 200px;
     max-width: 45vw;
+    background-color: var(--whiteClean);
     @media only screen and (max-width: 1400px) {
         padding-left: 100px;
     }
@@ -70,7 +71,7 @@ export const SubpagesMainContentTitle = styled.h3<{ $color: string }>`
     line-height: 1;
     word-break: break-word;
     font-size: 4.5rem;
-    max-width: 600px;
+    max-width: 550px;
     color: var(--blackLight);
     ::after {
         content: '.';

@@ -23,7 +23,6 @@ import { Webpage } from '../../helper-primitives/Webpage';
 export const HeaderWithParagraphSectionContainer = styled.section`
     width: 50%;
     padding: 50px 0 50px 200px;
-    min-height: 730px;
     @media only screen and (max-width: 1600px) {
         width: calc(50% - 100px);
         margin-right: 100px;
@@ -35,7 +34,6 @@ export const HeaderWithParagraphSectionContainer = styled.section`
         padding: 50px 0;
         width: calc(100% - 60px);
         margin: 0 30px;
-        min-height: fit-content;
     }
 `;
 
@@ -43,8 +41,8 @@ export const ParagraphElement = styled(ReactMarkdown)`
     font-size: var(--paragraphFontSize);
     color: ${({ theme }) => theme.$colours ? Webpage.changeColorLumination(theme.$colours.mainBackground) : 'var(--grayDarker)'};
     max-width: 600px;
-    margin: 30px 0;
-    line-height: 124%;
+    margin: 1.4rem 0;
+    line-height: normal;
     strong {
         color: ${({ theme }) => theme.$colours ? theme.$colours.paragrForeground : 'var(--cyanDark)'};
     }
