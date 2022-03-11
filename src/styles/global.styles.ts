@@ -66,6 +66,7 @@ const GlobalStylesInjection = createGlobalStyle`
         --biggerHeaderFontSize: 5rem;
         --paragraphFontSize: 1.4rem;
         --scrollBarColor: #f0f0f0;
+        --basicBoxShadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
         @media only screen and (min-width: 1921px) {
             --headerFontSize: 4rem;
