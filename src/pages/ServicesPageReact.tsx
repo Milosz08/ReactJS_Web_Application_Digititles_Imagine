@@ -18,6 +18,7 @@
 
 import * as React from 'react';
 
+import { NextElementProps } from '../static/nextElementProps';
 import { SubpagesContentKeys } from '../static/subpagesMainContent';
 import useInsertRefOnLoad from '../hooks/reusable/useInsertRefOnLoad';
 
@@ -40,7 +41,9 @@ const ServicesPageReact: React.FC = (): JSX.Element => {
             <ServicesInitialFluidContent
                 referential = {allRefs[0]}
             />
-            <NextElementSection/>
+            <NextElementSection
+                content = {NextElementProps.projects}
+            />
             <Footer/>
         </>
     );

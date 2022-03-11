@@ -18,6 +18,7 @@
 
 import * as React from 'react';
 
+import { NextElementProps } from '../static/nextElementProps';
 import { SubpagesContent, SubpagesContentKeys } from '../static/subpagesMainContent';
 import useInsertRefOnLoad from '../hooks/reusable/useInsertRefOnLoad';
 
@@ -28,8 +29,8 @@ import NavigationScrollTop from '../components/navigation-scroll-top/NavigationS
 import UniversalPageMainContentHOC from '../high-order-components/UniversalPageMainContentHOC';
 import SubpagesMainContentTitleAndDescription from '../components/subpages-left-content/subcomponents/SubpagesMainContentTitleAndDescription';
 import AllProjectsList from '../components/all-projects-list/AllProjectsList';
-import Footer from '../components/footer/Footer';
 import NextElementSection from '../components/next-element-section/NextElementSection';
+import Footer from '../components/footer/Footer';
 
 
 const ProjectsPageReact: React.FC = (): JSX.Element => {
@@ -52,7 +53,9 @@ const ProjectsPageReact: React.FC = (): JSX.Element => {
                     redirRef = {allRefs[0]}
                 />
             </RelativeContentContainer>
-            <NextElementSection/>
+            <NextElementSection
+                content = {NextElementProps.services}
+            />
             <Footer/>
         </>
     );

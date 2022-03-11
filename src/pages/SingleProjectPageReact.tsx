@@ -26,6 +26,7 @@ import { SubpagesContentKeys } from '../static/subpagesMainContent';
 
 import useInsertRefOnLoad from '../hooks/reusable/useInsertRefOnLoad';
 import useProjectOnLoad from '../hooks/single-project/useProjectOnLoad';
+import useNextProjectLink from '../hooks/single-project/useNextProjectLink';
 import useInsertHeightElement from '../hooks/reusable/useInsertHeightElement';
 
 import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
@@ -43,6 +44,7 @@ const SingleProjectPageReact: React.FC = (): JSX.Element => {
 
     const [ findingProject, content, photo ] = useProjectOnLoad(projectTitle!);
     const { allRefs, listeners } = useInsertRefOnLoad(SubpagesContentKeys.PROJECT);
+    const nextProject = useNextProjectLink(findingProject);
 
     useInsertHeightElement(allRefs[0], Boolean(findingProject));
 
@@ -59,7 +61,10 @@ const SingleProjectPageReact: React.FC = (): JSX.Element => {
                     photo = {photo}
                     referential = {allRefs[0]}
                 />
-                <NextElementSection/>
+                {nextProject.pathTo && <NextElementSection
+                    content = {nextProject}
+                    ifWhite = {true}
+                />}
             </>}
             <Footer/>
         </ProjectContext.Provider>
