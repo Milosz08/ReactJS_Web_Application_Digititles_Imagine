@@ -18,7 +18,10 @@
 
 import * as React from 'react';
 
-import { ServicesSoftwareSectionContainer } from './ServicesSoftwareSection.styles';
+import { ServicesSectionContainer } from './ServicesSoftwareSection.styles';
+
+import ServicesSoftwareLeftContent from './subcomponents/ServicesSoftwareLeftContent';
+import ServicesSoftwareRightContent from './subcomponents/ServicesSoftwareRightContent';
 
 
 interface PropsProvider {
@@ -27,11 +30,12 @@ interface PropsProvider {
 
 const ServicesSoftwareSection: React.FC<PropsProvider> = ({ referential }): JSX.Element => {
     return (
-        <ServicesSoftwareSectionContainer
+        <ServicesSectionContainer
             ref = {referential}
         >
-            services software section
-        </ServicesSoftwareSectionContainer>
+            <ServicesSoftwareLeftContent/>
+            <ServicesSoftwareRightContent/>
+        </ServicesSectionContainer>
     );
 };
 

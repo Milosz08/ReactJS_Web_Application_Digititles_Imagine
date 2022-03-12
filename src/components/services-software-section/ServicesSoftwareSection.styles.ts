@@ -17,9 +17,63 @@
  */
 
 import styled from 'styled-components';
+import ReactMarkdown from 'react-markdown';
+import { GridTemplate } from '../../styles/mixins.styles';
 
-export const ServicesSoftwareSectionContainer = styled.section`
+export const ServicesSectionContainer = styled.section`
+    display: flex;
+    justify-content: space-around;
     width: 100%;
-    height: 300px;
-    background-color: red;
+    background-color: var(--cyanDarker);
+    padding: 80px 0;
+    @media only screen and (max-width: 1600px) {
+        flex-direction: column-reverse;
+    }
+`;
+
+export const ServicesSoftwareLeftContentContainer = styled.div`
+    margin: auto 100px auto 150px;
+    flex-grow: 1;
+    height: fit-content;
+    ${GridTemplate()};
+    @media only screen and (max-width: 1600px) {
+        margin: auto 200px;
+    }
+    @media only screen and (max-width: 1030px) {
+        width: calc(100% - 60px);
+        margin: 0 30px;
+    }
+`;
+
+export const ServicesSoftwareRightContentContainer = styled.div`
+    margin-right: 100px;
+    width: 35vw;
+    @media only screen and (max-width: 1600px) {
+        width: calc(100% - 400px);
+        margin: 0 200px 80px;
+    }
+    @media only screen and (max-width: 1030px) {
+        width: calc(100% - 60px);
+        margin: 0 30px 40px;
+    }
+`;
+
+export const ServicesRightHeaderAndParagraphContainer = styled.div`
+    width: 100%;
+`;
+
+export const ServicesParagraphElement = styled(ReactMarkdown)`
+    font-size: var(--paragraphFontSize);
+    color: var(--whiteClean);
+    margin: 1.4rem 0;
+    line-height: normal;
+    width: 100%;
+    max-width: 650px;
+    strong {
+        color: var(--cyanLight);
+        font-weight: inherit;
+    }
+    @media only screen and (max-width: 1600px) {
+        max-width: 100%;
+    }
 `;
