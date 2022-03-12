@@ -91,3 +91,16 @@ export const BasicTextInputElement = ({ $ifDark, $ifError }: { $ifDark: boolean,
 export const RelativeContentContainer = styled.div`
     position: relative;
 `;
+
+export const GridTemplate = () => css`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 30px;
+    grid-template-areas: ". ." ". ." ". .";
+    align-items: center;
+    @media only screen and (max-width: 740px) {
+        grid-template-columns: 1fr;
+        grid-template-areas: "." "." "." "." "." ".";
+    }
+`;
