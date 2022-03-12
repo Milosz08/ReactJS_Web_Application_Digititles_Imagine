@@ -17,8 +17,20 @@
  */
 
 import styled from 'styled-components';
+import { footer_scroll_link_rs } from '../../styles/reset.styles';
+import { BasicButtonWithBottomLine } from '../../styles/mixins.styles';
 
 export const ServicesLeftContentElementsContainer = styled.section`
-    width: 50%;
-    height: 400px;
+    width: 100%;
+`;
+
+export const ServicesLeftGettingStartedLink = styled(footer_scroll_link_rs)`
+    ${BasicButtonWithBottomLine({ $isLeft: true, $color: 'cyanDark' })};
+    display: inline-block;
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin-top: 30px;
+    ::after {
+        height: 3px;
+    }
 `;
