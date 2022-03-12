@@ -23,11 +23,13 @@ import { useLocation } from 'react-router-dom';
 
 import { gsap } from 'gsap';
 
+import { RoutingPaths } from '../../static/appRouting';
 import useMultipleRefs from '../reusable/useMultipleRefs';
+import { ServicesSections } from '../../redux/redux-dom-manipulate/types';
 
 import { RootState } from '../../redux/store';
-import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
 import { ReduxDOMActions } from '../../redux/redux-dom-manipulate/actions';
+import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
 
 interface HookProps {
     countOfImages: number;
@@ -49,7 +51,7 @@ interface HookProps {
  */
 const useOnHoverSelectImages = ({ countOfImages, ifAutoAlpha, invoke }: HookProps): React.MutableRefObject<any>[] => {
 
-    const { onHoverActiveImageId }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { onHoverActiveImageId, activeSection }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
 
     const { elRefs, getCurrents } = useMultipleRefs(countOfImages);
     const { pathname } = useLocation();
@@ -58,7 +60,10 @@ const useOnHoverSelectImages = ({ countOfImages, ifAutoAlpha, invoke }: HookProp
     // image show/hide effect
     useLayoutEffect(() => {
         getCurrents().forEach(current => {
-            if (current.src.includes(onHoverActiveImageId)) {
+            const isActive = activeSection.services && activeSection.services !== ServicesSections.TECHNICALS
+                ? current.src.includes(activeSection.services!.replaceAll(' ', ''))
+                : current.src.includes(onHoverActiveImageId);
+            if (pathname === RoutingPaths.SERVICES ? isActive : current.src.includes(onHoverActiveImageId)) {
                 gsap.to(current, { x: invoke.showPx, duration: 0, autoAlpha: 1 });
             } else {
                 gsap.to(current, {
