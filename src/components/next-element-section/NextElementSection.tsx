@@ -34,7 +34,7 @@ interface PropsProvider {
 
 const NextElementSection: React.FC<PropsProvider> = ({ content, ifWhite }): JSX.Element => {
 
-    const defDotColor = `var(--${ifWhite ? 'cyanLight' : 'cyanDark'})`;
+    const defDotColor = `var(--${ifWhite ? 'cyanDark' : 'cyanLight'})`;
 
     const generateArrows: JSX.Element[] = Array.from({ length: 3 }, (v, i) => i).map(idx => (
         <NextElementRightArrowElement
