@@ -18,7 +18,11 @@
 
 import * as React from 'react';
 
+import { ServicesTextBlocks } from '../../../static/servicesTextBlocks';
+
 import { ServicesLeftContentElementsContainer } from '../ServicesInitialFluidContent.styles';
+
+import ServicesLeftContentSingleBlockElement from './ServicesLeftContentSingleBlockElement';
 
 
 interface PropsProvider {
@@ -27,11 +31,18 @@ interface PropsProvider {
 
 const ServicesLeftContentElements: React.FC<PropsProvider> = ({ referentialObject }): JSX.Element => {
 
+    const generateAllInfoBlocks: JSX.Element[] = ServicesTextBlocks.initialBlocks.map(block => (
+        <ServicesLeftContentSingleBlockElement
+            key = {block.header}
+            content = {block}
+        />
+    ));
+
     return (
         <ServicesLeftContentElementsContainer
             ref = {referentialObject}
         >
-            services left content container
+            {generateAllInfoBlocks}
         </ServicesLeftContentElementsContainer>
     );
 };
