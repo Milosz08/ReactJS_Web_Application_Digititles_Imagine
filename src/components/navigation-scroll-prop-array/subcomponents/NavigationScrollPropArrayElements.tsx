@@ -17,9 +17,11 @@
  */
 
 import * as React from 'react';
+import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { gsap, Expo } from 'gsap';
+import { RoutingPaths } from '../../../static/appRouting';
 
 import { RootState } from '../../../redux/store';
 import { AllSections } from '../../../redux/redux-dom-manipulate/types';
@@ -40,13 +42,15 @@ interface PropsProvider {
 const NavigationScrollPropArrayElements: React.FC<PropsProvider> = ({ sectionType, propArray, allRefs }): JSX.Element => {
 
     const { activeSection }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+
     const dispatcher = useDispatch();
+    const { pathname } = useLocation();
 
     const handleScrollToElement = (idx: number, section: string): void => {
         dispatcher(ReduxDOMActions.changeActiveSection(sectionType, section as SectionKey));
-        gsap.to(window, {
-            duration: 1.5, ease: Expo.easeInOut, scrollTo: idx === 0 ? 0 : allRefs[idx - 1].current
-        });
+        const refs = pathname === RoutingPaths.SERVICES
+            ? [ ...allRefs[0].current.children, allRefs[1].current ][idx] : idx === 0 ? 0 : allRefs[idx - 1].current;
+        gsap.to(window, { duration: 1.5, ease: Expo.easeInOut, scrollTo: refs });
     };
 
     const generateAllElements: JSX.Element[] = propArray.map((nav, idx) => (
