@@ -20,19 +20,21 @@ import * as React from 'react';
 
 import { ServicesQualitySectionContainer } from './ServicesQualitySection.styles';
 
+import ServicesQualityLeftContent from './subcomponents/ServicesQualityLeftContent';
+import ServicesQualityRightContent from './subcomponents/ServicesQualityRightContent';
+
 
 interface PropsProvider {
     referential: React.MutableRefObject<any>;
 }
 
-const ServicesQualitySection: React.FC<PropsProvider> = ({ referential }): JSX.Element => {
-    return (
-        <ServicesQualitySectionContainer
-            ref = {referential}
-        >
-            services quality section
-        </ServicesQualitySectionContainer>
-    );
-};
+const ServicesQualitySection: React.FC<PropsProvider> = ({ referential }): JSX.Element => (
+    <ServicesQualitySectionContainer
+        ref = {referential}
+    >
+        <ServicesQualityLeftContent/>
+        <ServicesQualityRightContent/>
+    </ServicesQualitySectionContainer>
+);
 
 export default ServicesQualitySection;
