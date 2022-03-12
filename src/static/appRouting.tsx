@@ -30,7 +30,6 @@ import CmsModifyProjects from '../pages/CmsModifyProjects';
 import CmsModifySingleProject from '../pages/CmsModifySingleProject';
 import GettingStartedPageReact from '../pages/GettingStartedPageReact';
 import ServicesPageReact from '../pages/ServicesPageReact';
-import PrivacyPolicyPageReact from '../pages/PrivacyPolicyPageReact';
 import ProjectsPageReact from '../pages/ProjectsPageReact';
 import SingleProjectPageReact from '../pages/SingleProjectPageReact';
 
@@ -113,10 +112,6 @@ export const appRouting = (isLogged: boolean): RouteObject[] => [
     {
         path: RoutingPaths.SERVICES,
         element: <TitleInjectionHOC title = 'Services' Component = {ServicesPageReact} />,
-    },
-    {
-        path: RoutingPaths.PRIVACY_POLICY,
-        element: <TitleInjectionHOC title = 'Privacy Policy' Component = {PrivacyPolicyPageReact} />,
     },
     {
         path: RoutingPaths.PROJECTS,

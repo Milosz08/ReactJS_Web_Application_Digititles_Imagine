@@ -25,7 +25,7 @@ import { ReferencesFooterContext, ReferencesFooterTypes } from '../Footer';
 
 import {
     FooterCopyrightSectionContainer, FooterSectionCopyContainer, FooterSectionCopySingleSectionElement,
-    FooterSectionCopySingleSectionLink
+    FooterSectionCopySingleSectionLink, FooterSimpleAnchorLink
 } from '../Footer.styles';
 
 import CopyrightSocials from './CopyrightSocials';
@@ -43,11 +43,11 @@ const CopyrightContent: React.FC = (): JSX.Element => {
                 <FooterSectionCopySingleSectionElement>
                     &copy; {TimeManagement.generateCopyDate()} by Digititles Imagine
                 </FooterSectionCopySingleSectionElement>
-                <FooterSectionCopySingleSectionLink
-                    to = {RoutingPaths.PRIVACY_POLICY}
+                <FooterSimpleAnchorLink
+                    href = {RoutingPaths.PRIVACY_POLICY + '.html'}
                 >
                     Privacy Policy
-                </FooterSectionCopySingleSectionLink>
+                </FooterSimpleAnchorLink>
                 <FooterSectionCopySingleSectionLink
                     to = {RoutingPaths.LOGIN}
                 >

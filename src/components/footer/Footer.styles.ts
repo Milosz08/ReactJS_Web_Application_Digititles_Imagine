@@ -154,6 +154,17 @@ export const FooterMailToLinks = styled(a_rs)`
     color: inherit;
 `;
 
+export const FooterSimpleAnchorLink = styled(a_rs)`
+    color: var(--cyanLight);
+    margin: 0 30px;
+    :hover {
+        text-decoration: underline;
+    }
+    @media only screen and (max-width: 760px) {
+        margin: 10px 0;
+    }
+`;
+
 export const FooterGotoGettingStarted = styled(footer_scroll_link_rs)`
     ${BasicButtonWithBottomLine({ $isLeft: true })};
 `;
