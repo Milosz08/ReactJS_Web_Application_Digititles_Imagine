@@ -18,9 +18,6 @@
 
 export class Webpage {
 
-    /**
-     *
-     */
     private static readonly DEF_PREFIX: string = 'Digititles Imagine | ';
     private static readonly ADMIN_PREFIX: string = 'CMS Panel | ';
 

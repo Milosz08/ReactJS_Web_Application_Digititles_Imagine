@@ -77,7 +77,7 @@ export const SubpagesMainContentTitle = styled.h3<{ $color: string }>`
         content: '.';
         font-size: 1.1em;
         transition: .2s color ease-in-out;
-        color: ${({ $color }) => $color || 'var(--cyanDark)'};
+        color: ${({ $color }) => $color || 'var(--cyanLight)'};
     }
     @media only screen and (max-width: 1030px) {
         position: initial;
