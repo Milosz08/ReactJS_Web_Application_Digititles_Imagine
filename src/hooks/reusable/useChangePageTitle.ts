@@ -37,7 +37,7 @@ const useChangePageTitle = (title: string, ifAdminPanel: boolean, redir?: string
     useEffect(() => {
         let titleLoading: string = title;
         if (!Object.keys(status).every(loading => !status[loading])) {
-            titleLoading += 'Loading...';
+            titleLoading = 'Loading...';
         }
         document.title = Webpage.setTitle(titleLoading, ifAdminPanel);
         return () => {
