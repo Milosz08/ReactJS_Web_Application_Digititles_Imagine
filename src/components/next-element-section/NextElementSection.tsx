@@ -45,7 +45,7 @@ const NextElementSection: React.FC<PropsProvider> = ({ content, ifWhite }): JSX.
 
     return (
         <ThemeProvider
-            theme = {{ $ifWhite: Boolean(ifWhite), $projectDotColor: content.dotColor || defDotColor}}
+            theme = {{ $ifWhite: Boolean(ifWhite), $projectDotColor: content.dotColor || defDotColor }}
         >
             <NextElementSectionContainer
                 to = {content.pathTo!}
