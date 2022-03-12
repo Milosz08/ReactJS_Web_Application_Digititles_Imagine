@@ -39,7 +39,7 @@ export interface InitStateDOMtypes {
     headerLight: boolean;
     activeSection: {
         project: ProjectSections;
-        services: ServicesSections;
+        services: ServicesSections | null;
     };
 }
 
@@ -64,6 +64,6 @@ export const InitStateDOM: InitStateDOMtypes = {
     headerLight: false,
     activeSection: {
         project: ProjectSections.TITLE,
-        services: ServicesSections.MAIN_CREDITS,
+        services: null,
     },
 } as const;

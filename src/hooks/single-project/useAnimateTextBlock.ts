@@ -18,10 +18,12 @@
 
 import * as React from 'react';
 import { useCallback, useContext, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { gsap } from 'gsap';
 
+import { RoutingPaths } from '../../static/appRouting';
 import { ProjectContext, ProjectContextTypes } from '../../pages/SingleProjectPageReact';
 
 import { ReduxDOMActions, SectionKey } from '../../redux/redux-dom-manipulate/actions';
@@ -37,40 +39,46 @@ interface HookProps {
  * in params). Also changing active section state (in redux store).
  *
  * @param parentElement { React.MutableRefObject<any> } - referential parent container.
+ * @param additionalParent { React.MutableRefObject<any> } - additional parent referential element.
  * @param section { { key: AllSections, value: SectionKey } } - activate section label element (by key and value).
  */
-const useAnimateTextBlock = (parentElement: React.MutableRefObject<any>, { key, value }: HookProps): null => {
+const useAnimateTextBlock = (
+    parentElement: React.MutableRefObject<any>, { key, value }: HookProps, additionalParent?: React.MutableRefObject<any>
+): null => {
 
     const { findProject } = useContext<Partial<ProjectContextTypes>>(ProjectContext);
     const dispatcher = useDispatch();
+    const { pathname } = useLocation();
+
+    const invokeHandlerOnLeave = useCallback(() => {
+        if (value === ServicesSections.MAIN_CREDITS || value === ProjectSections.DESCRIPTION) {
+            dispatcher(ReduxDOMActions.changeActiveSection(
+                key, pathname === RoutingPaths.SERVICES ? null : ProjectSections.TITLE
+            ));
+        }
+    }, [ pathname, dispatcher, key, value ]);
 
     const invokeHandlerOnEnter = useCallback(() => {
         dispatcher(ReduxDOMActions.changeActiveSection(key, value));
     }, [ dispatcher, key, value ]);
 
-    const invokeHandlerOnLeave = useCallback(() => {
-        const { TITLE, DESCRIPTION } = ProjectSections;
-        const { END_CREDITS, MAIN_CREDITS } = ServicesSections;
-        if (value === END_CREDITS || value === DESCRIPTION) {
-            dispatcher(ReduxDOMActions.changeActiveSection(key, key === AllSections.SERVICES ? MAIN_CREDITS : TITLE));
-        }
-    }, [ dispatcher, key, value ]);
-
     useEffect(() => {
-        if (Boolean(parentElement) && findProject) {
-            console.log(parentElement.current.children);
-            gsap.from(parentElement.current.children, {
+        if ((Boolean(parentElement) && findProject) || pathname === RoutingPaths.SERVICES) {
+            const childrens = Boolean(additionalParent)
+                ? [...parentElement.current.children].slice(0, -1).concat(additionalParent!.current.children)
+                : parentElement.current.children;
+            gsap.from(childrens, {
                 x: -50, autoAlpha: 0, stagger: .2, scrollTrigger: {
                     trigger: parentElement.current,
-                    start: 'center bottom',
-                    end: 'bottom bottom',
+                    start: 'top center',
+                    end: 'bottom center',
                     onEnter: invokeHandlerOnEnter,
                     onEnterBack: invokeHandlerOnEnter,
                     onLeaveBack: invokeHandlerOnLeave,
                 },
             });
         }
-    }, [ findProject, invokeHandlerOnEnter, invokeHandlerOnLeave, parentElement ]);
+    }, [ findProject, invokeHandlerOnEnter, parentElement, additionalParent ]);
 
     return null;
 };

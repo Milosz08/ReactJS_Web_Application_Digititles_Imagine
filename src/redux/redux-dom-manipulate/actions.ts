@@ -122,7 +122,7 @@ export class ReduxDOMActions {
      * @param sectionKey
      * @param currentSection
      */
-    public static changeActiveSection = (sectionKey: AllSections, currentSection: SectionKey): ReturnedToReducer => ({
+    public static changeActiveSection = (sectionKey: AllSections, currentSection: SectionKey | null): ReturnedToReducer => ({
         type: ReduxDOMreducerTypes.CHANGE_ACTIVE_SECTION,
         payload: {
             sectionKey, currentSection,
