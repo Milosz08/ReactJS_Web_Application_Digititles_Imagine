@@ -39,13 +39,13 @@ interface HookProps {
  */
 const useChangeHeaderColorOnScroll = ({ enableRef, disableRef }: HookProps): null => {
 
-    const { currScrollPos, browserY }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { currScrollPos, browserY, browserX }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     
     const dispatcher = useDispatch();
 
     // on scroll event
     useEffect(() => {
-        if (enableRef) {
+        if (enableRef && browserX > 1030) {
             const enableH = enableRef.current.offsetHeight + browserY - 90;
             const disableH = document.body.offsetHeight - 310 - (disableRef ? disableRef!.current.offsetHeight : 0);
             dispatcher(ReduxDOMActions.changeFirstLevelElement(
@@ -55,7 +55,7 @@ const useChangeHeaderColorOnScroll = ({ enableRef, disableRef }: HookProps): nul
         return () => {
             dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.HEADER_LIGHT, false));
         }
-    }, [ currScrollPos, disableRef, dispatcher, enableRef, browserY ]);
+    }, [ currScrollPos, disableRef, dispatcher, enableRef, browserY, browserX ]);
 
     return null;
 };
