@@ -77,11 +77,11 @@ export const ServicesRefSoftTitle = styled.div`
 `;
 
 export const ServicesResSoftShortBlock = styled.div`
+    font-family: 'O', sans-serif;
     background-color: var(--${({ theme }) => theme.$ifDark ? 'whiteClean' : 'cyanDark'});
     color: var(--${({ theme }) => theme.$ifDark ? 'cyanDark' : 'whiteClean'});
     width: fit-content;
     font-size: 1.6rem;
-    font-weight: ${({ theme }) => theme.$ifDark ? 500 : 'inherit'};
     border-radius: 5px;
     padding: 5px 8px 4px;
 `;
