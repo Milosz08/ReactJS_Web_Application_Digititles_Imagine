@@ -30,6 +30,7 @@ import { ServicesRightHeaderAndParagraphContainer } from '../../services-softwar
 import HeaderElement from '../../universal-components/HeaderElement';
 import useAnimateTextBlock from '../../../hooks/single-project/useAnimateTextBlock';
 import { AllSections, ServicesSections } from '../../../redux/redux-dom-manipulate/types';
+import { Webpage } from '../../../helper-primitives/Webpage';
 
 
 const ServicesQualityLeftContent: React.FC = (): JSX.Element => {
@@ -47,7 +48,7 @@ const ServicesQualityLeftContent: React.FC = (): JSX.Element => {
         <ServicesQualityUnorderedListElement
             key = {description}
         >
-            <strong>{header}</strong> - {description}
+            <strong>{Webpage.htmlDecodingParser(header)}</strong> - {Webpage.htmlDecodingParser(description)}
         </ServicesQualityUnorderedListElement>
     ));
 
