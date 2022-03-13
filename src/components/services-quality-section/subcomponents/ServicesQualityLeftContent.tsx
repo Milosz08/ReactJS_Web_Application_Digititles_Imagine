@@ -19,7 +19,10 @@
 import * as React from 'react';
 import { useRef } from 'react';
 
+import { Webpage } from '../../../helper-primitives/Webpage';
 import { ServicesTextBlocks } from '../../../static/servicesTextBlocks';
+import useAnimateTextBlock from '../../../hooks/single-project/useAnimateTextBlock';
+import { AllSections, ServicesSections } from '../../../redux/redux-dom-manipulate/types';
 
 import {
     ServicesQualityLeftContentContainer, ServicesQualityParagraphElement, ServicesQualityUnorderedList,
@@ -28,9 +31,6 @@ import {
 import { ServicesRightHeaderAndParagraphContainer } from '../../services-software-section/ServicesSoftwareSection.styles';
 
 import HeaderElement from '../../universal-components/HeaderElement';
-import useAnimateTextBlock from '../../../hooks/single-project/useAnimateTextBlock';
-import { AllSections, ServicesSections } from '../../../redux/redux-dom-manipulate/types';
-import { Webpage } from '../../../helper-primitives/Webpage';
 
 
 const ServicesQualityLeftContent: React.FC = (): JSX.Element => {
