@@ -104,3 +104,16 @@ export const GridTemplate = () => css`
         grid-template-areas: "." "." "." "." "." ".";
     }
 `;
+
+export const StandardButton = () => css`
+    font-size: 1.4rem;
+    background-color: var(--cyanDark);
+    color: var(--whiteClean);
+    border-radius: 10px;
+    padding: 8px 20px 10px;
+    cursor: pointer;
+    transition: .2s;
+    :hover {
+        background-color: var(--cyanDarker);
+    }
+`;
