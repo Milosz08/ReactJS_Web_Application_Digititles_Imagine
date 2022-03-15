@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2022 by MILOSZ GILGA <https://miloszgilga.pl>
  *
- * File name: mainPageAnimTitlesObject.ts
+ * File name: animTitlesObject.ts
  * Last modified: 25/02/2022, 02:44
  * Project name: digititles-imagine
  *
@@ -33,7 +33,7 @@ export const MainPageAnimTitlesObject: MainPageAnimTitlesTypes[] = [
         content: [
             'Professional designers',
             'Main & End credits',
-            'Fast delivery time'
+            'Fast delivery time',
         ],
     },
     {
@@ -41,7 +41,7 @@ export const MainPageAnimTitlesObject: MainPageAnimTitlesTypes[] = [
         content: [
             'who appreciate',
             'or subtitles tailored to',
-            'and attractive prices'
+            'and attractive prices',
         ],
     },
     {
@@ -49,7 +49,13 @@ export const MainPageAnimTitlesObject: MainPageAnimTitlesTypes[] = [
         content: [
             'clean and modern style',
             'specific project',
-            'for all filmmakers'
+            'for all filmmakers',
         ],
     },
+];
+
+export const GettingStartedAnimTitlesObject: string[] = [
+    'Main Credits',
+    'End Credits',
+    'Subtitles',
 ];
