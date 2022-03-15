@@ -22,7 +22,6 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../redux/store';
 
-import GlobalStylesInjection from '../styles/global.styles';
 import FontfacesStylesInjection from '../styles/fontfaces.styles';
 
 import InvokeOnMount from './InvokeOnMount';
@@ -37,11 +36,10 @@ import AppRoutes from './AppRoutes';
 const App: React.FC = (): JSX.Element => (
     <Provider store = {store}>
         <FontfacesStylesInjection/>
-        <GlobalStylesInjection/>
         <LoadAllAPIData/>
-        <ScrollAndSuspenseBars/>
         <BrowserRouter>
             <InvokeOnMount/>
+            <ScrollAndSuspenseBars/>
             <ForceScrollToTopHOC>
                 <MainMenu/>
                 <Header/>
