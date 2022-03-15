@@ -17,13 +17,37 @@
  */
 
 import * as React from 'react';
+import { useRef } from 'react';
+
+import useForcePageReload from '../hooks/reusable/useForcePageReload';
+
+import { RootState } from '../redux/store';
+import { useSelector } from 'react-redux';
+import { InitStateDOMtypes } from '../redux/redux-dom-manipulate/initialState';
+
+import GettingStartedMultipleRefsContext from '../context/getting-started-multiple-refs/GettingStartedMultipleRefsContext';
+
+import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
+import GettingStartedInitContent from '../components/getting-started-init-content/GettingStartedInitContent';
+import GettingStartedFormStructure from '../components/getting-started-form-structure/GettingStartedFormStructure';
 
 
 const GettingStartedPageReact: React.FC = (): JSX.Element => {
+
+    const { browserX }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const formStructure = useRef<HTMLDivElement>(null);
+    useForcePageReload();
+
     return (
-        <>
-            getting started page
-        </>
+        <GettingStartedMultipleRefsContext>
+            {browserX <= 1030 && <NavigationBottomBar
+                listeners = {[ { ariaLabel: 'registration form', goto: formStructure } ]}
+            />}
+            <GettingStartedInitContent/>
+            <GettingStartedFormStructure
+                referential = {formStructure}
+            />
+        </GettingStartedMultipleRefsContext>
     );
 };
 
