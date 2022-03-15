@@ -29,10 +29,7 @@ export class ReduxAPIThunk {
             dispatch(ReduxAPIActions.setRequestLoading(loading));
             await axiosInstance.get(endpoint)
                 .then(response => response)
-                .then(data => {
-                        dispatch(ReduxAPIActions.addAllArrayObjectsStoreElements(data.data, key, loading));
-                        window.localStorage.setItem(key, JSON.stringify(data.data));
-                    },
+                .then(data => dispatch(ReduxAPIActions.addAllArrayObjectsStoreElements(data.data, key, loading)),
                     error => dispatch(ReduxAPIActions.setRequestError(error.message || 'Unexpected error!')),
                 );
         };
