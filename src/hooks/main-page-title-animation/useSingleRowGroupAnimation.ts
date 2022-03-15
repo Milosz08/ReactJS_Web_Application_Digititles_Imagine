@@ -22,12 +22,17 @@ import { useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 
 import useMultipleRefs from '../reusable/useMultipleRefs';
-import { MainPageAnimTitlesObject, Position } from '../../static/mainPageAnimTitlesObject';
+import {
+    GettingStartedAnimTitlesObject,
+    MainPageAnimTitlesObject,
+    Position
+} from '../../static/animTitlesObject';
 
 
 interface HookProps {
-    groupPos: Position;
+    groupPos: Position | null;
     gsapTimeline: gsap.core.Timeline;
+    ifIsSingleTitle?: boolean;
 }
 
 enum PropType { FROM, TO }
@@ -36,17 +41,21 @@ enum PropType { FROM, TO }
  * Custom hook responsible for generating GSAP timeline for all tree rows animation on main page
  * fancy animation title JSX element.
  *
- * @param groupPos { Position } - element position (TOP/CENTER/BOTTOM).
+ * @param groupPos { Position | null } - element position (TOP/CENTER/BOTTOM).
  * @param gsapTimeline { gsap.core.Timeline } - single prepared GSAP timeline object.
+ * @param ifIsSingleTitle { boolean? } -
  * @return { [ React.MutableRefObject<any>[], string[] ] } - first: all rows references, all rows content string arrays.
  */
-const useSingleRowGroupAnimation = ({ groupPos, gsapTimeline }: HookProps): [ React.MutableRefObject<any>[], string[] ] => {
+const useSingleRowGroupAnimation = ({ groupPos, gsapTimeline, ifIsSingleTitle }: HookProps): [ React.MutableRefObject<any>[], string[] ] => {
 
-    const currentElement = MainPageAnimTitlesObject.find(title => title.ariaLabel === groupPos);
-    const { elRefs, getCurrents } = useMultipleRefs(currentElement!.content.length);
+    const currentElement = ifIsSingleTitle
+        ? GettingStartedAnimTitlesObject
+        : MainPageAnimTitlesObject.find(title => title.ariaLabel === groupPos)!.content;
+
+    const { elRefs, getCurrents } = useMultipleRefs(currentElement.length);
     
     useLayoutEffect(() => {
-        if (elRefs.length === currentElement!.content.length) {
+        if (elRefs.length === currentElement.length) {
             const [ stage1, stage2, stage3 ] = getCurrents();
             gsapTimeline
                 .from(stage1.children, createPropertiesObject(PropType.FROM, true))
@@ -58,7 +67,7 @@ const useSingleRowGroupAnimation = ({ groupPos, gsapTimeline }: HookProps): [ Re
         }
     }, [ gsapTimeline, elRefs, getCurrents, currentElement ]);
 
-    return [ elRefs, currentElement!.content ];
+    return [ elRefs, currentElement ];
 };
 
 const createPropertiesObject = (type: PropType, ifFirst = false): object => {
