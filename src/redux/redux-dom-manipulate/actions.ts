@@ -19,7 +19,8 @@
 import Utils from '../utils';
 
 import {
-    AllSections, AnimationStages, ProjectSections, ReduxDOMreducerTypes, ReduxDOMstateKeys, ServicesSections
+    ActiveAction, AllSections, AnimationStages, GettingStartedNavElms, ProjectSections, ReduxDOMreducerTypes,
+    ReduxDOMstateKeys, ServicesSections
 } from './types';
 
 export type SectionKey = ProjectSections | ServicesSections;
@@ -126,6 +127,19 @@ export class ReduxDOMActions {
         type: ReduxDOMreducerTypes.CHANGE_ACTIVE_SECTION,
         payload: {
             sectionKey, currentSection,
+        }
+    });
+
+    /**
+     *
+     *
+     * @param addingElement
+     * @param action
+     */
+    public static activeElementIntoArray = (addingElement: GettingStartedNavElms | null, action = ActiveAction.ADD): ReturnedToReducer => ({
+        type: ReduxDOMreducerTypes.ADD_NEW_ELEMENT_INTO_ACTIVE_ARRAY,
+        payload: {
+            addingElement, action
         }
     });
 

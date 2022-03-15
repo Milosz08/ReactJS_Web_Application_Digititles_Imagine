@@ -16,7 +16,7 @@
  * COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
  */
 
-import { ProjectSections, ServicesSections } from './types';
+import { GettingStartedNavElms, ProjectSections, ServicesSections } from './types';
 
 export interface InitStateDOMtypes {
     currScrollPos: number;
@@ -41,6 +41,8 @@ export interface InitStateDOMtypes {
         project: ProjectSections;
         services: ServicesSections | null;
     };
+    gettingStartedActiveSection: GettingStartedNavElms | null;
+    allActiveSections: GettingStartedNavElms[];
 }
 
 export const InitStateDOM: InitStateDOMtypes = {
@@ -66,4 +68,6 @@ export const InitStateDOM: InitStateDOMtypes = {
         project: ProjectSections.TITLE,
         services: null,
     },
-} as const;
+    gettingStartedActiveSection: null,
+    allActiveSections: [],
+};

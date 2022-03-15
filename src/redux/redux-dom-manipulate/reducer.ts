@@ -17,7 +17,7 @@
  */
 
 import { InitStateDOM, InitStateDOMtypes } from './initialState';
-import { ReduxDOMreducerTypes } from './types';
+import { ActiveAction, ReduxDOMreducerTypes } from './types';
 
 import Utils from '../utils';
 
@@ -70,6 +70,14 @@ const reduxReducerDOM = (state = InitStateDOM, action: any): InitStateDOMtypes =
         case ReduxDOMreducerTypes.CHANGE_ACTIVE_SECTION: {
             const { sectionKey, currentSection } = action.payload;
             return { ...state, activeSection: { ...state.activeSection, [sectionKey]: currentSection } };
+        }
+
+        case ReduxDOMreducerTypes.ADD_NEW_ELEMENT_INTO_ACTIVE_ARRAY: {
+            const { addingElement, action: elementAction } = action.payload;
+            if (elementAction === ActiveAction.REMOVE_ALL) {
+                return { ...state, allActiveSections: [] };
+            }
+            return { ...state, allActiveSections: [ ...state.allActiveSections, addingElement ] };
         }
 
         default: {

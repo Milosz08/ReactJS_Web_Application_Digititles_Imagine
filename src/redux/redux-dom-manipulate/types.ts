@@ -25,6 +25,7 @@ export enum ReduxDOMreducerTypes {
     SET_IMAGE_ON_SET_PROJECT = 'SET_IMAGE_ON_SET_PROJECT__D',
     SET_STICKY_CONTENT = 'SET_STICKY_CONTENT__D',
     CHANGE_ACTIVE_SECTION = 'CHANGE_ACTIVE_SECTION__D',
+    ADD_NEW_ELEMENT_INTO_ACTIVE_ARRAY = 'ADD_NEW_ELEMENT_INTO_ACTIVE_ARRAY__D',
 }
 
 export enum ReduxDOMstateKeys {
@@ -36,6 +37,7 @@ export enum ReduxDOMstateKeys {
     SCROLL_DISABLED_PX = 'scrollDisabledPx',
     TOTAL_HEIGHT = 'totalHeight',
     HEADER_LIGHT = 'headerLight',
+    GETTING_STARTED_ACTIVE_SECTION = 'gettingStartedActiveSection',
 }
 
 export enum AnimationStages {
@@ -73,4 +75,16 @@ export enum ServicesSections {
 export enum ProjectBlocksSections {
     ABOUT = 'aboutSection',
     PRODUCTION = 'prodSection',
+}
+
+export enum GettingStartedNavElms {
+    SERVICE = 'Which service do you need',
+    FILMMAKER = 'What kind of filmmaker are you',
+    BUDGET = 'How budget do you have',
+    DETAILS = 'Your details',
+}
+
+export enum ActiveAction {
+    ADD = 'ADD',
+    REMOVE_ALL = 'REMOVE_ALL',
 }
