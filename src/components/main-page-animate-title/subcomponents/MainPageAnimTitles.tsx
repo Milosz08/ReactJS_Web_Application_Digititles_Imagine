@@ -18,7 +18,7 @@
 
 import * as React from 'react';
 
-import { MainPageAnimTitlesObject } from '../../../static/mainPageAnimTitlesObject';
+import { MainPageAnimTitlesObject } from '../../../static/animTitlesObject';
 import useGenerateGsapTimelines from '../../../hooks/main-page-title-animation/useGenerateGsapTimelines';
 
 import { MainPageAnimationTitlesContainer } from '../MainPageAnimateTitle.styles';

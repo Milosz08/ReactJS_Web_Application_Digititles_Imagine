@@ -19,7 +19,7 @@
 import * as React from 'react';
 import { gsap } from 'gsap';
 
-import { Position } from '../../../static/mainPageAnimTitlesObject';
+import { Position } from '../../../static/animTitlesObject';
 import useSingleRowGroupAnimation from '../../../hooks/main-page-title-animation/useSingleRowGroupAnimation';
 
 import {
