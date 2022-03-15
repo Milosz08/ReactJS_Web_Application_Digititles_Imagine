@@ -17,19 +17,29 @@
  */
 
 import * as React from 'react';
+import { useLocation } from 'react-router-dom';
+
+import { RoutingPaths } from '../static/appRouting';
+import GlobalStylesInjection from '../styles/global.styles';
 
 import useSetScrollPosition from '../hooks/reusable/useSetScrollPosition';
 import useChangeStickyOnScroll from '../hooks/navigation/useChangeStickyOnScroll';
 import useChangeBrowserSizeListener from '../hooks/reusable/useChangeBrowserSizeListener';
 
 
-const InvokeOnMount: React.FC = (): null => {
+const InvokeOnMount: React.FC = (): JSX.Element => {
+
+    const { pathname } = useLocation();
 
     useSetScrollPosition();
     useChangeStickyOnScroll(600);
     useChangeBrowserSizeListener();
 
-    return null;
+    return (
+        <GlobalStylesInjection
+            $ifIsGettingStarted = {pathname.includes(RoutingPaths.GETTING_STARTED)}
+        />
+    );
 };
 
 export default InvokeOnMount;

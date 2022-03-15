@@ -18,7 +18,7 @@
 
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStylesInjection = createGlobalStyle`
+const GlobalStylesInjection = createGlobalStyle<{ $ifIsGettingStarted: boolean }>`
     * {
         margin: 0;
         padding: 0;
@@ -35,7 +35,7 @@ const GlobalStylesInjection = createGlobalStyle`
     }
     #root {
         position: relative;
-        margin-bottom: 600px;
+        margin-bottom: ${({ $ifIsGettingStarted }) => $ifIsGettingStarted ? 0 : '600px'};
         min-height: 100vh;
         background-color: var(--whiteClean);
         @media only screen and (max-width: 760px) {
