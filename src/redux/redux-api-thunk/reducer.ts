@@ -20,6 +20,7 @@ import { InitStateAPI, InitStateAPItypes } from './initialState';
 
 import Utils from '../utils';
 import { ReduxAPIreducerTypes } from './types';
+import { FILMMAKER_MIN_SMALL } from '../../static/gettingStartedContent';
 
 /**
  * Redux reducer for providing API CRUD state management.
@@ -65,6 +66,22 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
         case ReduxAPIreducerTypes.SET_REQUEST_ERROR: {
             const { message } = action.payload;
             return { ...state, status: { ...state.status, error: message } };
+        }
+
+        case ReduxAPIreducerTypes.SET_FIELD_IN_REGISTRATION_FORM: {
+            const { type, value } = action.payload;
+            const findKey = Object.keys(state.registrationForm).find(key => key === type);
+            if (!findKey) {
+                return state;
+            }
+            return { ...state, registrationForm: { ...state.registrationForm, [findKey]: value } };
+        }
+
+        case ReduxAPIreducerTypes.CLEAR_ALL_REGISTRATION_FORM: {
+            return { ...state, registrationForm: {
+               userName: '', userEmail: '', userLastname: '', userMessage: '',
+               serviceType: '', filmmakerBudget: FILMMAKER_MIN_SMALL, filmmakerSize: ''
+            }};
         }
 
         default: {

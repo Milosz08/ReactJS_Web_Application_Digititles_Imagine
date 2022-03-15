@@ -16,7 +16,7 @@
  * COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
  */
 
-import { ReduxAPIreducerTypes, ReduxAPIstateKeys } from './types';
+import { ReduxAPIreducerTypes, ReduxAPIstateKeys, RegistrationFormInputs } from './types';
 import { AxiosResponse } from 'axios';
 
 interface ReturnedToReducer {
@@ -111,6 +111,26 @@ export class ReduxAPIActions {
         payload: {
             loadingElement,
         }
+    });
+
+    /**
+     *
+     *
+     * @param type
+     * @param value
+     */
+    public static setFieldInRegistrationForm = (type: RegistrationFormInputs, value: any): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.SET_FIELD_IN_REGISTRATION_FORM,
+        payload: {
+            type, value
+        }
+    });
+
+    /**
+     *
+     */
+    public static clearAllRegistrationForm = (): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.CLEAR_ALL_REGISTRATION_FORM,
     });
 
 }

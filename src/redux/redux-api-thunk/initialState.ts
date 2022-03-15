@@ -17,6 +17,7 @@
  */
 
 import { ProjectImagesTypes, ProjectTypes } from './elementTypes';
+import { FILMMAKER_MIN_SMALL } from '../../static/gettingStartedContent';
 
 export interface InitStateAPItypes {
     projects: ProjectTypes[];
@@ -25,7 +26,16 @@ export interface InitStateAPItypes {
         loadingProjects: boolean;
         loadingImages: boolean;
         error: string;
-    }
+    };
+    registrationForm: {
+        userName: string;
+        userLastname: string;
+        userEmail: string;
+        userMessage: string;
+        serviceType: string;
+        filmmakerSize: string;
+        filmmakerBudget: number;
+    };
 }
 
 export const InitStateAPI: InitStateAPItypes = {
@@ -35,5 +45,14 @@ export const InitStateAPI: InitStateAPItypes = {
         loadingProjects: true,
         loadingImages: true,
         error: '',
+    },
+    registrationForm: {
+        userName: '',
+        userLastname: '',
+        userEmail: '',
+        userMessage: '',
+        serviceType: '',
+        filmmakerSize: '',
+        filmmakerBudget: FILMMAKER_MIN_SMALL,
     },
 };
