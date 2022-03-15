@@ -50,6 +50,9 @@ export const button_rs = styled.button`
     text-transform: inherit;
     border: none;
     cursor: pointer;
+    :disabled {
+        cursor: not-allowed;
+    }
 `;
 
 export const input_rs = styled.input`
