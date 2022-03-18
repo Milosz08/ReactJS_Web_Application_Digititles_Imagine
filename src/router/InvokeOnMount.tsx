@@ -17,17 +17,27 @@
  */
 
 import * as React from 'react';
+import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import { RoutingPaths } from '../static/appRouting';
 import GlobalStylesInjection from '../styles/global.styles';
+import { AllCookiesContext, AllCookiesTypes } from '../context/cookies-context/AllCookiesProvider';
 
 import useSetScrollPosition from '../hooks/reusable/useSetScrollPosition';
 import useChangeStickyOnScroll from '../hooks/navigation/useChangeStickyOnScroll';
 import useChangeBrowserSizeListener from '../hooks/reusable/useChangeBrowserSizeListener';
 
+import { RootState } from '../redux/store';
+import { AllCookies } from '../context/cookies-context/allCookiesConfig';
+import { InitStateDOMtypes } from '../redux/redux-dom-manipulate/initialState';
+
 
 const InvokeOnMount: React.FC = (): JSX.Element => {
+
+    const { cookiesNotifContainerHeight }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { cookie } = useContext<Partial<AllCookiesTypes>>(AllCookiesContext);
 
     const { pathname } = useLocation();
 
@@ -38,6 +48,8 @@ const InvokeOnMount: React.FC = (): JSX.Element => {
     return (
         <GlobalStylesInjection
             $ifIsGettingStarted = {pathname.includes(RoutingPaths.GETTING_STARTED)}
+            $ifCookieNotifIsActive = {Boolean(cookie![AllCookies.COOKIE_POPUP])}
+            $marginFromTop = {cookiesNotifContainerHeight}
         />
     );
 };

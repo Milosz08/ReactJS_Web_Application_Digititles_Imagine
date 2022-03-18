@@ -36,7 +36,7 @@ import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState
 const useChangeStickyOnScroll = (footerHeight: number): null => {
 
     const state: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
-    const { currScrollPos, currScrollFromBottom, totalHeight } = state;
+    const { currScrollPos, currScrollFromBottom, totalHeight, cookiesNotifContainerHeight } = state;
 
     const dispatcher = useDispatch();
     const { pathname } = useLocation();
@@ -46,7 +46,7 @@ const useChangeStickyOnScroll = (footerHeight: number): null => {
     useEffect(() => {
         dispatcher(ReduxDOMActions.setStaticContent(
             extraBlocks
-                ? !(currScrollPos >= totalHeight)
+                ? !(currScrollPos >= totalHeight + cookiesNotifContainerHeight)
                 : !(currScrollFromBottom <= footerHeight && currScrollPos !== 0),
             pathname !== RoutingPaths.START
                 ? !(currScrollFromBottom <= footerHeight + 220 && currScrollPos !== 0)

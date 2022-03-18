@@ -18,7 +18,13 @@
 
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStylesInjection = createGlobalStyle<{ $ifIsGettingStarted: boolean }>`
+interface GlobalStylesProvider {
+    $ifIsGettingStarted: boolean;
+    $ifCookieNotifIsActive: boolean;
+    $marginFromTop: number;
+}
+
+const GlobalStylesInjection = createGlobalStyle<GlobalStylesProvider>`
     * {
         margin: 0;
         padding: 0;
@@ -36,8 +42,10 @@ const GlobalStylesInjection = createGlobalStyle<{ $ifIsGettingStarted: boolean }
     #root {
         position: relative;
         margin-bottom: ${({ $ifIsGettingStarted }) => $ifIsGettingStarted ? 0 : '600px'};
-        min-height: 100vh;
+        margin-top: ${({ $ifCookieNotifIsActive, $marginFromTop }) => $ifCookieNotifIsActive ? 0 : `${$marginFromTop}px`};
+        min-height: ${({ $marginFromTop }) => $marginFromTop ? `calc(100vh - ${$marginFromTop}px)` : '100vh'};
         background-color: var(--whiteClean);
+        transition: ${({ $ifCookieNotifIsActive }) => $ifCookieNotifIsActive ? '.3s margin-top ease-in-out' : 'none'};
         @media only screen and (max-width: 760px) {
             margin-bottom: 0;
         }
