@@ -47,7 +47,7 @@ const useCookiesNotificationSetDynamicHeight = (): [ React.MutableRefObject<any>
 
     // on every load or change browser width size
     useLayoutEffect(() => {
-        if (notifRef) {
+        if (notifRef && browserX > 1030) {
             gsap.to(notifRef.current, {
                 y: !Boolean(cookie![AllCookies.COOKIE_POPUP]) ? 0 : -notifRef.current!.clientHeight - 2
             });
