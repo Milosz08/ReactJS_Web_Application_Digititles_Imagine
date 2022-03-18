@@ -37,9 +37,9 @@ export const GettingStartedFormStructureContainer = styled.form`
     }
 `;
 
-export const GettingStartedFromSingleSection = styled.section`
+export const GettingStartedFromSingleSection = styled.section<{ $marginTop: number }>`
     width: 100%;
-    min-height: 100vh;
+    min-height: ${({ $marginTop }) => $marginTop ? `calc(100vh - ${$marginTop}px)` : '100vh'};
     display: none;
     justify-content: center;
     align-items: center;

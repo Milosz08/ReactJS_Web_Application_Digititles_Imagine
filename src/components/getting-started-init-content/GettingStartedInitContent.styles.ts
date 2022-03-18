@@ -21,12 +21,12 @@ import styled from 'styled-components';
 import { button_rs } from '../../styles/reset.styles';
 import { ParagraphElementStyled } from '../universal-components/UniversalComponents.styles';
 
-export const GettingStartedInitContentContainer = styled.div`
+export const GettingStartedInitContentContainer = styled.div<{ $marginTop: number }>`
     position: fixed;
-    top: 0;
+    top: ${({ $marginTop }) => $marginTop ? `${$marginTop}px` : 0};
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: ${({ $marginTop }) => $marginTop ? `calc(100vh - ${$marginTop}px)` : '100vh'};
     @media only screen and (max-width: 1030px) {
         position: static;
     }
@@ -34,11 +34,12 @@ export const GettingStartedInitContentContainer = styled.div`
 
 export const GettingStartedLeftBar = styled(button_rs)`
     width: 300px;
-    height: 100vh;
+    height: 100%;
     background-color: var(--cyanDark);
-    position: fixed;
+    position: absolute;
     overflow: hidden;
     left: 20vw;
+    bottom: 0;
     opacity: 0;
     visibility: hidden;
     transform: translateX(-20px);
@@ -159,19 +160,19 @@ export const GettingStartedParagraph = styled(ParagraphElementStyled)`
 `;
 
 export const GettingStartedRightNavbarContainer = styled.nav`
-    position: fixed;
+    position: absolute;
     opacity: 0;
     visibility: hidden;
     transform: translateX(-30px);
     z-index: 1;
     right: 0;
-    top: 0;
+    bottom: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 300px;
-    height: 100vh;
+    height: 100%;
     padding: 0 70px;
     @media only screen and (max-width: 1030px) {
         display: none;

@@ -31,7 +31,7 @@ export const RightScrollBarContainer = styled.div<{ $barWidth: number }>`
 
 export const SuspenseBarContainer = styled.div<{ $barActive: boolean }>`
     position: fixed;
-    z-index: 4;
+    z-index: 3;
     display: ${({ $barActive }) => $barActive ? 'block' : 'none'};
     top: 0;
     left: 0;
