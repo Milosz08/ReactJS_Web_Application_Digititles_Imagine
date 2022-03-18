@@ -24,8 +24,11 @@ import store from '../redux/store';
 
 import FontfacesStylesInjection from '../styles/fontfaces.styles';
 
+import AllCookiesProvider from '../context/cookies-context/AllCookiesProvider';
+
 import InvokeOnMount from './InvokeOnMount';
 import LoadAllAPIData from './LoadAllAPIData';
+import CookiesNotification from '../components/cookies-notification/CookiesNotification';
 import ScrollAndSuspenseBars from '../components/scroll-and-suspense-bars/ScrollAndSuspenseBars';
 import ForceScrollToTopHOC from '../high-order-components/ForceScrollToTopHOC';
 import MainMenu from '../components/main-menu/MainMenu';
@@ -35,17 +38,20 @@ import AppRoutes from './AppRoutes';
 
 const App: React.FC = (): JSX.Element => (
     <Provider store = {store}>
-        <FontfacesStylesInjection/>
-        <LoadAllAPIData/>
-        <BrowserRouter>
-            <InvokeOnMount/>
-            <ScrollAndSuspenseBars/>
-            <ForceScrollToTopHOC>
-                <MainMenu/>
-                <Header/>
-                <AppRoutes/>
-            </ForceScrollToTopHOC>
-        </BrowserRouter>
+        <AllCookiesProvider>
+            <FontfacesStylesInjection/>
+            <LoadAllAPIData/>
+            <CookiesNotification/>
+            <BrowserRouter>
+                <InvokeOnMount/>
+                <ScrollAndSuspenseBars/>
+                <ForceScrollToTopHOC>
+                    <MainMenu/>
+                    <Header/>
+                    <AppRoutes/>
+                </ForceScrollToTopHOC>
+            </BrowserRouter>
+        </AllCookiesProvider>
     </Provider>
 );
 
