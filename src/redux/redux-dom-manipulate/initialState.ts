@@ -43,6 +43,7 @@ export interface InitStateDOMtypes {
     };
     gettingStartedActiveSection: GettingStartedNavElms | null;
     allActiveSections: GettingStartedNavElms[];
+    cookiesNotifContainerHeight: number;
 }
 
 export const InitStateDOM: InitStateDOMtypes = {
@@ -70,4 +71,5 @@ export const InitStateDOM: InitStateDOMtypes = {
     },
     gettingStartedActiveSection: null,
     allActiveSections: [],
+    cookiesNotifContainerHeight: 0,
 };

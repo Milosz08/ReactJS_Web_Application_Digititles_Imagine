@@ -38,6 +38,7 @@ export enum ReduxDOMstateKeys {
     TOTAL_HEIGHT = 'totalHeight',
     HEADER_LIGHT = 'headerLight',
     GETTING_STARTED_ACTIVE_SECTION = 'gettingStartedActiveSection',
+    COOKIES_NOTIF_CONTAINER_HEIGHT = 'cookiesNotifContainerHeight',
 }
 
 export enum AnimationStages {
