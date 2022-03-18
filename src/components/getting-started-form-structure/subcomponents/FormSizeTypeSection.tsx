@@ -18,9 +18,13 @@
 
 import * as React from 'react';
 import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 
 import { GettingStartedTypes } from '../../../static/gettingStartedContent';
 import useChangeActiveSectionScroll from '../../../hooks/getting-started/useChangeActiveSectionScroll';
+
+import { RootState } from '../../../redux/store';
+import { InitStateDOMtypes } from '../../../redux/redux-dom-manipulate/initialState';
 
 import { RegistrationFormInputs } from '../../../redux/redux-api-thunk/types';
 import { GettingStartedNavElms } from '../../../redux/redux-dom-manipulate/types';
@@ -36,12 +40,15 @@ import GenerateImagesWithText from '../helper-components/generate-images-with-te
 
 const FormSizeTypeSection: React.FC = (): JSX.Element => {
 
+    const { cookiesNotifContainerHeight }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     const { allRefs, budget } = useContext<Partial<NavigateRefsContextTypes>>(NavigateRefsContext);
+
     useChangeActiveSectionScroll(allRefs![1], GettingStartedNavElms.FILMMAKER);
 
     return (
         <GettingStartedFromSingleSection
             ref = {allRefs![1]}
+            $marginTop = {cookiesNotifContainerHeight}
         >
             <GenerateImagesWithText
                 type = {GettingStartedTypes.SIZE}

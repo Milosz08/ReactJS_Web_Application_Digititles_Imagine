@@ -18,10 +18,14 @@
 
 import * as React from 'react';
 import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 
 import { GettingStartedNavElms } from '../../../redux/redux-dom-manipulate/types';
 import useChangeActiveSectionScroll from '../../../hooks/getting-started/useChangeActiveSectionScroll';
 import useBlockClickAnimationSequence from '../../../hooks/getting-started/useBlockClickAnimationSequence';
+
+import { RootState } from '../../../redux/store';
+import { InitStateDOMtypes } from '../../../redux/redux-dom-manipulate/initialState';
 
 import {
     NavigateRefsContext, NavigateRefsContextTypes
@@ -35,10 +39,11 @@ import {
 import BudgetRangeInput from '../helper-components/budget-range-input/BudgetRangeInput';
 
 
-
 const FormBudgetSection: React.FC = (): JSX.Element => {
 
+    const { cookiesNotifContainerHeight }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     const { allRefs, budget, registration } = useContext<Partial<NavigateRefsContextTypes>>(NavigateRefsContext);
+
     useChangeActiveSectionScroll(allRefs![2], GettingStartedNavElms.BUDGET);
 
     const handleGotoRegistrationSection = useBlockClickAnimationSequence({
@@ -48,6 +53,7 @@ const FormBudgetSection: React.FC = (): JSX.Element => {
     return (
         <GettingStartedFromSingleSection
             ref = {allRefs![2]}
+            $marginTop = {cookiesNotifContainerHeight}
         >
             <GettingStartedNotImagesSectionContainer>
                 <ImagesWithTextHeader

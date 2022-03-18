@@ -17,8 +17,12 @@
  */
 
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 
 import useAnimationWaterfallOnClick from '../../hooks/getting-started/useAnimationWaterfallOnClick';
+
+import { RootState } from '../../redux/store';
+import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
 
 import {
     GettingStartedArrowFirst, GettingStartedArrowSecond, GettingStartedH2, GettingStartedInitContentContainer,
@@ -31,11 +35,15 @@ import AnimateTitle from './subcomponents/AnimateTitle';
 
 const GettingStartedInitContent: React.FC = (): JSX.Element => {
 
+    const { cookiesNotifContainerHeight }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+
     const { elRefs, handleClickWaterfallAnimation } = useAnimationWaterfallOnClick();
     const [ textNavbar, colorNavbar, textContent ] = elRefs;
 
     return (
-        <GettingStartedInitContentContainer>
+        <GettingStartedInitContentContainer
+            $marginTop = {cookiesNotifContainerHeight}
+        >
             <RightNavbar
                 referential = {textNavbar}
             />

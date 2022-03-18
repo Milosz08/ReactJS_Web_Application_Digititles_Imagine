@@ -18,9 +18,13 @@
 
 import * as React from 'react';
 import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 
 import { GettingStartedNavElms } from '../../../redux/redux-dom-manipulate/types';
 import useChangeActiveSectionScroll from '../../../hooks/getting-started/useChangeActiveSectionScroll';
+
+import { RootState } from '../../../redux/store';
+import { InitStateDOMtypes } from '../../../redux/redux-dom-manipulate/initialState';
 
 import {
     NavigateRefsContext, NavigateRefsContextTypes
@@ -38,11 +42,14 @@ import FormRegistration from '../helper-components/form-registration/FormRegistr
 const FormRegistrationSection: React.FC = (): JSX.Element => {
 
     const { allRefs, registration } = useContext<Partial<NavigateRefsContextTypes>>(NavigateRefsContext);
+    const { cookiesNotifContainerHeight }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+
     useChangeActiveSectionScroll(allRefs![3], GettingStartedNavElms.DETAILS);
 
     return (
         <GettingStartedFromSingleSection
             ref = {allRefs![3]}
+            $marginTop = {cookiesNotifContainerHeight}
         >
             <GettingStartedNotImagesSectionContainer>
                 <ImagesWithTextHeader
