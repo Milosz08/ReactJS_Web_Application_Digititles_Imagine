@@ -18,10 +18,19 @@
 
 import * as React from 'react';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+
+import useValidateFooterForm from '../../hooks/footer/useValidateFooterForm';
+
+import { RootState } from '../../redux/store';
+
+import { ReduxAPIThunk } from '../../redux/redux-api-thunk/thunk';
+import { AllFormsTypes } from '../../redux/redux-api-thunk/types';
+import { ReduxAPIActions } from '../../redux/redux-api-thunk/actions';
+import { JavaApiEndpoints } from '../../redux/redux-api-thunk/request';
+import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
 
 import { ActiveAction } from '../../redux/redux-dom-manipulate/types';
-import { ReduxAPIActions } from '../../redux/redux-api-thunk/actions';
 import { ReduxDOMActions } from '../../redux/redux-dom-manipulate/actions';
 
 import { GettingStartedFormStructureContainer } from './GettingStartedFormStructure.styles';
@@ -38,13 +47,23 @@ interface PropsProvider {
 
 const GettingStartedFormStructure: React.FC<PropsProvider> = ({ referential }): JSX.Element => {
 
+    const { registrationForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { username, lastname, email, message, serviceType, filmmakerSize, filmmakerBudget } = registrationForm;
+
+    const validateForm = useValidateFooterForm({ typeofForm: AllFormsTypes.REGISTRATION });
     const dispatcher = useDispatch();
 
     const handleSubmitForm = (e: React.ChangeEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        dispatcher(ReduxAPIActions.clearAllRegistrationForm());
-        console.log('form submitted');
-        // form logic implement here (+ sender indicator element)
+        if (validateForm()) {
+            const returnedObject = {
+                username, lastname, email, message, propertiesData: { serviceType, filmmakerSize, filmmakerBudget },
+            };
+            dispatcher(ReduxAPIThunk.addPageFormToDatabase(
+                returnedObject, AllFormsTypes.REGISTRATION, JavaApiEndpoints.REGISTRATION, {}
+            ));
+            dispatcher(ReduxAPIActions.clearAllRegistrationForm());
+        }
     };
     
     useEffect(() => {
