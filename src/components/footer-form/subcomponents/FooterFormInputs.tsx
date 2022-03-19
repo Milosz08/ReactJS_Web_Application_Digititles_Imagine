@@ -17,28 +17,31 @@
  */
 
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 
-import { FooterFormInputElement } from '../FooterForm.styles';
+import { RootState } from '../../../redux/store';
+import { MessageFormInputs } from '../../../redux/redux-api-thunk/types';
+import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
+
+import FooterFormSingleInput from './FooterFormSingleInput';
 
 
 const FooterFormInputs: React.FC = (): JSX.Element => {
 
+    const { messageForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { USER_NAME, LAST_NAME } = MessageFormInputs;
+
+    const generateOnlyTextInputs: JSX.Element[] = Object.keys(messageForm).slice(0, -1).map(key => (
+        <FooterFormSingleInput
+            key = {key}
+            elementKey = {key as MessageFormInputs}
+            ifHalfLabelSize = {key === USER_NAME || key === LAST_NAME}
+        />
+    ));
+
     return (
         <>
-            <FooterFormInputElement
-                type = 'text'
-                placeholder = 'Your firstname *'
-                $ifHalf = {true}
-            />
-            <FooterFormInputElement
-                type = 'text'
-                placeholder = 'Your lastname'
-                $ifHalf = {true}
-            />
-            <FooterFormInputElement
-                type = 'email'
-                placeholder = 'Your email *'
-            />
+            {generateOnlyTextInputs}
         </>
     );
 };
