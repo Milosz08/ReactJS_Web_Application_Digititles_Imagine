@@ -34,12 +34,6 @@ interface ReturnedToReducer {
 
 export class ReduxDOMActions {
 
-    /**
-     *
-     *
-     * @param field
-     * @param value
-     */
     public static changeFirstLevelElement = (field: ReduxDOMstateKeys, value: any): ReturnedToReducer => ({
         type: Utils.addSuffix(ReduxDOMreducerTypes.CHANGE_FIRST_LEVEL_FIELD, field),
         payload: {
@@ -47,11 +41,6 @@ export class ReduxDOMActions {
         }
     });
 
-    /**
-     *
-     *
-     * @param openClosed
-     */
     public static openCloseMainMenu = (openClosed: AnimationStages | null = null): ReturnedToReducer => ({
         type: ReduxDOMreducerTypes.OPEN_CLOSE_MAIN_MENU,
         payload: {
@@ -59,12 +48,6 @@ export class ReduxDOMActions {
         }
     });
 
-    /**
-     *
-     *
-     * @param fromTop
-     * @param fromBack
-     */
     public static setScrollPositions = (fromTop: number, fromBack: number): ReturnedToReducer => ({
         type: ReduxDOMreducerTypes.CHANGE_SCROLL_POSITIONS,
         payload: {
@@ -72,12 +55,6 @@ export class ReduxDOMActions {
         }
     });
 
-    /**
-     *
-     *
-     * @param widthX
-     * @param heightY
-     */
     public static setBrowserSizes = (widthX: number, heightY: number): ReturnedToReducer => ({
         type: ReduxDOMreducerTypes.SET_BROWSER_WIDTH_AND_HEIGHT,
         payload: {
@@ -85,18 +62,10 @@ export class ReduxDOMActions {
         }
     });
 
-    /**
-     *
-     */
     public static hideAllImages = (): ReturnedToReducer => ({
         type: ReduxDOMreducerTypes.HIDE_ALL_IMAGES,
     });
 
-    /**
-     *
-     *
-     * @param projectId
-     */
     public static setImageOnSetProject = (projectId: string): ReturnedToReducer => ({
         type: ReduxDOMreducerTypes.SET_IMAGE_ON_SET_PROJECT,
         payload: {
@@ -104,12 +73,6 @@ export class ReduxDOMActions {
         }
     });
 
-    /**
-     *
-     *
-     * @param background
-     * @param navigation
-     */
     public static setStaticContent = (background: boolean, navigation: boolean): ReturnedToReducer => ({
         type: ReduxDOMreducerTypes.SET_STICKY_CONTENT,
         payload: {
@@ -117,12 +80,6 @@ export class ReduxDOMActions {
         }
     });
 
-    /**
-     *
-     *
-     * @param sectionKey
-     * @param currentSection
-     */
     public static changeActiveSection = (sectionKey: AllSections, currentSection: SectionKey | null): ReturnedToReducer => ({
         type: ReduxDOMreducerTypes.CHANGE_ACTIVE_SECTION,
         payload: {
@@ -130,12 +87,6 @@ export class ReduxDOMActions {
         }
     });
 
-    /**
-     *
-     *
-     * @param addingElement
-     * @param action
-     */
     public static activeElementIntoArray = (addingElement: GettingStartedNavElms | null, action = ActiveAction.ADD): ReturnedToReducer => ({
         type: ReduxDOMreducerTypes.ADD_NEW_ELEMENT_INTO_ACTIVE_ARRAY,
         payload: {

@@ -28,72 +28,38 @@ interface ReturnedToReducer {
 
 export class ReduxAPIActions {
 
-    /**
-     *
-     *
-     * @param elementToSend
-     * @param elementType
-     * @param loadingElement
-     */
-    public static addReduxStoreElement = (
-        elementToSend: AxiosResponse, elementType: ReduxAPIstateKeys, loadingElement: ReduxAPIstateKeys
-    ): ReturnedToReducer => ({
+    public static addReduxStoreElement = (elementToSend: AxiosResponse, elementType: ReduxAPIstateKeys): ReturnedToReducer => ({
         type: ReduxAPIreducerTypes.ADD_ELEMENT_FROM_DB,
         payload: {
-            elementToSend, elementType, loadingElement
+            elementToSend, elementType,
         }
     });
 
-    /**
-     *
-     *
-     * @param arrayOfObjects
-     * @param elementType
-     * @param loadingElement
-     */
     public static addAllArrayObjectsStoreElements = (
         arrayOfObjects: AxiosResponse[], elementType: ReduxAPIstateKeys, loadingElement: ReduxAPIstateKeys
     ): ReturnedToReducer => ({
         type: ReduxAPIreducerTypes.ADD_ALL_ELEMENTS_FROM_DB,
         payload: {
-            arrayOfObjects, elementType, loadingElement
+            arrayOfObjects, elementType, loadingElement,
         }
     });
 
-    /**
-     *
-     *
-     * @param elementToSend
-     * @param elementType
-     * @param elementId
-     */
     public static updateReduxStoreElement = (
         elementToSend: AxiosResponse, elementType: ReduxAPIstateKeys, elementId: string
     ): ReturnedToReducer => ({
         type: ReduxAPIreducerTypes.EDIT_ELEMENT_FROM_DB,
         payload: {
-            elementToSend, elementType, elementId
+            elementToSend, elementType, elementId,
         }
     });
 
-    /**
-     *
-     *
-     * @param elementType
-     * @param elementId
-     */
     public static deleteReduxStoreElement = (elementType: ReduxAPIstateKeys, elementId: string): ReturnedToReducer => ({
         type: ReduxAPIreducerTypes.DELETE_ELEMENT_FROM_DB,
         payload: {
-            elementType, elementId
+            elementType, elementId,
         }
     });
 
-    /**
-     *
-     *
-     * @param message
-     */
     public static setRequestError = (message: string): ReturnedToReducer => ({
         type: ReduxAPIreducerTypes.SET_REQUEST_ERROR,
         payload: {
@@ -101,11 +67,6 @@ export class ReduxAPIActions {
         }
     });
 
-    /**
-     *
-     *
-     * @param loadingElement
-     */
     public static setRequestLoading = (loadingElement: ReduxAPIstateKeys): ReturnedToReducer => ({
         type: ReduxAPIreducerTypes.SET_REQUEST_LOADING,
         payload: {
@@ -113,22 +74,13 @@ export class ReduxAPIActions {
         }
     });
 
-    /**
-     *
-     *
-     * @param type
-     * @param value
-     */
     public static setFieldInRegistrationForm = (type: RegistrationFormInputs, value: any): ReturnedToReducer => ({
         type: ReduxAPIreducerTypes.SET_FIELD_IN_REGISTRATION_FORM,
         payload: {
-            type, value
+            type, value,
         }
     });
 
-    /**
-     *
-     */
     public static clearAllRegistrationForm = (): ReturnedToReducer => ({
         type: ReduxAPIreducerTypes.CLEAR_ALL_REGISTRATION_FORM,
     });
