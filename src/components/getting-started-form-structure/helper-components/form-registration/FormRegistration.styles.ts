@@ -17,25 +17,26 @@
  */
 
 import styled, { css } from 'styled-components';
-import { HideAllAnimation } from '../../GettingStartedFormStructure.styles';
-import { input_rs, textarea_rs } from '../../../../styles/reset.styles';
 
-const InputWithTextarea = () => css`
+import { input_rs, textarea_rs } from '../../../../styles/reset.styles';
+import { HideAllAnimation } from '../../GettingStartedFormStructure.styles';
+
+const InputWithTextarea = ({ $ifError }: { $ifError: boolean }) => css`
     width: 100%;
     font-size: 1.3rem;
     text-align: center;
     background-color: var(--whiteDark);
-    color: var(--blackLight);
+    color: var(--${$ifError ? 'redLight' : 'blackLight'});
     padding: 15px;
-    border-bottom: 4px solid transparent;
+    border-bottom: 4px solid ${$ifError ? 'var(--redLight)' : 'transparent'};
     border-radius: 8px;
     box-sizing: border-box;
     transition: .2s border-bottom-color ease-in-out;
     ::placeholder {
-        color: var(--grayDarker);
+        color: var(--${$ifError ? 'redLight' : 'grayDarker'});
     }
     :focus {
-        border-bottom: 4px solid var(--cyanDark);
+        border-bottom: 4px solid var(--${$ifError ? 'redLight' : 'cyanDark'});
     }
     @media only screen and (max-width: 776px) {
         font-size: 1.1rem;
@@ -67,12 +68,12 @@ export const FormRegistrationFullLengthLabelElement = styled(FormRegistrationHal
     flex-basis: 100%;
 `;
 
-export const FormRegistrationInputElement = styled(input_rs)`
-    ${InputWithTextarea()};
+export const FormRegistrationInputElement = styled(input_rs)<{ $ifError: boolean }>`
+    ${({ $ifError }) => InputWithTextarea({ $ifError })};
 `;
 
-export const FormRegistrationTextareaElement = styled(textarea_rs)`
-    ${InputWithTextarea()};
+export const FormRegistrationTextareaElement = styled(textarea_rs)<{ $ifError: boolean }>`
+    ${({ $ifError }) => InputWithTextarea({ $ifError })};
 `;
 
 export const FormRegistrationDownInfoContainer = styled.div`

@@ -37,13 +37,17 @@ export const FooterFormSubmitButton = styled(button_rs)`
     ${BasicButtonWithBottomLine({ $isLeft: false })};
 `;
 
-export const FooterFormInputElement = styled(input_rs)<{ $ifHalf?: boolean }>`
-    ${BasicTextInputElement({ $ifDark: true, $ifError: false })};
+export const FooterFormLabelElement = styled.label<{ $ifHalf?: boolean }>`
     flex-basis: ${({ $ifHalf }) => $ifHalf ? '48%' : '100%'};
 `;
 
-export const FooterFormTextareaElement = styled(textarea_rs)`
-    ${BasicTextInputElement({ $ifDark: true, $ifError: false })};
+export const FooterFormInputElement = styled(input_rs)<{ $ifError: boolean }>`
+    ${({ $ifError }) => BasicTextInputElement({ $ifDark: true, $ifError })};
+    width: 100%;
+`;
+
+export const FooterFormTextareaElement = styled(textarea_rs)<{ $ifError: boolean }>`
+    ${({ $ifError }) => BasicTextInputElement({ $ifDark: true, $ifError })};
 `;
 
 export const FooterFormCharactersCountAndRequiredInfo = styled.div`

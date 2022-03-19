@@ -77,11 +77,11 @@ export const BasicTextInputElement = ({ $ifDark, $ifError }: { $ifDark: boolean,
     padding: 10px 10px 8px;
     margin: 10px 0;
     width: 100%;
-    transition: .3s border-bottom-color ease-in-out;
+    transition: .3s all ease-in-out;
     border-bottom: 2px solid var(--${$ifError ? 'redLight' : 'blackDarken'});
     border-radius: 5px;
     ::placeholder {
-        color: var(--grayDarker);
+        color: var(--${$ifError ? 'redLight' : $ifDark ? 'grayDarker' : 'blackLight'});
     }
     :focus {
         border-bottom-color: var(--${$ifError ? 'redLight' : $ifDark ? 'cyanLight' : 'cyanDark'});
