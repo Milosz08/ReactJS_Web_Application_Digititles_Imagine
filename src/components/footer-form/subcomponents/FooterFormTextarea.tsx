@@ -17,33 +17,48 @@
  */
 
 import * as React from 'react';
+import { useSelector } from 'react-redux';
+
+import useFooterFormChangeState from '../../../hooks/footer/useFooterFormChangeState';
+
+import { RootState } from '../../../redux/store';
+import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
+import { MessageFormInputs, MessageFormInputsPlaceholders } from '../../../redux/redux-api-thunk/types';
 
 import {
-    FooterFormCharactersCountAndRequiredInfo, FooterFormCharactersCountAndRequiredInfoSection, FooterFormTextareaElement
+    FooterFormCharactersCountAndRequiredInfo, FooterFormCharactersCountAndRequiredInfoSection, FooterFormLabelElement,
+    FooterFormTextareaElement
 } from '../FooterForm.styles';
 
 
 const FooterFormTextarea: React.FC = (): JSX.Element => {
 
-
+    const { messageForm, messageFormErrors }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const handleChangeSingleProperty = useFooterFormChangeState();
 
     return (
-        <>
+        <FooterFormLabelElement
+            htmlFor = {MessageFormInputs.MESSAGE}
+        >
             <FooterFormTextareaElement
-                placeholder = 'Your message *'
+                id = {MessageFormInputs.MESSAGE}
+                value = {messageForm.message}
+                onChange = {handleChangeSingleProperty}
                 rows = {4}
+                placeholder = {MessageFormInputsPlaceholders.message}
                 minLength = {MIN_AREA_LENGTH}
                 maxLength = {MAX_AREA_LENGTH}
+                $ifError = {messageFormErrors.message}
             />
             <FooterFormCharactersCountAndRequiredInfo>
                 <FooterFormCharactersCountAndRequiredInfoSection>
                     * Fields required
                 </FooterFormCharactersCountAndRequiredInfoSection>
                 <FooterFormCharactersCountAndRequiredInfoSection>
-                    {0} / {MAX_AREA_LENGTH}
+                    {messageForm.message.length} / {MAX_AREA_LENGTH}
                 </FooterFormCharactersCountAndRequiredInfoSection>
             </FooterFormCharactersCountAndRequiredInfo>
-        </>
+        </FooterFormLabelElement>
     );
 };
 
