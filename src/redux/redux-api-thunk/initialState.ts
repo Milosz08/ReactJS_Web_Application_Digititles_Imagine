@@ -16,43 +16,78 @@
  * COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
  */
 
-import { ProjectImagesTypes, ProjectTypes } from './elementTypes';
+import { MessagesFormTypes, ProjectImagesTypes, ProjectTypes, RegistrationFormTypes } from './elementTypes';
 import { FILMMAKER_MIN_SMALL } from '../../static/gettingStartedContent';
 
 export interface InitStateAPItypes {
     projects: ProjectTypes[];
     projectsPhotos: ProjectImagesTypes[];
+    registrationForms: RegistrationFormTypes[];
+    messageForms: MessagesFormTypes[];
     status: {
         loadingProjects: boolean;
         loadingImages: boolean;
         error: string;
     };
     registrationForm: {
-        userName: string;
-        userLastname: string;
-        userEmail: string;
-        userMessage: string;
+        username: string;
+        lastname: string;
+        email: string;
+        message: string;
         serviceType: string;
         filmmakerSize: string;
         filmmakerBudget: number;
+    };
+    registrationFormErrors: {
+        username: boolean;
+        lastname: boolean;
+        email: boolean;
+        message: boolean;
+    };
+    messageForm: MessagesFormTypes;
+    messageFormErrors: {
+        username: boolean;
+        lastname: boolean;
+        email: boolean;
+        message: boolean;
     };
 }
 
 export const InitStateAPI: InitStateAPItypes = {
     projects: [],
     projectsPhotos: [],
+    registrationForms: [],
+    messageForms: [],
     status: {
         loadingProjects: true,
         loadingImages: true,
         error: '',
     },
     registrationForm: {
-        userName: '',
-        userLastname: '',
-        userEmail: '',
-        userMessage: '',
+        username: '',
+        lastname: '',
+        email: '',
+        message: '',
         serviceType: '',
         filmmakerSize: '',
         filmmakerBudget: FILMMAKER_MIN_SMALL,
+    },
+    registrationFormErrors: {
+        username: false,
+        lastname: false,
+        email: false,
+        message: false,
+    },
+    messageForm: {
+        username: '',
+        lastname: '',
+        email: '',
+        message: '',
+    },
+    messageFormErrors: {
+        username: false,
+        lastname: false,
+        email: false,
+        message: false,
     },
 };

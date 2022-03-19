@@ -25,6 +25,9 @@ export enum ReduxAPIreducerTypes {
     SET_REQUEST_LOADING = 'SET_REQUEST_LOADING__T',
     SET_FIELD_IN_REGISTRATION_FORM = 'SET_FIELD_IN_REGISTRATION_FORM__T',
     CLEAR_ALL_REGISTRATION_FORM = 'CLEAR_ALL_REGISTRATION_FORM__T',
+    SET_FIELD_IN_MESSAGE_FORM = 'SET_FIELD_IN_MESSAGE_FORM__T',
+    CLEAR_ALL_MESSAGE_FORM = 'CLEAR_ALL_MESSAGE_FORM__T',
+    SET_ERROR_IN_FORM_FIELD = 'SET_ERROR_IN_FORM_FIELD__T',
 }
 
 export enum ReduxAPIstateKeys {
@@ -35,10 +38,10 @@ export enum ReduxAPIstateKeys {
 }
 
 export enum RegistrationFormInputs {
-    USERNAME = 'userName',
-    USER_LASTNAME = 'userLastname',
-    USER_EMAIL = 'userEmail',
-    USER_MESSAGE = 'userMessage',
+    USERNAME = 'username',
+    USER_LASTNAME = 'lastname',
+    USER_EMAIL = 'email',
+    USER_MESSAGE = 'message',
     SERVICE_TYPE = 'serviceType',
     FILMMAKER_SIZE = 'filmmakerSize',
     FILMMAKER_BUDGET = 'filmmakerBudget',
@@ -51,4 +54,28 @@ export enum RegistrationFormFields {
     SMALL = 'filmmaker_small',
     MEDIUM = 'filmmaker_medium',
     LARGE = 'filmmaker_large',
+}
+
+export enum MessageFormInputs {
+    USER_NAME = 'username',
+    LAST_NAME = 'lastname',
+    EMAIL = 'email',
+    MESSAGE = 'message',
+}
+
+export enum MessageFormInputsPlaceholders {
+    username = 'Your firstname *',
+    lastname = 'Your lastname',
+    email = 'Your email *',
+    message = 'Your message *',
+}
+
+export enum FieldAction {
+    NORMAL = 'NORMAL',
+    ERROR = 'ERROR',
+}
+
+export enum AllFormsTypes {
+    REGISTRATION = 'registrationForm',
+    MESSAGE = 'messageForm',
 }

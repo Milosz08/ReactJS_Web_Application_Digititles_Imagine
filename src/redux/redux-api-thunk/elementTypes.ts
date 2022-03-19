@@ -73,3 +73,24 @@ export interface ProjectImagesTypes {
         url: string;
     }[];
 }
+
+export interface RegistrationFormTypes {
+    id: string;
+    username: string;
+    lastname: string;
+    email: string;
+    message: string;
+    propertiesData: {
+        serviceType: string;
+        filmmakerSize: string;
+        filmmakerBudget: number;
+    }
+}
+
+export interface MessagesFormTypes {
+    id?: string;
+    username: string;
+    lastname: string;
+    email: string;
+    message: string;
+}

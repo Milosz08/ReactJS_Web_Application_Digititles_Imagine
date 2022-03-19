@@ -18,20 +18,29 @@
 
 import { axiosInstance, JavaApiEndpoints } from './request';
 
-import { ReduxAPIstateKeys } from './types';
+import { AllFormsTypes, ReduxAPIstateKeys } from './types';
 import { ReduxAPIActions } from './actions';
 
 
 export class ReduxAPIThunk {
 
     public static getAllElements(endpoint: JavaApiEndpoints, key: ReduxAPIstateKeys, loading: ReduxAPIstateKeys) {
-        return async (dispatch: (prop: any) => void) => {
-            dispatch(ReduxAPIActions.setRequestLoading(loading));
+        return async (dispatcher: (prop: any) => void) => {
+            dispatcher(ReduxAPIActions.setRequestLoading(loading));
             await axiosInstance.get(endpoint)
                 .then(response => response)
-                .then(data => dispatch(ReduxAPIActions.addAllArrayObjectsStoreElements(data.data, key, loading)),
-                    error => dispatch(ReduxAPIActions.setRequestError(error.message || 'Unexpected error!')),
+                .then(data => dispatcher(ReduxAPIActions.addAllArrayObjectsStoreElements(data.data, key, loading)),
+                    error => dispatcher(ReduxAPIActions.setRequestError(error.message || 'Unexpected error!')),
                 );
+        };
+    };
+
+    public static addPageFormToDatabase(
+        element: any, formType: AllFormsTypes, endpoint: JavaApiEndpoints, headers: any
+    ) {
+        return async (dispatcher: (prop: any) => void) => {
+            const { data } = await axiosInstance.post(endpoint, element, { headers });
+            dispatcher(ReduxAPIActions.addReduxStoreElement(data, formType + 's' as ReduxAPIstateKeys));
         };
     };
 

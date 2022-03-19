@@ -29,10 +29,9 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
     switch (Utils.normalised(action.type)) {
 
         case ReduxAPIreducerTypes.ADD_ELEMENT_FROM_DB: {
-            const { elementToSend, elementType, loadingElement } = action.payload;
+            const { elementToSend, elementType } = action.payload;
             return {
-                ...state, status: { ...state.status, [loadingElement]: false },
-                [elementType]: [ ...state[elementType], elementToSend ]
+                ...state, [elementType]: [ ...state[elementType], elementToSend ]
             };
         }
 
@@ -79,9 +78,23 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
 
         case ReduxAPIreducerTypes.CLEAR_ALL_REGISTRATION_FORM: {
             return { ...state, registrationForm: {
-               userName: '', userEmail: '', userLastname: '', userMessage: '',
+               username: '', email: '', lastname: '', message: '',
                serviceType: '', filmmakerBudget: FILMMAKER_MIN_SMALL, filmmakerSize: ''
             }};
+        }
+
+        case ReduxAPIreducerTypes.SET_FIELD_IN_MESSAGE_FORM: {
+            const { type, value } = action.payload;
+            return { ...state, messageForm: { ...state.messageForm, [type]: value } };
+        }
+
+        case ReduxAPIreducerTypes.CLEAR_ALL_MESSAGE_FORM: {
+            return { ...state, messageForm: { username: '', lastname: '', email: '', message: '' } };
+        }
+
+        case ReduxAPIreducerTypes.SET_ERROR_IN_FORM_FIELD: {
+            const { formType, fieldKey, value } = action.payload;
+            return { ...state, [formType + 'Errors']: { ...state[formType + 'Errors'], [fieldKey]: Boolean(value) } };
         }
 
         default: {
