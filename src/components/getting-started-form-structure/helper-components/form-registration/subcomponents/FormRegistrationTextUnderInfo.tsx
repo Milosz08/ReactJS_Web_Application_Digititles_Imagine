@@ -36,7 +36,7 @@ const FormRegistrationTextUnderInfo: React.FC = (): JSX.Element => {
                 * Fields required
             </FormRegistrationDownInfoElement>
             <FormRegistrationDownInfoElement>
-                {registrationForm.userMessage.length} / {TEXTAREA_MAX_SIGNS} signs
+                {registrationForm.message.length} / {TEXTAREA_MAX_SIGNS} signs
             </FormRegistrationDownInfoElement>
         </FormRegistrationDownInfoContainer>
     );

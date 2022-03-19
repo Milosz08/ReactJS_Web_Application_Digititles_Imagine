@@ -21,21 +21,22 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '../../../../../redux/store';
 import { ReduxAPIActions } from '../../../../../redux/redux-api-thunk/actions';
-import { RegistrationFormInputs } from '../../../../../redux/redux-api-thunk/types';
 import { InitStateAPItypes } from '../../../../../redux/redux-api-thunk/initialState';
+import { AllFormsTypes, MessageFormInputs, RegistrationFormInputs } from '../../../../../redux/redux-api-thunk/types';
 
 import { FormRegistrationHalfLengthLabelElement, FormRegistrationInputElement } from '../FormRegistration.styles';
 
 
 const FormRegistrationInputs: React.FC = (): JSX.Element => {
 
-    const { registrationForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { registrationForm, registrationFormErrors }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
     const dispatcher = useDispatch();
 
     const { USERNAME, USER_LASTNAME } = RegistrationFormInputs;
-    const { userName, userLastname } = registrationForm;
+    const { username, lastname } = registrationForm;
 
     const handleOnChangeInput = ({ target }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+        dispatcher(ReduxAPIActions.setErrorInFormField(AllFormsTypes.REGISTRATION, target.id as MessageFormInputs, false));
         dispatcher(ReduxAPIActions.setFieldInRegistrationForm(target.id as RegistrationFormInputs, target.value));
     };
 
@@ -46,19 +47,21 @@ const FormRegistrationInputs: React.FC = (): JSX.Element => {
             >
                 <FormRegistrationInputElement
                     placeholder = 'Your name *'
-                    value = {userName}
+                    value = {username}
                     id = {USERNAME}
                     onChange = {handleOnChangeInput}
+                    $ifError = {registrationFormErrors.username}
                 />
             </FormRegistrationHalfLengthLabelElement>
             <FormRegistrationHalfLengthLabelElement
                 htmlFor = {USER_LASTNAME}
             >
                 <FormRegistrationInputElement
-                    placeholder = 'Your last name *'
-                    value = {userLastname}
+                    placeholder = 'Your last name'
+                    value = {lastname}
                     id = {USER_LASTNAME}
                     onChange = {handleOnChangeInput}
+                    $ifError = {registrationFormErrors.lastname}
                 />
             </FormRegistrationHalfLengthLabelElement>
         </>
