@@ -49,7 +49,7 @@ const useCookiesNotificationSetDynamicHeight = (): [ React.MutableRefObject<any>
     useLayoutEffect(() => {
         if (notifRef && browserX > 1030) {
             gsap.to(notifRef.current, {
-                y: !Boolean(cookie![AllCookies.COOKIE_POPUP]) ? 0 : -notifRef.current!.clientHeight - 2
+                y: !Boolean(cookie![AllCookies.COOKIE_POPUP]) ? 0 : -notifRef.current!.clientHeight - 2, duration: 0
             });
             dispatcher(ReduxDOMActions.changeFirstLevelElement(
                 ReduxDOMstateKeys.COOKIES_NOTIF_CONTAINER_HEIGHT, !Boolean(cookie![AllCookies.COOKIE_POPUP]) ? notifRef.current!.offsetHeight : 0
