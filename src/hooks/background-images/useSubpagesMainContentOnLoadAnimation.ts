@@ -31,9 +31,11 @@ import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
 /**
  * Custom hook responsible for initialised title and description animations is SubpagesMainContent component.
  *
+ * @param ignoreAsyncData { boolean? } - flag decided to ignore waiting for fetch data.
+ * @param fromBottom { number? } - pixels from bottom to start animation state (optional, by default 80).
  * @return { React.MutableRefObject<any>[] } - all referential objects in array.
  */
-const useSubpagesMainContentOnLoadAnimation = (ignoreAsyncData?: boolean): React.MutableRefObject<any>[] => {
+const useSubpagesMainContentOnLoadAnimation = (ignoreAsyncData?: boolean, fromBottom = 80): React.MutableRefObject<any>[] => {
 
     const { browserX }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
@@ -46,7 +48,7 @@ const useSubpagesMainContentOnLoadAnimation = (ignoreAsyncData?: boolean): React
     useLayoutEffect(() => {
         if (!status.loadingProjects || ignoreAsyncData) {
             const [ title, description ] = getCurrents();
-            master.to(title, { y: -80, autoAlpha: 1 });
+            master.to(title, { y: -fromBottom, autoAlpha: 1 });
             master.to(description, { [desktop ? 'x' : 'y']: 0, autoAlpha: 1 }, desktop ? '>' : .1);
         }
     }, [ desktop, elRefs, getCurrents, ignoreAsyncData, master, status.loadingProjects ]);
