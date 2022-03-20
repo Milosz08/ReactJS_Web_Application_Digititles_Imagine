@@ -17,14 +17,19 @@
  */
 
 import * as React from 'react';
+import { useSelector } from 'react-redux';
 import { useRoutes } from 'react-router-dom';
 
 import { appRouting } from '../static/appRouting';
 
+import { RootState } from '../redux/store';
+import { InitStateAPItypes } from '../redux/redux-api-thunk/initialState';
+
 
 const AppRoutes: React.FC = (): JSX.Element => {
 
-    const routing = useRoutes(appRouting(false));
+    const { sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const routing = useRoutes(appRouting(sessionInfo.ifLogged));
 
     return (
         <>

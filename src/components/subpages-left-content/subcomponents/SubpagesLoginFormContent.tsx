@@ -18,21 +18,22 @@
 
 import * as React from 'react';
 
-import { AnimationDirections } from '../../../redux/redux-dom-manipulate/types';
-import useShowOnLoadGsapAnimation from '../../../hooks/reusable/useShowOnLoadGsapAnimation';
+import useSubpagesMainContentOnLoadAnimation from '../../../hooks/background-images/useSubpagesMainContentOnLoadAnimation';
 
 import { SubpagesMainContentFormContainer } from '../SubpagesLeftContent.styles';
+
+import CmsLoginForm from '../../cms-login-form/CmsLoginForm';
 
 
 const SubpagesLoginFormContent: React.FC = (): JSX.Element => {
 
-    const [ formRef ] = useShowOnLoadGsapAnimation({ posPx: 30, moveFrom: AnimationDirections.BOTTOM, initDelay: 1 });
+    const [ containerRef ] = useSubpagesMainContentOnLoadAnimation(true, 30);
 
     return (
         <SubpagesMainContentFormContainer
-            ref = {formRef}
+            ref = {containerRef}
         >
-            subpage login form
+            <CmsLoginForm/>
         </SubpagesMainContentFormContainer>
     );
 };
