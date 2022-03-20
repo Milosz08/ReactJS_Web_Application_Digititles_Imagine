@@ -16,32 +16,11 @@
  * COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
  */
 
-import styled, { css } from 'styled-components';
-
+import styled from 'styled-components';
+import { InputWithTextarea } from '../../../../styles/mixins.styles';
 import { input_rs, textarea_rs } from '../../../../styles/reset.styles';
-import { HideAllAnimation } from '../../GettingStartedFormStructure.styles';
 
-const InputWithTextarea = ({ $ifError }: { $ifError: boolean }) => css`
-    width: 100%;
-    font-size: 1.3rem;
-    text-align: center;
-    background-color: var(--whiteDark);
-    color: var(--${$ifError ? 'redLight' : 'blackLight'});
-    padding: 15px;
-    border-bottom: 4px solid ${$ifError ? 'var(--redLight)' : 'transparent'};
-    border-radius: 8px;
-    box-sizing: border-box;
-    transition: .2s border-bottom-color ease-in-out;
-    ::placeholder {
-        color: var(--${$ifError ? 'redLight' : 'grayDarker'});
-    }
-    :focus {
-        border-bottom: 4px solid var(--${$ifError ? 'redLight' : 'cyanDark'});
-    }
-    @media only screen and (max-width: 776px) {
-        font-size: 1.1rem;
-    }
-`;
+import { HideAllAnimation } from '../../GettingStartedFormStructure.styles';
 
 export const FormRegistrationMainContainer = styled.div`
     display: flex;
