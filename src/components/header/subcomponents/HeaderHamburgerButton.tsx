@@ -17,13 +17,17 @@
  */
 
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 
 import { ThemeProvider } from 'styled-components';
 
+import { RoutingPaths } from '../../../static/appRouting';
 import useClickHamburgerButton from '../../../hooks/header-with-menu/useClickHamburgerButton';
 
 import { RootState } from '../../../redux/store';
+import { ReduxAPIActions } from '../../../redux/redux-api-thunk/actions';
+import { CmsCredentialsLevels } from '../../../redux/redux-api-thunk/types';
 import { InitStateDOMtypes } from '../../../redux/redux-dom-manipulate/initialState';
 
 import { HeaderNavRightHamburgerElement, HeaderNavRightMenuElement, HeaderNavRightMenuLabel } from '../Header.styles';
@@ -32,16 +36,26 @@ import { HeaderNavRightHamburgerElement, HeaderNavRightMenuElement, HeaderNavRig
 const HeaderHamburgerButton: React.FC = (): JSX.Element => {
 
     const { ifMenuOpen, hamActive, headerLight }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
+    const { pathname } = useLocation();
+    const dispatcher = useDispatch();
+
     const [ ifAbsolute, handleHamburger ] = useClickHamburgerButton(ifMenuOpen);
+
+    const handleLoggedOut = (): void => {
+        if (pathname.includes(RoutingPaths.ADMIN_PANEL)) {
+            dispatcher(ReduxAPIActions.changeSessionInfo(false, CmsCredentialsLevels.UNDEFINED, ''));
+        }
+    };
 
     return (
         <ThemeProvider theme = {{ $ifHamActive: hamActive, $ifMenuOpen: ifMenuOpen || headerLight }}>
             <HeaderNavRightMenuElement
                 onClick = {handleHamburger}
-                title = {ifAbsolute ? `Click to ${ifMenuOpen ? 'close' : 'open'} menu` : 'Go to main page'}
             >
-                <HeaderNavRightMenuLabel>
-                    {ifAbsolute ? 'menu' : 'return'}
+                <HeaderNavRightMenuLabel
+                    onClick = {handleLoggedOut}
+                >
+                    {ifAbsolute ? 'menu' : pathname.includes(RoutingPaths.ADMIN_PANEL) ? 'log out' : 'return'}
                 </HeaderNavRightMenuLabel>
                 <HeaderNavRightHamburgerElement/>
             </HeaderNavRightMenuElement>
