@@ -97,6 +97,11 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
             return { ...state, [formType + 'Errors']: { ...state[formType + 'Errors'], [fieldKey]: Boolean(value) } };
         }
 
+        case ReduxAPIreducerTypes.SET_CMS_CREDENTIALS_FIELDS: {
+            const { ifLogged, role, bearerToken } = action.payload;
+            return { ...state, sessionInfo: { ifLogged, role, bearerToken } };
+        }
+
         default: {
             return state;
         }

@@ -17,6 +17,8 @@
  */
 
 import { MessagesFormTypes, ProjectImagesTypes, ProjectTypes, RegistrationFormTypes } from './elementTypes';
+
+import { CmsCredentialsLevels } from './types';
 import { FILMMAKER_MIN_SMALL } from '../../static/gettingStartedContent';
 
 export interface InitStateAPItypes {
@@ -50,6 +52,11 @@ export interface InitStateAPItypes {
         lastname: boolean;
         email: boolean;
         message: boolean;
+    };
+    sessionInfo: {
+        ifLogged: boolean;
+        role: CmsCredentialsLevels;
+        bearerToken: string;
     };
 }
 
@@ -89,5 +96,10 @@ export const InitStateAPI: InitStateAPItypes = {
         lastname: false,
         email: false,
         message: false,
+    },
+    sessionInfo: {
+        ifLogged: false,
+        role: CmsCredentialsLevels.UNDEFINED,
+        bearerToken: '',
     },
 };

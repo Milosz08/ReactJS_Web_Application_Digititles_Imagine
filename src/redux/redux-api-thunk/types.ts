@@ -28,6 +28,7 @@ export enum ReduxAPIreducerTypes {
     SET_FIELD_IN_MESSAGE_FORM = 'SET_FIELD_IN_MESSAGE_FORM__T',
     CLEAR_ALL_MESSAGE_FORM = 'CLEAR_ALL_MESSAGE_FORM__T',
     SET_ERROR_IN_FORM_FIELD = 'SET_ERROR_IN_FORM_FIELD__T',
+    SET_CMS_CREDENTIALS_FIELDS = 'SET_CMS_CREDENTIALS_FIELDS',
 }
 
 export enum ReduxAPIstateKeys {
@@ -78,4 +79,10 @@ export enum FieldAction {
 export enum AllFormsTypes {
     REGISTRATION = 'registrationForm',
     MESSAGE = 'messageForm',
+}
+
+export enum CmsCredentialsLevels {
+    UNDEFINED = 'UNDEFINED',
+    ADMINISTRATOR = 'ADMINISTRATOR',
+    MODERATOR = 'MODERATOR',
 }

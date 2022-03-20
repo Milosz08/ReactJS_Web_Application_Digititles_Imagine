@@ -19,7 +19,7 @@
 import { AxiosResponse } from 'axios';
 
 import {
-    AllFormsTypes, MessageFormInputs, ReduxAPIreducerTypes, ReduxAPIstateKeys, RegistrationFormInputs
+    AllFormsTypes, CmsCredentialsLevels, MessageFormInputs, ReduxAPIreducerTypes, ReduxAPIstateKeys, RegistrationFormInputs
 } from './types';
 
 interface ReturnedToReducer {
@@ -105,6 +105,15 @@ export class ReduxAPIActions {
         type: ReduxAPIreducerTypes.SET_ERROR_IN_FORM_FIELD,
         payload: {
             formType, fieldKey, value,
+        }
+    });
+
+    public static changeSessionInfo = (
+        ifLogged: boolean, role: CmsCredentialsLevels, bearerToken: string
+    ): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.SET_CMS_CREDENTIALS_FIELDS,
+        payload: {
+            ifLogged, role, bearerToken,
         }
     });
 
