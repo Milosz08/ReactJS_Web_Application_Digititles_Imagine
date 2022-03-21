@@ -17,10 +17,11 @@
  */
 
 import * as React from 'react';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 import { AllModals } from '../../redux/redux-dom-manipulate/types';
 
-import { ModalHeader, ModalParagraph, ModalWarningIcon } from '../../styles/modals.styles';
+import { ModalHeader, ModalParagraph, ModalWarningIconContainer } from '../../styles/modals.styles';
 
 import ModalStructureHOC from '../../high-order-components/ModalStructureHOC';
 import LogoutWarningModalButtons from './subcomponents/LogoutWarningModalButtons';
@@ -30,7 +31,9 @@ const LogoutWarningModal: React.FC = (): JSX.Element => (
     <ModalStructureHOC
         selectedModal = {AllModals.WARNINNG_LOGOUT}
     >
-        <ModalWarningIcon/>
+        <ModalWarningIconContainer>
+            <AiOutlineInfoCircle/>
+        </ModalWarningIconContainer>
         <ModalHeader>
             Attempt to log out of the system
         </ModalHeader>
