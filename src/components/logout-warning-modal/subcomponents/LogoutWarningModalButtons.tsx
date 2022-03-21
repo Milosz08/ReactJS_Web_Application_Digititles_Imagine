@@ -42,7 +42,7 @@ const LogoutWarningModalButtons: React.FC = (): JSX.Element => {
             removeCookie!(AllCookies.CMS_SESSION);
             dispatcher(ReduxAPIActions.changeSessionInfo(false, CmsCredentialsLevels.UNDEFINED, ''));
         }
-        dispatcher(ReduxDOMActions.changeModalVisibility(AllModals.WARNINNG_LOGOUT, false));
+        dispatcher(ReduxDOMActions.changeModalVisibility(AllModals.WARNINNG_LOGOUT));
     };
 
     return (
