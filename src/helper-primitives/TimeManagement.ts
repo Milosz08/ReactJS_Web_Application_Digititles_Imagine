@@ -16,11 +16,29 @@
  * COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
  */
 
+import { MAX_INACTIVITY_TIME } from '../components/cms-session-sequencer/CmsSessionSequencer.config';
+
 class TimeManagement {
 
     public static generateCopyDate(): string {
         const date = new Date().getFullYear();
         return date === 2020 ? String(date) : `${2020}-${date}`;
+    };
+
+    public static countFromUpToDown(counter: number): string {
+        const fullSeconds = MAX_INACTIVITY_TIME * 60;
+        const expireTime = fullSeconds - counter;
+
+        const onlyMinutes = Math.floor(expireTime / 60);
+        const onlyMinutesWithZero = onlyMinutes < 10 ? `0${onlyMinutes}` : onlyMinutes;
+
+        const onlySeconds = expireTime - onlyMinutes * 60;
+        const onlySecondsWithZero = onlySeconds < 10 ? `0${onlySeconds}` : onlySeconds;
+
+        if (onlyMinutes >= 0) {
+            return `${onlyMinutesWithZero < 0 ? '00' : onlyMinutesWithZero}:${onlySecondsWithZero}`;
+        }
+        return '00:00';
     };
 
 }
