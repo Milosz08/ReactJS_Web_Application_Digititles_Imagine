@@ -21,9 +21,7 @@ import * as React from 'react';
 import { AllModals } from '../redux/redux-dom-manipulate/types';
 import useModalChangeVisibility from '../hooks/modals/useModalChangeVisibility';
 
-import {
-    LogoutWarningModalContainer, LogoutWarningModalWrapper
-} from '../components/logout-warning-modal/LogoutWarningModal.styles';
+import { ModalContainer, ModalWrapper } from '../styles/modals.styles';
 
 
 interface PropsProvider {
@@ -43,15 +41,15 @@ const ModalStructureHOC: React.FC<PropsProvider> = ({ selectedModal, children })
     const [ backgroundRef, contentRef ] = useModalChangeVisibility(selectedModal);
 
     return (
-        <LogoutWarningModalContainer
+        <ModalContainer
             ref = {backgroundRef}
         >
-            <LogoutWarningModalWrapper
+            <ModalWrapper
                 ref = {contentRef}
             >
                 {children}
-            </LogoutWarningModalWrapper>
-        </LogoutWarningModalContainer>
+            </ModalWrapper>
+        </ModalContainer>
     );
 };
 
