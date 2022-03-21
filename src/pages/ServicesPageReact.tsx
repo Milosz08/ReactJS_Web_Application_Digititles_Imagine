@@ -20,13 +20,14 @@ import * as React from 'react';
 
 import { NextElementProps } from '../static/nextElementProps';
 import { SubpagesContentKeys } from '../static/subpagesMainContent';
+
 import useInsertRefOnLoad from '../hooks/reusable/useInsertRefOnLoad';
+import useInsertHeightElement from '../hooks/reusable/useInsertHeightElement';
 
 import NavigationBottomBar from '../components/navigation-bottom-bar/NavigationBottomBar';
 import ServicesInitialFluidContent from '../components/services-initial-fluid-content/ServicesInitialFluidContent';
 import NextElementSection from '../components/next-element-section/NextElementSection';
 import Footer from '../components/footer/Footer';
-import useInsertHeightElement from '../hooks/reusable/useInsertHeightElement';
 
 
 const ServicesPageReact: React.FC = (): JSX.Element => {

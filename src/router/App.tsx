@@ -40,9 +40,9 @@ const App: React.FC = (): JSX.Element => (
     <Provider store = {store}>
         <AllCookiesProvider>
             <FontfacesStylesInjection/>
-            <LoadAllAPIData/>
             <CookiesNotification/>
             <BrowserRouter>
+                <LoadAllAPIData/>
                 <InvokeOnMount/>
                 <ScrollAndSuspenseBars/>
                 <ForceScrollToTopHOC>

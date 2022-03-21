@@ -19,11 +19,15 @@
 import * as React from 'react';
 import { Outlet } from 'react-router';
 
+import Footer from '../components/footer/Footer';
+
+
 const CmsMainPageReact: React.FC = (): JSX.Element => {
     return (
         <>
             cms main panel
             <Outlet/>
+            <Footer/>
         </>
     );
 };

@@ -36,7 +36,7 @@ const useDisableScroll = (): [ () => void, () => void ] => {
 
     const blockScroll = () => {
         if (!body || !body.style || scrollBlocked.current) {
-            return
+            return;
         }
         const scrollBarWidth = window.innerWidth - html.clientWidth;
         const bodyPaddingRight = parseInt(window.getComputedStyle(body).getPropertyValue('padding-right')) || 0;
@@ -45,8 +45,8 @@ const useDisableScroll = (): [ () => void, () => void ] => {
         body.style.position = 'relative';
         body.style.overflow = 'hidden';
         body.style.paddingRight = `${bodyPaddingRight + scrollBarWidth}px`;
-        body.addEventListener('touchstart', function(e){ e.preventDefault(); }, { passive: false });
-        body.addEventListener('touchmove', function(e){ e.preventDefault(); }, { passive: false });
+        body.addEventListener('touchstart', e => e.preventDefault(), { passive: false });
+        body.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
         scrollBlocked.current = true;
         dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.SCROLL_DISABLED_PX, scrollBarWidth));
     };
