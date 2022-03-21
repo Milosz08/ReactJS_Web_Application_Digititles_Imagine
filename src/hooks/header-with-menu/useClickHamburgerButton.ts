@@ -27,7 +27,7 @@ import useDidMount from '../reusable/useDidMount';
 import useDisableScroll from '../reusable/useDisableScroll';
 
 import { ReduxDOMActions } from '../../redux/redux-dom-manipulate/actions';
-import { ReduxDOMstateKeys } from '../../redux/redux-dom-manipulate/types';
+import { AllModals, ReduxDOMstateKeys } from '../../redux/redux-dom-manipulate/types';
 
 /**
  * Custom hook responsible for handling hamburger button click event. If page is main (absolute address),
@@ -50,6 +50,8 @@ const useClickHamburgerButton = (ifMenuOpen: boolean): [ boolean, (e: React.Chan
         if (pathname === RoutingPaths.START) {
             ifMenuOpen ? blockScroll() : allowScroll();
             dispatcher(ReduxDOMActions.openCloseMainMenu());
+        } else if (pathname.includes(RoutingPaths.ADMIN_PANEL)) {
+            dispatcher(ReduxDOMActions.changeModalVisibility(AllModals.WARNINNG_LOGOUT, true));
         } else {
             navigate({ pathname: RoutingPaths.START });
             dispatcher(ReduxDOMActions.changeFirstLevelElement(ReduxDOMstateKeys.STILL_IMAGE, false));

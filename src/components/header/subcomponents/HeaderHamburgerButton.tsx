@@ -17,8 +17,7 @@
  */
 
 import * as React from 'react';
-import { useContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import { ThemeProvider } from 'styled-components';
@@ -26,12 +25,7 @@ import { ThemeProvider } from 'styled-components';
 import { RoutingPaths } from '../../../static/appRouting';
 import useClickHamburgerButton from '../../../hooks/header-with-menu/useClickHamburgerButton';
 
-import { AllCookies } from '../../../context/cookies-context/allCookiesConfig';
-import { AllCookiesContext, AllCookiesTypes } from '../../../context/cookies-context/AllCookiesProvider';
-
 import { RootState } from '../../../redux/store';
-import { ReduxAPIActions } from '../../../redux/redux-api-thunk/actions';
-import { CmsCredentialsLevels } from '../../../redux/redux-api-thunk/types';
 import { InitStateDOMtypes } from '../../../redux/redux-dom-manipulate/initialState';
 
 import { HeaderNavRightHamburgerElement, HeaderNavRightMenuElement, HeaderNavRightMenuLabel } from '../Header.styles';
@@ -40,29 +34,16 @@ import { HeaderNavRightHamburgerElement, HeaderNavRightMenuElement, HeaderNavRig
 const HeaderHamburgerButton: React.FC = (): JSX.Element => {
 
     const { ifMenuOpen, hamActive, headerLight }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
-    const { removeCookie } = useContext<Partial<AllCookiesTypes>>(AllCookiesContext);
-
     const { pathname } = useLocation();
-    const dispatcher = useDispatch();
 
     const [ ifAbsolute, handleHamburger ] = useClickHamburgerButton(ifMenuOpen);
-
-    const handleLoggedOut = (): void => {
-        if (pathname.includes(RoutingPaths.ADMIN_PANEL)) {
-            removeCookie!(AllCookies.BEARER_TOKEN);
-            removeCookie!(AllCookies.CMS_SESSION);
-            dispatcher(ReduxAPIActions.changeSessionInfo(false, CmsCredentialsLevels.UNDEFINED, ''));
-        }
-    };
 
     return (
         <ThemeProvider theme = {{ $ifHamActive: hamActive, $ifMenuOpen: ifMenuOpen || headerLight }}>
             <HeaderNavRightMenuElement
                 onClick = {handleHamburger}
             >
-                <HeaderNavRightMenuLabel
-                    onClick = {handleLoggedOut}
-                >
+                <HeaderNavRightMenuLabel>
                     {ifAbsolute ? 'menu' : pathname.includes(RoutingPaths.ADMIN_PANEL) ? 'log out' : 'return'}
                 </HeaderNavRightMenuLabel>
                 <HeaderNavRightHamburgerElement/>
