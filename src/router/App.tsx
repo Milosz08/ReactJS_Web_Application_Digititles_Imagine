@@ -31,6 +31,7 @@ import LoadAllAPIData from './LoadAllAPIData';
 import CookiesNotification from '../components/cookies-notification/CookiesNotification';
 import ScrollAndSuspenseBars from '../components/scroll-and-suspense-bars/ScrollAndSuspenseBars';
 import ForceScrollToTopHOC from '../high-order-components/ForceScrollToTopHOC';
+import Modals from './Modals';
 import MainMenu from '../components/main-menu/MainMenu';
 import Header from '../components/header/Header';
 import AppRoutes from './AppRoutes';
@@ -46,6 +47,7 @@ const App: React.FC = (): JSX.Element => (
                 <InvokeOnMount/>
                 <ScrollAndSuspenseBars/>
                 <ForceScrollToTopHOC>
+                    <Modals/>
                     <MainMenu/>
                     <Header/>
                     <AppRoutes/>
