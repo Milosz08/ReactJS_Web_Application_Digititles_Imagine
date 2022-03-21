@@ -19,7 +19,12 @@
 import { AxiosResponse } from 'axios';
 
 import {
-    AllFormsTypes, CmsCredentialsLevels, MessageFormInputs, ReduxAPIreducerTypes, ReduxAPIstateKeys, RegistrationFormInputs
+    AllFormsTypes,
+    CmsCredentialsLevels,
+    MessageFormInputs,
+    ReduxAPIreducerTypes,
+    ReduxAPIstateKeys,
+    RegistrationFormInputs
 } from './types';
 
 interface ReturnedToReducer {
@@ -114,6 +119,13 @@ export class ReduxAPIActions {
         type: ReduxAPIreducerTypes.SET_CMS_CREDENTIALS_FIELDS,
         payload: {
             ifLogged, role, bearerToken,
+        }
+    });
+
+    public static setSessionCounter = (counter: number): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.SET_SESSION_COUNTER,
+        payload: {
+            counter,
         }
     });
 

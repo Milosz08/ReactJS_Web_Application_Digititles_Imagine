@@ -57,6 +57,7 @@ export interface InitStateAPItypes {
         ifLogged: boolean;
         role: CmsCredentialsLevels;
         bearerToken: string;
+        estimateSessionTime: number;
     };
 }
 
@@ -101,5 +102,6 @@ export const InitStateAPI: InitStateAPItypes = {
         ifLogged: false,
         role: CmsCredentialsLevels.UNDEFINED,
         bearerToken: '',
+        estimateSessionTime: 0,
     },
 };
