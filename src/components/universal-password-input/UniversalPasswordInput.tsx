@@ -17,7 +17,7 @@
  */
 
 import * as React from 'react';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
