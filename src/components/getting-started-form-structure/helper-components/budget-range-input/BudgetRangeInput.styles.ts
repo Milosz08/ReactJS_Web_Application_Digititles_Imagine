@@ -16,10 +16,20 @@
  * COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
  */
 
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { input_rs } from '../../../../styles/reset.styles';
 import { HideAllAnimation } from '../../GettingStartedFormStructure.styles';
+
+const BrowsersRangeThumb = () => css`
+    appearance: none;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    background-color: var(--cyanDark);
+    cursor: pointer;
+`;
 
 export const GettingStartedBudgetRangeLabel = styled.label`
     margin: 50px 0 100px;
@@ -38,14 +48,11 @@ export const GettingStartedBudgetRangeInput = styled(input_rs)`
     border-radius: 10px;
     background-color: var(--grayLight);
     outline: none;
-    ::-webkit-slider-thumb, ::-moz-range-thumb {
-        appearance: none;
-        border: none;
-        border-radius: 50%;
-        width: 25px;
-        height: 25px;
-        background: var(--cyanDark);
-        cursor: pointer;
+    ::-webkit-slider-thumb {
+        ${BrowsersRangeThumb()};
+    }
+    ::-moz-range-thumb {
+        ${BrowsersRangeThumb()};
     }
 `;
 
