@@ -17,7 +17,6 @@
  */
 
 import styled from 'styled-components';
-import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 import { button_rs } from './reset.styles';
 import { StandardButton } from './mixins.styles';
@@ -51,19 +50,25 @@ export const ModalWrapper = styled.div`
     transform: translateY(-30px);
 `;
 
-export const ModalWarningIcon = styled(AiOutlineInfoCircle)`
+export const ModalWarningIconContainer = styled.div`
     font-size: 5rem;
     color: var(--redDark);
-    margin-bottom: 20px;
 `;
 
 export const ModalHeader = styled.h3`
-    font-size: 2rem;
+    font-size: 1.9rem;
     line-height: 1.1;
     text-align: center;
     color: var(--blackLight);
+    max-width: 510px;
+    width: 100%;
+    margin: 10px 0;
     ::after {
         content: '!';
+        color: var(--cyanLight);
+    }
+    strong {
+        font-weight: inherit;
         color: var(--cyanLight);
     }
 `;
@@ -71,7 +76,7 @@ export const ModalHeader = styled.h3`
 export const ModalParagraph = styled.p`
     color: var(--grayDarker);
     font-size: 1.2rem;
-    margin: 20px 0;
+    margin: 10px 0;
     max-width: 700px;
     width: 100%;
     line-height: 1.1;
