@@ -26,9 +26,10 @@ import FontfacesStylesInjection from '../styles/fontfaces.styles';
 
 import AllCookiesProvider from '../context/cookies-context/AllCookiesProvider';
 
-import InvokeOnMount from './InvokeOnMount';
-import LoadAllAPIData from './LoadAllAPIData';
 import CookiesNotification from '../components/cookies-notification/CookiesNotification';
+import CmsSessionSequencer from '../components/cms-session-sequencer/CmsSessionSequencer';
+import LoadAllAPIData from './LoadAllAPIData';
+import InvokeOnMount from './InvokeOnMount';
 import ScrollAndSuspenseBars from '../components/scroll-and-suspense-bars/ScrollAndSuspenseBars';
 import ForceScrollToTopHOC from '../high-order-components/ForceScrollToTopHOC';
 import Modals from './Modals';
@@ -42,6 +43,7 @@ const App: React.FC = (): JSX.Element => (
         <AllCookiesProvider>
             <FontfacesStylesInjection/>
             <CookiesNotification/>
+            <CmsSessionSequencer/>
             <BrowserRouter>
                 <LoadAllAPIData/>
                 <InvokeOnMount/>
