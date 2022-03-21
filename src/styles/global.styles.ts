@@ -69,14 +69,15 @@ const GlobalStylesInjection = createGlobalStyle<GlobalStylesProvider>`
         --cyanDark: #2c5662;
         --cyanLight: #648e99;
         --redLight: #de4545;
+        --redDark: #9d0909;
         
         --headerFontSize: 4rem;
         --biggerHeaderFontSize: 5rem;
         --paragraphFontSize: 1.4rem;
         --scrollBarColor: #f0f0f0;
-        
         --basicBoxShadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         --blockBoxShadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        --modalBackground: rgba(0, 0, 0, .5);
         
         @media only screen and (min-width: 1921px) {
             --headerFontSize: 4rem;
@@ -88,7 +89,7 @@ const GlobalStylesInjection = createGlobalStyle<GlobalStylesProvider>`
             --headerFontSize: 3.5rem;
             --paragraphFontSize: 1.2rem;
         }
-
+        
         @keyframes scrollLine {
             0% {
                 transform: scale(1, 0);
