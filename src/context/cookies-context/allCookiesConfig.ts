@@ -19,4 +19,5 @@
 export enum AllCookies {
     COOKIE_POPUP = '__cookieNotification',
     CMS_SESSION = '__cookieCmsSession',
+    BEARER_TOKEN = '__bearerToken',
 }

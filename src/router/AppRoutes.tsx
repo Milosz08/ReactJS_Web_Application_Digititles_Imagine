@@ -17,20 +17,34 @@
  */
 
 import * as React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRoutes } from 'react-router-dom';
 
 import { appRouting } from '../static/appRouting';
 
 import { RootState } from '../redux/store';
 import { InitStateAPItypes } from '../redux/redux-api-thunk/initialState';
+import { useContext, useEffect } from 'react';
+import { AllCookiesContext, AllCookiesTypes } from '../context/cookies-context/AllCookiesProvider';
+import { AllCookies } from '../context/cookies-context/allCookiesConfig';
+import { ReduxAPIActions } from '../redux/redux-api-thunk/actions';
 
 
 const AppRoutes: React.FC = (): JSX.Element => {
 
     const { sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { cookie } = useContext<Partial<AllCookiesTypes>>(AllCookiesContext);
+    
     const routing = useRoutes(appRouting(sessionInfo.ifLogged));
+    const dispatcher = useDispatch();
 
+    useEffect(() => {
+        const { CMS_SESSION, BEARER_TOKEN } = AllCookies;
+        if (Boolean(cookie![CMS_SESSION]) && Boolean(cookie![BEARER_TOKEN])) {
+            dispatcher(ReduxAPIActions.changeSessionInfo(true, cookie![CMS_SESSION], cookie![BEARER_TOKEN]))
+        }
+    }, [ cookie, dispatcher ]);
+    
     return (
         <>
             {routing}
