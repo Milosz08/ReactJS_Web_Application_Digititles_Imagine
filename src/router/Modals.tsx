@@ -2,7 +2,7 @@
  * Copyright (c) 2022 by MILOSZ GILGA <https://miloszgilga.pl>
  *
  * File name: Modals.tsx
- * Last modified: 21/03/2022, 12:37
+ * Last modified: 21/03/2022, 12:45
  * Project name: digititles-imagine
  *
  * Licensed under the MIT license; you may not use this file except in compliance with the License.
@@ -19,10 +19,14 @@
 import * as React from 'react';
 
 import LogoutWarningModal from '../components/logout-warning-modal/LogoutWarningModal';
+import SessionEndWarningModal from '../components/session-end-warning-modal/SessionEndWarningModal';
 
 
 const Modals: React.FC = (): JSX.Element => (
-    <LogoutWarningModal/>
+    <>
+        <LogoutWarningModal/>
+        <SessionEndWarningModal/>
+    </>
 );
 
 export default Modals;
