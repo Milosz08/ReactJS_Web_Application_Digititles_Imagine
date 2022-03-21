@@ -26,6 +26,7 @@ export enum ReduxDOMreducerTypes {
     SET_STICKY_CONTENT = 'SET_STICKY_CONTENT__D',
     CHANGE_ACTIVE_SECTION = 'CHANGE_ACTIVE_SECTION__D',
     ADD_NEW_ELEMENT_INTO_ACTIVE_ARRAY = 'ADD_NEW_ELEMENT_INTO_ACTIVE_ARRAY__D',
+    CHANGE_MODAL_VISIBILITY = 'CHANGE_MODAL_VISIBILITY__D',
 }
 
 export enum ReduxDOMstateKeys {
@@ -88,4 +89,9 @@ export enum GettingStartedNavElms {
 export enum ActiveAction {
     ADD = 'ADD',
     REMOVE_ALL = 'REMOVE_ALL',
+}
+
+export enum AllModals {
+    WARNINNG_LOGOUT = 'ifWarningLogoutModalOpen',
+    END_SESSION = 'ifEndSessionModalOpen',
 }

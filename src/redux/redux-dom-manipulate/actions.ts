@@ -19,8 +19,8 @@
 import Utils from '../utils';
 
 import {
-    ActiveAction, AllSections, AnimationStages, GettingStartedNavElms, ProjectSections, ReduxDOMreducerTypes,
-    ReduxDOMstateKeys, ServicesSections
+    ActiveAction, AllModals, AllSections, AnimationStages, GettingStartedNavElms, ProjectSections,
+    ReduxDOMreducerTypes, ReduxDOMstateKeys, ServicesSections
 } from './types';
 
 export type SectionKey = ProjectSections | ServicesSections;
@@ -91,6 +91,13 @@ export class ReduxDOMActions {
         type: ReduxDOMreducerTypes.ADD_NEW_ELEMENT_INTO_ACTIVE_ARRAY,
         payload: {
             addingElement, action
+        }
+    });
+
+    public static changeModalVisibility = (modalType: AllModals, visibility?: boolean): ReturnedToReducer => ({
+        type: ReduxDOMreducerTypes.CHANGE_MODAL_VISIBILITY,
+        payload: {
+            modalType, visibility: Boolean(visibility),
         }
     });
 

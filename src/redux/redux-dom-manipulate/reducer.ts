@@ -80,6 +80,11 @@ const reduxReducerDOM = (state = InitStateDOM, action: any): InitStateDOMtypes =
             return { ...state, allActiveSections: [ ...state.allActiveSections, addingElement ] };
         }
 
+        case ReduxDOMreducerTypes.CHANGE_MODAL_VISIBILITY: {
+            const { modalType, visibility } = action.payload;
+            return { ...state, modalsState: { ...state.modalsState, [modalType]: visibility } };
+        }
+
         default: {
             return state;
         }

@@ -44,6 +44,10 @@ export interface InitStateDOMtypes {
     gettingStartedActiveSection: GettingStartedNavElms | null;
     allActiveSections: GettingStartedNavElms[];
     cookiesNotifContainerHeight: number;
+    modalsState: {
+        ifWarningLogoutModalOpen: boolean;
+        ifEndSessionModalOpen: boolean;
+    };
 }
 
 export const InitStateDOM: InitStateDOMtypes = {
@@ -72,4 +76,8 @@ export const InitStateDOM: InitStateDOMtypes = {
     gettingStartedActiveSection: null,
     allActiveSections: [],
     cookiesNotifContainerHeight: 0,
+    modalsState: {
+        ifWarningLogoutModalOpen: false,
+        ifEndSessionModalOpen: false,
+    },
 };
