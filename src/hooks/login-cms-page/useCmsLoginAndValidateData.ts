@@ -22,10 +22,11 @@ import { useDispatch } from 'react-redux';
 
 import useMultipleRefs from '../reusable/useMultipleRefs';
 
+import { AllCookies } from '../../context/cookies-context/allCookiesConfig';
+import { AllCookiesContext, AllCookiesTypes } from '../../context/cookies-context/AllCookiesProvider';
+
 import { ReduxAPIActions } from '../../redux/redux-api-thunk/actions';
 import { axiosInstance, JavaApiEndpoints } from '../../redux/redux-api-thunk/request';
-import { AllCookiesContext, AllCookiesTypes } from '../../context/cookies-context/AllCookiesProvider';
-import { AllCookies } from '../../context/cookies-context/allCookiesConfig';
 
 interface HookProps {
     elRefs: React.MutableRefObject<any>[];
