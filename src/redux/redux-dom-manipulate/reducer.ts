@@ -85,6 +85,11 @@ const reduxReducerDOM = (state = InitStateDOM, action: any): InitStateDOMtypes =
             return { ...state, modalsState: { ...state.modalsState, [modalType]: visibility } };
         }
 
+        case ReduxDOMreducerTypes.INSERT_CMS_SELECTED_PROJECT: {
+            const { title, dotColor } = action.payload;
+            return { ...state, cmsSelectedProject: { title, dotColor } };
+        }
+
         default: {
             return state;
         }

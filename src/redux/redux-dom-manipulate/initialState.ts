@@ -48,6 +48,10 @@ export interface InitStateDOMtypes {
         ifWarningLogoutModalOpen: boolean;
         ifEndSessionModalOpen: boolean;
     };
+    cmsSelectedProject: {
+        title: string;
+        dotColor: string;
+    };
 }
 
 export const InitStateDOM: InitStateDOMtypes = {
@@ -79,5 +83,9 @@ export const InitStateDOM: InitStateDOMtypes = {
     modalsState: {
         ifWarningLogoutModalOpen: false,
         ifEndSessionModalOpen: false,
+    },
+    cmsSelectedProject: {
+        title: '',
+        dotColor: '',
     },
 };

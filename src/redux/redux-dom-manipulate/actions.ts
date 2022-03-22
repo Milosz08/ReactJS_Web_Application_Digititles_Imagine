@@ -101,4 +101,11 @@ export class ReduxDOMActions {
         }
     });
 
+    public static insertCmsSelectedProject = (title: string = '', dotColor: string = ''): ReturnedToReducer => ({
+        type: ReduxDOMreducerTypes.INSERT_CMS_SELECTED_PROJECT,
+        payload: {
+            title, dotColor,
+        }
+    });
+
 }
