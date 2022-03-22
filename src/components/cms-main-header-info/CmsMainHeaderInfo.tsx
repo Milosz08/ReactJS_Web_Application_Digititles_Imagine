@@ -19,7 +19,8 @@
 import * as React from 'react';
 
 import {
-    CmsMainHeaderDescription, CmsMainHeaderInfoWrapper, CmsMainHeaderValue, CmsPropertiesInfoContainer
+    CmsMainHeaderDescription, CmsMainHeaderDescriptionAndValueContainer, CmsMainHeaderInfoWrapper,
+    CmsMainHeaderValue, CmsPropertiesInfoContainer
 } from './CmsMainHeaderInfo.styles';
 
 import CurrentlyLoggedContent from './subcomponents/CurrentlyLoggedContent';
@@ -28,14 +29,16 @@ import EstimateSessionTimeContent from './subcomponents/EstimateSessionTimeConte
 
 const CmsMainHeaderInfo: React.FC = (): JSX.Element => (
     <CmsMainHeaderInfoWrapper>
-        <CmsPropertiesInfoContainer>
+        <CmsMainHeaderDescriptionAndValueContainer
+            $ifNoMargin = {true}
+        >
             <CmsMainHeaderValue>
                 WCMS
             </CmsMainHeaderValue>
             <CmsMainHeaderDescription>
                 Panel by Miłosz Gilga
             </CmsMainHeaderDescription>
-        </CmsPropertiesInfoContainer>
+        </CmsMainHeaderDescriptionAndValueContainer>
         <CmsPropertiesInfoContainer>
             <EstimateSessionTimeContent/>
             <CurrentlyLoggedContent/>

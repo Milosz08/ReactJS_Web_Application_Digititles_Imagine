@@ -21,22 +21,34 @@ import styled from 'styled-components';
 export const CmsMainHeaderInfoWrapper = styled.div`
     background-color: var(--whiteDark);
     max-width: 1300px;
-    width: calc(100% - 60px);
+    width: 100%;
     margin: 140px 0 60px;
     padding: 10px 20px;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
+    @media only screen and (max-width: 1030px) {
+        flex-direction: column;
+        align-items: center;
+        margin: 80px 0 60px;
+    }
 `;
 
 export const CmsPropertiesInfoContainer = styled.div`
     display: flex;
     font-size: 1.1rem;
+    @media only screen and (max-width: 1030px) {
+        flex-direction: column;
+        align-items: center;
+    }
 `;
 
-export const CmsMainHeaderDescriptionAndValueContainer = styled.div`
+export const CmsMainHeaderDescriptionAndValueContainer = styled.div<{ $ifNoMargin?: boolean }>`
     display: flex;
-    margin-left: 50px;
+    margin-left: ${({ $ifNoMargin }) => $ifNoMargin ? 0 : '50px'};
+    @media only screen and (max-width: 1030px) {
+        margin: 3px 0;
+    }
 `;
 
 export const CmsMainHeaderDescription = styled.div`

@@ -23,14 +23,21 @@ import { BsArrowRightShort } from 'react-icons/bs';
 export const CmsNavigationInlineContainer = styled.ul`
     width: 100%;
     display: flex;
+    flex-wrap: wrap;
     margin: 15px 0 30px;
     color: var(--grayDark);
+    @media only screen and (max-width: 663px) {
+        justify-content: center;
+    }
 `;
 
 export const CmsNavigationInlineSingleBlock = styled.li<{ $ifNotMargin?: boolean }>`
     margin-left: ${({ $ifNotMargin }) => $ifNotMargin ? 0 : '8px'};
     display: flex;
     align-items: center;
+    @media only screen and (max-width: 663px) {
+        margin: 5px 0 5px ${({ $ifNotMargin }) => $ifNotMargin ? 0 : '8px'};
+    }
 `;
 
 export const CmsNavigationInlineLink = styled(link_rs)<{ $ifActive?: boolean }>`
