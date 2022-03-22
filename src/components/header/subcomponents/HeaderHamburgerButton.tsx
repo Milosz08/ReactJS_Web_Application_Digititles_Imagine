@@ -44,7 +44,7 @@ const HeaderHamburgerButton: React.FC = (): JSX.Element => {
                 onClick = {handleHamburger}
             >
                 <HeaderNavRightMenuLabel>
-                    {ifAbsolute ? 'menu' : pathname.includes(RoutingPaths.ADMIN_PANEL) ? 'log out' : 'return'}
+                    {ifAbsolute ? 'menu' : pathname.includes(RoutingPaths.CMS__ADMIN_PANEL) ? 'log out' : 'return'}
                 </HeaderNavRightMenuLabel>
                 <HeaderNavRightHamburgerElement/>
             </HeaderNavRightMenuElement>

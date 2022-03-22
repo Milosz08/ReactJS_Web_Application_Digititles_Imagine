@@ -50,7 +50,7 @@ const useClickHamburgerButton = (ifMenuOpen: boolean): [ boolean, (e: React.Chan
         if (pathname === RoutingPaths.START) {
             ifMenuOpen ? blockScroll() : allowScroll();
             dispatcher(ReduxDOMActions.openCloseMainMenu());
-        } else if (pathname.includes(RoutingPaths.ADMIN_PANEL)) {
+        } else if (pathname.includes(RoutingPaths.CMS__ADMIN_PANEL)) {
             dispatcher(ReduxDOMActions.changeModalVisibility(AllModals.WARNINNG_LOGOUT, true));
         } else {
             navigate({ pathname: RoutingPaths.START });
