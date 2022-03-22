@@ -1,8 +1,8 @@
 /*
  * Copyright (c) 2022 by MILOSZ GILGA <https://miloszgilga.pl>
  *
- * File name: CmsModifyProjects.tsx
- * Last modified: 24/02/2022, 15:47
+ * File name: CmsAddNewProjectPageReact.tsx
+ * Last modified: 22/03/2022, 13:51
  * Project name: digititles-imagine
  *
  * Licensed under the MIT license; you may not use this file except in compliance with the License.
@@ -18,12 +18,13 @@
 
 import * as React from 'react';
 
-const CmsModifyProjects: React.FC = (): JSX.Element => {
+
+const CmsAddNewProjectPageReact: React.FC = (): JSX.Element => {
     return (
         <>
-            cms modify projects
+            cms add new project page
         </>
     );
 };
 
-export default CmsModifyProjects;
+export default CmsAddNewProjectPageReact;

@@ -1,8 +1,8 @@
 /*
  * Copyright (c) 2022 by MILOSZ GILGA <https://miloszgilga.pl>
  *
- * File name: CmsModifySingleProject.tsx
- * Last modified: 24/02/2022, 15:47
+ * File name: CmsRegistrationFormsPageReact.tsx
+ * Last modified: 22/03/2022, 14:57
  * Project name: digititles-imagine
  *
  * Licensed under the MIT license; you may not use this file except in compliance with the License.
@@ -17,21 +17,14 @@
  */
 
 import * as React from 'react';
-import { useParams } from 'react-router';
-
-import useChangePageTitle from '../hooks/reusable/useChangePageTitle';
 
 
-const CmsModifySingleProject: React.FC = (): JSX.Element => {
-
-    const { projectId } = useParams();
-    useChangePageTitle(projectId!, true);
-
+const CmsRegistrationFormsPageReact: React.FC = (): JSX.Element => {
     return (
         <>
-            modify single project: {projectId}
+            cms registration forms page
         </>
     );
 };
 
-export default CmsModifySingleProject;
+export default CmsRegistrationFormsPageReact;
