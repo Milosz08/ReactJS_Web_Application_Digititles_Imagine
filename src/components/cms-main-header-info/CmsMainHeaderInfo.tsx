@@ -19,8 +19,7 @@
 import * as React from 'react';
 
 import {
-    CmsMainHeaderDescription,
-    CmsMainHeaderInfoContainer, CmsMainHeaderInfoWrapper, CmsMainHeaderValue, CmsPropertiesInfoContainer
+    CmsMainHeaderDescription, CmsMainHeaderInfoWrapper, CmsMainHeaderValue, CmsPropertiesInfoContainer
 } from './CmsMainHeaderInfo.styles';
 
 import CurrentlyLoggedContent from './subcomponents/CurrentlyLoggedContent';
@@ -28,22 +27,20 @@ import EstimateSessionTimeContent from './subcomponents/EstimateSessionTimeConte
 
 
 const CmsMainHeaderInfo: React.FC = (): JSX.Element => (
-    <CmsMainHeaderInfoContainer>
-        <CmsMainHeaderInfoWrapper>
-            <CmsPropertiesInfoContainer>
-                <CmsMainHeaderValue>
-                    WCMS
-                </CmsMainHeaderValue>
-                <CmsMainHeaderDescription>
-                    Panel by Miłosz Gilga
-                </CmsMainHeaderDescription>
-            </CmsPropertiesInfoContainer>
-            <CmsPropertiesInfoContainer>
-                <EstimateSessionTimeContent/>
-                <CurrentlyLoggedContent/>
-            </CmsPropertiesInfoContainer>
-        </CmsMainHeaderInfoWrapper>
-    </CmsMainHeaderInfoContainer>
+    <CmsMainHeaderInfoWrapper>
+        <CmsPropertiesInfoContainer>
+            <CmsMainHeaderValue>
+                WCMS
+            </CmsMainHeaderValue>
+            <CmsMainHeaderDescription>
+                Panel by Miłosz Gilga
+            </CmsMainHeaderDescription>
+        </CmsPropertiesInfoContainer>
+        <CmsPropertiesInfoContainer>
+            <EstimateSessionTimeContent/>
+            <CurrentlyLoggedContent/>
+        </CmsPropertiesInfoContainer>
+    </CmsMainHeaderInfoWrapper>
 );
 
 export default CmsMainHeaderInfo;

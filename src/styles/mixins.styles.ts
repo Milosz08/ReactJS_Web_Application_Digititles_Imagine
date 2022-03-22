@@ -139,3 +139,16 @@ export const InputWithTextarea = ({ $ifError }: { $ifError: boolean }) => css`
         font-size: 1.1rem;
     }
 `;
+
+export const CmsSafetyAreaContainer = styled.section`
+    padding-top: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+`;
+
+export const CmsSafetyAreaWrapper = styled.div`
+    max-width: 1300px;
+    width: calc(100% - 60px);
+    margin: 0 30px;
+`;

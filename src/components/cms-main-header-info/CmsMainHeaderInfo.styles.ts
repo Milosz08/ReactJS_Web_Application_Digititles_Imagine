@@ -18,17 +18,11 @@
 
 import styled from 'styled-components';
 
-export const CmsMainHeaderInfoContainer = styled.div`
-    padding-top: 190px;
-    display: flex;
-    justify-content: center;
-`;
-
 export const CmsMainHeaderInfoWrapper = styled.div`
     background-color: var(--whiteDark);
     max-width: 1300px;
     width: calc(100% - 60px);
-    margin: 0 30px;
+    margin: 140px 0 60px;
     padding: 10px 20px;
     border-radius: 5px;
     display: flex;
