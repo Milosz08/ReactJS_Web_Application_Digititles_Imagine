@@ -18,6 +18,7 @@
 
 import * as React from 'react';
 import { Navigate, RouteObject } from 'react-router-dom';
+import { AiOutlineComment, AiOutlineCopy, AiOutlineProject, AiOutlineUserSwitch } from 'react-icons/ai';
 
 import TitleInjectionHOC from '../high-order-components/TitleInjectionHOC';
 
@@ -158,5 +159,29 @@ export const appRouting = (isLogged: boolean): RouteObject[] => [
                 element: <TitleInjectionHOC title = '' Component = {SingleProjectPageReact} />,
             },
         ],
+    },
+];
+
+export interface CmsMainPageNavigationElementsTypes {
+    path: RoutingPaths;
+    icon: JSX.Element;
+}
+
+export const CmsMainPageNavigationElements: CmsMainPageNavigationElementsTypes[] = [
+    {
+        path: RoutingPaths.CMS__REGISTRATION_FORM,
+        icon: <AiOutlineCopy/>,
+    },
+    {
+        path: RoutingPaths.CMS__USER_MESSAGES,
+        icon: <AiOutlineComment/>,
+    },
+    {
+        path: RoutingPaths.CMS__CHANGE_CREDENTIALS,
+        icon: <AiOutlineUserSwitch/>,
+    },
+    {
+        path: RoutingPaths.CMS__PROJECTS,
+        icon: <AiOutlineProject/>,
     },
 ];

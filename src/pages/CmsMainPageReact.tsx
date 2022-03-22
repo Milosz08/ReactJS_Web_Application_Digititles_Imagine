@@ -17,17 +17,12 @@
  */
 
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { RoutingPaths } from '../static/appRouting';
+
+import CmsMainPageNavigation from '../components/cms-main-page-navigation/CmsMainPageNavigation';
 
 
 const CmsMainPageReact: React.FC = (): JSX.Element => (
-    <>
-        <Link to = {RoutingPaths.CMS__REGISTRATION_FORM}>registration forms</Link><br/>
-        <Link to = {RoutingPaths.CMS__USER_MESSAGES}>user messages</Link><br/>
-        <Link to = {RoutingPaths.CMS__CHANGE_CREDENTIALS}>change credentials</Link><br/>
-        <Link to = {RoutingPaths.CMS__PROJECTS}>view all project</Link>
-    </>
+    <CmsMainPageNavigation/>
 );
 
 export default CmsMainPageReact;
