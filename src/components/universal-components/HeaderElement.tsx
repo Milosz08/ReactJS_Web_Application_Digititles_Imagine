@@ -24,13 +24,15 @@ import { HeaderElementStyled } from './UniversalComponents.styles';
 
 interface PropsProvider extends ReactNodeProp {
     ifNotIncludeDot?: boolean;
+    ifRemoveMargin?: boolean;
     dotColor?: string;
     bgcColor?: string;
 }
 
-const HeaderElement: React.FC<PropsProvider> = ({ children, ifNotIncludeDot, dotColor, bgcColor }): JSX.Element => (
+const HeaderElement: React.FC<PropsProvider> = ({ children, ifNotIncludeDot, ifRemoveMargin, dotColor, bgcColor }): JSX.Element => (
     <HeaderElementStyled
         $ifNotIncludeDot = {Boolean(ifNotIncludeDot)}
+        $ifNotMargin = {Boolean(ifRemoveMargin)}
         $dotColor = {dotColor}
         $bgcColor = {bgcColor}
     >
