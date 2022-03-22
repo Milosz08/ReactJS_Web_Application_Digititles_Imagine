@@ -21,21 +21,10 @@ export class Webpage {
     private static readonly DEF_PREFIX: string = 'Digititles Imagine | ';
     private static readonly ADMIN_PREFIX: string = 'CMS Panel | ';
 
-    /**
-     *
-     *
-     * @param type
-     * @param ifAdminPanel
-     */
     public static setTitle(type: string, ifAdminPanel: boolean): string {
         return ifAdminPanel ? Webpage.ADMIN_PREFIX + type : Webpage.DEF_PREFIX + type;
     };
 
-    /**
-     *
-     *
-     * @param hexColor
-     */
     public static changeColorLumination(hexColor: string): string {
         let r = parseInt(hexColor.substring(1, 3), 16);
         let g = parseInt(hexColor.substring(3, 5), 16);
@@ -44,14 +33,29 @@ export class Webpage {
         return `var(--${yiq > 140 ? 'blackDark' : 'whiteDark'})`;
     };
 
-    /**
-     *
-     *
-     * @param stringToDecode
-     */
     public static htmlDecodingParser(stringToDecode: string): string {
         const parser = new DOMParser();
         return parser.parseFromString(`<!doctype html><body>${stringToDecode}`, 'text/html').body.textContent!;
+    };
+
+    public static convertPathnameToCmsHeader(pathname: string): string {
+        const insertFromLastBackslash = pathname.substring(pathname.lastIndexOf('/') + 1, pathname.length);
+        return insertFromLastBackslash.replaceAll('-', ' ');
+    };
+
+    public static changePathToPathsArray(pathname: string): { name: string, path: string }[] {
+        const allPathnames = pathname.replaceAll('-', ' ').split('/').filter(el => el);
+        const allPaths = pathname.split('/').filter(el => el);
+        let previousPath = '';
+        const allPathsArray = allPaths.map((path, idx) => {
+            let string = path;
+            if (idx > 0) {
+                string = `${previousPath}/${string}`;
+            }
+            previousPath = string;
+            return string;
+        });
+        return allPathnames.map((el, idx) => ({ name: el, path: `/${allPathsArray[idx]}` }));
     };
 
 }
