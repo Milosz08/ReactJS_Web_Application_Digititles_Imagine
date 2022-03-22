@@ -64,7 +64,7 @@ const GlobalStylesInjection = createGlobalStyle<GlobalStylesProvider>`
         --grayDarker: #8f8f8f;
         --grayDark: #bcbfc5;
         --grayLight: #dcdddf;
-        --grayLighter: #dcdddf;
+        --grayLighter: #eeeeee;
         --cyanDarker: #1b363d;
         --cyanDark: #2c5662;
         --cyanLight: #648e99;

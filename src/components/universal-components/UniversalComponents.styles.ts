@@ -24,6 +24,7 @@ export const HeaderElementStyled = styled.h3<{ $ifNotIncludeDot?: boolean, $ifNo
     width: fit-content;
     margin-bottom: ${({ $ifNotMargin }) => $ifNotMargin ? 0 : '40px'};
     text-transform: capitalize;
+    line-height: 1;
     ::after {
         content: '${({ $ifNotIncludeDot }) => $ifNotIncludeDot ? '' : '.'}';
         color: ${({ $dotColor }) => $dotColor || 'var(--cyanLight)'};

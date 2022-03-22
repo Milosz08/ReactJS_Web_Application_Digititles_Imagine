@@ -42,7 +42,7 @@ export const NavigationBottomBarLine = styled.div`
     position: relative;
     width: 4px;
     height: 100%;
-    background-color: var(--grayLighter);
+    background-color: var(--grayLight);
     ::after {
         position: absolute;
         content: '';

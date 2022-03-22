@@ -37,7 +37,7 @@ export const SuspenseBarContainer = styled.div<{ $barActive: boolean }>`
     left: 0;
     width: 6px;
     height: 100%;
-    background-color: var(--grayLighter);
+    background-color: var(--grayLight);
     ::after {
         position: absolute;
         content: '';
