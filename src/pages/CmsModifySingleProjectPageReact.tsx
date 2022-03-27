@@ -27,10 +27,8 @@ const CmsModifySingleProjectPageReact: React.FC = (): JSX.Element => {
     
     return (
         <>
-            {Boolean(findingProject) ? <>
+            {Boolean(findingProject) && <>
                 modify single project: {findingProject!.id}, {findingProject!.title}
-            </> : <>
-                not found project
             </>}
         </>
     );
