@@ -17,18 +17,12 @@
  */
 
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 
-import { RoutingPaths } from '../static/appRouting';
+import CmsViewAllProjectsLinks from '../components/cms-view-all-projects-links/CmsViewAllProjectsLinks';
 
 
-const CmsViewAllProjectsPageReact: React.FC = (): JSX.Element => {
-    return (
-        <>
-            <Link to = {'alien-covenant'}>modify single project</Link><br/>
-            <Link to = {RoutingPaths.CMS__ADD_PROJECT}>add new project</Link>
-        </>
-    );
-};
+const CmsViewAllProjectsPageReact: React.FC = (): JSX.Element => (
+    <CmsViewAllProjectsLinks/>
+);
 
 export default CmsViewAllProjectsPageReact;
