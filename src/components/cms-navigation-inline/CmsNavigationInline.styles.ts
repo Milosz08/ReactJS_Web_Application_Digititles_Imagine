@@ -24,7 +24,7 @@ export const CmsNavigationInlineContainer = styled.ul`
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    margin: 15px 0 30px;
+    margin: 15px 0 50px;
     color: var(--grayDark);
     @media only screen and (max-width: 663px) {
         justify-content: center;
