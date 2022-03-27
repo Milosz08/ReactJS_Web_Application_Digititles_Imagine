@@ -152,3 +152,22 @@ export const CmsSafetyAreaWrapper = styled.div`
     width: calc(100% - 60px);
     margin: 0 30px;
 `;
+
+export const CmsGridTemplateArea = () => css`
+    display: grid;
+    gap: 30px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "." "." "." ".";
+    align-items: center;
+    @media only screen and (max-width: 1118px) {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: ".." "..";
+    }
+    @media only screen and (max-width: 663px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas: "....";
+    }
+`;

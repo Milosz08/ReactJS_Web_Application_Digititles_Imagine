@@ -20,29 +20,12 @@ import styled from 'styled-components';
 import { BsArrowRight } from 'react-icons/bs';
 
 import { link_rs } from '../../styles/reset.styles';
+import { CmsGridTemplateArea } from '../../styles/mixins.styles';
 
 export const CmsMainPageNavigationContainer = styled.div`
     width: 100%;
     margin: 60px 0;
-    display: grid;
-    gap: 30px;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr;
-    grid-template-areas: "." "." "." ".";
-    align-items: center;
-    a:hover {
-        transform: translateY(-10px);
-    }
-    @media only screen and (max-width: 1118px) {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
-        grid-template-areas: ".." "..";
-    }
-    @media only screen and (max-width: 663px) {
-        grid-template-columns: 1fr;
-        grid-template-rows: 1fr 1fr 1fr 1fr;
-        grid-template-areas: "....";
-    }
+    ${CmsGridTemplateArea()};
 `;
 
 export const CmsMainPageNavigationLink = styled(link_rs)`
@@ -54,6 +37,9 @@ export const CmsMainPageNavigationLink = styled(link_rs)`
     padding: 30px;
     height: 180px;
     transition: .3s;
+    :hover {
+        transform: translateY(-10px);
+    }
 `;
 
 export const CmsMainPageNavigationHeader = styled.h4`
