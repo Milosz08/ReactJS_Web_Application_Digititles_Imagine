@@ -39,7 +39,9 @@ const useChangePageTitle = (title: string, ifAdminPanel: boolean, redir?: string
         if (!Object.keys(status).every(loading => !status[loading])) {
             titleLoading = 'Loading...';
         }
-        document.title = Webpage.setTitle(titleLoading, ifAdminPanel);
+        if (Boolean(title)) {
+            document.title = Webpage.setTitle(titleLoading, ifAdminPanel);
+        }
         return () => {
             if (Boolean(redir)) {
                 document.title = Webpage.setTitle(redir!, ifAdminPanel);

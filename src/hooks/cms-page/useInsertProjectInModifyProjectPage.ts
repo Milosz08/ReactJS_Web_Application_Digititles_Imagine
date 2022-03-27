@@ -45,7 +45,7 @@ const useInsertProjectInModifyProjectPage = (): ProjectTypes | undefined => {
     const dispatcher = useDispatch();
 
     const findingProject = projects.find(project => project.projectPath === projectTitle);
-    useChangePageTitle(Boolean(findingProject) ? findingProject!.title : 'Project not found', true);
+    useChangePageTitle(findingProject!.title ?? 'Project not found', true);
 
     // on initial load setting redux state, if not found force goto previous page; on unmount component cleared state
     useEffect(() => {
@@ -59,7 +59,7 @@ const useInsertProjectInModifyProjectPage = (): ProjectTypes | undefined => {
         return () => {
             dispatcher(ReduxDOMActions.insertCmsSelectedProject());
         };
-    }, [ dispatcher, findingProject, navigate, pathname]);
+    }, [ dispatcher, findingProject, navigate, pathname ]);
 
     return findingProject;
 };
