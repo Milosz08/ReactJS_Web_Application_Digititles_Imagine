@@ -17,17 +17,19 @@
  */
 
 import * as React from 'react';
-import { useEffect, useLayoutEffect } from 'react';
+import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { RoutingPaths } from '../static/appRouting';
 import useDidMount from '../hooks/reusable/useDidMount';
 import useDisableScroll from '../hooks/reusable/useDisableScroll';
 
 import { RootState } from '../redux/store';
 import { ReduxAPIThunk } from '../redux/redux-api-thunk/thunk';
-import { InitStateAPItypes } from '../redux/redux-api-thunk/initialState';
-import { JavaApiEndpoints } from '../redux/redux-api-thunk/request';
 import { ReduxAPIstateKeys } from '../redux/redux-api-thunk/types';
+import { JavaApiEndpoints } from '../redux/redux-api-thunk/request';
+import { InitStateAPItypes } from '../redux/redux-api-thunk/initialState';
 
 
 /**
@@ -40,15 +42,24 @@ const LoadAllAPIData: React.FC = (): null => {
     
     const [ blockScroll, allowScroll ] = useDisableScroll();
     const dispatcher = useDispatch();
+    const { pathname } = useLocation();
     const isMount = useDidMount();
 
-    useLayoutEffect(() => {
-        if (!Object.keys(status).every(loading => !status[loading])) {
-            blockScroll();
+    useEffect(() => {
+        if (pathname.includes(RoutingPaths.CMS__ADMIN_PANEL)) {
+            if (!Object.keys(status).every(loading => !status[loading])) {
+                blockScroll();
+            } else {
+                allowScroll();
+            }
         } else {
-            allowScroll();
+            if (!(!status.loadingImages && !status.loadingProjects)) {
+                blockScroll();
+            } else {
+                allowScroll();
+            }
         }
-    }, [ allowScroll, blockScroll, status ]);
+    }, [ allowScroll, blockScroll, pathname, status ]);
 
     useEffect(() => {
         const { PROJECTS, IMAGES, LOADING_PROJECTS, LOADING_IMAGES } = ReduxAPIstateKeys;
