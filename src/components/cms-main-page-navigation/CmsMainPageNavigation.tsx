@@ -30,15 +30,16 @@ import {
 
 const CmsMainPageNavigation: React.FC = (): JSX.Element => {
 
-    const generateAllLinks: JSX.Element[] = CmsMainPageNavigationElements.map(navigation => (
+    const generateAllLinks: JSX.Element[] = CmsMainPageNavigationElements.map(({ path, icon }) => (
         <CmsMainPageNavigationLink
-            to = {navigation.path}
+            key = {path}
+            to = {path}
         >
             <CmsMainPageNavigationHeader>
-                {Webpage.convertPathnameToCmsHeader(navigation.path)}
+                {Webpage.convertPathnameToCmsHeader(path)}
             </CmsMainPageNavigationHeader>
             <CmsMainPageNavigationIconWrapper>
-                {navigation.icon}
+                {icon}
             </CmsMainPageNavigationIconWrapper>
             <CmsMainPageArrowIcon/>
         </CmsMainPageNavigationLink>
