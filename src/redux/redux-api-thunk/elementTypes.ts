@@ -93,4 +93,5 @@ export interface MessagesFormTypes {
     lastname: string;
     email: string;
     message: string;
+    ifViewed?: boolean;
 }
