@@ -18,13 +18,30 @@
 
 import * as React from 'react';
 
+import { ReduxAPIstateKeys } from '../redux/redux-api-thunk/types';
+import { JavaApiEndpoints } from '../redux/redux-api-thunk/request';
 
-const CmsUserMessagesPageReact: React.FC = (): JSX.Element => {
-    return (
-        <>
-            cms user messages page
-        </>
-    );
-};
+import CmsFormListComponent from '../components/cms-form-list-components/CmsFormListComponent';
+import CmsUserMessagesFormInfoHeader from '../components/cms-user-messages-custom-components/CmsUserMessagesFormInfoHeader';
+import CmsUserMessagesFormHeader from '../components/cms-user-messages-custom-components/CmsUserMessagesFormHeader';
+import CmsUserMessageExpandedLeftData from '../components/cms-user-messages-custom-components/CmsUserMessageExpandedLeftData';
+import CmsUserMessageExpandedRightData from '../components/cms-user-messages-custom-components/CmsUserMessageExpandedRightData';
+import CmsFormExpandedButtons from '../components/cms-form-list-components/subcomponents/CmsFormExpandedButtons';
+
+
+const CmsUserMessagesPageReact: React.FC = (): JSX.Element => (
+    <CmsFormListComponent
+        typeofList = {ReduxAPIstateKeys.MESSAGE_FORMS}
+        headerInfoAndElement = {{ Header: CmsUserMessagesFormHeader, Info: CmsUserMessagesFormInfoHeader }}
+    >
+        <CmsUserMessageExpandedLeftData/>
+        <CmsUserMessageExpandedRightData/>
+        <CmsFormExpandedButtons
+            endpoint = {JavaApiEndpoints.USER_MESSAGES}
+            cmsFormKey = {ReduxAPIstateKeys.MESSAGE_FORMS}
+            removeButtonCustomMessage = 'Remove user message'
+        />
+    </CmsFormListComponent>
+);
 
 export default CmsUserMessagesPageReact;
