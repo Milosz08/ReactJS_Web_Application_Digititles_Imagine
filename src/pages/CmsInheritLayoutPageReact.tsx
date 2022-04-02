@@ -29,6 +29,8 @@ import { InitStateDOMtypes } from '../redux/redux-dom-manipulate/initialState';
 
 import { CmsSafetyAreaContainer, CmsSafetyAreaWrapper } from '../styles/mixins.styles';
 
+import LoadCmsData from '../router/LoadCmsData';
+import CmsDeleteContentModal from '../components/cms-delete-content-modal/CmsDeleteContentModal';
 import NavigationScrollTop from '../components/navigation-scroll-top/NavigationScrollTop';
 import CmsMainHeaderInfo from '../components/cms-main-header-info/CmsMainHeaderInfo';
 import HeaderElement from '../components/universal-components/HeaderElement';
@@ -45,6 +47,8 @@ const CmsInheritLayoutPageReact: React.FC = (): JSX.Element => {
 
     return (
         <>
+            <LoadCmsData/>
+            <CmsDeleteContentModal/>
             <NavigationScrollTop/>
             <CmsSafetyAreaContainer>
                 <CmsSafetyAreaWrapper
