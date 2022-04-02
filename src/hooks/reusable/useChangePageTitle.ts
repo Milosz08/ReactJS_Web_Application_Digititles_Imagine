@@ -35,12 +35,8 @@ const useChangePageTitle = (title: string, ifAdminPanel: boolean, redir?: string
     const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
 
     useEffect(() => {
-        let titleLoading: string = title;
-        if (!Object.keys(status).every(loading => !status[loading])) {
-            titleLoading = 'Loading...';
-        }
         if (Boolean(title)) {
-            document.title = Webpage.setTitle(titleLoading, ifAdminPanel);
+            document.title = Webpage.setTitle(title, ifAdminPanel);
         }
         return () => {
             if (Boolean(redir)) {
