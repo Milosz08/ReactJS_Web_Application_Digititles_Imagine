@@ -90,6 +90,16 @@ const reduxReducerDOM = (state = InitStateDOM, action: any): InitStateDOMtypes =
             return { ...state, cmsSelectedProject: { title, dotColor } };
         }
 
+        case ReduxDOMreducerTypes.CHANGE_CMS_FORM_ACTIVE_SECTION: {
+            const { formKey, value } = action.payload;
+            return { ...state, formActiveElements: { ...state.formActiveElements, [formKey]: value } };
+        }
+
+        case ReduxDOMreducerTypes.INSERT_DELETE_CONTENT_DATA: {
+            const { dataId, dataContent, endpoint } = action.payload;
+            return { ...state, deleteModalData: { dataId, dataContent, endpoint } };
+        }
+
         default: {
             return state;
         }

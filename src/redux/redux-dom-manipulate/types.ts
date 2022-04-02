@@ -28,6 +28,8 @@ export enum ReduxDOMreducerTypes {
     ADD_NEW_ELEMENT_INTO_ACTIVE_ARRAY = 'ADD_NEW_ELEMENT_INTO_ACTIVE_ARRAY__D',
     CHANGE_MODAL_VISIBILITY = 'CHANGE_MODAL_VISIBILITY__D',
     INSERT_CMS_SELECTED_PROJECT = 'INSERT_CMS_SELECTED_PROJECT__D',
+    CHANGE_CMS_FORM_ACTIVE_SECTION = 'CHANGE_CMS_FORM_ACTIVE_SECTION__D',
+    INSERT_DELETE_CONTENT_DATA = 'INSERT_DELETE_CONTENT_DATA__D',
 }
 
 export enum ReduxDOMstateKeys {
@@ -95,4 +97,10 @@ export enum ActiveAction {
 export enum AllModals {
     WARNINNG_LOGOUT = 'ifWarningLogoutModalOpen',
     END_SESSION = 'ifEndSessionModalOpen',
+    DELETE_CONTENT = 'deleteContentModal',
+}
+
+export enum DeleteModalPlaceholders {
+    messageForms = 'User Message',
+    registrationForms = 'Registration Form'
 }

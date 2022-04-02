@@ -17,6 +17,8 @@
  */
 
 import { GettingStartedNavElms, ProjectSections, ServicesSections } from './types';
+import { ReduxAPIstateKeys } from '../redux-api-thunk/types';
+import { JavaApiEndpoints } from '../redux-api-thunk/request';
 
 export interface InitStateDOMtypes {
     currScrollPos: number;
@@ -47,10 +49,20 @@ export interface InitStateDOMtypes {
     modalsState: {
         ifWarningLogoutModalOpen: boolean;
         ifEndSessionModalOpen: boolean;
+        ifDeleteContentModalOpen: boolean;
+    };
+    deleteModalData: {
+        dataId: string | null;
+        dataContent: ReduxAPIstateKeys | null;
+        endpoint: JavaApiEndpoints | null;
     };
     cmsSelectedProject: {
         title: string;
         dotColor: string;
+    };
+    formActiveElements: {
+        registrationFormsActiveSection: string | null;
+        messageFormsActiveSection: string | null;
     };
 }
 
@@ -83,9 +95,19 @@ export const InitStateDOM: InitStateDOMtypes = {
     modalsState: {
         ifWarningLogoutModalOpen: false,
         ifEndSessionModalOpen: false,
+        ifDeleteContentModalOpen: false,
+    },
+    deleteModalData: {
+        dataId: null,
+        dataContent: null,
+        endpoint: null,
     },
     cmsSelectedProject: {
         title: '',
         dotColor: '',
+    },
+    formActiveElements: {
+        registrationFormsActiveSection: null,
+        messageFormsActiveSection: null,
     },
 };

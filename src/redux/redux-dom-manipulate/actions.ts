@@ -17,6 +17,8 @@
  */
 
 import Utils from '../utils';
+import { ReduxAPIstateKeys } from '../redux-api-thunk/types';
+import { JavaApiEndpoints } from '../redux-api-thunk/request';
 
 import {
     ActiveAction, AllModals, AllSections, AnimationStages, GettingStartedNavElms, ProjectSections,
@@ -105,6 +107,22 @@ export class ReduxDOMActions {
         type: ReduxDOMreducerTypes.INSERT_CMS_SELECTED_PROJECT,
         payload: {
             title, dotColor,
+        }
+    });
+
+    public static changeCmsActiveFormElement = (formKey: string, value: string | null): ReturnedToReducer => ({
+        type: ReduxDOMreducerTypes.CHANGE_CMS_FORM_ACTIVE_SECTION,
+        payload: {
+            formKey, value,
+        }
+    });
+
+    public static insertDeleteContentData = (
+        dataId: string | null, dataContent: ReduxAPIstateKeys | null, endpoint: JavaApiEndpoints | null
+    ): ReturnedToReducer => ({
+        type: ReduxDOMreducerTypes.INSERT_DELETE_CONTENT_DATA,
+        payload: {
+            dataId, dataContent, endpoint
         }
     });
 
