@@ -44,4 +44,18 @@ export class ReduxAPIThunk {
         };
     };
 
+    public static removeElementFromArray(elementId: string, elementKey: ReduxAPIstateKeys, endpoint: JavaApiEndpoints, headers: any) {
+        return async (dispatcher: (prop: any) => void) => {
+            await axiosInstance.delete(`${endpoint}/${elementId}`, { headers });
+            dispatcher(ReduxAPIActions.deleteReduxStoreElement(elementKey, elementId));
+        }
+    };
+
+    public static markUserMessageAsViewed(elementId: string, headers: any) {
+        return async (dispatcher: (prop: any) => void) => {
+            await axiosInstance.put(`${JavaApiEndpoints.USER_MESSAGES}/${elementId}`, { headers });
+            dispatcher(ReduxAPIActions.markUserMessageAsViewed(elementId));
+        }
+    };
+
 }
