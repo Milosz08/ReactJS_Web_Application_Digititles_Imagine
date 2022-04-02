@@ -54,7 +54,7 @@ const useProjectOnLoad = (projectTitle: string): [ ProjectTypes, SubpagesMainCon
 
     // On load component added project values
     useLayoutEffect(() => {
-        if (Object.keys(status).every(loading => !status[loading])) {
+        if (!(status.loadingProjects && !status.loadingImages)) {
             const foundProject = projects.find(project => project.projectPath === projectTitle)!;
             if (foundProject) {
                 const mainImage = projectsPhotos
