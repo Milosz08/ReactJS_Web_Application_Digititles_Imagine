@@ -66,3 +66,7 @@ export const textarea_rs = styled.textarea`
     outline: none;
     resize: none;
 `;
+
+export const ul_rs = styled.ul`
+    list-style-type: none;
+`;
