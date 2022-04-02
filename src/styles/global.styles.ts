@@ -70,6 +70,8 @@ const GlobalStylesInjection = createGlobalStyle<GlobalStylesProvider>`
         --cyanLight: #648e99;
         --redLight: #de4545;
         --redDark: #9d0909;
+        --redDarken: #6e0707;
+        --greenDark: #116011;
         
         --headerFontSize: 4rem;
         --biggerHeaderFontSize: 5rem;

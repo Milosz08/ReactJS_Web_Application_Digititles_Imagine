@@ -17,7 +17,11 @@
  */
 
 import * as React from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+
+import { RoutingPaths } from '../../static/appRouting';
 
 import { RootState } from '../../redux/store';
 import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
@@ -31,13 +35,24 @@ const ScrollAndSuspenseBars: React.FC = (): JSX.Element => {
     const { scrollDisabledPx }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
 
+    const [ barActive, setBarActive ] = useState(true);
+    const { pathname } = useLocation();
+
+    useEffect(() => {
+        if (pathname.includes(RoutingPaths.CMS__ADMIN_PANEL)) {
+            setBarActive(!Object.keys(status).every(loading => !status[loading]));
+        } else {
+            setBarActive(!(!status.loadingImages && !status.loadingProjects));
+        }
+    }, [ pathname, status ]);
+
     return (
         <>
             <RightScrollBarContainer
                 $barWidth = {scrollDisabledPx}
             />
             <SuspenseBarContainer
-                $barActive = {Object.keys(status).some(loading => status[loading])}
+                $barActive = {barActive}
             />
         </>
     );
