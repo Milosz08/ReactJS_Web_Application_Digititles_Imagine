@@ -61,6 +61,13 @@ export class ReduxAPIActions {
         }
     });
 
+    public static markUserMessageAsViewed = (messageId: string): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.MARK_USER_MESSAGE_AS_VIEWED,
+        payload: {
+            messageId,
+        }
+    });
+
     public static deleteReduxStoreElement = (elementType: ReduxAPIstateKeys, elementId: string): ReturnedToReducer => ({
         type: ReduxAPIreducerTypes.DELETE_ELEMENT_FROM_DB,
         payload: {

@@ -29,6 +29,8 @@ export interface InitStateAPItypes {
     status: {
         loadingProjects: boolean;
         loadingImages: boolean;
+        loadingRegistrationForms: boolean;
+        loadingMessageForms: boolean;
         error: string;
     };
     registrationForm: {
@@ -69,6 +71,8 @@ export const InitStateAPI: InitStateAPItypes = {
     status: {
         loadingProjects: true,
         loadingImages: true,
+        loadingRegistrationForms: true,
+        loadingMessageForms: true,
         error: '',
     },
     registrationForm: {

@@ -30,6 +30,7 @@ export enum ReduxAPIreducerTypes {
     SET_ERROR_IN_FORM_FIELD = 'SET_ERROR_IN_FORM_FIELD__T',
     SET_CMS_CREDENTIALS_FIELDS = 'SET_CMS_CREDENTIALS_FIELDS__T',
     SET_SESSION_COUNTER = 'SET_SESSION_COUNTER__T',
+    MARK_USER_MESSAGE_AS_VIEWED = 'MARK_USER_MESSAGE_AS_VIEWED__T',
 }
 
 export enum ReduxAPIstateKeys {
@@ -37,6 +38,10 @@ export enum ReduxAPIstateKeys {
     IMAGES = 'projectsPhotos',
     LOADING_PROJECTS = 'loadingProjects',
     LOADING_IMAGES = 'loadingImages',
+    REGISTRATION_FORMS = 'registrationForms',
+    MESSAGE_FORMS = 'messageForms',
+    LOADING_REGISTRATION_FORMS = 'loadingRegistrationForms',
+    LOADING_MESSAGE_FORMS = 'loadingMessageForms',
 }
 
 export enum RegistrationFormInputs {

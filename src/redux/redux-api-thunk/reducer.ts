@@ -51,6 +51,17 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
             return { ...state, [elementType]: updateState };
         }
 
+        case ReduxAPIreducerTypes.MARK_USER_MESSAGE_AS_VIEWED: {
+            const { messageId } = action.payload;
+            const updateState = state.messageForms;
+            const findSearchElementIndex = state.messageForms.findIndex(message => message.id === messageId);
+            if (findSearchElementIndex === -1) {
+                return state;
+            }
+            updateState[findSearchElementIndex].ifViewed = true;
+            return { ...state, messageForms: updateState };
+        }
+
         case ReduxAPIreducerTypes.DELETE_ELEMENT_FROM_DB: {
             const { elementType, elementId } = action.payload;
             const excludedItem = state[elementType].filter((el: typeof elementType) => elementId !== el.id);
