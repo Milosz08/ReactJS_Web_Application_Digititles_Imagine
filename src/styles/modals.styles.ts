@@ -60,7 +60,7 @@ export const ModalHeader = styled.h3`
     line-height: 1.1;
     text-align: center;
     color: var(--blackLight);
-    max-width: 510px;
+    max-width: 530px;
     width: 100%;
     margin: 10px 0;
     ::after {
@@ -79,7 +79,7 @@ export const ModalParagraph = styled.p`
     margin: 10px 0;
     max-width: 700px;
     width: 100%;
-    line-height: 1.1;
+    line-height: 1.4;
     text-align: center;
 `;
 
