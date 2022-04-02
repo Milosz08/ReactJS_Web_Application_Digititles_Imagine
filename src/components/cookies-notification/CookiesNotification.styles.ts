@@ -24,7 +24,7 @@ import { StandardButton } from '../../styles/mixins.styles';
 
 export const CookiesNotificationContainer = styled.div<{ $ifMenuIsOpen: boolean, $ifOpen: boolean }>`
     position: fixed;
-    display: flex;
+    display: ${({ $ifOpen }) => $ifOpen ? 'flex' : 'none'};
     justify-content: center;
     align-items: center;
     padding: 30px 0;
@@ -100,5 +100,3 @@ export const CookiesNotificationLinkElement = styled(a_rs)`
         margin-bottom: 0;
     }
 `;
-
-
