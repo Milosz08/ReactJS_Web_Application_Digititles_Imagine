@@ -18,13 +18,30 @@
 
 import * as React from 'react';
 
+import { ReduxAPIstateKeys } from '../redux/redux-api-thunk/types';
+import { JavaApiEndpoints } from '../redux/redux-api-thunk/request';
 
-const CmsRegistrationFormsPageReact: React.FC = (): JSX.Element => {
-    return (
-        <>
-            cms registration forms page
-        </>
-    );
-};
+import CmsFormListComponent from '../components/cms-form-list-components/CmsFormListComponent';
+import CmsRegistrationFormHeader from '../components/cms-registration-custom-components/CmsRegistrationFormHeader';
+import CmsRegistrationFormInfoHeader from '../components/cms-registration-custom-components/CmsRegistrationFormInfoHeader';
+import CmsRegistrationExpandedLeftData from '../components/cms-registration-custom-components/CmsRegistrationExpandedLeftData';
+import CmsRegistrationExpandedRightData from '../components/cms-registration-custom-components/CmsRegistrationExpandedRightData';
+import CmsFormExpandedButtons from '../components/cms-form-list-components/subcomponents/CmsFormExpandedButtons';
+
+
+const CmsRegistrationFormsPageReact: React.FC = (): JSX.Element => (
+    <CmsFormListComponent
+        typeofList = {ReduxAPIstateKeys.REGISTRATION_FORMS}
+        headerInfoAndElement = {{ Header: CmsRegistrationFormHeader, Info: CmsRegistrationFormInfoHeader }}
+    >
+        <CmsRegistrationExpandedLeftData/>
+        <CmsRegistrationExpandedRightData/>
+        <CmsFormExpandedButtons
+            endpoint = {JavaApiEndpoints.REGISTRATION}
+            cmsFormKey = {ReduxAPIstateKeys.REGISTRATION_FORMS}
+            removeButtonCustomMessage = 'Remove registration form'
+        />
+    </CmsFormListComponent>
+);
 
 export default CmsRegistrationFormsPageReact;
