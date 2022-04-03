@@ -22,9 +22,6 @@ import Utils from '../utils';
 import { ReduxAPIreducerTypes } from './types';
 import { FILMMAKER_MIN_SMALL } from '../../static/gettingStartedContent';
 
-/**
- * Redux reducer for providing API CRUD state management.
- */
 const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes => {
     switch (Utils.normalised(action.type)) {
 

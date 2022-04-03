@@ -21,9 +21,6 @@ import { ActiveAction, ReduxDOMreducerTypes } from './types';
 
 import Utils from '../utils';
 
-/**
- * Redux reducer for manipulating DOM elements and animations.
- */
 const reduxReducerDOM = (state = InitStateDOM, action: any): InitStateDOMtypes => {
     switch (Utils.normalised(action.type)) {
 
