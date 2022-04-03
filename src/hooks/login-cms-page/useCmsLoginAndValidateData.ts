@@ -41,7 +41,7 @@ interface HookProps {
  */
 const useCmsLoginAndValidateData = (): HookProps => {
 
-    const { cookie, setCookie } = useContext<Partial<AllCookiesTypes>>(AllCookiesContext);
+    const { setCookie } = useContext<Partial<AllCookiesTypes>>(AllCookiesContext);
     const [ errors, setErrors ] = useState<{ loginE: boolean, passwordE: boolean }>({ loginE: false, passwordE: false });
 
     const { elRefs } = useMultipleRefs(2);
@@ -53,10 +53,8 @@ const useCmsLoginAndValidateData = (): HookProps => {
         const senderObject = { username: login.current.value, password: password.current.value };
         axiosInstance.post(`${JavaApiEndpoints.AUTHENTICATIONS}/validate`, senderObject)
             .then(res => {
-                if (!cookie![AllCookies.BEARER_TOKEN] && !cookie![AllCookies.CMS_SESSION]) {
-                    setCookie!(AllCookies.BEARER_TOKEN, res.data.bearerToken);
-                    setCookie!(AllCookies.CMS_SESSION, res.data.authLevel);
-                }
+                setCookie!(AllCookies.BEARER_TOKEN, res.data.bearerToken);
+                setCookie!(AllCookies.CMS_SESSION, res.data.authLevel);
                 dispatcher(ReduxAPIActions.changeSessionInfo(true, res.data.authLevel, res.data.bearerToken));
             })
             .catch(err => {

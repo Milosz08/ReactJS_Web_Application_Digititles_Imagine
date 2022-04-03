@@ -53,7 +53,7 @@ export class ReduxAPIThunk {
 
     public static markUserMessageAsViewed(elementId: string, headers: any) {
         return async (dispatcher: (prop: any) => void) => {
-            await axiosInstance.put(`${JavaApiEndpoints.USER_MESSAGES}/${elementId}`, { headers });
+            await axiosInstance.put(`${JavaApiEndpoints.USER_MESSAGES}/${elementId}`, null, { headers });
             dispatcher(ReduxAPIActions.markUserMessageAsViewed(elementId));
         }
     };

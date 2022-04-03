@@ -110,7 +110,9 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
 
         case ReduxAPIreducerTypes.SET_CMS_CREDENTIALS_FIELDS: {
             const { ifLogged, role, bearerToken } = action.payload;
-            return { ...state, sessionInfo: { ...state.sessionInfo, ifLogged, role, bearerToken } };
+            return { ...state, sessionInfo: {
+                ...state.sessionInfo, ifLogged, role, bearerToken: `Bearer ${bearerToken}`
+            }};
         }
 
         case ReduxAPIreducerTypes.SET_SESSION_COUNTER: {
