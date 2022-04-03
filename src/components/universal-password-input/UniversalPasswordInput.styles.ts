@@ -39,7 +39,7 @@ export const UniversalPasswordButtonChangeVisibility = styled(button_rs)<{ $ifEr
     right: 15px;
     width: 40px;
     height: 40px;
-    color: var(--${({ $ifError }) => $ifError ? 'redLight' : 'grayDarker'});
+    color: var(--${({ $ifError }) => $ifError ? 'redDark' : 'grayDarker'});
     top: 50%;
     transform: translateY(-50%);
     font-size: 1.8rem;
