@@ -18,12 +18,11 @@
 
 import * as React from 'react';
 
-const CmsChangeCredentialsPageReact: React.FC = (): JSX.Element => {
-    return (
-        <>
-            cms change credentials
-        </>
-    );
-};
+import CmsChangeCredentials from '../components/cms-change-credentials/CmsChangeCredentials';
+
+
+const CmsChangeCredentialsPageReact: React.FC = (): JSX.Element => (
+    <CmsChangeCredentials/>
+);
 
 export default CmsChangeCredentialsPageReact;
