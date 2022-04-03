@@ -123,17 +123,17 @@ export const InputWithTextarea = ({ $ifError }: { $ifError: boolean }) => css`
     font-size: 1.3rem;
     text-align: center;
     background-color: var(--whiteDark);
-    color: var(--${$ifError ? 'redLight' : 'blackLight'});
+    color: var(--${$ifError ? 'redDark' : 'blackLight'});
     padding: 15px;
-    border-bottom: 4px solid ${$ifError ? 'var(--redLight)' : 'transparent'};
+    border-bottom: 4px solid ${$ifError ? 'var(--redDark)' : 'transparent'};
     border-radius: 8px;
     box-sizing: border-box;
     transition: .2s border-bottom-color ease-in-out;
     ::placeholder {
-        color: var(--${$ifError ? 'redLight' : 'grayDarker'});
+        color: var(--${$ifError ? 'redDark' : 'grayDarker'});
     }
     :focus {
-        border-bottom: 4px solid var(--${$ifError ? 'redLight' : 'cyanDark'});
+        border-bottom: 4px solid var(--${$ifError ? 'redDark' : 'cyanDark'});
     }
     @media only screen and (max-width: 776px) {
         font-size: 1.1rem;
