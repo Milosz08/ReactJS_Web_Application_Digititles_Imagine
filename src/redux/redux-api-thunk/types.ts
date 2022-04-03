@@ -31,6 +31,7 @@ export enum ReduxAPIreducerTypes {
     SET_CMS_CREDENTIALS_FIELDS = 'SET_CMS_CREDENTIALS_FIELDS__T',
     SET_SESSION_COUNTER = 'SET_SESSION_COUNTER__T',
     MARK_USER_MESSAGE_AS_VIEWED = 'MARK_USER_MESSAGE_AS_VIEWED__T',
+    CHANGE_CREDENTIALS_FORM_ELEMENT = 'CHANGE_CREDENTIALS_FORM_ELEMENT__T',
 }
 
 export enum ReduxAPIstateKeys {
@@ -91,4 +92,11 @@ export enum CmsCredentialsLevels {
     UNDEFINED = 'UNDEFINED',
     ADMINISTRATOR = 'ADMINISTRATOR',
     MODERATOR = 'MODERATOR',
+}
+
+export enum CmsChangeCredentialsKeys {
+    MODE = 'mode',
+    LOGIN_ERROR = 'loginError',
+    PASSWORD_ERROR = 'passwordError',
+    REPEAT_PASSWORD_ERROR = 'repeatPasswordError',
 }

@@ -118,6 +118,11 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
             return { ...state, sessionInfo: { ...state.sessionInfo, estimateSessionTime } };
         }
 
+        case ReduxAPIreducerTypes.CHANGE_CREDENTIALS_FORM_ELEMENT: {
+            const { elementKey, value } = action.payload;
+            return { ...state, changeCredentialsForm: { ...state.changeCredentialsForm, [elementKey]: value } };
+        }
+
         default: {
             return state;
         }

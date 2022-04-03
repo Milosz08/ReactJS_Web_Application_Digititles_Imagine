@@ -19,12 +19,8 @@
 import { AxiosResponse } from 'axios';
 
 import {
-    AllFormsTypes,
-    CmsCredentialsLevels,
-    MessageFormInputs,
-    ReduxAPIreducerTypes,
-    ReduxAPIstateKeys,
-    RegistrationFormInputs
+    AllFormsTypes, CmsChangeCredentialsKeys, CmsCredentialsLevels, MessageFormInputs, ReduxAPIreducerTypes,
+    ReduxAPIstateKeys, RegistrationFormInputs
 } from './types';
 
 interface ReturnedToReducer {
@@ -133,6 +129,13 @@ export class ReduxAPIActions {
         type: ReduxAPIreducerTypes.SET_SESSION_COUNTER,
         payload: {
             counter,
+        }
+    });
+
+    public static changeCredentialsFormElement = (elementKey: CmsChangeCredentialsKeys, value: any): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.CHANGE_CREDENTIALS_FORM_ELEMENT,
+        payload: {
+            elementKey, value
         }
     });
 

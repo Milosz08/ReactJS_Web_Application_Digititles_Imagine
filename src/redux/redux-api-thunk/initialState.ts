@@ -55,6 +55,12 @@ export interface InitStateAPItypes {
         email: boolean;
         message: boolean;
     };
+    changeCredentialsForm: {
+        mode: CmsCredentialsLevels;
+        loginError: boolean;
+        passwordError: boolean;
+        repeatPasswordError: boolean;
+    };
     sessionInfo: {
         ifLogged: boolean;
         role: CmsCredentialsLevels;
@@ -101,6 +107,12 @@ export const InitStateAPI: InitStateAPItypes = {
         lastname: false,
         email: false,
         message: false,
+    },
+    changeCredentialsForm: {
+        mode: CmsCredentialsLevels.ADMINISTRATOR,
+        loginError: false,
+        passwordError: false,
+        repeatPasswordError: false,
     },
     sessionInfo: {
         ifLogged: false,
