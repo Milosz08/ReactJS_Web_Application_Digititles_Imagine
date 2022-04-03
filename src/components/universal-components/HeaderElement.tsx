@@ -27,14 +27,18 @@ interface PropsProvider extends ReactNodeProp {
     ifRemoveMargin?: boolean;
     dotColor?: string;
     bgcColor?: string;
+    fontSize?: string;
 }
 
-const HeaderElement: React.FC<PropsProvider> = ({ children, ifNotIncludeDot, ifRemoveMargin, dotColor, bgcColor }): JSX.Element => (
+const HeaderElement: React.FC<PropsProvider> = ({
+    children, ifNotIncludeDot, ifRemoveMargin, dotColor, bgcColor, fontSize
+}): JSX.Element => (
     <HeaderElementStyled
         $ifNotIncludeDot = {Boolean(ifNotIncludeDot)}
         $ifNotMargin = {Boolean(ifRemoveMargin)}
         $dotColor = {dotColor}
         $bgcColor = {bgcColor}
+        $fontSize = {fontSize}
     >
         {children}
     </HeaderElementStyled>

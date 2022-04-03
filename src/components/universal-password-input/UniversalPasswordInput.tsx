@@ -24,6 +24,7 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import {
     UniversalPasswordButtonChangeVisibility, UniversalPasswordInputElement, UniversalPasswordInputLabel
 } from './UniversalPasswordInput.styles';
+import { ThemeProvider } from 'styled-components';
 
 
 interface PropsProvider {
@@ -31,9 +32,13 @@ interface PropsProvider {
     ifProtected?: boolean;
     ifError: boolean;
     elementRef: React.MutableRefObject<any>;
+    ifSmallInput?: boolean;
+    onChangeCallback?: () => void;
 }
 
-const UniversalPasswordInput: React.FC<PropsProvider> = ({ placeholder, ifProtected, ifError, elementRef }): JSX.Element => {
+const UniversalPasswordInput: React.FC<PropsProvider> = ({
+    placeholder, ifProtected, ifError, elementRef, ifSmallInput, onChangeCallback
+}): JSX.Element => {
 
     const [ isHidden, setIsHidden ] = useState<boolean>(true);
 
@@ -44,24 +49,29 @@ const UniversalPasswordInput: React.FC<PropsProvider> = ({ placeholder, ifProtec
     };
 
     return (
-        <UniversalPasswordInputLabel
-            htmlFor = {placeholder}
+        <ThemeProvider
+            theme = {{ $ifSmallInput: Boolean(ifSmallInput) }}
         >
-            <UniversalPasswordInputElement
-                type = {ifProtected ? isHidden ? 'password' : 'text' : 'text'}
-                placeholder = {placeholder}
-                $ifError = {ifError}
-                id = {placeholder}
-                ref = {elementRef}
-            />
-            {ifProtected && <UniversalPasswordButtonChangeVisibility
-                onClick = {changeVisibility}
-                $ifError = {ifError}
-                type = 'button'
+            <UniversalPasswordInputLabel
+                htmlFor = {placeholder}
             >
-                {isHidden ? <AiOutlineEyeInvisible/> : <AiOutlineEye/>}
-            </UniversalPasswordButtonChangeVisibility>}
-        </UniversalPasswordInputLabel>
+                <UniversalPasswordInputElement
+                    type = {ifProtected ? isHidden ? 'password' : 'text' : 'text'}
+                    placeholder = {placeholder}
+                    $ifError = {ifError}
+                    id = {placeholder}
+                    ref = {elementRef}
+                    onChange = {onChangeCallback}
+                />
+                {ifProtected && <UniversalPasswordButtonChangeVisibility
+                    onClick = {changeVisibility}
+                    $ifError = {ifError}
+                    type = 'button'
+                >
+                    {isHidden ? <AiOutlineEyeInvisible/> : <AiOutlineEye/>}
+                </UniversalPasswordButtonChangeVisibility>}
+            </UniversalPasswordInputLabel>
+        </ThemeProvider>
     );
 };
 

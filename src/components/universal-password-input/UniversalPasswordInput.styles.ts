@@ -28,6 +28,8 @@ export const UniversalPasswordInputLabel = styled.label`
 
 export const UniversalPasswordInputElement = styled(input_rs)<{ $ifError: boolean }>`
     ${({ $ifError }) => InputWithTextarea({ $ifError })};
+    font-size: ${({ theme }) => theme.$ifSmallInput ? 1.2 : 1.3}rem;
+    padding: ${({ theme }) => theme.$ifSmallInput ? 10 : 15}px;
     margin-bottom: 20px;
 `;
 
@@ -42,5 +44,5 @@ export const UniversalPasswordButtonChangeVisibility = styled(button_rs)<{ $ifEr
     color: var(--${({ $ifError }) => $ifError ? 'redDark' : 'grayDarker'});
     top: 50%;
     transform: translateY(-50%);
-    font-size: 1.8rem;
+    font-size: ${({ theme }) => theme.$ifSmallInput ? 1.4 : 1.8}rem;
 `;

@@ -18,9 +18,11 @@
 
 import styled from 'styled-components';
 
-export const HeaderElementStyled = styled.h3<{ $ifNotIncludeDot?: boolean, $ifNotMargin: boolean, $dotColor?: string, $bgcColor?: string }>`
+export const HeaderElementStyled = styled.h3<{
+    $ifNotIncludeDot?: boolean, $ifNotMargin: boolean, $dotColor?: string, $bgcColor?: string, $fontSize?: string
+}>`
     color: ${({ $bgcColor }) => $bgcColor || 'var(--blackLight)'};
-    font-size: var(--headerFontSize);
+    font-size: ${({ $fontSize }) => $fontSize || 'var(--headerFontSize)'};
     width: fit-content;
     margin-bottom: ${({ $ifNotMargin }) => $ifNotMargin ? 0 : '40px'};
     text-transform: capitalize;
