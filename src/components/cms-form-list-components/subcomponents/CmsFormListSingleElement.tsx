@@ -60,7 +60,7 @@ const CmsFormListSingleElement: React.FC<PropsProvider> = ({ formElement, typeof
             dispatcher(ReduxDOMActions.changeCmsActiveFormElement(typeofList + 'ActiveSection', state[typeofList][0].id));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [ isMount ]);
+    }, [ isMount, dispatcher ]);
 
     return (
         <CmsFormSingleElementContainer
