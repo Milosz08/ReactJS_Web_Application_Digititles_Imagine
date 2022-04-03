@@ -20,6 +20,8 @@ import * as React from 'react';
 import { createContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import useDidMount from '../../../hooks/reusable/useDidMount';
+
 import { RootState } from '../../../redux/store';
 import { ReduxAPIstateKeys } from '../../../redux/redux-api-thunk/types';
 import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
@@ -51,10 +53,14 @@ const CmsFormListSingleElement: React.FC<PropsProvider> = ({ formElement, typeof
     
     const activeForm = formActiveElements[typeofList + 'ActiveSection'];
     const dispatcher = useDispatch();
+    const isMount = useDidMount();
 
     useEffect(() => {
-        dispatcher(ReduxDOMActions.changeCmsActiveFormElement(typeofList + 'ActiveSection', state[typeofList][0].id));
-    }, [ dispatcher, state, typeofList ]);
+        if (isMount) {
+            dispatcher(ReduxDOMActions.changeCmsActiveFormElement(typeofList + 'ActiveSection', state[typeofList][0].id));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [ isMount ]);
 
     return (
         <CmsFormSingleElementContainer
