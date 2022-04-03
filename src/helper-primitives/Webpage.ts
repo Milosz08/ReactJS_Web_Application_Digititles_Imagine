@@ -58,4 +58,10 @@ export class Webpage {
         return allPathnames.map((el, idx) => ({ name: el, path: `/${allPathsArray[idx]}` }));
     };
 
+    public static capitalisedWord(stringSequence: string): string {
+        const firstChar = stringSequence.charAt(0);
+        const restOfSequence = stringSequence.substring(1);
+        return firstChar.toLocaleUpperCase() + restOfSequence.toLocaleLowerCase();
+    };
+
 }
