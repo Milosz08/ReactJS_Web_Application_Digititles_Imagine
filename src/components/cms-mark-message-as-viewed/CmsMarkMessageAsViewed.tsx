@@ -54,14 +54,14 @@ const CmsMarkMessageAsViewed: React.FC = (): JSX.Element => {
             theme = {{ $ifDisabled: Boolean(findExactMessageForm.ifViewed) }}
         >
             <CmsMarkMessageAsViewedContainer
-                htmlFor = 'mark-as-viewed'
+                htmlFor = {`mark-as-viewed__${form.id}`}
             >
                 <CmsMarkMessageAsViewedCheckboxInput
                     type = 'checkbox'
-                    id = 'mark-as-viewed'
-                    checked = {Boolean(findExactMessageForm.ifViewed)}
+                    id = {`mark-as-viewed__${form.id}`}
+                    checked = {findExactMessageForm.ifViewed}
                     onChange = {handleViewedUserMessage}
-                    disabled = {Boolean(findExactMessageForm.ifViewed)}
+                    disabled = {findExactMessageForm.ifViewed}
                 />
                 <CmsMarkMessageAsViewedCheckmark/>
                 <CmsMarkMessageAsViewedLabelText>
