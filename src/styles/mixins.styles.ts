@@ -171,3 +171,22 @@ export const CmsGridTemplateArea = () => css`
         grid-template-areas: "....";
     }
 `;
+
+export const CmsContentBoxView = ({ content }: { content: string }) => css`
+    position: relative;
+    border: 1px solid var(--grayDark);
+    border-radius: 8px;
+    padding: 40px;
+    margin-bottom: 60px;
+    ::after {
+        position: absolute;
+        content: '${content}';
+        text-transform: capitalize;
+        font-size: 1.2rem;
+        color: var(--grayDark);
+        background-color: var(--whiteClean);
+        padding: 0 10px;
+        top: -13px;
+        left: 40px;
+    }
+`;
