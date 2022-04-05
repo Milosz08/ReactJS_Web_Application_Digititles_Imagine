@@ -18,13 +18,11 @@
 
 import * as React from 'react';
 
+import CmsProjectFormContent from '../components/cms-project-form-content/CmsProjectFormContent';
 
-const CmsAddNewProjectPageReact: React.FC = (): JSX.Element => {
-    return (
-        <>
-            cms add new project page
-        </>
-    );
-};
+
+const CmsAddNewProjectPageReact: React.FC = (): JSX.Element => (
+    <CmsProjectFormContent/>
+);
 
 export default CmsAddNewProjectPageReact;

@@ -20,6 +20,8 @@ import * as React from 'react';
 
 import useInsertProjectInModifyProjectPage from '../hooks/cms-page/useInsertProjectInModifyProjectPage';
 
+import CmsProjectFormContent from '../components/cms-project-form-content/CmsProjectFormContent';
+
 
 const CmsModifySingleProjectPageReact: React.FC = (): JSX.Element => {
 
@@ -28,7 +30,9 @@ const CmsModifySingleProjectPageReact: React.FC = (): JSX.Element => {
     return (
         <>
             {Boolean(findingProject) && <>
-                modify single project: {findingProject!.id}, {findingProject!.title}
+                <CmsProjectFormContent
+                    loadProjectId = {findingProject!.id}
+                />
             </>}
         </>
     );
