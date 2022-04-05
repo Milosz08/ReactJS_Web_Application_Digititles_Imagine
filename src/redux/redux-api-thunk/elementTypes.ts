@@ -21,7 +21,7 @@ export interface ProjectTypes {
     title: string;
     projectPath: string;
     embedCode: string;
-    prodYear: string;
+    prodYear: number;
     prodCompany: string;
     createdTimestamp: number;
     aboutSection: {
