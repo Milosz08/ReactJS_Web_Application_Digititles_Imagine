@@ -17,9 +17,9 @@
  */
 
 import { InitStateAPI, InitStateAPItypes } from './initialState';
-
 import Utils from '../utils';
-import { ReduxAPIreducerTypes } from './types';
+
+import { ProjectFormEditableMode, ReduxAPIreducerTypes, ReduxAPIstateKeys } from './types';
 import { FILMMAKER_MIN_SMALL } from '../../static/gettingStartedContent';
 
 const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes => {
@@ -34,7 +34,13 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
 
         case ReduxAPIreducerTypes.ADD_ALL_ELEMENTS_FROM_DB: {
             const { arrayOfObjects, elementType, loadingElement } = action.payload;
-            return { ...state, status: { ...state.status, [loadingElement]: false }, [elementType]: arrayOfObjects };
+            let arrayOfObjectPossiblyReversed = arrayOfObjects;
+            if (elementType === ReduxAPIstateKeys.PROJECTS) {
+                arrayOfObjectPossiblyReversed = arrayOfObjects.reverse();
+            }
+            return { ...state, status: {
+                ...state.status, [loadingElement]: false }, [elementType]: arrayOfObjectPossiblyReversed
+            };
         }
 
         case ReduxAPIreducerTypes.EDIT_ELEMENT_FROM_DB: {
