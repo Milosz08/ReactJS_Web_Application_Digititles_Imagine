@@ -32,7 +32,7 @@ const CenterContent: React.MemoExoticComponent<() => JSX.Element> = React.memo((
 
     const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
 
-    const generateFirstProjects: JSX.Element[] = projects.reverse().slice(0, 12).map(project => (
+    const generateFirstProjects: JSX.Element[] = projects.slice(0, 12).map(project => (
         <MainMenuSingleProjectInListContainer
             key = {project.id}
         >
