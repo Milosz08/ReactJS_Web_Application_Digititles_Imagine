@@ -73,6 +73,7 @@ export const FooterSingleSectionContainer = styled.section`
     flex-direction: column;
     justify-content: center;
     ${FooterBlocksInitialState()};
+    transition: .6s;
     @media only screen and (max-width: 877px) {
         flex-basis: calc(100% / 2);
         margin: 0 20px;
@@ -100,6 +101,7 @@ export const FooterCopyrightSectionContainer = styled.section`
     justify-content: space-between;
     align-items: center;
     ${FooterBlocksInitialState()};
+    transition: .6s;
     @media only screen and (max-width: 1121px) {
         height: 140px;
     }

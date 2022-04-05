@@ -53,12 +53,12 @@ const useShowHideFooterSectionsOnScrollTrigger = (): ReturnedTypes => {
             if (currScrollFromBottom < footerHalfHeight / 2 && hidden) {
                 setHidden(false);
                 gsap.to(getCurrents(), {
-                    y: 0, autoAlpha: 1, ease: Expo.easeOut, duration: 1.2, stagger: .2,
+                    y: 0, autoAlpha: 1, ease: Expo.easeOut, duration: 0, stagger: .2,
                     scrollTrigger: { trigger: getCurrents() },
                 });
             } else if (currScrollFromBottom >= footerHalfHeight && !hidden) {
                 setHidden(true);
-                gsap.to(getCurrents(), { y: 30, autoAlpha: 0, });
+                gsap.to(getCurrents(), { y: 30, autoAlpha: 0, duration: 0 });
             }
         }
     }, [ currScrollFromBottom, elRefs, getCurrents, hidden ]);
