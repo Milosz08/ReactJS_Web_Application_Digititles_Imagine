@@ -19,8 +19,8 @@
 import { AxiosResponse } from 'axios';
 
 import {
-    AllFormsTypes, CmsChangeCredentialsKeys, CmsCredentialsLevels, MessageFormInputs, ReduxAPIreducerTypes,
-    ReduxAPIstateKeys, RegistrationFormInputs
+    AllFormsTypes, CmsChangeCredentialsKeys, CmsCredentialsLevels, DiscretteProjectSections, MessageFormInputs,
+    ProjectFieldsKeys, ProjectFormEditableMode, ReduxAPIreducerTypes, ReduxAPIstateKeys, RegistrationFormInputs
 } from './types';
 
 interface ReturnedToReducer {
@@ -139,4 +139,46 @@ export class ReduxAPIActions {
         }
     });
 
+    public static insertProjectFormElement = (
+        elementKey: ProjectFieldsKeys, value: any, mode: ProjectFormEditableMode = ProjectFormEditableMode.NORMAL
+    ): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.INSERT_PROJECT_FORM_ELEMENT,
+        payload: {
+            elementKey, value, mode,
+        }
+    });
+
+    public static insertExistingProjectDataToForm = (projectId: string): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.INSERT_EXISTING_PROJECT_DATA_TO_FORM,
+        payload: {
+            projectId,
+        }
+    });
+
+    public static clearAllProjectFormElements = (): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.CLEAR_ALL_PROJECT_FORM_ELEMENTS,
+    });
+
+    public static changeProjectArrayValue = (arrayType: DiscretteProjectSections, index: number, value: string)
+        : ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.CHANGE_PROJECT_ARRAY_CONTENT_VALUE,
+        payload: {
+            arrayType, index, value,
+        }
+    });
+
+    public static addProjectArrayParagraphElement = (arrayType: DiscretteProjectSections): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.ADD_PROJECT_ARRAY_PARAGRAPH_ELEMENT,
+        payload: {
+            arrayType,
+        }
+    });
+
+    public static removeProjectArrayParagraphElement = (arrayType: DiscretteProjectSections, index: number)
+        : ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.REMOVE_PROJECT_ARRAY_PARAGRAPH_ELEMENT,
+        payload: {
+            arrayType, index,
+        }
+    });
 }

@@ -67,6 +67,22 @@ export interface InitStateAPItypes {
         bearerToken: string;
         estimateSessionTime: number;
     };
+    projectDataForm: {
+        title: string;
+        embedCode: string;
+        prodCompany: string;
+        prodYear: number | string;
+        aboutSection: string[];
+        prodSection: string[];
+    };
+    projectDataFormErrors: {
+        title: boolean;
+        embedCode: boolean;
+        prodCompany: boolean;
+        prodYear: boolean;
+        aboutSection: boolean[];
+        prodSection: boolean[];
+    };
 }
 
 export const InitStateAPI: InitStateAPItypes = {
@@ -119,5 +135,21 @@ export const InitStateAPI: InitStateAPItypes = {
         role: CmsCredentialsLevels.UNDEFINED,
         bearerToken: '',
         estimateSessionTime: 0,
+    },
+    projectDataForm: {
+        title: '',
+        embedCode: '',
+        prodCompany: '',
+        prodYear: '',
+        aboutSection: [ '' ],
+        prodSection: [ '' ],
+    },
+    projectDataFormErrors: {
+        title: false,
+        embedCode: false,
+        prodCompany: false,
+        prodYear: false,
+        aboutSection: [ false ],
+        prodSection: [ false ],
     },
 };

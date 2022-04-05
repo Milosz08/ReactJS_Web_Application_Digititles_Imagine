@@ -122,6 +122,68 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
             return { ...state, changeCredentialsForm: { ...state.changeCredentialsForm, [elementKey]: value } };
         }
 
+        case ReduxAPIreducerTypes.INSERT_PROJECT_FORM_ELEMENT: {
+            const { elementKey, value, mode } = action.payload;
+            const currentMode = mode === ProjectFormEditableMode.NORMAL ? 'projectDataForm' : 'projectDataFormErrors';
+            return { ...state, [currentMode]: { ...state.projectDataForm, [elementKey]: value } };
+        }
+
+        case ReduxAPIreducerTypes.INSERT_EXISTING_PROJECT_DATA_TO_FORM: {
+            const { projectId } = action.payload;
+            const findExistingProject = state.projects.find(project => project.id === projectId);
+            if (!findExistingProject) {
+                return state;
+            }
+            const { title, embedCode, prodCompany, prodYear, aboutSection, prodSection } = findExistingProject;
+            const aboutParagraphs = aboutSection.map(el => el.paragraph);
+            const prodParagraphs = prodSection.map(el => el.paragraph);
+            return { ...state, projectDataForm: {
+                title, embedCode, prodCompany, prodYear, aboutSection: aboutParagraphs, prodSection: prodParagraphs
+                }, projectDataFormErrors: {
+                    ...state.projectDataFormErrors,
+                    prodSection: Array.from({ length: prodSection.length }, () => false),
+                    aboutSection: Array.from({ length: aboutSection.length }, () => false),
+                }
+            };
+        }
+
+        case ReduxAPIreducerTypes.CLEAR_ALL_PROJECT_FORM_ELEMENTS: {
+            return { ...state, projectDataForm: {
+                title: '', prodYear: '', prodCompany: '', embedCode: '', prodSection: [ '' ], aboutSection: [ '' ],
+            }, projectDataFormErrors: {
+                title: false, embedCode: false, prodCompany: false, prodYear: false,
+                prodSection: [ false ], aboutSection: [ false ],
+            } };
+        }
+
+        case ReduxAPIreducerTypes.CHANGE_PROJECT_ARRAY_CONTENT_VALUE: {
+            const { arrayType, index, value } = action.payload;
+            const newState = state.projectDataForm[arrayType];
+            newState[index] = value;
+            return { ...state, projectDataForm: { ...state.projectDataForm, [arrayType]: newState } };
+        }
+
+        case ReduxAPIreducerTypes.ADD_PROJECT_ARRAY_PARAGRAPH_ELEMENT: {
+            const { arrayType } = action.payload;
+            return { ...state, projectDataForm: {
+                ...state.projectDataForm, [arrayType]: [ ...state.projectDataForm[arrayType], '' ],
+            }, projectDataFormErrors: {
+                ...state.projectDataFormErrors, [arrayType]: [ ...state.projectDataFormErrors[arrayType], false ],
+            }};
+        }
+
+        case ReduxAPIreducerTypes.REMOVE_PROJECT_ARRAY_PARAGRAPH_ELEMENT: {
+            const { arrayType, index } = action.payload;
+            const arrayWithoutElement = state.projectDataForm[arrayType].filter((_: any, idx: number) => idx !== index);
+            const errorsArray = [...state.projectDataFormErrors[arrayType]];
+            errorsArray.splice(index, 1);
+            return { ...state, projectDataForm: {
+                ...state.projectDataForm, [arrayType]: arrayWithoutElement
+            }, projectDataFormErrors: {
+                ...state.projectDataFormErrors, [arrayType]: errorsArray
+            } };
+        }
+
         default: {
             return state;
         }

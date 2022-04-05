@@ -32,6 +32,12 @@ export enum ReduxAPIreducerTypes {
     SET_SESSION_COUNTER = 'SET_SESSION_COUNTER__T',
     MARK_USER_MESSAGE_AS_VIEWED = 'MARK_USER_MESSAGE_AS_VIEWED__T',
     CHANGE_CREDENTIALS_FORM_ELEMENT = 'CHANGE_CREDENTIALS_FORM_ELEMENT__T',
+    INSERT_PROJECT_FORM_ELEMENT = 'INSERT_PROJECT_FORM_ELEMENT__T',
+    INSERT_EXISTING_PROJECT_DATA_TO_FORM = 'INSERT_EXISTING_PROJECT_DATA_TO_FORM__T',
+    CLEAR_ALL_PROJECT_FORM_ELEMENTS = 'CLEAR_ALL_PROJECT_FORM_ELEMENTS__T',
+    CHANGE_PROJECT_ARRAY_CONTENT_VALUE = 'CHANGE_PROJECT_ARRAY_CONTENT_VALUE__T',
+    ADD_PROJECT_ARRAY_PARAGRAPH_ELEMENT = 'ADD_PROJECT_ARRAY_PARAGRAPH_ELEMENT__T',
+    REMOVE_PROJECT_ARRAY_PARAGRAPH_ELEMENT = 'REMOVE_PROJECT_ARRAY_PARAGRAPH_ELEMENT__T',
 }
 
 export enum ReduxAPIstateKeys {
@@ -78,11 +84,6 @@ export enum MessageFormInputsPlaceholders {
     message = 'Your message *',
 }
 
-export enum FieldAction {
-    NORMAL = 'NORMAL',
-    ERROR = 'ERROR',
-}
-
 export enum AllFormsTypes {
     REGISTRATION = 'registrationForm',
     MESSAGE = 'messageForm',
@@ -99,4 +100,21 @@ export enum CmsChangeCredentialsKeys {
     LOGIN_ERROR = 'loginError',
     PASSWORD_ERROR = 'passwordError',
     REPEAT_PASSWORD_ERROR = 'repeatPasswordError',
+}
+
+export enum ProjectFieldsKeys {
+    TITLE = 'title',
+    EMBED_CODE = 'embedCode',
+    PROD_COMPANY = 'prodCompany',
+    PROD_YEAR = 'prodYear',
+}
+
+export enum ProjectFormEditableMode {
+    NORMAL = 'NORMAL',
+    ERROR = 'ERROR',
+}
+
+export enum DiscretteProjectSections {
+    ABOUT_SECTION = 'aboutSection',
+    PROD_SECTION = 'prodSection',
 }

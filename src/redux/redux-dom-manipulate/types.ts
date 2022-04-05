@@ -102,5 +102,6 @@ export enum AllModals {
 
 export enum DeleteModalPlaceholders {
     messageForms = 'User Message',
-    registrationForms = 'Registration Form'
+    registrationForms = 'Registration Form',
+    projects = 'Project',
 }
