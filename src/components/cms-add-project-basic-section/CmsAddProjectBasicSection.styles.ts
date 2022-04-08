@@ -26,4 +26,10 @@ export const CmsAddProjectBasicSectionContainer = styled.section`
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     grid-template-areas: ".." "..";
+    @media only screen and (max-width: 830px) {
+        gap: 30px;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas: "." "." "." ".";
+    }
 `;

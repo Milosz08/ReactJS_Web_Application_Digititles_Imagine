@@ -53,6 +53,10 @@ export const CmsTextareasListsStructureCharactersAndParagraphInfoContainer = sty
     justify-content: space-between;
     width: calc(100% - 60px);
     margin: 0 20px 10px;
+    @media only screen and (max-width: 830px) {
+        width: 100%;
+        margin: 0 0 10px;
+    }
 `;
 
 export const CmsTextareasListsStructureCharactersAndParagraphInfo = styled.span`

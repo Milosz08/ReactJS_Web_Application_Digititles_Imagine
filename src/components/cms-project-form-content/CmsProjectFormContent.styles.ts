@@ -24,6 +24,9 @@ import { StandardButton } from '../../styles/mixins.styles';
 const ButtonMixinElement = () => css`
     ${StandardButton()};
     font-size: 1.1rem;
+    @media only screen and (max-width: 830px) {
+        width: 100%;
+    }
 `;
 
 export const CmsProjectFormContentContainer = styled.form``;
@@ -32,11 +35,20 @@ export const CmsExistingProjectButtonsContainer = styled.div`
     display: flex;
     justify-content: flex-end;
     margin: 30px 0;
+    @media only screen and (max-width: 830px) {
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-bottom: 60px;
+    }
 `;
 
 export const CmsExistingProjectUndoChangesButton = styled(button_rs)`
     ${ButtonMixinElement()};
     margin-right: 30px;
+    @media only screen and (max-width: 830px) {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
 `;
 
 export const CmsExistingProjectDeleteProjectButton = styled(button_rs)`
