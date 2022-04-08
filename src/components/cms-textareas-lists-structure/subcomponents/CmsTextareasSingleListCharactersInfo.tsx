@@ -25,19 +25,27 @@ import { TextareaContext, TextareaContextTypes } from '../CmsTextareasListsStruc
 import {
     CmsTextareasListsStructureCharactersAndParagraphInfo, CmsTextareasListsStructureCharactersAndParagraphInfoContainer
 } from '../CmsTextareasListsStructure.styles';
+import { InitStateDOMtypes } from '../../../redux/redux-dom-manipulate/initialState';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../redux/store';
 
 
 const CmsTextareasSingleListCharactersInfo: React.FC = (): JSX.Element => {
 
+    const { browserX }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     const { textarea, idx } = useContext<Partial<TextareaContextTypes>>(TextareaContext);
+
+    const generateEstimateTitle = browserX > 830
+        ? `Estimate ${MAX_TEXTAREA_CHARS - textarea!.length} of ${MAX_TEXTAREA_CHARS} characters`
+        : `${MAX_TEXTAREA_CHARS - textarea!.length}/${MAX_TEXTAREA_CHARS}`;
 
     return (
         <CmsTextareasListsStructureCharactersAndParagraphInfoContainer>
             <CmsTextareasListsStructureCharactersAndParagraphInfo>
-                Paragraph {idx! + 1}
+                {browserX > 830 && 'Paragraph'} {idx! + 1}
             </CmsTextareasListsStructureCharactersAndParagraphInfo>
             <CmsTextareasListsStructureCharactersAndParagraphInfo>
-                Estimate {MAX_TEXTAREA_CHARS - textarea!.length} of {MAX_TEXTAREA_CHARS} characters
+                {generateEstimateTitle}
             </CmsTextareasListsStructureCharactersAndParagraphInfo>
         </CmsTextareasListsStructureCharactersAndParagraphInfoContainer>
     );
