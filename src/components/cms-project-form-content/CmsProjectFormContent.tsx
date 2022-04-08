@@ -29,6 +29,8 @@ import InfoBlockElement from '../info-block-element/InfoBlockElement';
 import CmsExistingProjectButtons from './subcomponents/CmsExistingProjectButtons';
 import CmsAddProjectBasicSection from '../cms-add-project-basic-section/CmsAddProjectBasicSection';
 import CmsTextareasListsStructure from '../cms-textareas-lists-structure/CmsTextareasListsStructure';
+import CmsAddProjectFontProperties from '../cms-add-project-font-properties/CmsAddProjectFontProperties';
+import CmsAddProjectRenderingSection from '../cms-add-project-rendering-section/CmsAddProjectRenderingSection';
 
 
 interface PropsProvider {
@@ -78,6 +80,8 @@ const CmsProjectFormContent: React.FC<PropsProvider> = ({ loadProjectId }): JSX.
                 section = {DiscretteProjectSections.PROD_SECTION}
                 headerPlaceholder = 'Project production info'
             />
+            <CmsAddProjectFontProperties/>
+            <CmsAddProjectRenderingSection/>
         </CmsProjectFormContentContainer>
     );
 };

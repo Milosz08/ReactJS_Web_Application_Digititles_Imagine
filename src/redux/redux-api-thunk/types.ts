@@ -107,6 +107,15 @@ export enum ProjectFieldsKeys {
     EMBED_CODE = 'embedCode',
     PROD_COMPANY = 'prodCompany',
     PROD_YEAR = 'prodYear',
+    FONT_FAMILY = 'fontFamily',
+    FONT_TYPE = 'fontType',
+    FONT_SIZE = 'fontSize',
+    LINE_HEIGHT = 'lineHeight',
+    RENDERING_TIME = 'renderingTime',
+    SAMPLING_CODEC = 'samplingCodec',
+    NATIVE_RESOLUTION = 'nativeResolution',
+    SHORT_RESOLUTION = 'shortResolution',
+    IF_IMAX = 'ifImax',
 }
 
 export enum ProjectFormEditableMode {

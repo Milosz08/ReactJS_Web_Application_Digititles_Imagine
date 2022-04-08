@@ -74,6 +74,15 @@ export interface InitStateAPItypes {
         prodYear: number | string;
         aboutSection: string[];
         prodSection: string[];
+        fontFamily: string;
+        fontType: string;
+        fontSize: string;
+        lineHeight: string;
+        renderingTime: string;
+        samplingCodec: string;
+        nativeResolution: string;
+        shortResolution: string;
+        ifImax: boolean;
     };
     projectDataFormErrors: {
         title: boolean;
@@ -82,6 +91,14 @@ export interface InitStateAPItypes {
         prodYear: boolean;
         aboutSection: boolean[];
         prodSection: boolean[];
+        fontFamily: boolean;
+        fontType: boolean;
+        fontSize: boolean;
+        lineHeight: boolean;
+        renderingTime: boolean;
+        samplingCodec: boolean;
+        nativeResolution: boolean;
+        shortResolution: boolean;
     };
 }
 
@@ -143,6 +160,15 @@ export const InitStateAPI: InitStateAPItypes = {
         prodYear: '',
         aboutSection: [ '' ],
         prodSection: [ '' ],
+        fontFamily: '',
+        fontType: '',
+        fontSize: '',
+        lineHeight: '',
+        renderingTime: '',
+        samplingCodec: '',
+        nativeResolution: '',
+        shortResolution: '',
+        ifImax: false,
     },
     projectDataFormErrors: {
         title: false,
@@ -151,5 +177,13 @@ export const InitStateAPI: InitStateAPItypes = {
         prodYear: false,
         aboutSection: [ false ],
         prodSection: [ false ],
+        fontFamily: false,
+        fontType: false,
+        fontSize: false,
+        lineHeight: false,
+        renderingTime: false,
+        samplingCodec: false,
+        nativeResolution: false,
+        shortResolution: false,
     },
 };

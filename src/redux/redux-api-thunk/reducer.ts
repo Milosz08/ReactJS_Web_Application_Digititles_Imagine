@@ -140,25 +140,35 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
             if (!findExistingProject) {
                 return state;
             }
-            const { title, embedCode, prodCompany, prodYear, aboutSection, prodSection } = findExistingProject;
+            const {
+                title, embedCode, prodCompany, prodYear, aboutSection, prodSection, typography, renderProps
+            } = findExistingProject;
+            const { fontSize, fontFamily, lineHeight, fontType } = typography;
+            const { renderingTime, nativeResolution, samplingCodec, ifImax, shortResolution } = renderProps;
             const aboutParagraphs = aboutSection.map(el => el.paragraph);
             const prodParagraphs = prodSection.map(el => el.paragraph);
             return { ...state, projectDataForm: {
-                title, embedCode, prodCompany, prodYear, aboutSection: aboutParagraphs, prodSection: prodParagraphs
-                }, projectDataFormErrors: {
-                    ...state.projectDataFormErrors,
-                    prodSection: Array.from({ length: prodSection.length }, () => false),
-                    aboutSection: Array.from({ length: aboutSection.length }, () => false),
-                }
-            };
+                title, embedCode, prodCompany, prodYear, aboutSection: aboutParagraphs, prodSection: prodParagraphs,
+                fontSize, fontFamily, lineHeight, fontType, renderingTime, nativeResolution, samplingCodec, ifImax,
+                shortResolution,
+            }, projectDataFormErrors: {
+                ...state.projectDataFormErrors,
+                prodSection: Array.from({ length: prodSection.length }, () => false),
+                aboutSection: Array.from({ length: aboutSection.length }, () => false),
+            } };
         }
 
         case ReduxAPIreducerTypes.CLEAR_ALL_PROJECT_FORM_ELEMENTS: {
             return { ...state, projectDataForm: {
                 title: '', prodYear: '', prodCompany: '', embedCode: '', prodSection: [ '' ], aboutSection: [ '' ],
+                fontSize: '', fontFamily: '', fontType: '', lineHeight: '', renderingTime: '', nativeResolution: '',
+                samplingCodec: '', shortResolution: '', ifImax: false,
             }, projectDataFormErrors: {
                 title: false, embedCode: false, prodCompany: false, prodYear: false,
                 prodSection: [ false ], aboutSection: [ false ],
+                fontSize: false, fontFamily: false, fontType: false, lineHeight: false,
+                renderingTime: false, nativeResolution: false, samplingCodec: false,
+                shortResolution: false,
             } };
         }
 
