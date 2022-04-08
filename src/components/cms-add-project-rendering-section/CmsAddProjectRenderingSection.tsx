@@ -30,7 +30,7 @@ import CmsAddProjectRenderingIfImax from './subcomponents/CmsAddProjectRendering
 const CmsAddProjectRenderingSection: React.FC = (): JSX.Element => (
     <CmsAddProjectRenderingSectionContainer>
         <CmsAddProjectTextInputElement
-            innerInputPlaceholder = 'ex. "5.5 (in hours, only number)"'
+            innerInputPlaceholder = 'ex. "5.5 (in hours)"'
             inputKey = {ProjectFieldsKeys.RENDERING_TIME}
             topInputPlaceholder = "Rendering time (in hours)"
         />

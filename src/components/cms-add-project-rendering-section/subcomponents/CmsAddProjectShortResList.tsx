@@ -46,9 +46,10 @@ const CmsAddProjectShortResList: React.FC = (): JSX.Element => {
         .filter(res => res !== 'imax')
         .map(res => res.toUpperCase());
 
-    const generateOptions = Array.from(new Set(allTypesOfResolutions.concat(withoutImax))).map(res => (
-        <option key = {res}>{res}</option>
-    ));
+    const removeDuplicats = Array.from(new Set(allTypesOfResolutions.concat(withoutImax)));
+    const withFirstSeeLabel = ['Choose resolution'].concat(removeDuplicats);
+
+    const generateOptions = withFirstSeeLabel.map(res => <option key = {res}>{res}</option>);
 
     const handleChangeSelectElement = ({ target }: React.ChangeEvent<HTMLSelectElement>): void => {
         dispatcher(ReduxAPIActions.insertProjectFormElement(ProjectFieldsKeys.SHORT_RESOLUTION, target.value));
