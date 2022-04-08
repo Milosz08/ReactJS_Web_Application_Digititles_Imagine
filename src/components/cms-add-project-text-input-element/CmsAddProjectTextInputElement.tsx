@@ -75,7 +75,7 @@ const CmsAddProjectTextInputElement: React.FC<PropsProvider> = ({
                     type = 'text'
                     id = {idFormElement}
                     placeholder = {innerInputPlaceholder}
-                    value = {formElement!}
+                    value = {formElement! as string}
                     onChange = {handleInputChangeEvent}
                 />
                 <CmsAddProjectClearInputButton

@@ -32,7 +32,7 @@ import {
     CmsFormExpandedPanelRemoveButton
 } from '../CmsFormListComponent.styles';
 
-import CmsMarkMessageAsViewed from '../../cms-mark-message-as-viewed/CmsMarkMessageAsViewed';
+import CmsMarkMessageAsViewed from './CmsMarkMessageAsViewed';
 
 
 interface PropsProvider {

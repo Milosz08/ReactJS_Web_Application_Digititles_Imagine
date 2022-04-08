@@ -70,3 +70,11 @@ export const textarea_rs = styled.textarea`
 export const ul_rs = styled.ul`
     list-style-type: none;
 `;
+
+export const select_rs = styled.select`
+    border: none;
+    outline: none;
+    resize: none;
+    appearance: none;
+    cursor: pointer;
+`;
