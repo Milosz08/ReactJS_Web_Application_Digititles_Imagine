@@ -1,8 +1,8 @@
 /*
  * Copyright (c) 2022 by MILOSZ GILGA <https://miloszgilga.pl>
  *
- * File name: CmsMarkMessageAsViewed.styles.ts
- * Last modified: 02/04/2022, 20:32
+ * File name: UniversalCheckboxInputComponent.styles.ts
+ * Last modified: 08/04/2022, 01:40
  * Project name: digititles-imagine
  *
  * Licensed under the MIT license; you may not use this file except in compliance with the License.
@@ -19,14 +19,14 @@
 import styled from 'styled-components';
 import { input_rs } from '../../styles/reset.styles';
 
-export const CmsMarkMessageAsViewedContainer = styled.label`
+export const UniversalCheckboxInputContainer = styled.label`
     position: relative;
     display: flex;
     align-items: center;
     cursor: ${({ theme }) => theme.$ifDisabled ? 'not-allowed' : 'pointer'};
 `;
 
-export const CmsMarkMessageAsViewedCheckboxInput = styled(input_rs)`
+export const UniversalCheckboxInputElement = styled(input_rs)`
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -47,16 +47,17 @@ export const CmsMarkMessageAsViewedCheckboxInput = styled(input_rs)`
     }
 `;
 
-export const CmsMarkMessageAsViewedCheckmark = styled.span`
+export const UniversalCheckboxInputCheckmark = styled.span`
     position: absolute;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     left: 0;
     height: 20px;
     width: 20px;
     border-radius: 5px;
     background-color: var(--grayLighter);
     ::after {
-        content: "";
+        content: '';
         position: absolute;
         display: none;
         left: 7px;
@@ -69,7 +70,8 @@ export const CmsMarkMessageAsViewedCheckmark = styled.span`
     }
 `;
 
-export const CmsMarkMessageAsViewedLabelText = styled.div`
+export const UniversalCheckboxInputLabelText = styled.div`
     margin-left: 35px;
     color: var(--${({ theme }) => theme.$ifDisabled ? 'grayLight' : 'blackLight'});
+    font-size: ${({ theme }) => theme.$ifProjectImax ? '1.2rem' : 'inherit'};
 `;
