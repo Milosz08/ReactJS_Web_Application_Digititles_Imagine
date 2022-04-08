@@ -2,7 +2,7 @@
  * Copyright (c) 2022 by MILOSZ GILGA <https://miloszgilga.pl>
  *
  * File name: CmsMarkMessageAsViewed.tsx
- * Last modified: 02/04/2022, 20:32
+ * Last modified: 08/04/2022, 01:54
  * Project name: digititles-imagine
  *
  * Licensed under the MIT license; you may not use this file except in compliance with the License.
@@ -19,18 +19,14 @@
 import * as React from 'react';
 import { useContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ThemeProvider } from 'styled-components';
 
-import { RootState } from '../../redux/store';
-import { ReduxAPIThunk } from '../../redux/redux-api-thunk/thunk';
-import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
+import { RootState } from '../../../redux/store';
+import { ReduxAPIThunk } from '../../../redux/redux-api-thunk/thunk';
+import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
 
-import { FormContext, FormContextTypes } from '../cms-form-list-components/subcomponents/CmsFormListSingleElement';
+import { FormContext, FormContextTypes } from './CmsFormListSingleElement';
 
-import {
-    CmsMarkMessageAsViewedCheckboxInput, CmsMarkMessageAsViewedCheckmark, CmsMarkMessageAsViewedContainer,
-    CmsMarkMessageAsViewedLabelText
-} from './CmsMarkMessageAsViewed.styles';
+import UniversalCheckboxInputComponent from '../../universal-checkbox-input-component/UniversalCheckboxInputComponent';
 
 
 const CmsMarkMessageAsViewed: React.FC = (): JSX.Element => {
@@ -50,25 +46,13 @@ const CmsMarkMessageAsViewed: React.FC = (): JSX.Element => {
     };
 
     return (
-        <ThemeProvider
-            theme = {{ $ifDisabled: Boolean(findExactMessageForm.ifViewed) }}
-        >
-            <CmsMarkMessageAsViewedContainer
-                htmlFor = {`mark-as-viewed__${form.id}`}
-            >
-                <CmsMarkMessageAsViewedCheckboxInput
-                    type = 'checkbox'
-                    id = {`mark-as-viewed__${form.id}`}
-                    checked = {findExactMessageForm.ifViewed}
-                    onChange = {handleViewedUserMessage}
-                    disabled = {findExactMessageForm.ifViewed}
-                />
-                <CmsMarkMessageAsViewedCheckmark/>
-                <CmsMarkMessageAsViewedLabelText>
-                    Mark this message as viewed
-                </CmsMarkMessageAsViewedLabelText>
-            </CmsMarkMessageAsViewedContainer>
-        </ThemeProvider>
+        <UniversalCheckboxInputComponent
+            checkedValue = {Boolean(findExactMessageForm.ifViewed)}
+            htmlForId = {form.id}
+            ifDisabled = {findExactMessageForm.ifViewed}
+            onChangeCallback = {handleViewedUserMessage}
+            checkboxMessage = 'Mark this message as viewed'
+        />
     );
 };
 
