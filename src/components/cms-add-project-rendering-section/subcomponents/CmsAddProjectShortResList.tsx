@@ -47,7 +47,7 @@ const CmsAddProjectShortResList: React.FC = (): JSX.Element => {
         .map(res => res.toUpperCase());
 
     const removeDuplicats = Array.from(new Set(allTypesOfResolutions.concat(withoutImax)));
-    const withFirstSeeLabel = ['Choose resolution'].concat(removeDuplicats);
+    const withFirstSeeLabel = [ 'Choose resolution' ].concat(removeDuplicats);
 
     const generateOptions = withFirstSeeLabel.map(res => <option key = {res}>{res}</option>);
 
