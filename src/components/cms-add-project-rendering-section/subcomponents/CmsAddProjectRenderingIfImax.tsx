@@ -33,7 +33,7 @@ const CmsAddProjectRenderingIfImax: React.FC = (): JSX.Element => {
     const dispatcher = useDispatch();
 
     const ifImax = `This project was created with${projectDataForm.ifImax ? '' : 'out'} 
-                    an IMAX&reg; digital cinema technology`;
+                    an IMAX&reg; digital cinema technology.`;
 
     const handleChangeIfImaxProperty = (): void => {
         dispatcher(ReduxAPIActions.insertProjectFormElement(ProjectFieldsKeys.IF_IMAX, !projectDataForm.ifImax));
