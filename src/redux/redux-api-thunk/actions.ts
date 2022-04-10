@@ -167,6 +167,13 @@ export class ReduxAPIActions {
         }
     });
 
+    public static changeProjectSingleColorValue = (colorValueKey: string, value: string): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.CHANGE_PROJECT_FORM_SINGLE_COLOR_VALUE,
+        payload: {
+            colorValueKey, value,
+        }
+    });
+
     public static addProjectArrayParagraphElement = (arrayType: DiscretteProjectSections): ReturnedToReducer => ({
         type: ReduxAPIreducerTypes.ADD_PROJECT_ARRAY_PARAGRAPH_ELEMENT,
         payload: {

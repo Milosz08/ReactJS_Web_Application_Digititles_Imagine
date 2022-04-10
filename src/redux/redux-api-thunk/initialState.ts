@@ -83,6 +83,12 @@ export interface InitStateAPItypes {
         nativeResolution: string;
         shortResolution: string;
         ifImax: boolean;
+        projectColours: {
+            mainBackground: string;
+            dotAndParagraphInProduction: string;
+            dotOnLightBackground: string;
+            techBackground: string;
+        };
     };
     projectDataFormErrors: {
         title: boolean;
@@ -169,6 +175,12 @@ export const InitStateAPI: InitStateAPItypes = {
         nativeResolution: '',
         shortResolution: '',
         ifImax: false,
+        projectColours: {
+            mainBackground: '#2c5662',
+            dotAndParagraphInProduction: '#648e99',
+            dotOnLightBackground: '#2c5662',
+            techBackground: '#1b363d',
+        },
     },
     projectDataFormErrors: {
         title: false,

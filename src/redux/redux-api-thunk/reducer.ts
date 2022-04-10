@@ -141,16 +141,21 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
                 return state;
             }
             const {
-                title, embedCode, prodCompany, prodYear, aboutSection, prodSection, typography, renderProps
+                title, embedCode, prodCompany, prodYear, aboutSection, prodSection, typography, renderProps,
+                projectColours,
             } = findExistingProject;
             const { fontSize, fontFamily, lineHeight, fontType } = typography;
             const { renderingTime, nativeResolution, samplingCodec, ifImax, shortResolution } = renderProps;
+            const { mainBackground, mainHeader, strongForeground, techBackground } = projectColours;
             const aboutParagraphs = aboutSection.map(el => el.paragraph);
             const prodParagraphs = prodSection.map(el => el.paragraph);
             return { ...state, projectDataForm: {
                 title, embedCode, prodCompany, prodYear, aboutSection: aboutParagraphs, prodSection: prodParagraphs,
                 fontSize, fontFamily, lineHeight, fontType, renderingTime, nativeResolution, samplingCodec, ifImax,
-                shortResolution,
+                shortResolution, projectColours: {
+                    mainBackground, dotAndParagraphInProduction: mainHeader, dotOnLightBackground: strongForeground,
+                    techBackground,
+                },
             }, projectDataFormErrors: {
                 ...state.projectDataFormErrors,
                 prodSection: Array.from({ length: prodSection.length }, () => false),
@@ -162,7 +167,10 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
             return { ...state, projectDataForm: {
                 title: '', prodYear: '', prodCompany: '', embedCode: '', prodSection: [ '' ], aboutSection: [ '' ],
                 fontSize: '', fontFamily: '', fontType: '', lineHeight: '', renderingTime: '', nativeResolution: '',
-                samplingCodec: '', shortResolution: '', ifImax: false,
+                samplingCodec: '', shortResolution: '', ifImax: false, projectColours: {
+                    mainBackground: '#2c5662', dotAndParagraphInProduction: '#648e99', dotOnLightBackground: '#2c5662',
+                    techBackground: '#1b363d',
+                },
             }, projectDataFormErrors: {
                 title: false, embedCode: false, prodCompany: false, prodYear: false,
                 prodSection: [ false ], aboutSection: [ false ],
@@ -177,6 +185,13 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
             const newState = state.projectDataForm[arrayType];
             newState[index] = value;
             return { ...state, projectDataForm: { ...state.projectDataForm, [arrayType]: newState } };
+        }
+
+        case ReduxAPIreducerTypes.CHANGE_PROJECT_FORM_SINGLE_COLOR_VALUE: {
+            const { colorValueKey, value } = action.payload;
+            return { ...state, projectDataForm: { ...state.projectDataForm, projectColours: {
+                ...state.projectDataForm.projectColours, [colorValueKey]: value,
+            } } };
         }
 
         case ReduxAPIreducerTypes.ADD_PROJECT_ARRAY_PARAGRAPH_ELEMENT: {
