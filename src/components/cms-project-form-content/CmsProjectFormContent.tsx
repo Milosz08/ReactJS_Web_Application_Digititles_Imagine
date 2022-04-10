@@ -31,6 +31,7 @@ import CmsAddProjectBasicSection from '../cms-add-project-basic-section/CmsAddPr
 import CmsTextareasListsStructure from '../cms-textareas-lists-structure/CmsTextareasListsStructure';
 import CmsAddProjectFontProperties from '../cms-add-project-font-properties/CmsAddProjectFontProperties';
 import CmsAddProjectRenderingSection from '../cms-add-project-rendering-section/CmsAddProjectRenderingSection';
+import CmsAddProjectColorsAndSoftwareSection from '../cms-add-project-colors-and-software-section/CmsAddProjectColorsAndSoftwareSection';
 
 
 interface PropsProvider {
@@ -82,6 +83,7 @@ const CmsProjectFormContent: React.FC<PropsProvider> = ({ loadProjectId }): JSX.
             />
             <CmsAddProjectFontProperties/>
             <CmsAddProjectRenderingSection/>
+            <CmsAddProjectColorsAndSoftwareSection/>
         </CmsProjectFormContentContainer>
     );
 };
