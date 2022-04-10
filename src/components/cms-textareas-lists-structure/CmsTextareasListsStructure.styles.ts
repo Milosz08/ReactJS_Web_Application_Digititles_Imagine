@@ -98,4 +98,7 @@ export const CmsTextareasAddNewAreaButton = styled(button_rs)`
     font-size: 1.2rem;
     color: var(--cyanDark);
     width: 100%;
+    :disabled {
+        opacity: .5;
+    }
 `;

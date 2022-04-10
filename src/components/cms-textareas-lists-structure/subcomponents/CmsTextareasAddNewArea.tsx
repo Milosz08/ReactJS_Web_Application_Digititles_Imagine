@@ -17,9 +17,11 @@
  */
 
 import * as React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { RootState } from '../../../redux/store';
 import { ReduxAPIActions } from '../../../redux/redux-api-thunk/actions';
+import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
 import { DiscretteProjectSections } from '../../../redux/redux-api-thunk/types';
 
 import { CmsTextareasAddNewAreaButton } from '../CmsTextareasListsStructure.styles';
@@ -30,19 +32,27 @@ interface PropsProvider {
 
 const CmsTextareasAddNewArea: React.FC<PropsProvider> = ({ section }): JSX.Element => {
 
+    const { projectDataForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
     const dispatcher = useDispatch();
 
+    const buttonTitle = projectDataForm[section].length < 7
+        ? `Click to add new paragraph in ${section.toLocaleLowerCase()} section`
+        : 'You cannot add new paragraph';
+
     const handleAddNewSection = (): void => {
-        dispatcher(ReduxAPIActions.addProjectArrayParagraphElement(section));
+        if (projectDataForm[section].length < 7) {
+            dispatcher(ReduxAPIActions.addProjectArrayParagraphElement(section));
+        }
     };
 
     return (
         <CmsTextareasAddNewAreaButton
-            title = {`Click to add new paragraph in ${section.toLocaleLowerCase()} section`}
-            type = 'button'
+            title = {buttonTitle}
+            type = "button"
             onClick = {handleAddNewSection}
+            disabled = {projectDataForm[section].length >= 7}
         >
-            Add new paragraph
+            Add new paragraph ({projectDataForm[section].length} of 7)
         </CmsTextareasAddNewAreaButton>
     );
 };
