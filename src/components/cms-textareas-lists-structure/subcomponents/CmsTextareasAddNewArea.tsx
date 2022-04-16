@@ -33,14 +33,14 @@ interface PropsProvider {
     addValuePayload?: SoftwareModel;
 }
 
-const CmsTextareasAddNewArea: React.FC<PropsProvider> = ({ section }): JSX.Element => {
+const CmsTextareasAddNewArea: React.FC<PropsProvider> = ({ section, addValuePayload }): JSX.Element => {
 
     const { projectDataForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const dispatcher = useDispatch();
 
     const buttonTitle = projectDataForm[section].length < 7
-        ? `Click to add new paragraph in ${section.toLocaleLowerCase()} section`
-        : 'You cannot add new paragraph';
+        ? `Click to add new section in ${section.toLocaleLowerCase()}`
+        : 'You cannot add new section';
 
     const handleAddNewSection = (): void => {
         if (projectDataForm[section].length < 7) {
@@ -51,11 +51,11 @@ const CmsTextareasAddNewArea: React.FC<PropsProvider> = ({ section }): JSX.Eleme
     return (
         <CmsTextareasAddNewAreaButton
             title = {buttonTitle}
-            type = "button"
+            type = 'button'
             onClick = {handleAddNewSection}
             disabled = {projectDataForm[section].length >= 7}
         >
-            Add new paragraph ({projectDataForm[section].length} of 7)
+            Add new section ({projectDataForm[section].length} of 7)
         </CmsTextareasAddNewAreaButton>
     );
 };
