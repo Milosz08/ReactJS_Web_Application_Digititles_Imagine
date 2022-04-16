@@ -32,7 +32,7 @@ export const CmsAddProjectColorsAndSoftwareSectionContainer = styled.section`
 
 export const CmsAddProjectColorsSectionContainer = styled.div`
     ${CmsContentBoxView({ content: 'project colours' })};
-    flex-basis: 50%;
+    flex-basis: 40%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -82,6 +82,7 @@ export const CmsAddProjectColorsInputHexTextContent = styled.div.attrs(({ theme 
 
 export const CmsAddProjectSoftwareSectionContainer = styled(CmsAddProjectColorsSectionContainer)`
     margin: 0 0 0 20px;
+    flex-basis: 60%;
     ::after {
         content: 'software used in this project';
     }

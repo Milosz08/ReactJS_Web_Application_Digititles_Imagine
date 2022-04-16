@@ -18,6 +18,10 @@
 
 import * as React from 'react';
 import { useContext } from 'react';
+import { useSelector } from 'react-redux';
+
+import { RootState } from '../../../redux/store';
+import { InitStateDOMtypes } from '../../../redux/redux-dom-manipulate/initialState';
 
 import { MAX_TEXTAREA_CHARS } from './CmsTextareasSingleListStructure';
 import { TextareaContext, TextareaContextTypes } from '../CmsTextareasListsStructure';
@@ -25,9 +29,6 @@ import { TextareaContext, TextareaContextTypes } from '../CmsTextareasListsStruc
 import {
     CmsTextareasListsStructureCharactersAndParagraphInfo, CmsTextareasListsStructureCharactersAndParagraphInfoContainer
 } from '../CmsTextareasListsStructure.styles';
-import { InitStateDOMtypes } from '../../../redux/redux-dom-manipulate/initialState';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux/store';
 
 
 const CmsTextareasSingleListCharactersInfo: React.FC = (): JSX.Element => {

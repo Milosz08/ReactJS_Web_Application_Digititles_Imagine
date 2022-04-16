@@ -16,7 +16,8 @@
  * COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
  */
 
-import React, { useContext, useEffect, useRef } from 'react';
+import * as React from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import { gsap } from 'gsap';
