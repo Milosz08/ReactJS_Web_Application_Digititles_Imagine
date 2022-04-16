@@ -17,13 +17,54 @@
  */
 
 import * as React from 'react';
+import { createContext } from 'react';
+import { useSelector } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
+
+import { RootState } from '../../../redux/store';
+import { SoftwareModel } from '../../../redux/redux-models/ProjectModel';
+import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
+import { DiscretteProjectSections } from '../../../redux/redux-subreducers/redux-project-form/types';
 
 import { CmsAddProjectSoftwareSectionContainer } from '../CmsAddProjectColorsAndSoftwareSection.styles';
 
+import CmsAddProjectSoftwareSingleSection from '../../cms-add-project-software-single-section/CmsAddProjectSoftwareSingleSection';
+import CmsTextareasAddNewArea from '../../cms-textareas-lists-structure/subcomponents/CmsTextareasAddNewArea';
+
+
+export type SoftwareContextTypes = { soft: SoftwareModel; iteration: number; ifError: boolean };
+export const SoftwareContext = createContext<Partial<SoftwareContextTypes>>({});
+
+
 const CmsAddProjectSoftwareSection: React.FC = (): JSX.Element => {
+
+    const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
+    const { projectDataForm, projectDataFormErrors } = state;
+
+    const generateAllSections: JSX.Element[] = projectDataForm.usedSoftware.map((soft, idx) => (
+        <ThemeProvider
+            key = {`${soft.softwareFor}__${idx}`}
+            theme = {{ $ifError: projectDataFormErrors.usedSoftware[idx] }}
+        >
+            <SoftwareContext.Provider
+                value = {{ soft, iteration: idx, ifError: projectDataFormErrors.usedSoftware[idx] }}
+            >
+                <CmsAddProjectSoftwareSingleSection/>
+            </SoftwareContext.Provider>
+        </ThemeProvider>
+    ));
+
     return (
         <CmsAddProjectSoftwareSectionContainer>
-            software section
+            {generateAllSections}
+            <CmsTextareasAddNewArea
+                section = {DiscretteProjectSections.SPEC_SECTION}
+                addValuePayload = {{
+                    softwareFor: 'titles', software: {
+                        softwareFullName: 'Adobe&reg; After Effects', softwareShortName: 'ae',
+                    }
+                }}
+            />
         </CmsAddProjectSoftwareSectionContainer>
     );
 };
