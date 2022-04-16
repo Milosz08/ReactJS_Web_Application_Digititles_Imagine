@@ -24,7 +24,7 @@ import {
 } from '../../context/change-credentials-refs/ChangeCredentialsRefsProvider';
 
 import { RootState } from '../../redux/store';
-import { ReduxAPIActions } from '../../redux/redux-api-thunk/actions';
+import { ReduxFormsActions } from '../../redux/redux-subreducers/redux-forms/actions';
 import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
 import { CmsChangeCredentialsKeys, CmsCredentialsLevels } from '../../redux/redux-api-thunk/types';
 
@@ -45,15 +45,15 @@ interface HookReturns {
 const useRemoveErrorHighlight = (): HookReturns => {
 
     const context = useContext<Partial<ChangeCredentialsContextTypes>>(ChangeCredentialsContext);
-    const { changeCredentialsForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { changeCredentialsForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
     const { PASSWORD_ERROR, REPEAT_PASSWORD_ERROR } = CmsChangeCredentialsKeys;
     const dispatcher = useDispatch();
 
     const handleResetFields = (elementKey: CmsChangeCredentialsKeys): void => {
-        dispatcher(ReduxAPIActions.changeCredentialsFormElement(elementKey, false));
+        dispatcher(ReduxFormsActions.changeCredentialsFormElement(elementKey, false));
         if (elementKey === PASSWORD_ERROR) {
-            dispatcher(ReduxAPIActions.changeCredentialsFormElement(REPEAT_PASSWORD_ERROR, false));
+            dispatcher(ReduxFormsActions.changeCredentialsFormElement(REPEAT_PASSWORD_ERROR, false));
         }
     };
 

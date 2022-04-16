@@ -31,7 +31,7 @@ import UniversalCheckboxInputComponent from '../../universal-checkbox-input-comp
 
 const CmsMarkMessageAsViewed: React.FC = (): JSX.Element => {
 
-    const { messageForms, sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { messageForms, sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const { form } = useContext<Partial<FormContextTypes>>(FormContext);
 
     const findExactMessageForm = messageForms.find(messageForm => messageForm.id === form.id)!;

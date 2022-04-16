@@ -25,10 +25,11 @@ import useValidateFooterForm from '../../hooks/footer/useValidateFooterForm';
 import { RootState } from '../../redux/store';
 
 import { ReduxAPIThunk } from '../../redux/redux-api-thunk/thunk';
-import { AllFormsTypes } from '../../redux/redux-api-thunk/types';
-import { ReduxAPIActions } from '../../redux/redux-api-thunk/actions';
 import { JavaApiEndpoints } from '../../redux/redux-api-thunk/request';
 import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
+
+import { AllFormsTypes } from '../../redux/redux-subreducers/redux-forms/types';
+import { ReduxFormsActions } from '../../redux/redux-subreducers/redux-forms/actions';
 
 import { ActiveAction } from '../../redux/redux-dom-manipulate/types';
 import { ReduxDOMActions } from '../../redux/redux-dom-manipulate/actions';
@@ -47,7 +48,7 @@ interface PropsProvider {
 
 const GettingStartedFormStructure: React.FC<PropsProvider> = ({ referential }): JSX.Element => {
 
-    const { registrationForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { registrationForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const { username, lastname, email, message, serviceType, filmmakerSize, filmmakerBudget } = registrationForm;
 
     const validateForm = useValidateFooterForm({ typeofForm: AllFormsTypes.REGISTRATION });
@@ -62,14 +63,14 @@ const GettingStartedFormStructure: React.FC<PropsProvider> = ({ referential }): 
             dispatcher(ReduxAPIThunk.addPageFormToDatabase(
                 returnedObject, AllFormsTypes.REGISTRATION, JavaApiEndpoints.REGISTRATION, {}
             ));
-            dispatcher(ReduxAPIActions.clearAllRegistrationForm());
+            dispatcher(ReduxFormsActions.clearAllRegistrationForm());
         }
     };
     
     useEffect(() => {
         return () => {
             dispatcher(ReduxDOMActions.activeElementIntoArray(null, ActiveAction.REMOVE_ALL));
-            dispatcher(ReduxAPIActions.clearAllRegistrationForm());    
+            dispatcher(ReduxFormsActions.clearAllRegistrationForm());
         };
     }, [ dispatcher ]);
 

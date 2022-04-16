@@ -38,7 +38,7 @@ import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
  */
 const useProjectOnLoad = (projectTitle: string): [ ProjectTypes, SubpagesMainContentTypes, string ] => {
 
-    const { projects, projectsPhotos, status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { projects, projectsPhotos, status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
     const foundProject = projects.find(project => project.projectPath === projectTitle)!;
     SubpagesContent[SubpagesContentKeys.PROJECT].dotColor = foundProject?.projectColours.strongForeground;

@@ -22,9 +22,9 @@ import { useDispatch } from 'react-redux';
 import { AllModals } from '../../../redux/redux-dom-manipulate/types';
 import { ReduxDOMActions } from '../../../redux/redux-dom-manipulate/actions';
 
-import { ReduxAPIActions } from '../../../redux/redux-api-thunk/actions';
 import { ReduxAPIstateKeys } from '../../../redux/redux-api-thunk/types';
 import { JavaApiEndpoints } from '../../../redux/redux-api-thunk/request';
+import { ReduxProjFormActions } from '../../../redux/redux-subreducers/redux-project-form/actions';
 
 import {
     CmsExistingProjectButtonsContainer, CmsExistingProjectDeleteProjectButton, CmsExistingProjectUndoChangesButton
@@ -47,7 +47,7 @@ const CmsExistingProjectButtons: React.FC<PropsProvider> = ({ projectId }): JSX.
     };
 
     const handleUndoInsertedChanges = (): void => {
-        dispatcher(ReduxAPIActions.insertExistingProjectDataToForm(projectId));
+        dispatcher(ReduxProjFormActions.insertExistingProjectDataToForm(projectId));
     };
 
     return (

@@ -38,7 +38,7 @@ import { InitStateAPItypes } from '../redux/redux-api-thunk/initialState';
  */
 const LoadAllAPIData: React.FC = (): null => {
 
-    const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     
     const [ blockScroll, allowScroll ] = useDisableScroll();
     const dispatcher = useDispatch();

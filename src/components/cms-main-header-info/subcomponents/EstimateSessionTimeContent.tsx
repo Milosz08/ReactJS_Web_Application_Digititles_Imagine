@@ -30,7 +30,7 @@ import TimeManagement from '../../../helper-primitives/TimeManagement';
 
 const EstimateSessionTimeContent: React.FC = (): JSX.Element => {
 
-    const { sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
     return (
         <CmsMainHeaderDescriptionAndValueContainer>

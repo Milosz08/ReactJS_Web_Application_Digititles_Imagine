@@ -26,12 +26,13 @@ import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
 import {
     CmsAddNewProjectLink, CmsSingleProjectLink, CmsViewAllProjectsLinksContainer
 } from './CmsViewAllProjectsLinks.styles';
+
 import { CmsMainPageArrowIcon } from '../cms-main-page-navigation/CmsMainPageNavigation.styles';
 
 
 const CmsViewAllProjectsLinks: React.FC = (): JSX.Element => {
 
-    const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
     const generateAllProjects: JSX.Element[] = projects.map(({ id, projectPath, title, projectColours }) => (
         <CmsSingleProjectLink

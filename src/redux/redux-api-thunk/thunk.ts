@@ -18,8 +18,11 @@
 
 import { axiosInstance, JavaApiEndpoints } from './request';
 
-import { AllFormsTypes, ReduxAPIstateKeys } from './types';
+import { ReduxAPIstateKeys } from './types';
 import { ReduxAPIActions } from './actions';
+
+import { AllFormsTypes } from '../redux-subreducers/redux-forms/types';
+import { ReduxFormsActions } from '../redux-subreducers/redux-forms/actions';
 
 
 export class ReduxAPIThunk {
@@ -54,7 +57,7 @@ export class ReduxAPIThunk {
     public static markUserMessageAsViewed(elementId: string, headers: any) {
         return async (dispatcher: (prop: any) => void) => {
             await axiosInstance.put(`${JavaApiEndpoints.USER_MESSAGES}/${elementId}`, null, { headers });
-            dispatcher(ReduxAPIActions.markUserMessageAsViewed(elementId));
+            dispatcher(ReduxFormsActions.markUserMessageAsViewed(elementId));
         }
     };
 

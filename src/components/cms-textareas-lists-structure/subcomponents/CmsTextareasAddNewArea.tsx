@@ -20,11 +20,13 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '../../../redux/store';
-import { ReduxAPIActions } from '../../../redux/redux-api-thunk/actions';
+import { SoftwareModel } from '../../../redux/redux-models/ProjectModel';
 import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
-import { DiscretteProjectSections } from '../../../redux/redux-api-thunk/types';
+import { ReduxProjFormActions } from '../../../redux/redux-subreducers/redux-project-form/actions';
+import { DiscretteProjectSections } from '../../../redux/redux-subreducers/redux-project-form/types';
 
 import { CmsTextareasAddNewAreaButton } from '../CmsTextareasListsStructure.styles';
+
 
 interface PropsProvider {
     section: DiscretteProjectSections;
@@ -32,7 +34,7 @@ interface PropsProvider {
 
 const CmsTextareasAddNewArea: React.FC<PropsProvider> = ({ section }): JSX.Element => {
 
-    const { projectDataForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { projectDataForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const dispatcher = useDispatch();
 
     const buttonTitle = projectDataForm[section].length < 7
@@ -41,7 +43,7 @@ const CmsTextareasAddNewArea: React.FC<PropsProvider> = ({ section }): JSX.Eleme
 
     const handleAddNewSection = (): void => {
         if (projectDataForm[section].length < 7) {
-            dispatcher(ReduxAPIActions.addProjectArrayParagraphElement(section));
+            dispatcher(ReduxProjFormActions.addProjectArrayElement(section, addValuePayload || ''));
         }
     };
 

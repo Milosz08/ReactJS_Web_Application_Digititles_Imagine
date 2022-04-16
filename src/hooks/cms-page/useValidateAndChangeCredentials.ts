@@ -25,8 +25,8 @@ import {
 } from '../../context/change-credentials-refs/ChangeCredentialsRefsProvider';
 
 import { RootState } from '../../redux/store';
-import { ReduxAPIActions } from '../../redux/redux-api-thunk/actions';
 import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
+import { ReduxFormsActions } from '../../redux/redux-subreducers/redux-forms/actions';
 import { axiosInstance, JavaApiEndpoints } from '../../redux/redux-api-thunk/request';
 import { CmsChangeCredentialsKeys, CmsCredentialsLevels } from '../../redux/redux-api-thunk/types';
 
@@ -38,7 +38,7 @@ import { CmsChangeCredentialsKeys, CmsCredentialsLevels } from '../../redux/redu
  */
 const useValidateAndChangeCredentials = (): (e: React.ChangeEvent<HTMLFormElement>) => void => {
 
-    const { changeCredentialsForm, sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { changeCredentialsForm, sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const context = useContext<Partial<ChangeCredentialsContextTypes>>(ChangeCredentialsContext);
 
     const { LOGIN_ERROR, PASSWORD_ERROR, REPEAT_PASSWORD_ERROR } = CmsChangeCredentialsKeys;
@@ -49,15 +49,15 @@ const useValidateAndChangeCredentials = (): (e: React.ChangeEvent<HTMLFormElemen
         let loginNotValid = false, passwordNotValid = false, repeatPasswordNotValid = false;
         if (login!.current.value.length < 8 || login!.current.value.length > 30) {
             loginNotValid = true;
-            dispatcher(ReduxAPIActions.changeCredentialsFormElement(LOGIN_ERROR, true));
+            dispatcher(ReduxFormsActions.changeCredentialsFormElement(LOGIN_ERROR, true));
         }
         if (password!.current.value.length < 8 || password!.current.value.length > 30) {
             passwordNotValid = true;
-            dispatcher(ReduxAPIActions.changeCredentialsFormElement(PASSWORD_ERROR, true));
+            dispatcher(ReduxFormsActions.changeCredentialsFormElement(PASSWORD_ERROR, true));
         }
         if (repeatPassword!.current.value !== password!.current.value || repeatPassword!.current.value === '') {
             repeatPasswordNotValid = true;
-            dispatcher(ReduxAPIActions.changeCredentialsFormElement(REPEAT_PASSWORD_ERROR, true));
+            dispatcher(ReduxFormsActions.changeCredentialsFormElement(REPEAT_PASSWORD_ERROR, true));
         }
         return !loginNotValid && !passwordNotValid && !repeatPasswordNotValid;
     };

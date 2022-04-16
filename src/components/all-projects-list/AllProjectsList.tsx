@@ -35,7 +35,7 @@ interface PropsProvider {
 
 const AllProjectsList: React.FC<PropsProvider> = ({ redirRef }): JSX.Element => {
 
-    const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const [ refs, click, handleMouse, handleClick ] = useProjectListAnimations();
 
     const generateAllProjects: JSX.Element[] = projects.map((project, idx) => (

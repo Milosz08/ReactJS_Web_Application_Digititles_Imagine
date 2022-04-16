@@ -16,16 +16,27 @@
  * COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
  */
 
-import { MessagesFormTypes, ProjectImagesTypes, ProjectTypes, RegistrationFormTypes } from './elementTypes';
+
+import { ProjectModel } from '../redux-models/ProjectModel';
+import { ProjectFormModel } from '../redux-models/ProjectFormModel';
+import { MessagesFormModel } from '../redux-models/MessagesFormModel';
+import { ProjectImagesModel } from '../redux-models/ProjectImagesModel';
+import { RegistrationFormModel } from '../redux-models/RegistrationFormModel';
+import { ProjectFormErrorsModel } from '../redux-models/ProjectFormErrorsModel';
+
+import {
+    ProjectFormErrorsInitialState, ProjectFormInitialState
+} from '../redux-subreducers/redux-project-form/initialObjects';
 
 import { CmsCredentialsLevels } from './types';
 import { FILMMAKER_MIN_SMALL } from '../../static/gettingStartedContent';
 
+
 export interface InitStateAPItypes {
-    projects: ProjectTypes[];
-    projectsPhotos: ProjectImagesTypes[];
-    registrationForms: RegistrationFormTypes[];
-    messageForms: MessagesFormTypes[];
+    projects: ProjectModel[];
+    projectsPhotos: ProjectImagesModel[];
+    registrationForms: RegistrationFormModel[];
+    messageForms: MessagesFormModel[];
     status: {
         loadingProjects: boolean;
         loadingImages: boolean;
@@ -48,7 +59,7 @@ export interface InitStateAPItypes {
         email: boolean;
         message: boolean;
     };
-    messageForm: MessagesFormTypes;
+    messageForm: MessagesFormModel;
     messageFormErrors: {
         username: boolean;
         lastname: boolean;
@@ -67,45 +78,9 @@ export interface InitStateAPItypes {
         bearerToken: string;
         estimateSessionTime: number;
     };
-    projectDataForm: {
-        title: string;
-        embedCode: string;
-        prodCompany: string;
-        prodYear: number | string;
-        aboutSection: string[];
-        prodSection: string[];
-        fontFamily: string;
-        fontType: string;
-        fontSize: string;
-        lineHeight: string;
-        renderingTime: string;
-        samplingCodec: string;
-        nativeResolution: string;
-        shortResolution: string;
-        ifImax: boolean;
-        projectColours: {
-            mainBackground: string;
-            dotAndParagraphInProduction: string;
-            dotOnLightBackground: string;
-            techBackground: string;
-        };
-    };
-    projectDataFormErrors: {
-        title: boolean;
-        embedCode: boolean;
-        prodCompany: boolean;
-        prodYear: boolean;
-        aboutSection: boolean[];
-        prodSection: boolean[];
-        fontFamily: boolean;
-        fontType: boolean;
-        fontSize: boolean;
-        lineHeight: boolean;
-        renderingTime: boolean;
-        samplingCodec: boolean;
-        nativeResolution: boolean;
-        shortResolution: boolean;
-    };
+    projectDataForm: ProjectFormModel;
+    projectDataFormErrors: ProjectFormErrorsModel;
+    projectFormIfActiveCustomProp: boolean[];
 }
 
 export const InitStateAPI: InitStateAPItypes = {
@@ -159,43 +134,7 @@ export const InitStateAPI: InitStateAPItypes = {
         bearerToken: '',
         estimateSessionTime: 0,
     },
-    projectDataForm: {
-        title: '',
-        embedCode: '',
-        prodCompany: '',
-        prodYear: '',
-        aboutSection: [ '' ],
-        prodSection: [ '' ],
-        fontFamily: '',
-        fontType: '',
-        fontSize: '',
-        lineHeight: '',
-        renderingTime: '',
-        samplingCodec: '',
-        nativeResolution: '',
-        shortResolution: '',
-        ifImax: false,
-        projectColours: {
-            mainBackground: '#2c5662',
-            dotAndParagraphInProduction: '#648e99',
-            dotOnLightBackground: '#2c5662',
-            techBackground: '#1b363d',
-        },
-    },
-    projectDataFormErrors: {
-        title: false,
-        embedCode: false,
-        prodCompany: false,
-        prodYear: false,
-        aboutSection: [ false ],
-        prodSection: [ false ],
-        fontFamily: false,
-        fontType: false,
-        fontSize: false,
-        lineHeight: false,
-        renderingTime: false,
-        samplingCodec: false,
-        nativeResolution: false,
-        shortResolution: false,
-    },
+    projectDataForm: ProjectFormInitialState,
+    projectDataFormErrors: ProjectFormErrorsInitialState,
+    projectFormIfActiveCustomProp: [ false ],
 };

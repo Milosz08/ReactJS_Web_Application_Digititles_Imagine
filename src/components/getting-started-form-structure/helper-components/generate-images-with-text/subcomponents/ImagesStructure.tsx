@@ -24,8 +24,8 @@ import { GettingStartedTypes } from '../../../../../static/gettingStartedContent
 import { GenerateImagesContext, GenerateImagesContextTypes } from '../GenerateImagesWithText';
 import useBlockClickAnimationSequence from '../../../../../hooks/getting-started/useBlockClickAnimationSequence';
 
-import { ReduxAPIActions } from '../../../../../redux/redux-api-thunk/actions';
-import { RegistrationFormInputs } from '../../../../../redux/redux-api-thunk/types';
+import { ReduxFormsActions } from '../../../../../redux/redux-subreducers/redux-forms/actions';
+import { RegistrationFormInputs } from '../../../../../redux/redux-subreducers/redux-forms/types';
 
 import {
     ImagesWithTextDescription, ImagesWithTextImage, ImagesWithTextImageRadioButton, ImagesWithTextImagesContainer
@@ -54,7 +54,7 @@ const ImagesStructure: React.FC<PropsProvider> = ({ block }): JSX.Element => {
     };
 
     const handleChangeInputValue = ({ target }: React.ChangeEvent<HTMLInputElement>): void => {
-        dispatcher(ReduxAPIActions.setFieldInRegistrationForm(input!, target.value));
+        dispatcher(ReduxFormsActions.setFieldInRegistrationForm(input!, target.value));
     };
 
     return (

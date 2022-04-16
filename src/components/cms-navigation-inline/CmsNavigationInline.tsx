@@ -33,7 +33,7 @@ import {
 
 const CmsNavigationInline: React.FC = (): JSX.Element => {
 
-    const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const { pathname: locationPath } = useLocation();
 
     const findProject = (pathname: string): string => {

@@ -20,15 +20,15 @@ import * as React from 'react';
 import { useSelector } from 'react-redux';
 
 import { RootState } from '../../../redux/store';
-import { MessageFormInputs } from '../../../redux/redux-api-thunk/types';
 import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
+import { MessageFormInputs } from '../../../redux/redux-subreducers/redux-forms/types';
 
 import FooterFormSingleInput from './FooterFormSingleInput';
 
 
 const FooterFormInputs: React.FC = (): JSX.Element => {
 
-    const { messageForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { messageForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const { USER_NAME, LAST_NAME } = MessageFormInputs;
 
     const generateOnlyTextInputs: JSX.Element[] = Object.keys(messageForm).slice(0, -1).map(key => (

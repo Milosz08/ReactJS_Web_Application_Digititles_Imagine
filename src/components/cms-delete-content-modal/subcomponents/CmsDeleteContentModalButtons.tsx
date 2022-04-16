@@ -32,7 +32,7 @@ import { ModalButtonElement, ModalButtonsContainer } from '../../../styles/modal
 const CmsDeleteContentModalButtons: React.FC = (): JSX.Element => {
 
     const { deleteModalData }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
-    const { sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
     const { dataId, dataContent, endpoint } = deleteModalData;
     const dispatcher = useDispatch();

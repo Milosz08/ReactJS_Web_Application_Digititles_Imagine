@@ -19,8 +19,8 @@
 import * as React from 'react';
 import { createContext, useContext } from 'react';
 
-import { RegistrationFormInputs } from '../../../../redux/redux-api-thunk/types';
 import { GettingStartedNavElms } from '../../../../redux/redux-dom-manipulate/types';
+import { RegistrationFormInputs } from '../../../../redux/redux-subreducers/redux-forms/types';
 import { GettingStartedContent, GettingStartedTypes } from '../../../../static/gettingStartedContent';
 
 import {

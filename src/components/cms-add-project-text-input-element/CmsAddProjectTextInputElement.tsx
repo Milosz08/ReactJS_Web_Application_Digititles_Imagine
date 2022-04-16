@@ -22,9 +22,9 @@ import { ThemeProvider } from 'styled-components';
 import { BsTrash } from 'react-icons/bs';
 
 import { RootState } from '../../redux/store';
-import { ReduxAPIActions } from '../../redux/redux-api-thunk/actions';
 import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
-import { ProjectFieldsKeys, ProjectFormEditableMode } from '../../redux/redux-api-thunk/types';
+import { ReduxProjFormActions } from '../../redux/redux-subreducers/redux-project-form/actions';
+import { ProjectFieldsKeys, ProjectFormEditableMode } from '../../redux/redux-subreducers/redux-project-form/types';
 
 import {
     CmsAddProjectClearInputButton, CmsAddProjectTextInput, CmsAddProjectTextInputElementContainer,
@@ -42,7 +42,7 @@ const CmsAddProjectTextInputElement: React.FC<PropsProvider> = ({
     inputKey, topInputPlaceholder, innerInputPlaceholder
 }): JSX.Element => {
 
-    const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const { projectDataForm, projectDataFormErrors } = state;
     const dispatcher = useDispatch();
 
@@ -51,14 +51,14 @@ const CmsAddProjectTextInputElement: React.FC<PropsProvider> = ({
     const idFormElement = `cms_text_input_element__${inputKey.toLocaleLowerCase()}`;
 
     const handleInputChangeEvent = ({ target }: React.ChangeEvent<HTMLInputElement>): void => {
-        dispatcher(ReduxAPIActions.insertProjectFormElement(inputKey, target.value));
+        dispatcher(ReduxProjFormActions.insertProjectFormElement(inputKey, target.value));
         if (errorField) {
-            dispatcher(ReduxAPIActions.insertProjectFormElement(inputKey, false, ProjectFormEditableMode.ERROR));
+            dispatcher(ReduxProjFormActions.insertProjectFormElement(inputKey, false, ProjectFormEditableMode.ERROR));
         }
     };
 
     const handleClearInput = (): void => {
-        dispatcher(ReduxAPIActions.insertProjectFormElement(inputKey, ''));
+        dispatcher(ReduxProjFormActions.insertProjectFormElement(inputKey, ''));
     };
 
     return (
@@ -80,6 +80,7 @@ const CmsAddProjectTextInputElement: React.FC<PropsProvider> = ({
                 />
                 <CmsAddProjectClearInputButton
                     title = 'Click to clear input field value'
+                    type = 'button'
                     onClick = {handleClearInput}
                 >
                     <BsTrash/>

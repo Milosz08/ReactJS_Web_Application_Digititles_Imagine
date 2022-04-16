@@ -31,7 +31,7 @@ import { ProjectImageParallaxContainer, ProjectImageParallaxElement } from './Pr
 
 const ProjectImageParallax: React.FC = (): JSX.Element => {
 
-    const { projectsPhotos }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { projectsPhotos }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const { findProject } = useContext<Partial<ProjectContextTypes>>(ProjectContext);
 
     const parallaxImage = projectsPhotos.find(project => project.projectId === findProject!.id)!

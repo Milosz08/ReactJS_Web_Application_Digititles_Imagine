@@ -25,9 +25,9 @@ import {
 } from '../../../../static/gettingStartedContent';
 
 import { RootState } from '../../../../redux/store';
-import { ReduxAPIActions } from '../../../../redux/redux-api-thunk/actions';
+import { ReduxFormsActions } from '../../../../redux/redux-subreducers/redux-forms/actions';
 import { InitStateAPItypes } from '../../../../redux/redux-api-thunk/initialState';
-import { RegistrationFormFields, RegistrationFormInputs } from '../../../../redux/redux-api-thunk/types';
+import { RegistrationFormFields, RegistrationFormInputs } from '../../../../redux/redux-subreducers/redux-forms/types';
 
 import {
     GettingStartedBudgetPriceIndicator, GettingStartedBudgetRangeInput, GettingStartedBudgetRangeLabel
@@ -36,7 +36,7 @@ import {
 
 const BudgetRangeInput: React.FC = (): JSX.Element => {
 
-    const { registrationForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { registrationForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
     const { filmmakerBudget, filmmakerSize: size } = registrationForm;
     const { MEDIUM, LARGE } = RegistrationFormFields;
@@ -45,13 +45,13 @@ const BudgetRangeInput: React.FC = (): JSX.Element => {
     const dispatcher = useDispatch();
 
     const handleSetFilmmakerBudgetValue = ({ target }: React.ChangeEvent<HTMLInputElement>): void => {
-        dispatcher(ReduxAPIActions.setFieldInRegistrationForm(
+        dispatcher(ReduxFormsActions.setFieldInRegistrationForm(
             RegistrationFormInputs.FILMMAKER_BUDGET, parseInt(target.value)
         ));
     };
 
     useEffect(() => {
-        dispatcher(ReduxAPIActions.setFieldInRegistrationForm(RegistrationFormInputs.FILMMAKER_BUDGET, definePrice));
+        dispatcher(ReduxFormsActions.setFieldInRegistrationForm(RegistrationFormInputs.FILMMAKER_BUDGET, definePrice));
     }, [ definePrice, dispatcher, size ]);
     
     return (

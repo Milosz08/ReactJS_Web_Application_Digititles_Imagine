@@ -32,7 +32,7 @@ import ChangeCredentialsRefsProvider from '../../context/change-credentials-refs
 
 const CmsChangeCredentials: React.FC = (): JSX.Element => {
 
-    const { sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
     return (
         <ThemeProvider

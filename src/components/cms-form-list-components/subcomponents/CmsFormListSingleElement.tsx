@@ -25,7 +25,9 @@ import useDidMount from '../../../hooks/reusable/useDidMount';
 import { RootState } from '../../../redux/store';
 import { ReduxAPIstateKeys } from '../../../redux/redux-api-thunk/types';
 import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
-import { MessagesFormTypes, RegistrationFormTypes } from '../../../redux/redux-api-thunk/elementTypes';
+
+import { MessagesFormModel } from '../../../redux/redux-models/MessagesFormModel';
+import { RegistrationFormModel } from '../../../redux/redux-models/RegistrationFormModel';
 
 import { ReduxDOMActions } from '../../../redux/redux-dom-manipulate/actions';
 import { InitStateDOMtypes } from '../../../redux/redux-dom-manipulate/initialState';
@@ -35,11 +37,12 @@ import {
 } from '../CmsFormListComponent.styles';
 
 
-export type FormContextTypes =  { form: RegistrationFormTypes | MessagesFormTypes | any, active: any };
+export type FormContextTypes =  { form: RegistrationFormModel | MessagesFormModel | any, active: any };
 export const FormContext = createContext<Partial<FormContextTypes>>({});
 
+
 interface PropsProvider {
-    formElement: RegistrationFormTypes | MessagesFormTypes | any;
+    formElement: RegistrationFormModel | MessagesFormModel | any;
     typeofList: ReduxAPIstateKeys;
     HeaderElement: React.FC;
     children: React.ReactNode;
@@ -49,7 +52,7 @@ const CmsFormListSingleElement: React.FC<PropsProvider> = ({ formElement, typeof
     : JSX.Element => {
 
     const { formActiveElements }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
-    const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     
     const activeForm = formActiveElements[typeofList + 'ActiveSection'];
     const dispatcher = useDispatch();

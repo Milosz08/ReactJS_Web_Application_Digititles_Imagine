@@ -22,11 +22,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import useValidateFooterForm from '../../hooks/footer/useValidateFooterForm';
 
 import { RootState } from '../../redux/store';
-import { AllFormsTypes } from '../../redux/redux-api-thunk/types';
+
 import { ReduxAPIThunk } from '../../redux/redux-api-thunk/thunk';
-import { ReduxAPIActions } from '../../redux/redux-api-thunk/actions';
 import { JavaApiEndpoints } from '../../redux/redux-api-thunk/request';
 import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
+
+import { AllFormsTypes } from '../../redux/redux-subreducers/redux-forms/types';
+import { ReduxFormsActions } from '../../redux/redux-subreducers/redux-forms/actions';
 
 import { FooterFormContainer, FooterFormSubmitButton, FooterFormSubmitButtonContainer } from './FooterForm.styles';
 
@@ -36,7 +38,7 @@ import FooterFormTextarea from './subcomponents/FooterFormTextarea';
 
 const FooterForm: React.FC = (): JSX.Element => {
 
-    const { messageForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { messageForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const dispatcher = useDispatch();
     const validateForm = useValidateFooterForm({ typeofForm: AllFormsTypes.MESSAGE });
 
@@ -44,7 +46,7 @@ const FooterForm: React.FC = (): JSX.Element => {
         e.preventDefault();
         if (validateForm()) {
             dispatcher(ReduxAPIThunk.addPageFormToDatabase(messageForm, AllFormsTypes.MESSAGE, JavaApiEndpoints.USER_MESSAGES, {}))
-            dispatcher(ReduxAPIActions.clearAllMessageForm());
+            dispatcher(ReduxFormsActions.clearAllMessageForm());
         }
     };
 

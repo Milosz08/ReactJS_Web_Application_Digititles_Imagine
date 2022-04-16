@@ -29,7 +29,7 @@ import CmsSingleInputColor from './CmsSingleInputColor';
 
 const CmsAddProjectColorsSection: React.MemoExoticComponent<() => JSX.Element> = React.memo((): JSX.Element => {
 
-    const { projectDataForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { projectDataForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const { projectColours } = projectDataForm;
 
     const generateColorInputs: JSX.Element[] = Object

@@ -32,7 +32,7 @@ import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
  */
 const useChangePageTitle = (title: string, ifAdminPanel: boolean, redir?: string): null => {
 
-    const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
     useEffect(() => {
         if (Boolean(title)) {

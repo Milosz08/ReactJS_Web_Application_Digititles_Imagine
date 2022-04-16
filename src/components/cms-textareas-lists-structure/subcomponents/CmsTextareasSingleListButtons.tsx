@@ -21,8 +21,8 @@ import { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { BsTrash } from 'react-icons/bs';
 
-import { ReduxAPIActions } from '../../../redux/redux-api-thunk/actions';
 import { TextareaContext, TextareaContextTypes } from '../CmsTextareasListsStructure';
+import { ReduxProjFormActions } from '../../../redux/redux-subreducers/redux-project-form/actions';
 
 import {
     CmsParagraphButtonsContainer, CmsParagraphClearInputButton, CmsRemoveParagraphButton
@@ -37,11 +37,11 @@ const CmsTextareasSingleListButtons: React.FC = (): JSX.Element => {
     const dispatcher = useDispatch();
 
     const handleClearInput = (): void => {
-        dispatcher(ReduxAPIActions.changeProjectArrayValue(section!, idx!, ''));
+        dispatcher(ReduxProjFormActions.changeProjectArrayValue(section!, idx!, ''));
     };
 
     const handleRemoveParagraphElement = (): void => {
-        dispatcher(ReduxAPIActions.removeProjectArrayParagraphElement(section!, idx!));
+        dispatcher(ReduxProjFormActions.removeProjectArrayElement(section!, idx!));
     };
 
     return (

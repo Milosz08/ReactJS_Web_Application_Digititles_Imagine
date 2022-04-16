@@ -20,8 +20,8 @@ import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '../../../redux/store';
-import { ReduxAPIActions } from '../../../redux/redux-api-thunk/actions';
-import { ProjectFieldsKeys } from '../../../redux/redux-api-thunk/types';
+import { ProjectFieldsKeys } from '../../../redux/redux-subreducers/redux-project-form/types';
+import { ReduxProjFormActions } from '../../../redux/redux-subreducers/redux-project-form/actions';
 import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
 
 import UniversalCheckboxInputComponent from '../../universal-checkbox-input-component/UniversalCheckboxInputComponent';
@@ -29,14 +29,14 @@ import UniversalCheckboxInputComponent from '../../universal-checkbox-input-comp
 
 const CmsAddProjectRenderingIfImax: React.FC = (): JSX.Element => {
 
-    const { projectDataForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { projectDataForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const dispatcher = useDispatch();
 
     const ifImax = `This project was created with${projectDataForm.ifImax ? '' : 'out'} 
                     an IMAX&reg; digital cinema technology.`;
 
     const handleChangeIfImaxProperty = (): void => {
-        dispatcher(ReduxAPIActions.insertProjectFormElement(ProjectFieldsKeys.IF_IMAX, !projectDataForm.ifImax));
+        dispatcher(ReduxProjFormActions.insertProjectFormElement(ProjectFieldsKeys.IF_IMAX, !projectDataForm.ifImax));
     };
 
     return (

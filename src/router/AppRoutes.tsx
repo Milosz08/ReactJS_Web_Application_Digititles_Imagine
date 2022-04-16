@@ -17,22 +17,23 @@
  */
 
 import * as React from 'react';
+import { useContext, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRoutes } from 'react-router-dom';
 
 import { appRouting } from '../static/appRouting';
 
-import { RootState } from '../redux/store';
-import { InitStateAPItypes } from '../redux/redux-api-thunk/initialState';
-import { useContext, useEffect } from 'react';
-import { AllCookiesContext, AllCookiesTypes } from '../context/cookies-context/AllCookiesProvider';
 import { AllCookies } from '../context/cookies-context/allCookiesConfig';
+import { AllCookiesContext, AllCookiesTypes } from '../context/cookies-context/AllCookiesProvider';
+
+import { RootState } from '../redux/store';
 import { ReduxAPIActions } from '../redux/redux-api-thunk/actions';
+import { InitStateAPItypes } from '../redux/redux-api-thunk/initialState';
 
 
 const AppRoutes: React.FC = (): JSX.Element => {
 
-    const { sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const { cookie } = useContext<Partial<AllCookiesTypes>>(AllCookiesContext);
     
     const routing = useRoutes(appRouting(sessionInfo.ifLogged));

@@ -51,7 +51,7 @@ type HookReturned = [
  */
 const useProjectListAnimations = (): HookReturned => {
 
-    const { projects, projectsPhotos }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { projects, projectsPhotos }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const { currScrollPos, browserX }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
 
     const [ click, setClick ] = useState<{ active: boolean, id: string }>({ active: false, id: '' });

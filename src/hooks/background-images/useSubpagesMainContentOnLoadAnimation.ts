@@ -38,7 +38,7 @@ import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
 const useSubpagesMainContentOnLoadAnimation = (ignoreAsyncData?: boolean, fromBottom = 80): React.MutableRefObject<any>[] => {
 
     const { browserX }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
-    const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
     const { elRefs, getCurrents } = useMultipleRefs(2);
     

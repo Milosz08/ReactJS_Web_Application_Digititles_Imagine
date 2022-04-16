@@ -22,9 +22,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { TEXTARE_MIN_SINGS, TEXTAREA_MAX_SIGNS } from '../../../../../static/gettingStartedContent';
 
 import { RootState } from '../../../../../redux/store';
-import { ReduxAPIActions } from '../../../../../redux/redux-api-thunk/actions';
+import { ReduxFormsActions } from '../../../../../redux/redux-subreducers/redux-forms/actions';
 import { InitStateAPItypes } from '../../../../../redux/redux-api-thunk/initialState';
-import { AllFormsTypes, MessageFormInputs, RegistrationFormInputs } from '../../../../../redux/redux-api-thunk/types';
+import { AllFormsTypes, MessageFormInputs, RegistrationFormInputs } from '../../../../../redux/redux-subreducers/redux-forms/types';
 
 import {
     FormRegistrationFullLengthLabelElement, FormRegistrationInputElement, FormRegistrationTextareaElement
@@ -33,15 +33,16 @@ import {
 
 const FormRegistrationTextareaAndEmail: React.FC = (): JSX.Element => {
 
-    const { registrationForm, registrationFormErrors }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
+    const { registrationForm, registrationFormErrors } = state;
     const dispatcher = useDispatch();
 
     const { USER_EMAIL, USER_MESSAGE } = RegistrationFormInputs;
     const { email, message } = registrationForm;
 
     const handleOnChangeInput = ({ target }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-        dispatcher(ReduxAPIActions.setErrorInFormField(AllFormsTypes.REGISTRATION, target.id as MessageFormInputs, false));
-        dispatcher(ReduxAPIActions.setFieldInRegistrationForm(target.id as RegistrationFormInputs, target.value));
+        dispatcher(ReduxFormsActions.setErrorInFormField(AllFormsTypes.REGISTRATION, target.id as MessageFormInputs, false));
+        dispatcher(ReduxFormsActions.setFieldInRegistrationForm(target.id as RegistrationFormInputs, target.value));
     };
 
     return (

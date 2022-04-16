@@ -17,11 +17,8 @@
  */
 
 import { AxiosResponse } from 'axios';
+import { CmsCredentialsLevels, ReduxAPIreducerTypes, ReduxAPIstateKeys } from './types';
 
-import {
-    AllFormsTypes, CmsChangeCredentialsKeys, CmsCredentialsLevels, DiscretteProjectSections, MessageFormInputs,
-    ProjectFieldsKeys, ProjectFormEditableMode, ReduxAPIreducerTypes, ReduxAPIstateKeys, RegistrationFormInputs
-} from './types';
 
 interface ReturnedToReducer {
     type: ReduxAPIreducerTypes | string;
@@ -57,13 +54,6 @@ export class ReduxAPIActions {
         }
     });
 
-    public static markUserMessageAsViewed = (messageId: string): ReturnedToReducer => ({
-        type: ReduxAPIreducerTypes.MARK_USER_MESSAGE_AS_VIEWED,
-        payload: {
-            messageId,
-        }
-    });
-
     public static deleteReduxStoreElement = (elementType: ReduxAPIstateKeys, elementId: string): ReturnedToReducer => ({
         type: ReduxAPIreducerTypes.DELETE_ELEMENT_FROM_DB,
         payload: {
@@ -85,37 +75,6 @@ export class ReduxAPIActions {
         }
     });
 
-    public static setFieldInRegistrationForm = (type: RegistrationFormInputs, value: any): ReturnedToReducer => ({
-        type: ReduxAPIreducerTypes.SET_FIELD_IN_REGISTRATION_FORM,
-        payload: {
-            type, value,
-        }
-    });
-
-    public static clearAllRegistrationForm = (): ReturnedToReducer => ({
-        type: ReduxAPIreducerTypes.CLEAR_ALL_REGISTRATION_FORM,
-    });
-
-    public static setFieldInMessageForm = (type: MessageFormInputs, value: string): ReturnedToReducer => ({
-        type: ReduxAPIreducerTypes.SET_FIELD_IN_MESSAGE_FORM,
-        payload: {
-            type, value,
-        }
-    });
-
-    public static clearAllMessageForm = (): ReturnedToReducer => ({
-        type: ReduxAPIreducerTypes.CLEAR_ALL_MESSAGE_FORM,
-    });
-
-    public static setErrorInFormField = (
-        formType: AllFormsTypes, fieldKey: MessageFormInputs, value?: boolean
-    ): ReturnedToReducer => ({
-        type: ReduxAPIreducerTypes.SET_ERROR_IN_FORM_FIELD,
-        payload: {
-            formType, fieldKey, value,
-        }
-    });
-
     public static changeSessionInfo = (
         ifLogged: boolean, role: CmsCredentialsLevels, bearerToken: string
     ): ReturnedToReducer => ({
@@ -132,60 +91,4 @@ export class ReduxAPIActions {
         }
     });
 
-    public static changeCredentialsFormElement = (elementKey: CmsChangeCredentialsKeys, value: any): ReturnedToReducer => ({
-        type: ReduxAPIreducerTypes.CHANGE_CREDENTIALS_FORM_ELEMENT,
-        payload: {
-            elementKey, value
-        }
-    });
-
-    public static insertProjectFormElement = (
-        elementKey: ProjectFieldsKeys, value: any, mode: ProjectFormEditableMode = ProjectFormEditableMode.NORMAL
-    ): ReturnedToReducer => ({
-        type: ReduxAPIreducerTypes.INSERT_PROJECT_FORM_ELEMENT,
-        payload: {
-            elementKey, value, mode,
-        }
-    });
-
-    public static insertExistingProjectDataToForm = (projectId: string): ReturnedToReducer => ({
-        type: ReduxAPIreducerTypes.INSERT_EXISTING_PROJECT_DATA_TO_FORM,
-        payload: {
-            projectId,
-        }
-    });
-
-    public static clearAllProjectFormElements = (): ReturnedToReducer => ({
-        type: ReduxAPIreducerTypes.CLEAR_ALL_PROJECT_FORM_ELEMENTS,
-    });
-
-    public static changeProjectArrayValue = (arrayType: DiscretteProjectSections, index: number, value: string)
-        : ReturnedToReducer => ({
-        type: ReduxAPIreducerTypes.CHANGE_PROJECT_ARRAY_CONTENT_VALUE,
-        payload: {
-            arrayType, index, value,
-        }
-    });
-
-    public static changeProjectSingleColorValue = (colorValueKey: string, value: string): ReturnedToReducer => ({
-        type: ReduxAPIreducerTypes.CHANGE_PROJECT_FORM_SINGLE_COLOR_VALUE,
-        payload: {
-            colorValueKey, value,
-        }
-    });
-
-    public static addProjectArrayParagraphElement = (arrayType: DiscretteProjectSections): ReturnedToReducer => ({
-        type: ReduxAPIreducerTypes.ADD_PROJECT_ARRAY_PARAGRAPH_ELEMENT,
-        payload: {
-            arrayType,
-        }
-    });
-
-    public static removeProjectArrayParagraphElement = (arrayType: DiscretteProjectSections, index: number)
-        : ReturnedToReducer => ({
-        type: ReduxAPIreducerTypes.REMOVE_PROJECT_ARRAY_PARAGRAPH_ELEMENT,
-        payload: {
-            arrayType, index,
-        }
-    });
 }

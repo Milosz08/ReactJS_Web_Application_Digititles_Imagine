@@ -19,10 +19,11 @@
 import * as React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { ReduxAPIActions } from '../../redux/redux-api-thunk/actions';
-import { AllFormsTypes, MessageFormInputs } from '../../redux/redux-api-thunk/types';
+import { ReduxFormsActions } from '../../redux/redux-subreducers/redux-forms/actions';
+import { AllFormsTypes, MessageFormInputs } from '../../redux/redux-subreducers/redux-forms/types';
 
 type ReturnedFunc = ({ target }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+
 
 /**
  * Custom hook responsible for setting state based change event handler function.
@@ -32,8 +33,8 @@ const useFooterFormChangeState = (): ReturnedFunc => {
     const dispatcher = useDispatch();
 
     return ({ target }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
-        dispatcher(ReduxAPIActions.setErrorInFormField(AllFormsTypes.MESSAGE, target.id as MessageFormInputs, false));
-        dispatcher(ReduxAPIActions.setFieldInMessageForm(target.id as MessageFormInputs, target.value));
+        dispatcher(ReduxFormsActions.setErrorInFormField(AllFormsTypes.MESSAGE, target.id as MessageFormInputs, false));
+        dispatcher(ReduxFormsActions.setFieldInMessageForm(target.id as MessageFormInputs, target.value));
     };
 };
 

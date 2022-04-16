@@ -23,7 +23,7 @@ import useFooterFormChangeState from '../../../hooks/footer/useFooterFormChangeS
 
 import { RootState } from '../../../redux/store';
 import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
-import { MessageFormInputs, MessageFormInputsPlaceholders } from '../../../redux/redux-api-thunk/types';
+import { MessageFormInputs, MessageFormInputsPlaceholders } from '../../../redux/redux-subreducers/redux-forms/types';
 
 import {
     FooterFormCharactersCountAndRequiredInfo, FooterFormCharactersCountAndRequiredInfoSection, FooterFormLabelElement,
@@ -33,7 +33,7 @@ import {
 
 const FooterFormTextarea: React.FC = (): JSX.Element => {
 
-    const { messageForm, messageFormErrors }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { messageForm, messageFormErrors }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const handleChangeSingleProperty = useFooterFormChangeState();
 
     return (

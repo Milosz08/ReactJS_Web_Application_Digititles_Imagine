@@ -36,7 +36,7 @@ interface PropsProvider {
 
 const CmsFormListComponent: React.FC<PropsProvider> = ({ typeofList, children, headerInfoAndElement }): JSX.Element => {
 
-    const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const { Info, Header } = headerInfoAndElement;
 
     const selectedList = state[typeofList];

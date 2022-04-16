@@ -30,7 +30,7 @@ import { BackgroundFluidBasicImageContainer, ProjectsFluidImageStyles } from '..
 
 const GenerateProjectsImages: React.FC = (): JSX.Element => {
 
-    const { projectsPhotos }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { projectsPhotos }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
     const [ imageRef ] = useShowHideBackgroundImage({ invokePx: 200, ifShowOnLoad: false, elements: 1 });
     const imageRefs = useOnHoverSelectImages({

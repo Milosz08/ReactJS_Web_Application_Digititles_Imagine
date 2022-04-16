@@ -18,6 +18,7 @@
 
 import { ReduxDOMstateKeys, ReduxDOMreducerTypes } from './redux-dom-manipulate/types';
 
+
 class Utils {
 
     private static readonly DEF_SUFFIX = ' > ';
@@ -33,6 +34,20 @@ class Utils {
         return type;
     }
 
+    public static reduceReducers(...reducers: any) {
+        return (previous: any, current: any) => (
+            reducers.reduce(
+                (p: any, r: any) => r(p, current),
+                previous
+            )
+        );
+    };
+
+    public static removeLastElementFromArray(array: any[], index: number): any[] {
+        const arrayWithoutLastElement = [ ...array ];
+        arrayWithoutLastElement.splice(index, 1);
+        return arrayWithoutLastElement;
+    };
 }
 
 export default Utils;

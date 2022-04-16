@@ -28,7 +28,7 @@ import { FormRegistrationDownInfoContainer, FormRegistrationDownInfoElement } fr
 
 const FormRegistrationTextUnderInfo: React.FC = (): JSX.Element => {
 
-    const { registrationForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { registrationForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
     return (
         <FormRegistrationDownInfoContainer>

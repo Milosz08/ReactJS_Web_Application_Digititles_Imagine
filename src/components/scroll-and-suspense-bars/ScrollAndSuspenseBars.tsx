@@ -33,7 +33,7 @@ import { RightScrollBarContainer, SuspenseBarContainer } from './ScrollAndSuspen
 const ScrollAndSuspenseBars: React.FC = (): JSX.Element => {
 
     const { scrollDisabledPx }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
-    const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
     const [ barActive, setBarActive ] = useState(true);
     const { pathname } = useLocation();

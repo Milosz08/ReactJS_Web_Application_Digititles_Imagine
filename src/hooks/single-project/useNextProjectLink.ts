@@ -34,7 +34,7 @@ import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
  */
 const useNextProjectLink = (findingProject: ProjectTypes): NextElementPropTypes => {
 
-    const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const [ content, setContent ] = useState<NextElementPropTypes>(NextElementProps.project);
 
     useEffect(() => {

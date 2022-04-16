@@ -20,8 +20,8 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { ReduxAPIActions } from '../../redux/redux-api-thunk/actions';
-import { DiscretteProjectSections } from '../../redux/redux-api-thunk/types';
+import { ReduxProjFormActions } from '../../redux/redux-subreducers/redux-project-form/actions';
+import { DiscretteProjectSections } from '../../redux/redux-subreducers/redux-project-form/types';
 
 import { CmsProjectFormContentContainer } from './CmsProjectFormContent.styles';
 
@@ -50,10 +50,10 @@ const CmsProjectFormContent: React.FC<PropsProvider> = ({ loadProjectId }): JSX.
     // load existing project into redux store
     useEffect(() => {
         if (loadProjectId) {
-            dispatcher(ReduxAPIActions.insertExistingProjectDataToForm(loadProjectId!));
+            dispatcher(ReduxProjFormActions.insertExistingProjectDataToForm(loadProjectId!));
         }
         return () => {
-            dispatcher(ReduxAPIActions.clearAllProjectFormElements());
+            dispatcher(ReduxProjFormActions.clearAllProjectFormElements());
         };
     }, [ dispatcher, loadProjectId ]);
 

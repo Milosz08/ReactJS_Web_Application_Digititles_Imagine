@@ -24,10 +24,9 @@ import { GettingStartedTypes } from '../../../static/gettingStartedContent';
 import useChangeActiveSectionScroll from '../../../hooks/getting-started/useChangeActiveSectionScroll';
 
 import { RootState } from '../../../redux/store';
-import { InitStateDOMtypes } from '../../../redux/redux-dom-manipulate/initialState';
-
-import { RegistrationFormInputs } from '../../../redux/redux-api-thunk/types';
 import { GettingStartedNavElms } from '../../../redux/redux-dom-manipulate/types';
+import { InitStateDOMtypes } from '../../../redux/redux-dom-manipulate/initialState';
+import { RegistrationFormInputs } from '../../../redux/redux-subreducers/redux-forms/types';
 
 import {
     NavigateRefsContext, NavigateRefsContextTypes

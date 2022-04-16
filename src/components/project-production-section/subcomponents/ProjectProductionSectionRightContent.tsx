@@ -33,7 +33,7 @@ import {
 
 const ProjectProductionSectionRightContent: React.FC = (): JSX.Element => {
 
-    const { projectsPhotos }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { projectsPhotos }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const { findProject } = useContext<Partial<ProjectContextTypes>>(ProjectContext);
 
     const monitorRef = useMonitorImageParallax();

@@ -35,7 +35,7 @@ import { ACTIVITY_EVENTS, MAX_INACTIVITY_TIME } from './CmsSessionSequencer.conf
 const CmsSessionSequencer: React.FC = (): null => {
 
     const { modalsState }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
-    const { sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { sessionInfo }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     
     const dispatcher = useDispatch();
 

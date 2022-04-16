@@ -19,15 +19,15 @@
 import * as React from 'react';
 import { useLayoutEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+
+import useMultipleRefs from '../reusable/useMultipleRefs';
 
 import { gsap, Expo } from 'gsap';
 
 import { RootState } from '../../redux/store';
-import useMultipleRefs from '../reusable/useMultipleRefs';
-import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
-import useDidMount from '../reusable/useDidMount';
 import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
-import { useLocation } from 'react-router-dom';
+import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState';
 
 
 interface HookProps {
@@ -50,7 +50,7 @@ interface HookProps {
 const useShowHideBackgroundImage = ({ invokePx, ifShowOnLoad, ifSingleProject, elements }: HookProps): React.MutableRefObject<any>[] => {
 
     const { currScrollPos, browserX }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
-    const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
     const [ toggleAnim, setToggleAnim ] = useState<boolean>(true);
     const { elRefs, getCurrents } = useMultipleRefs(elements || 2);

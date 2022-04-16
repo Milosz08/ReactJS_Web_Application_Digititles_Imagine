@@ -37,7 +37,7 @@ import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
  */
 const useInsertProjectInModifyProjectPage = (): ProjectTypes | undefined => {
 
-    const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
     const { projectTitle } = useParams();
     const navigate = useNavigate();

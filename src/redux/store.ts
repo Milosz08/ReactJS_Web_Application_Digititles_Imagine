@@ -20,12 +20,23 @@ import { applyMiddleware, combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 
+import Utils from './utils';
+
 import reduxReducerDOM from './redux-dom-manipulate/reducer';
 import reduxReducerAPI from './redux-api-thunk/reducer';
+import reduxReducerForms from './redux-subreducers/redux-forms/reducer';
+import reduxReducerProjForm from './redux-subreducers/redux-project-form/reducer';
+
+
+const reduxGlobalReducer = Utils.reduceReducers(
+    reduxReducerAPI,
+    reduxReducerForms,
+    reduxReducerProjForm,
+);
 
 const rootReducers = combineReducers({
     reduxReducerDOM,
-    reduxReducerAPI
+    reduxGlobalReducer,
 });
 
 const store = createStore(

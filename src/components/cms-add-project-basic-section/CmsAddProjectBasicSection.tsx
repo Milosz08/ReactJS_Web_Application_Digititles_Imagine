@@ -18,8 +18,8 @@
 
 import * as React from 'react';
 
-import { ProjectFieldsKeys } from '../../redux/redux-api-thunk/types';
 
+import { ProjectFieldsKeys } from '../../redux/redux-subreducers/redux-project-form/types';
 import { CmsAddProjectBasicSectionContainer } from './CmsAddProjectBasicSection.styles';
 
 import CmsAddProjectTextInputElement from '../cms-add-project-text-input-element/CmsAddProjectTextInputElement';

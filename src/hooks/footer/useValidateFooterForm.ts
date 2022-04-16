@@ -19,13 +19,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '../../redux/store';
-import { ReduxAPIActions } from '../../redux/redux-api-thunk/actions';
 import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
-import { AllFormsTypes, MessageFormInputs } from '../../redux/redux-api-thunk/types';
+import { ReduxFormsActions } from '../../redux/redux-subreducers/redux-forms/actions';
+import { AllFormsTypes, MessageFormInputs } from '../../redux/redux-subreducers/redux-forms/types';
 
 interface HookProps {
     typeofForm: AllFormsTypes;
 }
+
 
 /**
  * Custom hook responsible for validate message and registration form data.
@@ -35,7 +36,7 @@ interface HookProps {
  */
 const useValidateFooterForm = ({ typeofForm }: HookProps): () => boolean => {
 
-    const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
     const { USER_NAME, EMAIL, MESSAGE } = MessageFormInputs;
     const selectedForm = state[typeofForm];
@@ -46,15 +47,15 @@ const useValidateFooterForm = ({ typeofForm }: HookProps): () => boolean => {
         let username = false, email = false, message = false;
         if (selectedForm[USER_NAME].length < 3 || selectedForm[USER_NAME].length > 30) {
             username = true;
-            dispatcher(ReduxAPIActions.setErrorInFormField(typeofForm, USER_NAME, true));
+            dispatcher(ReduxFormsActions.setErrorInFormField(typeofForm, USER_NAME, true));
         }
         if (selectedForm[EMAIL].length < 3 || !selectedForm[EMAIL].includes('@')) {
             email = true;
-            dispatcher(ReduxAPIActions.setErrorInFormField(typeofForm, EMAIL, true));
+            dispatcher(ReduxFormsActions.setErrorInFormField(typeofForm, EMAIL, true));
         }
         if (selectedForm[MESSAGE].length < 10 || selectedForm[MESSAGE].length > 300) {
             message = true;
-            dispatcher(ReduxAPIActions.setErrorInFormField(typeofForm, MESSAGE, true));
+            dispatcher(ReduxFormsActions.setErrorInFormField(typeofForm, MESSAGE, true));
         }
         return !username && !email && !message;
     };

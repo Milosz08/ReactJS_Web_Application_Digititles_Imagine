@@ -20,8 +20,8 @@ import * as React from 'react';
 import { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { ReduxAPIActions } from '../../../redux/redux-api-thunk/actions';
 import { TextareaContext, TextareaContextTypes } from '../CmsTextareasListsStructure';
+import { ReduxProjFormActions } from '../../../redux/redux-subreducers/redux-project-form/actions';
 
 import {
     CmsTextareasListsStructureTextarea, CmsTextareasListsStructureTextareaContainer, CmsTextareasListsStructureTextareaLabel
@@ -37,7 +37,7 @@ const CmsTextareasSingleListStructure: React.FC = (): JSX.Element => {
     const dispatcher = useDispatch();
 
     const handleChangeParagraphValue = ({ target }: React.ChangeEvent<HTMLTextAreaElement>): void => {
-        dispatcher(ReduxAPIActions.changeProjectArrayValue(section!, idx!, target.value));
+        dispatcher(ReduxProjFormActions.changeProjectArrayValue(section!, idx!, target.value));
     };
 
     return (

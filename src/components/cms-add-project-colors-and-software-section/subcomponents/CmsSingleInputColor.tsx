@@ -21,8 +21,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
 import { RootState } from '../../../redux/store';
-import { ReduxAPIActions } from '../../../redux/redux-api-thunk/actions';
 import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
+import { ReduxProjFormActions } from '../../../redux/redux-subreducers/redux-project-form/actions';
 
 import { CmsAllColorsDescriptions } from '../../../static/cmsAllColorsDescriptions';
 
@@ -44,13 +44,13 @@ interface PropsProvider {
 const CmsSingleInputColor: React.NamedExoticComponent<PropsProvider> = React
     .memo(({ elementKey, index }: PropsProvider): JSX.Element => {
 
-    const { projectDataForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { projectDataForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const { projectColours } = projectDataForm;
 
     const dispatcher = useDispatch();
 
     const handleChangeColorValue = ({ target }: React.ChangeEvent<HTMLInputElement>): void => {
-        dispatcher(ReduxAPIActions.changeProjectSingleColorValue(elementKey, target.value));
+        dispatcher(ReduxProjFormActions.changeProjectSingleColorValue(elementKey, target.value));
     };
 
     return (

@@ -22,8 +22,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Webpage } from '../../../helper-primitives/Webpage';
 
 import { RootState } from '../../../redux/store';
-import { ReduxAPIActions } from '../../../redux/redux-api-thunk/actions';
 import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
+import { ReduxFormsActions } from '../../../redux/redux-subreducers/redux-forms/actions';
 import { CmsChangeCredentialsKeys, CmsCredentialsLevels } from '../../../redux/redux-api-thunk/types';
 
 import { CmsRadioInputsForChangeTypeofAccountContainer } from '../CmsChangeCredentials.styles';
@@ -33,11 +33,11 @@ import UniversalRadioInputComponent from '../../universal-radio-button-component
 
 const CmsRadioInputsForChangeTypeofAccount: React.FC = (): JSX.Element => {
 
-    const { changeCredentialsForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const { changeCredentialsForm }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const dispatcher = useDispatch();
 
     const handleChangeCredentialsFormLevel = ({ target }: React.ChangeEvent<HTMLInputElement>): void => {
-        dispatcher(ReduxAPIActions.changeCredentialsFormElement(
+        dispatcher(ReduxFormsActions.changeCredentialsFormElement(
             CmsChangeCredentialsKeys.MODE, CmsCredentialsLevels[target.id]
         ));
     };

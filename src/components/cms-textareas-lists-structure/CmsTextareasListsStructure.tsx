@@ -22,8 +22,8 @@ import { useSelector } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
 import { RootState } from '../../redux/store';
-import { DiscretteProjectSections } from '../../redux/redux-api-thunk/types';
 import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
+import { DiscretteProjectSections } from '../../redux/redux-subreducers/redux-project-form/types';
 
 import {
     CmsTextareasListsStructureContainer, CmsTextareasListsStructureUnorderedList
@@ -33,7 +33,7 @@ import CmsTextareasSingleListStructure from './subcomponents/CmsTextareasSingleL
 import CmsTextareasAddNewArea from './subcomponents/CmsTextareasAddNewArea';
 
 
-export interface TextareaContextTypes extends PropsProvider { textarea: string, idx: number }
+export interface TextareaContextTypes extends PropsProvider { textarea: string | any, idx: number }
 export const TextareaContext = createContext<Partial<TextareaContextTypes>>({});
 
 interface PropsProvider {
@@ -43,7 +43,7 @@ interface PropsProvider {
 
 const CmsTextareasListsStructure: React.FC<PropsProvider> = ({ section, headerPlaceholder }): JSX.Element => {
 
-    const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const { projectDataForm, projectDataFormErrors } = state;
 
     const generateAllTextareasStructure: JSX.Element[] = projectDataForm[section].map((textarea, idx) => (
