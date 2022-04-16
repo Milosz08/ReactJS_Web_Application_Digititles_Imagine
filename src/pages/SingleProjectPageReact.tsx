@@ -21,7 +21,7 @@ import { createContext } from 'react';
 
 import { useParams } from 'react-router';
 
-import { ProjectTypes } from '../redux/redux-api-thunk/elementTypes';
+import { ProjectModel } from '../redux/redux-models/ProjectModel';
 import { SubpagesContentKeys } from '../static/subpagesMainContent';
 
 import useInsertRefOnLoad from '../hooks/reusable/useInsertRefOnLoad';
@@ -34,7 +34,8 @@ import ProjectInitialFluidContent from '../components/project-initial-fluid-cont
 import NextElementSection from '../components/next-element-section/NextElementSection';
 import Footer from '../components/footer/Footer';
 
-export type ProjectContextTypes = { findProject: ProjectTypes };
+
+export type ProjectContextTypes = { findProject: ProjectModel };
 export const ProjectContext = createContext<Partial<ProjectContextTypes>>({});
 
 

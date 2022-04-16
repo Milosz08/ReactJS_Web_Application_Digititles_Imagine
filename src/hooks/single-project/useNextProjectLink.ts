@@ -22,17 +22,17 @@ import { useSelector } from 'react-redux';
 import { NextElementProps, NextElementPropTypes } from '../../static/nextElementProps';
 
 import { RootState } from '../../redux/store';
-import { ProjectTypes } from '../../redux/redux-api-thunk/elementTypes';
+import { ProjectModel } from '../../redux/redux-models/ProjectModel';
 import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
 
 /**
  * Custom hook responsible for fill next prop object based next element in array of
  * all projects elements.
  *
- * @param findingProject { ProjectTypes } - found project in react component.
+ * @param findingProject { ProjectModel } - found project in react component.
  * @return { NextElementPropTypes } - modified prop object.
  */
-const useNextProjectLink = (findingProject: ProjectTypes): NextElementPropTypes => {
+const useNextProjectLink = (findingProject: ProjectModel): NextElementPropTypes => {
 
     const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const [ content, setContent ] = useState<NextElementPropTypes>(NextElementProps.project);

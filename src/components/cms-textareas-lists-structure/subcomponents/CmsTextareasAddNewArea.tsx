@@ -30,6 +30,7 @@ import { CmsTextareasAddNewAreaButton } from '../CmsTextareasListsStructure.styl
 
 interface PropsProvider {
     section: DiscretteProjectSections;
+    addValuePayload?: SoftwareModel;
 }
 
 const CmsTextareasAddNewArea: React.FC<PropsProvider> = ({ section }): JSX.Element => {

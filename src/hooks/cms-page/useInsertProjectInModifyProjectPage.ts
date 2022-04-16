@@ -25,7 +25,7 @@ import { RoutingPaths } from '../../static/appRouting';
 import useChangePageTitle from '../reusable/useChangePageTitle';
 
 import { RootState } from '../../redux/store';
-import { ProjectTypes } from '../../redux/redux-api-thunk/elementTypes';
+import { ProjectModel } from '../../redux/redux-models/ProjectModel';
 import { ReduxDOMActions } from '../../redux/redux-dom-manipulate/actions';
 import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
 
@@ -33,9 +33,9 @@ import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
  * Custom hook responsible for load initial content on modify single project cms section (and return found
  * project; if not find project, return undefined value).
  *
- * @return { ProjectTypes } - selected project.
+ * @return { ProjectModel } - selected project.
  */
-const useInsertProjectInModifyProjectPage = (): ProjectTypes | undefined => {
+const useInsertProjectInModifyProjectPage = (): ProjectModel | undefined => {
 
     const { projects }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 

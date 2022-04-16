@@ -25,7 +25,7 @@ import useChangePageTitle from '../reusable/useChangePageTitle';
 import { SubpagesContent, SubpagesContentKeys, SubpagesMainContentTypes } from '../../static/subpagesMainContent';
 
 import { RootState } from '../../redux/store';
-import { ProjectTypes } from '../../redux/redux-api-thunk/elementTypes';
+import { ProjectModel } from '../../redux/redux-models/ProjectModel';
 import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
 
 /**
@@ -33,10 +33,10 @@ import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
  * to saved ID value, then move to 404 page.
  *
  * @param projectTitle { string } - project title (from URL params).
- * @return { [ ProjectTypes, SubpagesMainContentTypes, string ] } - first: foundProject, second: project main page
+ * @return { [ ProjectModel, SubpagesMainContentTypes, string ] } - first: foundProject, second: project main page
  *         content, third: project main photo element.
  */
-const useProjectOnLoad = (projectTitle: string): [ ProjectTypes, SubpagesMainContentTypes, string ] => {
+const useProjectOnLoad = (projectTitle: string): [ ProjectModel, SubpagesMainContentTypes, string ] => {
 
     const { projects, projectsPhotos, status }: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
 
@@ -46,7 +46,7 @@ const useProjectOnLoad = (projectTitle: string): [ ProjectTypes, SubpagesMainCon
     const navigate = useNavigate();
     const { pathname } = useLocation();
 
-    const [ findingProject, setFindingProject ] = useState<ProjectTypes>();
+    const [ findingProject, setFindingProject ] = useState<ProjectModel>();
     const [ photo, setPhoto ] = useState<string>();
     const [ content, setContent ] = useState<SubpagesMainContentTypes>(SubpagesContent[SubpagesContentKeys.PROJECT]);
 
