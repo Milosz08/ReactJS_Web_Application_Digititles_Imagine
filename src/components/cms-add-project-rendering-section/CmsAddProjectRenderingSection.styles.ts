@@ -17,10 +17,8 @@
  */
 
 import styled from 'styled-components';
-import { FiArrowDown } from 'react-icons/fi';
 
-import { select_rs } from '../../styles/reset.styles';
-import { CmsContentBoxView, InputWithTextarea } from '../../styles/mixins.styles';
+import { CmsContentBoxView } from '../../styles/mixins.styles';
 
 export const CmsAddProjectRenderingSectionContainer = styled.section`
     ${CmsContentBoxView({ content: 'project rendering info' })};
@@ -40,25 +38,4 @@ export const CmsAddProjectRenderingSectionContainer = styled.section`
         grid-template-rows: 1fr 1fr 1fr 1fr;
         grid-template-areas: "." "." "." ".";
     }
-`;
-
-export const CmsAddProjectRenderingIfImaxSelectBoxLabel = styled.label`
-    display: flex;
-    flex-direction: column;
-    position: relative;
-`;
-
-export const CmsAddProjectRenderingIfImaxSelectBox = styled(select_rs)<{ $ifError: boolean }>`
-    ${({ $ifError }) => InputWithTextarea({ $ifError })};
-    padding: 11px 13px 9px;
-    font-size: 1.2rem;
-    border-bottom-width: 3px !important;
-`;
-
-export const CmsAddProjectRenderingIfImaxArrow = styled(FiArrowDown)`
-    position: absolute;
-    right: 20px;
-    bottom: 13px;
-    font-size: 1.5rem;
-    color: var(--cyanDark);
 `;

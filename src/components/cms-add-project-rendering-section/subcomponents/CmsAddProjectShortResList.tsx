@@ -19,24 +19,19 @@
 import * as React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { RootState } from '../../../redux/store';
-import { ReduxAPIActions } from '../../../redux/redux-api-thunk/actions';
-import { ProjectFieldsKeys } from '../../../redux/redux-api-thunk/types';
-import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
 import { TechnicalBlocksStructure } from '../../../static/resolutionsAndPrograms';
 
-import {
-    CmsAddProjectRenderingIfImaxArrow, CmsAddProjectRenderingIfImaxSelectBox, CmsAddProjectRenderingIfImaxSelectBoxLabel
-} from '../CmsAddProjectRenderingSection.styles';
+import { RootState } from '../../../redux/store';
+import { InitStateAPItypes } from '../../../redux/redux-api-thunk/initialState';
+import { ProjectFieldsKeys } from '../../../redux/redux-subreducers/redux-project-form/types';
+import { ReduxProjFormActions } from '../../../redux/redux-subreducers/redux-project-form/actions';
 
-import {
-    CmsAddProjectTextInputTextLabel
-} from '../../cms-add-project-text-input-element/CmsAddProjectTextInputElement.styles';
+import UniversalSelectComponent from '../../universal-select-component/UniversalSelectComponent';
 
 
 const CmsAddProjectShortResList: React.FC = (): JSX.Element => {
 
-    const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxReducerAPI);
+    const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
     const { projects, projectDataForm, projectDataFormErrors } = state;
 
     const allTypesOfResolutions = projects.map(projects => projects.renderProps.shortResolution.toUpperCase());
@@ -52,26 +47,17 @@ const CmsAddProjectShortResList: React.FC = (): JSX.Element => {
     const generateOptions = withFirstSeeLabel.map(res => <option key = {res}>{res}</option>);
 
     const handleChangeSelectElement = ({ target }: React.ChangeEvent<HTMLSelectElement>): void => {
-        dispatcher(ReduxAPIActions.insertProjectFormElement(ProjectFieldsKeys.SHORT_RESOLUTION, target.value));
+        dispatcher(ReduxProjFormActions.insertProjectFormElement(ProjectFieldsKeys.SHORT_RESOLUTION, target.value));
     };
 
     return (
-        <CmsAddProjectRenderingIfImaxSelectBoxLabel
-            htmlFor = 'select_short_res__input'
-        >
-            <CmsAddProjectTextInputTextLabel>
-                Short resolution
-            </CmsAddProjectTextInputTextLabel>
-            <CmsAddProjectRenderingIfImaxArrow/>
-            <CmsAddProjectRenderingIfImaxSelectBox
-                id = 'select_short_res__input'
-                value = {projectDataForm.shortResolution.toUpperCase()}
-                onChange = {handleChangeSelectElement}
-                $ifError = {projectDataFormErrors.shortResolution}
-            >
-                {generateOptions}
-            </CmsAddProjectRenderingIfImaxSelectBox>
-        </CmsAddProjectRenderingIfImaxSelectBoxLabel>
+        <UniversalSelectComponent
+            textLabel = 'Short resolution'
+            ifError = {projectDataFormErrors.shortResolution}
+            allOptionsArray = {generateOptions}
+            selectValue = {projectDataForm.shortResolution.toUpperCase()}
+            onChangeCallback = {handleChangeSelectElement}
+        />
     );
 };
 
