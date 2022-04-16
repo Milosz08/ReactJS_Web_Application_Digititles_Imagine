@@ -54,6 +54,9 @@ const GlobalStylesInjection = createGlobalStyle<GlobalStylesProvider>`
         color: inherit;
         font-weight: 500;
     }
+    option {
+        text-transform: capitalize;
+    }
     :root {
         --whiteClean: #fefefe;
         --whiteDark: #f7f7f7;
