@@ -16,7 +16,7 @@
  * COPIES OR SUBSTANTIAL PORTIONS OF THE SOFTWARE.
  */
 
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -53,7 +53,7 @@ const useProjectOnLoad = (projectTitle: string): [ ProjectModel, SubpagesMainCon
     useChangePageTitle(findingProject ? findingProject.title : 'Loading...', false);
 
     // On load component added project values
-    useLayoutEffect(() => {
+    useEffect(() => {
         if (!(status.loadingProjects && !status.loadingImages)) {
             const foundProject = projects.find(project => project.projectPath === projectTitle)!;
             if (foundProject) {
@@ -63,11 +63,11 @@ const useProjectOnLoad = (projectTitle: string): [ ProjectModel, SubpagesMainCon
                 setPhoto(mainImage.url);
                 setFindingProject(foundProject);
                 setContent(prevState => ({ ...prevState, title: foundProject.title }));
-            } else {
+            } else if (!Boolean(foundProject) && !status.loadingImages && !status.loadingProjects) {
                 navigate({ pathname: RoutingPaths.ERROR });
             }
         }
-    }, [ navigate, pathname, projectTitle, projects, projectsPhotos, status ]);
+    }, [ navigate, pathname, projectTitle, projects, projectsPhotos, status]);
 
     return [ findingProject!, content, photo! ];
 };
