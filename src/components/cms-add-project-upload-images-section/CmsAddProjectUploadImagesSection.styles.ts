@@ -21,4 +21,5 @@ import { CmsContentBoxView } from '../../styles/mixins.styles';
 
 export const CmsAddProjectUploadImagesSectionContainer = styled.section`
     ${CmsContentBoxView({ content: 'upload project images' })};
+    margin-bottom: 40px;
 `;

@@ -36,7 +36,7 @@ const ProjectColoursTyposSection: React.FC = (): JSX.Element => {
 
     const generateProjectColours = compositeColours.map(({ compositeColour }, idx) => (
         <ProjectCompositeSingleColourContainer
-            key = {compositeColour}
+            key = {idx}
         >
             <ProjectCompositeSingleColour
                 $bgcColour = {compositeColour}
