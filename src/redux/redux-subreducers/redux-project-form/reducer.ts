@@ -176,7 +176,15 @@ const reduxReducerProjForm = (state = InitStateAPI, action: any): InitStateAPIty
             const newState = state.projectFormIfActiveCustomProp;
             newState[index] = value;
             return { ...state,
-                projectFormIfActiveCustomProp: newState
+                projectFormIfActiveCustomProp: newState,
+            };
+        }
+
+        case ReduxProjFormReducerTypes.SETTING_SERVER_RESPONSE: {
+            const { message, ifError } = action.payload;
+            return { ...state,
+                addEditServerResponseMessage: message,
+                ifServerResponseMessageError: ifError,
             };
         }
 

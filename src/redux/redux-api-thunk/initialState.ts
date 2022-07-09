@@ -81,6 +81,8 @@ export interface InitStateAPItypes {
     projectDataForm: ProjectFormModel;
     projectDataFormErrors: ProjectFormErrorsModel;
     projectFormIfActiveCustomProp: boolean[];
+    addEditServerResponseMessage: string,
+    ifServerResponseMessageError: boolean,
 }
 
 export const InitStateAPI: InitStateAPItypes = {
@@ -137,4 +139,6 @@ export const InitStateAPI: InitStateAPItypes = {
     projectDataForm: ProjectFormInitialState,
     projectDataFormErrors: ProjectFormErrorsInitialState,
     projectFormIfActiveCustomProp: [ false ],
+    addEditServerResponseMessage: '',
+    ifServerResponseMessageError: false,
 };

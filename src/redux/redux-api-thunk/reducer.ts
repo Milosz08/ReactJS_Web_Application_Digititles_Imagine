@@ -106,6 +106,18 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
             };
         }
 
+        case ReduxAPIreducerTypes.UPDATE_SELECTED_PROJECT: {
+            const { projectId, updatedProject } = action.payload;
+            const newStateProject = [ ...state.projects ];
+            const findSearchProjectIndex = state.projects.findIndex(project => project.id === projectId);
+            if (findSearchProjectIndex !== -1) {
+                newStateProject[findSearchProjectIndex] = updatedProject;
+            }
+            return { ...state,
+                projects: newStateProject,
+            };
+        }
+
         default: {
             return state;
         }

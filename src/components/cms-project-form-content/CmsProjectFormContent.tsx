@@ -18,12 +18,19 @@
 
 import * as React from 'react';
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { RootState } from '../../redux/store';
+import { ReduxAPIThunk } from '../../redux/redux-api-thunk/thunk';
+import { InitStateAPItypes } from '../../redux/redux-api-thunk/initialState';
 import { ReduxProjFormActions } from '../../redux/redux-subreducers/redux-project-form/actions';
 import { DiscretteProjectSections } from '../../redux/redux-subreducers/redux-project-form/types';
 
-import { CmsProjectFormContentContainer } from './CmsProjectFormContent.styles';
+import { Mapping } from '../../helper-primitives/Mapping';
+
+import {
+    CmsProjectFormContentContainer, CmsServerResponseMessageContainer, CmsSubmitProjectButton
+} from './CmsProjectFormContent.styles';
 
 import InfoBlockElement from '../info-block-element/InfoBlockElement';
 import CmsExistingProjectButtons from './subcomponents/CmsExistingProjectButtons';
@@ -41,11 +48,21 @@ interface PropsProvider {
 
 const CmsProjectFormContent: React.FC<PropsProvider> = ({ loadProjectId }): JSX.Element => {
 
+    const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
+    const { projectDataForm, sessionInfo, ifServerResponseMessageError, addEditServerResponseMessage } = state;
+
     const dispatcher = useDispatch();
 
     const handleSubmitForm = (e: React.ChangeEvent<HTMLFormElement>): void => {
         e.preventDefault();
-        console.log('sending data to api...');
+        const createdDataFormProject = Mapping.projectStoreToSenderPayload(loadProjectId!, projectDataForm);
+        if (loadProjectId) {
+            dispatcher(ReduxAPIThunk.updateExistingProjectData(loadProjectId, createdDataFormProject, {
+                Authorization: sessionInfo.bearerToken
+            }));
+        } else {
+            dispatcher(ReduxAPIThunk.addNewProjectData(createdDataFormProject, { Authorization: sessionInfo.bearerToken }));
+        }
     };
 
     // load existing project into redux store
@@ -58,6 +75,16 @@ const CmsProjectFormContent: React.FC<PropsProvider> = ({ loadProjectId }): JSX.
         };
     }, [ dispatcher, loadProjectId ]);
 
+    // reset server message response indicators
+    useEffect(() => {
+        const resetServerMessageIndicators = (): void => {
+            if (addEditServerResponseMessage !== '') {
+                dispatcher(ReduxProjFormActions.setServerResponseMessage('', false));    
+            }
+        };
+        document.addEventListener('click', resetServerMessageIndicators);
+    }, [ addEditServerResponseMessage, dispatcher ]);
+    
     return (
         <CmsProjectFormContentContainer
             onSubmit = {handleSubmitForm}
@@ -86,6 +113,17 @@ const CmsProjectFormContent: React.FC<PropsProvider> = ({ loadProjectId }): JSX.
             <CmsAddProjectRenderingSection/>
             <CmsAddProjectColorsAndSoftwareSection/>
             <CmsAddProjectUploadImagesSection/>
+            <CmsSubmitProjectButton
+                type = 'submit'
+                title = 'Click to update/add new project'
+            >
+                {loadProjectId ? 'Update project data' : 'Add new project data'}
+            </CmsSubmitProjectButton>
+            <CmsServerResponseMessageContainer
+                $ifError = {ifServerResponseMessageError}
+            >
+                {addEditServerResponseMessage}
+            </CmsServerResponseMessageContainer>
         </CmsProjectFormContentContainer>
     );
 };

@@ -60,3 +60,18 @@ export const CmsExistingProjectDeleteProjectButton = styled(button_rs)`
         background-color: transparent;
     }
 `;
+
+export const CmsSubmitProjectButton = styled(button_rs)`
+    ${ButtonMixinElement()};
+    padding: 8px 0 10px;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    width: 100%;
+`;
+
+export const CmsServerResponseMessageContainer = styled.div<{ $ifError: boolean }>`
+    color: ${({ $ifError }) => `var(--${$ifError ? 'red' : 'green'}Dark)`};
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 40px;
+`;

@@ -102,4 +102,11 @@ export class ReduxProjFormActions {
         }
     });
 
+    public static setServerResponseMessage = (message: string, ifError: boolean): ReturnedToReducer => ({
+        type: ReduxProjFormReducerTypes.SETTING_SERVER_RESPONSE,
+        payload: {
+            message, ifError,
+        }
+    });
+
 }

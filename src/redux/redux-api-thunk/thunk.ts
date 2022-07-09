@@ -23,6 +23,7 @@ import { ReduxAPIActions } from './actions';
 
 import { AllFormsTypes } from '../redux-subreducers/redux-forms/types';
 import { ReduxFormsActions } from '../redux-subreducers/redux-forms/actions';
+import { ReduxProjFormActions } from '../redux-subreducers/redux-project-form/actions';
 
 
 export class ReduxAPIThunk {
@@ -51,14 +52,44 @@ export class ReduxAPIThunk {
         return async (dispatcher: (prop: any) => void) => {
             await axiosInstance.delete(`${endpoint}/${elementId}`, { headers });
             dispatcher(ReduxAPIActions.deleteReduxStoreElement(elementKey, elementId));
-        }
+        };
     };
 
     public static markUserMessageAsViewed(elementId: string, headers: any) {
         return async (dispatcher: (prop: any) => void) => {
             await axiosInstance.put(`${JavaApiEndpoints.USER_MESSAGES}/${elementId}`, null, { headers });
             dispatcher(ReduxFormsActions.markUserMessageAsViewed(elementId));
-        }
+        };
     };
+
+    public static addNewProjectData(projectModel: any, headers: any) {
+        return async (dispatcher: (prop: any) => void) => {
+            await axiosInstance.post(`${JavaApiEndpoints.PROJECTS}`, projectModel, { headers })
+                .then(response => response)
+                .then(data => {
+                    dispatcher(ReduxAPIActions.addReduxStoreElement(data.data, ReduxAPIstateKeys.PROJECTS));
+                    dispatcher(ReduxProjFormActions.setServerResponseMessage(
+                        "Successfully added new project instance.", false));
+                }, () => {
+                    dispatcher(ReduxProjFormActions.setServerResponseMessage(
+                        "Unexpected error while adding new project.", true));
+                });
+        };
+    };
+
+    public static updateExistingProjectData(existingProjectId: string, projectModel: any, headers: any) {
+        return async (dispatcher: (prop: any) => void) => {
+            await axiosInstance.put(`${JavaApiEndpoints.PROJECTS}/${existingProjectId}`, projectModel, { headers })
+                .then(response => response)
+                .then(data => {
+                    dispatcher(ReduxAPIActions.updateSelectedProject(existingProjectId, data.data));
+                    dispatcher(ReduxProjFormActions.setServerResponseMessage(
+                        "Successfully updating existing project instance.", false));
+                }, () => {
+                    dispatcher(ReduxProjFormActions.setServerResponseMessage(
+                        "Unexpected error while updating existing project.", true));
+                });
+        };
+    }
 
 }

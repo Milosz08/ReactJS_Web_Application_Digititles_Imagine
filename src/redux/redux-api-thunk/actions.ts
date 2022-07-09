@@ -91,4 +91,11 @@ export class ReduxAPIActions {
         }
     });
 
+    public static updateSelectedProject = (projectId: string, updatedProject: any): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.UPDATE_SELECTED_PROJECT,
+        payload: {
+            projectId, updatedProject,
+        }
+    });
+
 }
