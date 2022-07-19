@@ -118,6 +118,42 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
             };
         }
 
+        case ReduxAPIreducerTypes.SET_MESSAGE_ON_UPLOAD_IMAGE: {
+            const { imageContainerType, ifError, messageContent } = action.payload;
+            return { ...state,
+                imageUploadProperties: { ...state.imageUploadProperties,
+                    [imageContainerType]: { ...state.imageUploadProperties[imageContainerType],
+                        onUploadImageMessage: messageContent,
+                        ifErrorWhileUploadingImage: ifError,
+                    },
+                },
+            };
+        }
+
+        case ReduxAPIreducerTypes.ADD_IMAGE_URI_TO_UPLOAD_ARRAY: {
+            const { imageType, imageURI } = action.payload;
+            return { ...state,
+                imageUploadProperties: { ...state.imageUploadProperties,
+                    [imageType]: { ...state.imageUploadProperties[imageType],
+                        imagesUriShortcutArray: [ ...state.imageUploadProperties[imageType].imagesUriShortcutArray, imageURI ],
+                    },
+                },
+            };
+        }
+
+        case ReduxAPIreducerTypes.REMOVE_IMAGE_URI_FROM_UPLOAD_ARRAY: {
+            const { imageType, imageURI } = action.payload;
+            const imagesAfterRemove = state.imageUploadProperties[imageType].imagesUriShortcutArray
+                .filter((uri: string) => uri !== imageURI);
+            return { ...state,
+                imageUploadProperties: { ...state.imageUploadProperties,
+                    [imageType]: { ...state.imageUploadProperties[imageType],
+                        imagesUriShortcutArray: imagesAfterRemove,
+                    },
+                },
+            };
+        }
+
         default: {
             return state;
         }

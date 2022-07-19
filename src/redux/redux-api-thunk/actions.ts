@@ -18,6 +18,7 @@
 
 import { AxiosResponse } from 'axios';
 import { CmsCredentialsLevels, ReduxAPIreducerTypes, ReduxAPIstateKeys } from './types';
+import { ImageUploadMode } from '../../static/imageUploadContainers';
 
 
 interface ReturnedToReducer {
@@ -95,6 +96,29 @@ export class ReduxAPIActions {
         type: ReduxAPIreducerTypes.UPDATE_SELECTED_PROJECT,
         payload: {
             projectId, updatedProject,
+        }
+    });
+
+    public static setMessageOnUploadImage = (
+        imageContainerType: ImageUploadMode, messageContent: string, ifError: boolean = false
+    ): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.SET_MESSAGE_ON_UPLOAD_IMAGE,
+        payload: {
+            imageContainerType, ifError, messageContent,
+        }
+    });
+
+    public static addNewImageUriToSelectImageModeArray = (imageType: ImageUploadMode, imageURI: string): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.ADD_IMAGE_URI_TO_UPLOAD_ARRAY,
+        payload: {
+            imageType, imageURI,
+        }
+    });
+
+    public static removeImageUriToSelectImageModeArray = (imageType: ImageUploadMode, imageURI: string): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.REMOVE_IMAGE_URI_FROM_UPLOAD_ARRAY,
+        payload: {
+            imageType, imageURI,
         }
     });
 

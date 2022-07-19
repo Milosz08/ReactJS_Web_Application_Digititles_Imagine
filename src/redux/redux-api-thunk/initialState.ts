@@ -29,6 +29,7 @@ import {
 } from '../redux-subreducers/redux-project-form/initialObjects';
 
 import { CmsCredentialsLevels } from './types';
+import { ImageUploadMode } from '../../static/imageUploadContainers';
 import { FILMMAKER_MIN_SMALL } from '../../static/gettingStartedContent';
 
 
@@ -81,8 +82,25 @@ export interface InitStateAPItypes {
     projectDataForm: ProjectFormModel;
     projectDataFormErrors: ProjectFormErrorsModel;
     projectFormIfActiveCustomProp: boolean[];
-    addEditServerResponseMessage: string,
-    ifServerResponseMessageError: boolean,
+    addEditServerResponseMessage: string;
+    ifServerResponseMessageError: boolean;
+    imageUploadProperties: {
+        [ImageUploadMode.MAIN_IMAGE]: {
+            onUploadImageMessage: string;
+            ifErrorWhileUploadingImage: boolean;
+            imagesUriShortcutArray: string[];
+        };
+        [ImageUploadMode.ASSEMBLY_IMAGE]: {
+            onUploadImageMessage: string;
+            ifErrorWhileUploadingImage: boolean;
+            imagesUriShortcutArray: string[];
+        };
+        [ImageUploadMode.BACKGROUND_IMAGE]: {
+            onUploadImageMessage: string;
+            ifErrorWhileUploadingImage: boolean;
+            imagesUriShortcutArray: string[];
+        };
+    };
 }
 
 export const InitStateAPI: InitStateAPItypes = {
@@ -141,4 +159,21 @@ export const InitStateAPI: InitStateAPItypes = {
     projectFormIfActiveCustomProp: [ false ],
     addEditServerResponseMessage: '',
     ifServerResponseMessageError: false,
+    imageUploadProperties: {
+        [ImageUploadMode.MAIN_IMAGE]: {
+            onUploadImageMessage: '',
+            ifErrorWhileUploadingImage: false,
+            imagesUriShortcutArray: [],
+        },
+        [ImageUploadMode.ASSEMBLY_IMAGE]: {
+            onUploadImageMessage: '',
+            ifErrorWhileUploadingImage: false,
+            imagesUriShortcutArray: [],
+        },
+        [ImageUploadMode.BACKGROUND_IMAGE]: {
+            onUploadImageMessage: '',
+            ifErrorWhileUploadingImage: false,
+            imagesUriShortcutArray: [],
+        },
+    },
 };
