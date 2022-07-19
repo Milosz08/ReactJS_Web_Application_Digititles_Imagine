@@ -18,13 +18,28 @@
 
 import * as React from 'react';
 
-import { CmsAddProjectUploadImagesSectionContainer } from './CmsAddProjectUploadImagesSection.styles';
+import { ImageUploadContainers } from '../../static/imageUploadContainers';
+import CmsAddProjectUploadImageSingleContainer from './subcomponents/CmsAddProjectUploadImageSingleContainer';
+
+import {
+    CmsAddProjectUploadImageSectionWrapper, CmsAddProjectUploadImagesSectionContainer
+} from './CmsAddProjectUploadImagesSection.styles';
 
 
 const CmsAddProjectUploadImagesSection: React.FC = (): JSX.Element => {
+
+    const generateAllSingleImageContainers: JSX.Element[] = ImageUploadContainers.map(container => (
+        <CmsAddProjectUploadImageSingleContainer
+            key = {container.description}
+            imageContainerInfo = {container}
+        />
+    ));
+
     return (
         <CmsAddProjectUploadImagesSectionContainer>
-            123
+            <CmsAddProjectUploadImageSectionWrapper>
+                {generateAllSingleImageContainers}
+            </CmsAddProjectUploadImageSectionWrapper>
         </CmsAddProjectUploadImagesSectionContainer>
     );
 };
