@@ -50,6 +50,9 @@ export interface InitStateDOMtypes {
         ifWarningLogoutModalOpen: boolean;
         ifEndSessionModalOpen: boolean;
         ifDeleteContentModalOpen: boolean;
+        ifMainImageUploadModeOpen: boolean;
+        ifAssemblyImageUploadModeOpen: boolean;
+        ifBackgroundImageUploadModeOpen: boolean;
     };
     deleteModalData: {
         dataId: string | null;
@@ -96,6 +99,9 @@ export const InitStateDOM: InitStateDOMtypes = {
         ifWarningLogoutModalOpen: false,
         ifEndSessionModalOpen: false,
         ifDeleteContentModalOpen: false,
+        ifMainImageUploadModeOpen: false,
+        ifAssemblyImageUploadModeOpen: false,
+        ifBackgroundImageUploadModeOpen: false,
     },
     deleteModalData: {
         dataId: null,

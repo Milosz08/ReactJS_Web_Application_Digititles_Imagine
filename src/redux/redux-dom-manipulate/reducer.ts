@@ -97,6 +97,15 @@ const reduxReducerDOM = (state = InitStateDOM, action: any): InitStateDOMtypes =
             return { ...state, deleteModalData: { dataId, dataContent, endpoint } };
         }
 
+        case ReduxDOMreducerTypes.CHANGE_UPLOAD_IMAGE_MODAL_VISIBILITY_WITH_MODE: {
+            const { ifActive, modalMode } = action.payload;
+            return { ...state,
+                modalsState: { ...state.modalsState,
+                    [modalMode]: ifActive,
+                }
+            };
+        }
+
         default: {
             return state;
         }

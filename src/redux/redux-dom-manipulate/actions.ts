@@ -19,10 +19,11 @@
 import Utils from '../utils';
 import { ReduxAPIstateKeys } from '../redux-api-thunk/types';
 import { JavaApiEndpoints } from '../redux-api-thunk/request';
+import { ImageUploadMode } from '../../static/imageUploadContainers';
 
 import {
-    ActiveAction, AllModals, AllSections, AnimationStages, GettingStartedNavElms, ProjectSections,
-    ReduxDOMreducerTypes, ReduxDOMstateKeys, ServicesSections
+    ActiveAction, AllModals, AllSections, AnimationStages, GettingStartedNavElms, ProjectSections, ReduxDOMreducerTypes,
+    ReduxDOMstateKeys, ServicesSections
 } from './types';
 
 export type SectionKey = ProjectSections | ServicesSections;
@@ -123,6 +124,13 @@ export class ReduxDOMActions {
         type: ReduxDOMreducerTypes.INSERT_DELETE_CONTENT_DATA,
         payload: {
             dataId, dataContent, endpoint
+        }
+    });
+
+    public static toggleUploadImageModalState = (ifActive: boolean = false, modalMode: ImageUploadMode | null): ReturnedToReducer => ({
+        type: ReduxDOMreducerTypes.CHANGE_UPLOAD_IMAGE_MODAL_VISIBILITY_WITH_MODE,
+        payload: {
+            ifActive, modalMode,
         }
     });
 
