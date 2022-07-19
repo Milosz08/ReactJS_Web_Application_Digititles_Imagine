@@ -31,6 +31,7 @@ import { CmsSafetyAreaContainer, CmsSafetyAreaWrapper } from '../styles/mixins.s
 
 import LoadCmsData from '../router/LoadCmsData';
 import CmsDeleteContentModal from '../components/cms-delete-content-modal/CmsDeleteContentModal';
+import CmsAddProjectUploadAllImageModals from '../components/cms-add-project-upload-images-section/subcomponents/CmsAddProjectUploadAllImageModals';
 import NavigationScrollTop from '../components/navigation-scroll-top/NavigationScrollTop';
 import CmsMainHeaderInfo from '../components/cms-main-header-info/CmsMainHeaderInfo';
 import HeaderElement from '../components/universal-components/HeaderElement';
@@ -49,6 +50,7 @@ const CmsInheritLayoutPageReact: React.FC = (): JSX.Element => {
         <>
             <LoadCmsData/>
             <CmsDeleteContentModal/>
+            <CmsAddProjectUploadAllImageModals/>
             <NavigationScrollTop/>
             <CmsSafetyAreaContainer>
                 <CmsSafetyAreaWrapper
