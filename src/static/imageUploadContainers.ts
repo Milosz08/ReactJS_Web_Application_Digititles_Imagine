@@ -25,7 +25,6 @@ export interface ImageUploadContainerTypes {
 }
 
 export enum ImageUploadMode {
-    UNSPECIFIED = 'UNSPECIFIED',
     MAIN_IMAGE = 'ifMainImageUploadModeOpen',
     ASSEMBLY_IMAGE = 'ifAssemblyImageUploadModeOpen',
     BACKGROUND_IMAGE = 'ifBackgroundImageUploadModeOpen',
