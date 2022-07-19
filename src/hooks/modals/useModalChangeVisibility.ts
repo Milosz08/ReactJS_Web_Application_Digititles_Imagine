@@ -36,7 +36,7 @@ import { InitStateDOMtypes } from '../../redux/redux-dom-manipulate/initialState
  * @param modalType { AllModals } - type of modal (enum from redux state types file).
  * @return { React.MutableRefObject<any>[] } - referential tuple of background ref and content ref.
  */
-const useModalChangeVisibility = (modalType: AllModals): React.MutableRefObject<any>[] => {
+const useModalChangeVisibility = (modalType: AllModals | string): React.MutableRefObject<any>[] => {
     
     const { modalsState }: InitStateDOMtypes = useSelector((state: RootState) => state.reduxReducerDOM);
     

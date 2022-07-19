@@ -25,7 +25,7 @@ import { ModalContainer, ModalWrapper } from '../styles/modals.styles';
 
 
 interface PropsProvider {
-    selectedModal: AllModals;
+    selectedModal: AllModals | string;
     children: React.ReactNode;
 }
 
