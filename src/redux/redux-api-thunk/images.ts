@@ -45,8 +45,8 @@ export class ImagesManipulator {
                         allElements++;
                         if (allElements === fullElements) {
                             axiosInstance.post(`${JavaApiEndpoints.PHOTOS}/upload/${projectId}`, formData, { headers: {
-                                    "Content-Type": "multipart/related", Authorization,
-                                }});
+                                "Content-Type": "multipart/related", Authorization,
+                            }});
                         }
                     });
                 };
