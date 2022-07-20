@@ -99,6 +99,7 @@ export const CmsAddProjectUploadImageDescription = styled.p<{ $ifError: boolean 
 
 export const CmsAddProjectUploadImageFileImagesContainer = styled.div`
     display: flex;
+    flex-wrap: wrap;
     margin-top: 20px;
 `;
 

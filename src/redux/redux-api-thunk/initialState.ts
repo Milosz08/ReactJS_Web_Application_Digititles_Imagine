@@ -87,16 +87,19 @@ export interface InitStateAPItypes {
     imageUploadProperties: {
         [ImageUploadMode.MAIN_IMAGE]: {
             onUploadImageMessage: string;
+            defaultFileName: string;
             ifErrorWhileUploadingImage: boolean;
             imagesUriShortcutArray: string[];
         };
         [ImageUploadMode.ASSEMBLY_IMAGE]: {
             onUploadImageMessage: string;
+            defaultFileName: string;
             ifErrorWhileUploadingImage: boolean;
             imagesUriShortcutArray: string[];
         };
         [ImageUploadMode.BACKGROUND_IMAGE]: {
             onUploadImageMessage: string;
+            defaultFileName: string;
             ifErrorWhileUploadingImage: boolean;
             imagesUriShortcutArray: string[];
         };
@@ -163,15 +166,18 @@ export const InitStateAPI: InitStateAPItypes = {
         [ImageUploadMode.MAIN_IMAGE]: {
             onUploadImageMessage: '',
             ifErrorWhileUploadingImage: false,
+            defaultFileName: 'Main',
             imagesUriShortcutArray: [],
         },
         [ImageUploadMode.ASSEMBLY_IMAGE]: {
             onUploadImageMessage: '',
             ifErrorWhileUploadingImage: false,
+            defaultFileName: 'Img',
             imagesUriShortcutArray: [],
         },
         [ImageUploadMode.BACKGROUND_IMAGE]: {
             onUploadImageMessage: '',
+            defaultFileName: 'Paralax',
             ifErrorWhileUploadingImage: false,
             imagesUriShortcutArray: [],
         },

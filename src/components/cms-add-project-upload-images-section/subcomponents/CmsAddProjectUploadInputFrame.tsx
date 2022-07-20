@@ -82,7 +82,6 @@ const CmsAddProjectUploadInputFrame: React.FC<PropsProvider> = ({ uploadBlock, i
                     dispatcher(ReduxAPIActions.addNewImageUriToSelectImageModeArray(imageModalType, objectUrl));
                 }
                 e.target.value = '';
-                window.URL.revokeObjectURL(objectUrl);
             };
             image.src = objectUrl;
         });
