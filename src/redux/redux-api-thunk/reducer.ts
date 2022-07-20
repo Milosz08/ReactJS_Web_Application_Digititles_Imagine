@@ -20,6 +20,7 @@ import Utils from '../utils';
 import { InitStateAPI, InitStateAPItypes } from './initialState';
 
 import { ReduxAPIreducerTypes, ReduxAPIstateKeys } from './types';
+import { ImageUploadMode } from '../../static/imageUploadContainers';
 
 
 const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes => {
@@ -149,6 +150,31 @@ const reduxReducerAPI = (state = InitStateAPI, action: any): InitStateAPItypes =
                 imageUploadProperties: { ...state.imageUploadProperties,
                     [imageType]: { ...state.imageUploadProperties[imageType],
                         imagesUriShortcutArray: imagesAfterRemove,
+                    },
+                },
+            };
+        }
+
+        case ReduxAPIreducerTypes.CLEAR_ALL_IMAGE_URI_ARRAYS: {
+            return { ...state,
+                imageUploadProperties: {
+                    [ImageUploadMode.MAIN_IMAGE]: {
+                        onUploadImageMessage: '',
+                        defaultFileName: 'Main',
+                        ifErrorWhileUploadingImage: false,
+                        imagesUriShortcutArray: [],
+                    },
+                    [ImageUploadMode.ASSEMBLY_IMAGE]: {
+                        onUploadImageMessage: '',
+                        defaultFileName: 'Img',
+                        ifErrorWhileUploadingImage: false,
+                        imagesUriShortcutArray: [],
+                    },
+                    [ImageUploadMode.BACKGROUND_IMAGE]: {
+                        onUploadImageMessage: '',
+                        defaultFileName: 'Paralax',
+                        ifErrorWhileUploadingImage: false,
+                        imagesUriShortcutArray: [],
                     },
                 },
             };

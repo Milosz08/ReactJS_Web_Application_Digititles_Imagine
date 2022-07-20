@@ -122,4 +122,8 @@ export class ReduxAPIActions {
         }
     });
 
+    public static clearAllImagesUriArrays = (): ReturnedToReducer => ({
+        type: ReduxAPIreducerTypes.CLEAR_ALL_IMAGE_URI_ARRAYS,
+    });
+
 }
