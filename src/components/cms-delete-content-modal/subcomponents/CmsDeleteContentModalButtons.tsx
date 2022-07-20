@@ -17,6 +17,7 @@
  */
 
 import * as React from 'react';
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from '../../../redux/store';
@@ -36,11 +37,13 @@ const CmsDeleteContentModalButtons: React.FC = (): JSX.Element => {
 
     const { dataId, dataContent, endpoint } = deleteModalData;
     const dispatcher = useDispatch();
+    const navigate = useNavigate();
 
     const handleRemoveCmsFormContent = (ifRemoveContent: boolean): void => {
         dispatcher(ReduxDOMActions.changeModalVisibility(AllModals.DELETE_CONTENT));
         setTimeout(() => {
             if (ifRemoveContent) {
+                navigate('/admin-panel');
                 dispatcher(ReduxAPIThunk.removeElementFromArray(dataId!, dataContent!, endpoint!, {
                     Authorization: sessionInfo.bearerToken
                 }));
