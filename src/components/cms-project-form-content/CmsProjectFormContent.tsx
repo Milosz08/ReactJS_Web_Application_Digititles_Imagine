@@ -40,6 +40,7 @@ import CmsAddProjectFontProperties from '../cms-add-project-font-properties/CmsA
 import CmsAddProjectRenderingSection from '../cms-add-project-rendering-section/CmsAddProjectRenderingSection';
 import CmsAddProjectColorsAndSoftwareSection from '../cms-add-project-colors-and-software-section/CmsAddProjectColorsAndSoftwareSection';
 import CmsAddProjectUploadImagesSection from '../cms-add-project-upload-images-section/CmsAddProjectUploadImagesSection';
+import { ReduxAPIActions } from '../../redux/redux-api-thunk/actions';
 
 
 interface PropsProvider {
@@ -49,7 +50,8 @@ interface PropsProvider {
 const CmsProjectFormContent: React.FC<PropsProvider> = ({ loadProjectId }): JSX.Element => {
 
     const state: InitStateAPItypes = useSelector((state: RootState) => state.reduxGlobalReducer);
-    const { projectDataForm, sessionInfo, ifServerResponseMessageError, addEditServerResponseMessage } = state;
+    const { projectDataForm, sessionInfo, ifServerResponseMessageError, addEditServerResponseMessage, imageUploadProperties } = state;
+    const getAllImagesErrors = Object.keys(imageUploadProperties).map(key => imageUploadProperties[key].ifErrorWhileUploadingImage);
 
     const dispatcher = useDispatch();
 
@@ -57,11 +59,12 @@ const CmsProjectFormContent: React.FC<PropsProvider> = ({ loadProjectId }): JSX.
         e.preventDefault();
         const createdDataFormProject = Mapping.projectStoreToSenderPayload(loadProjectId!, projectDataForm);
         if (loadProjectId) {
-            dispatcher(ReduxAPIThunk.updateExistingProjectData(loadProjectId, createdDataFormProject, {
+            dispatcher(ReduxAPIThunk.updateExistingProjectData(loadProjectId, imageUploadProperties, createdDataFormProject, {
                 Authorization: sessionInfo.bearerToken
             }));
         } else {
-            dispatcher(ReduxAPIThunk.addNewProjectData(createdDataFormProject, { Authorization: sessionInfo.bearerToken }));
+            dispatcher(ReduxAPIThunk.addNewProjectData(
+                createdDataFormProject, imageUploadProperties, { Authorization: sessionInfo.bearerToken }));
         }
     };
 
@@ -69,9 +72,11 @@ const CmsProjectFormContent: React.FC<PropsProvider> = ({ loadProjectId }): JSX.
     useEffect(() => {
         if (loadProjectId) {
             dispatcher(ReduxProjFormActions.insertExistingProjectDataToForm(loadProjectId!));
+            dispatcher(ReduxAPIThunk.uploadImagesToTemporaryStore(loadProjectId!));
         }
         return () => {
             dispatcher(ReduxProjFormActions.clearAllProjectFormElements());
+            dispatcher(ReduxAPIActions.clearAllImagesUriArrays());
         };
     }, [ dispatcher, loadProjectId ]);
 
@@ -115,6 +120,7 @@ const CmsProjectFormContent: React.FC<PropsProvider> = ({ loadProjectId }): JSX.
             <CmsAddProjectUploadImagesSection/>
             <CmsSubmitProjectButton
                 type = 'submit'
+                disabled = {getAllImagesErrors.some(v => v)}
                 title = 'Click to update/add new project'
             >
                 {loadProjectId ? 'Update project data' : 'Add new project data'}

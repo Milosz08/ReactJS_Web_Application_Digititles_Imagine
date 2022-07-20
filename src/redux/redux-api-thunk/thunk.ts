@@ -19,11 +19,13 @@
 import { axiosInstance, JavaApiEndpoints } from './request';
 
 import { ReduxAPIstateKeys } from './types';
+import { ImagesManipulator } from './images';
 import { ReduxAPIActions } from './actions';
 
 import { AllFormsTypes } from '../redux-subreducers/redux-forms/types';
 import { ReduxFormsActions } from '../redux-subreducers/redux-forms/actions';
 import { ReduxProjFormActions } from '../redux-subreducers/redux-project-form/actions';
+import { ImageUploadMode } from '../../static/imageUploadContainers';
 
 
 export class ReduxAPIThunk {
@@ -62,14 +64,18 @@ export class ReduxAPIThunk {
         };
     };
 
-    public static addNewProjectData(projectModel: any, headers: any) {
+    public static addNewProjectData(projectModel: any, imagesStoreProperties: any, headers: any) {
         return async (dispatcher: (prop: any) => void) => {
             await axiosInstance.post(`${JavaApiEndpoints.PROJECTS}`, projectModel, { headers })
                 .then(response => response)
                 .then(data => {
                     dispatcher(ReduxAPIActions.addReduxStoreElement(data.data, ReduxAPIstateKeys.PROJECTS));
-                    dispatcher(ReduxProjFormActions.setServerResponseMessage(
-                        "Successfully added new project instance.", false));
+                    ImagesManipulator.convertAndUploadProjectImage(
+                        data.data.id, data.data.projectPath, imagesStoreProperties, headers
+                    ).then(() => {
+                        dispatcher(ReduxProjFormActions.setServerResponseMessage(
+                            "Successfully added new project instance.", false));
+                    });
                 }, () => {
                     dispatcher(ReduxProjFormActions.setServerResponseMessage(
                         "Unexpected error while adding new project.", true));
@@ -77,14 +83,18 @@ export class ReduxAPIThunk {
         };
     };
 
-    public static updateExistingProjectData(existingProjectId: string, projectModel: any, headers: any) {
+    public static updateExistingProjectData(existingProjectId: string, imagesStoreProperties: any, projectModel: any, headers: any) {
         return async (dispatcher: (prop: any) => void) => {
             await axiosInstance.put(`${JavaApiEndpoints.PROJECTS}/${existingProjectId}`, projectModel, { headers })
                 .then(response => response)
                 .then(data => {
                     dispatcher(ReduxAPIActions.updateSelectedProject(existingProjectId, data.data));
-                    dispatcher(ReduxProjFormActions.setServerResponseMessage(
-                        "Successfully updating existing project instance.", false));
+                    ImagesManipulator.convertAndUploadProjectImage(
+                        data.data.id, data.data.projectPath, imagesStoreProperties, headers
+                    ).then(() => {
+                        dispatcher(ReduxProjFormActions.setServerResponseMessage(
+                            "Successfully updating existing project instance.", false));
+                    });
                 }, () => {
                     dispatcher(ReduxProjFormActions.setServerResponseMessage(
                         "Unexpected error while updating existing project.", true));
@@ -92,4 +102,27 @@ export class ReduxAPIThunk {
         };
     }
 
+    public static uploadImagesToTemporaryStore(projectId: string) {
+        return async (dispatcher: (prop: any) => void) => {
+            const { data } = await axiosInstance.get(`${JavaApiEndpoints.PHOTOS}/${projectId}`);
+            for (const image of data.projectImages) {
+                const response = await fetch(image.url);
+                const imageBlob = await response.blob();
+                const imageObj = new Image();
+                const objectUrl = window.URL.createObjectURL(imageBlob);
+                imageObj.onload = () => {
+                    let currentImageMode: ImageUploadMode;
+                    if (image.name.toLowerCase().includes('main')) {
+                        currentImageMode = ImageUploadMode.MAIN_IMAGE;
+                    } else if (image.name.toLowerCase().includes('paralax')) {
+                        currentImageMode = ImageUploadMode.BACKGROUND_IMAGE;
+                    } else {
+                        currentImageMode = ImageUploadMode.ASSEMBLY_IMAGE;
+                    }
+                    dispatcher(ReduxAPIActions.addNewImageUriToSelectImageModeArray(currentImageMode, objectUrl));
+                };
+                imageObj.src = objectUrl;
+            }
+        };
+    }
 }
