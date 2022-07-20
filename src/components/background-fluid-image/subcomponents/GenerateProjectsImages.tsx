@@ -43,8 +43,8 @@ const GenerateProjectsImages: React.FC = (): JSX.Element => {
             <ProjectsFluidImageStyles
                 key = {project.projectId}
                 ref = {imageRefs[idx]}
-                src = {mainImage.url}
-                alt = {`Unable to load image from server: ${mainImage.name}`}
+                src = {mainImage ? mainImage.url : ''}
+                alt = {`Unable to load image from server: ${mainImage ? mainImage.name : ''}`}
             />
         );
     });

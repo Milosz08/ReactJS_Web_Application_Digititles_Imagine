@@ -60,7 +60,7 @@ const useProjectOnLoad = (projectTitle: string): [ ProjectModel, SubpagesMainCon
                 const mainImage = projectsPhotos
                     .find(project => project.projectId === foundProject?.id)!
                     .projectImages.find(image => image.name.toLocaleLowerCase().includes('main'))!;
-                setPhoto(mainImage.url);
+                setPhoto(mainImage ? mainImage.url : '');
                 setFindingProject(foundProject);
                 setContent(prevState => ({ ...prevState, title: foundProject.title }));
             } else if (!Boolean(foundProject) && !status.loadingImages && !status.loadingProjects) {
