@@ -14,3 +14,17 @@ The client layer of the application made for Digititles Imagine. The main part w
 <hr/>
 
 ## About the Project
+
+
+## Clone and Installation
+If you want to clone and work with this repository, use the built-in interface in your IDE (for example WebStorm or Visual Studio Code) or use the clone project algorithm with git bash:<br>
+1. Open Git Bash.
+2. Change the current working directory to the location where you want the cloned directory.
+3. Type `git clone` and then paste the URL you copied earlier.
+  
+```
+$ git clone https://github.com/Milosz08/ReactJS_Web_Application_Digititles_Imagine
+```
+
+## License
+This application is on MIT License.
