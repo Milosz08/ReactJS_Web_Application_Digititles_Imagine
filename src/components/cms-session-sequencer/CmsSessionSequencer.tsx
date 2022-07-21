@@ -47,7 +47,7 @@ const CmsSessionSequencer: React.FC = (): null => {
         ACTIVITY_EVENTS.forEach(event => document.addEventListener(event, () => secondsSinceLastActivity = 0, true));
 
         const asyncCountingSession = (): void => {
-            // dispatcher(ReduxAPIActions.setSessionCounter(++secondsSinceLastActivity)); <----- enable this line on production
+            dispatcher(ReduxAPIActions.setSessionCounter(++secondsSinceLastActivity));
             if (secondsSinceLastActivity > maxInactivity) {
                 dispatcher(ReduxDOMActions.changeModalVisibility(AllModals.END_SESSION, true));
                 secondsSinceLastActivity = 0;

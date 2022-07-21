@@ -3,9 +3,9 @@
         [
             "babel-plugin-styled-components",
             {
-                "displayName": true,
+                "displayName": false,
                 "ssr": false,
-                "fileName": true
+                "fileName": false
             }
         ]
     ]
