@@ -38,6 +38,9 @@ If you want to clone and work with this repository, use the built-in interface i
 ```
 $ git clone https://github.com/Milosz08/ReactJS_Web_Application_Digititles_Imagine
 ```
+> This project has quite a few dependencies that need to be installed using NPM before cloning the repository. List of all necessary dependencies below.
+  
+> This project is mostly written in TypeScript. For the correct operation of the cloned application, you must have the TypeScript compiler installed together with the Create React App environment. If you do not know how to initiate the Create React App environment, go to [this link](https://create-react-app.dev/docs/getting-started).
 
 ## License
 This application is on MIT License.
